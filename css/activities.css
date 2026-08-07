@@ -28,6 +28,10 @@
   gap: 1rem;
 }
 
+.activity-card__heading > div {
+  min-width: 0;
+}
+
 .activity-card__heading h2 {
   margin: 0;
 }
@@ -487,7 +491,7 @@
   background: var(--colour-error-pale);
 }
 
-@media (min-width: 44rem) {
+@media (min-width: 64rem) {
   .activity-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
