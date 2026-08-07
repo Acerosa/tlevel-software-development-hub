@@ -1,0 +1,29 @@
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.flow > * {
+  margin-bottom: 0;
+}
+
+.measure {
+  max-width: 44rem;
+}
+
+.text-muted {
+  color: var(--colour-ink-soft);
+}
+
+.no-margin {
+  margin: 0;
+}
