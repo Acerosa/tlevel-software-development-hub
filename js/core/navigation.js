@@ -4,16 +4,25 @@
   var config = window.APP_CONFIG;
   var utils = window.AppUtils;
 
-  function navigationItem(item, currentPage, root) {
-    var currentAttribute = item.id === currentPage ? ' aria-current="page"' : "";
-    var currentClass = item.id === currentPage ? " site-nav__link--current" : "";
+  function pageLink(item, currentPage, root, className) {
+    var isCurrent = item.id === currentPage;
+    var currentAttribute = isCurrent ? ' aria-current="page"' : "";
+    var currentClass = isCurrent ? " " + className + "__link--current" : "";
     var href = utils.createSitePath(root, item.path);
 
     return (
-      '<li class="site-nav__item">' +
-      '<a class="site-nav__link' + currentClass + '" href="' + href + '"' +
+      '<li class="' + className + '__item">' +
+      '<a class="' + className + '__link' + currentClass + '" href="' + href + '"' +
       currentAttribute + ">" + item.label + "</a>" +
       "</li>"
+    );
+  }
+
+  function quickLink(item, currentPage, root, label) {
+    var currentAttribute = item.id === currentPage ? ' aria-current="page"' : "";
+    return (
+      '<li><a class="site-header__link" href="' +
+      utils.createSitePath(root, item.path) + '"' + currentAttribute + ">" + label + "</a></li>"
     );
   }
 
@@ -25,35 +34,86 @@
 
     var currentPage = document.body.dataset.page || "home";
     var root = document.body.dataset.root || ".";
-    var links = config.navigation
+    var mobileLinks = config.navigation
       .map(function (item) {
-        return navigationItem(item, currentPage, root);
+        return pageLink(item, currentPage, root, "site-nav");
       })
       .join("");
+    var home = config.navigation[0];
+    var resources = config.navigation.filter(function (item) {
+      return item.id === "resources";
+    })[0];
+    var help = config.navigation.filter(function (item) {
+      return item.id === "help";
+    })[0];
 
     headerMount.innerHTML =
       '<header class="site-header">' +
       '<div class="site-header__bar page-width">' +
-      '<a class="brand" href="' + utils.createSitePath(root, "") + '" aria-label="' +
-      config.siteName + ' home">' +
-      '<span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>' +
-      '<span class="brand__text"><span class="brand__kicker">T Level Digital</span>' +
-      '<span class="brand__name">Software Development Hub</span></span></a>' +
+      '<a class="brand" href="' + utils.createSitePath(root, "") + '">' +
+      '<span class="brand__name">Software Development Hub</span>' +
+      '<span class="brand__context">T Level Digital</span></a>' +
+      '<nav class="site-header__quick" aria-label="Quick links"><ul class="site-header__links">' +
+      quickLink(home, currentPage, root, "Course home") +
+      quickLink(resources, currentPage, root, "Resources") +
+      quickLink(help, currentPage, root, "Help") +
+      "</ul></nav>" +
       '<button class="nav-toggle" type="button" aria-expanded="false" ' +
-      'aria-controls="global-navigation"><span class="nav-toggle__icon" aria-hidden="true">' +
-      '<span></span><span></span><span></span></span><span>Menu</span></button>' +
+      'aria-controls="global-navigation">Menu</button>' +
       "</div>" +
       '<nav class="site-nav" id="global-navigation" aria-label="Main navigation">' +
-      '<div class="page-width"><ul class="site-nav__list">' + links + "</ul></div>" +
+      '<div class="page-width"><ul class="site-nav__list">' + mobileLinks + "</ul></div>" +
       "</nav></header>";
 
     initialiseMenu(headerMount);
   }
 
+  function renderCourseNavigation() {
+    var mounts = document.querySelectorAll("[data-course-navigation]");
+    if (!mounts.length) {
+      return;
+    }
+
+    var currentPage = document.body.dataset.page || "home";
+    var root = document.body.dataset.root || ".";
+    var sectionIds = [
+      "home",
+      "course-guide",
+      "foundations",
+      "projects",
+      "task-1",
+      "task-2",
+      "task-3",
+      "assessment-practice"
+    ];
+    var sections = config.navigation.filter(function (item) {
+      return sectionIds.indexOf(item.id) !== -1;
+    });
+    var links = sections
+      .map(function (item) {
+        var currentAttribute = item.id === currentPage ? ' aria-current="page"' : "";
+        var phaseBadge = item.id === "foundations" ? '<span class="phase-badge">Current</span>' : "";
+        var displayLabel = item.id === "home" ? "Course home" : item.label;
+        return (
+          '<li class="course-navigation__item"><a class="course-navigation__link" href="' +
+          utils.createSitePath(root, item.path) + '"' + currentAttribute + ">" +
+          "<span>" + displayLabel + "</span>" + phaseBadge + "</a></li>"
+        );
+      })
+      .join("");
+
+    mounts.forEach(function (mount) {
+      mount.innerHTML =
+        '<aside class="course-navigation" aria-labelledby="course-navigation-title">' +
+        '<h2 class="course-navigation__title" id="course-navigation-title">Course sections</h2>' +
+        '<nav aria-label="Course sections"><ul class="course-navigation__list">' +
+        links + "</ul></nav></aside>";
+    });
+  }
+
   function initialiseMenu(headerMount) {
     var button = headerMount.querySelector(".nav-toggle");
     var navigation = headerMount.querySelector(".site-nav");
-    var desktopQuery = window.matchMedia("(min-width: 48rem)");
 
     function closeMenu(returnFocus) {
       button.setAttribute("aria-expanded", "false");
@@ -74,12 +134,6 @@
         closeMenu(true);
       }
     });
-
-    desktopQuery.addEventListener("change", function (event) {
-      if (event.matches) {
-        closeMenu(false);
-      }
-    });
   }
 
   function renderFooterDetails() {
@@ -89,6 +143,7 @@
 
   utils.onReady(function () {
     renderHeader();
+    renderCourseNavigation();
     renderFooterDetails();
   });
 })();

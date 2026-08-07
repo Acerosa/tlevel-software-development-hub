@@ -4,7 +4,7 @@ A GitHub Pages learning hub for the Pearson T Level Digital Software Development
 
 ## Purpose
 
-The hub will provide one accessible route through technical foundations, projects, Tasks 1–3, assessment practice and supporting resources. The current repository contains **Component 1 only**: the reusable application shell and lightweight landing pages.
+The hub will provide one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. The current repository contains **Component 1 only**: the reusable application shell and lightweight landing pages.
 
 It does not yet include curriculum material, learner forms, activities, assessment content, APIs or data storage.
 
@@ -19,7 +19,7 @@ The site uses no framework, package dependency, external font or build step.
 
 ## Current status
 
-**Phase 1 – Technical Foundations**
+**Phase 1: Technical Foundations**
 
 Available shell routes:
 

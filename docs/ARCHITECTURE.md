@@ -42,10 +42,10 @@ The shell has four layers:
 
 1. Semantic HTML provides page-specific content, breadcrumbs, the main content landmark and the footer.
 2. `main.css` provides design tokens, typography, document defaults and focus treatment.
-3. `components.css` provides the header, navigation, hero, course journey, cards, content panels and footer.
+3. `components.css` provides the header, course navigation, study cards and footer.
 4. `app-config.js`, `utils.js` and `navigation.js` provide central navigation data and progressive interaction.
 
-The global navigation is generated from one configuration source. Each page declares its route with `data-page` and its relative site root with `data-root`. `navigation.js` uses these values to create correct links, mark the current page with `aria-current="page"`, and enhance the mobile menu.
+The course sidebar and mobile navigation are generated from one configuration source. Each page declares its route with `data-page` and its relative site root with `data-root`. `navigation.js` uses these values to create correct links, mark the current page with `aria-current="page"`, and manage the mobile menu.
 
 ## Learner identity boundary
 
@@ -63,15 +63,11 @@ The canonical learner profile contains:
 
 The field names are recorded in `app-config.js` as architecture metadata only. Component 1 does not collect, display, validate, persist or transmit these values.
 
-The future dependency direction is:
+The future dependency order is:
 
-```text
-Activity
-   ↓
-Learner Context
-   ↓
-Learning API
-```
+1. An activity reads the learner context.
+2. The learner context supplies the agreed profile.
+3. The Learning API receives the required data through a documented interface.
 
 An activity may read the shared learner context through an agreed interface. It must not maintain a separate learner record or send learner identity directly to an unrelated backend. This keeps the learner profile consistent and allows its privacy, validation and lifecycle rules to be managed in one place.
 

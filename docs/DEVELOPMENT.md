@@ -23,7 +23,7 @@ Then open `http://localhost:8000/` in a browser.
 The project uses relative URLs and directory-based routes, so it can be published from a GitHub project repository.
 
 1. Push the repository to GitHub.
-2. Open **Settings → Pages** for the repository.
+2. Open **Settings**, then **Pages**, for the repository.
 3. Select **Deploy from a branch**.
 4. Choose the `main` branch and the repository root (`/`).
 5. Save and wait for GitHub Pages to publish the site.

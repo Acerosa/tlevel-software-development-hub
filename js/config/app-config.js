@@ -4,7 +4,7 @@
   window.APP_CONFIG = Object.freeze({
     siteName: "T Level Digital Software Development Hub",
     shortName: "Software Development Hub",
-    currentPhase: "Phase 1 – Technical Foundations",
+    currentPhase: "Phase 1: Technical Foundations",
     navigation: Object.freeze([
       { id: "home", label: "Home", path: "" },
       { id: "course-guide", label: "Course Guide", path: "course-guide/" },
