@@ -8,6 +8,11 @@ const routeFiles = [
   "index.html",
   "course-guide/index.html",
   "foundations/index.html",
+  "foundations/programming-diagnostic/index.html",
+  "foundations/requirements-classification/index.html",
+  "foundations/problem-decomposition/index.html",
+  "foundations/data-design/index.html",
+  "foundations/testing-methods/index.html",
   "projects/index.html",
   "task-1/index.html",
   "task-2/index.html",
@@ -55,7 +60,7 @@ function assertLocalReferenceExists(route, reference) {
   );
 }
 
-test("all ten GitHub Pages routes load the student foundation in dependency order", function () {
+test("all GitHub Pages routes load the student foundation in dependency order", function () {
   const scripts = [
     "app-config.js",
     "student-api-config.js",
@@ -67,7 +72,7 @@ test("all ten GitHub Pages routes load the student foundation in dependency orde
     "student-ui.js"
   ];
 
-  assert.equal(routeFiles.length, 10);
+  assert.equal(routeFiles.length, 15);
   routeFiles.forEach(function (route) {
     const html = read(route);
     let previousIndex = -1;
