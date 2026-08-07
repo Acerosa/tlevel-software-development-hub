@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository currently contains Component 1: the reusable application shell for the T Level Digital Software Development Hub. It establishes the navigation, visual language, page structure and future integration boundaries. It deliberately does not contain curriculum content, learner forms, activities, assessment content, data storage or API calls.
+This repository contains the reusable application shell for the T Level Digital Software Development Hub and the Priority 1 student identification foundation. It establishes the navigation, visual language, page structure and integration boundaries. It does not yet contain curriculum activities, assessment content, progress dashboards or result submission.
 
 The site is a collection of static HTML pages enhanced with shared CSS and JavaScript. It can be served directly by GitHub Pages without a build step.
 
@@ -25,10 +25,19 @@ The site is a collection of static HTML pages enhanced with shared CSS and JavaS
 │   ├── components.css
 │   └── utilities.css
 ├── js/
-│   ├── config/app-config.js
+│   ├── config/
+│   │   ├── app-config.js
+│   │   └── student-api-config.js
 │   └── core/
 │       ├── navigation.js
+│       ├── student-api.js
+│       ├── student-context.js
+│       ├── student-session.js
+│       ├── student-ui.js
 │       └── utils.js
+├── test/
+│   ├── site-integrity.test.js
+│   └── student-foundation.test.js
 └── docs/
     ├── ARCHITECTURE.md
     └── DEVELOPMENT.md
@@ -38,46 +47,39 @@ Every route is represented by a directory containing an `index.html` file. This 
 
 ## Application shell
 
-The shell has four layers:
+The shell has five layers:
 
 1. Semantic HTML provides page-specific content, breadcrumbs, the main content landmark and the footer.
 2. `main.css` provides design tokens, typography, document defaults and focus treatment.
 3. `components.css` provides the header, course navigation, study cards and footer.
 4. `app-config.js`, `utils.js` and `navigation.js` provide central navigation data and progressive interaction.
+5. The student API, session, context and UI modules provide one shared learner identity boundary.
 
 The course sidebar and mobile navigation are generated from one configuration source. Each page declares its route with `data-page` and its relative site root with `data-root`. `navigation.js` uses these values to create correct links, mark the current page with `aria-current="page"`, and manage the mobile menu.
 
 ## Learner identity boundary
 
-Learner identity will be a shared application-level context. It must not be created, copied or owned by individual activities.
+Learner identity is held in the application-level `StudentContext`. It must not be created, copied or owned by individual activities. The context exposes the current safe profile, sign-in status, `signIn()`, `signOut()` and `getStudentId()`.
 
-The canonical learner profile contains:
+The browser session contains only:
 
-- Academic Year
-- Programme
-- Qualification
-- Class Group
 - Student ID
 - First Name
-- Surname
+- Display Name
+- Class Group
+- Sign-in timestamp
 
-The field names are recorded in `app-config.js` as architecture metadata only. Component 1 does not collect, display, validate, persist or transmit these values.
+`StudentSession` is the only module that reads or writes local storage. It uses the versioned key `tlevel.softwareDevelopment.studentSession.v1`, validates restored data and discards malformed values. Restoration happens once as the scripts load and does not call the API again on every page view.
 
-The future dependency order is:
-
-1. An activity reads the learner context.
-2. The learner context supplies the agreed profile.
-3. The Learning API receives the required data through a documented interface.
-
-An activity may read the shared learner context through an agreed interface. It must not maintain a separate learner record or send learner identity directly to an unrelated backend. This keeps the learner profile consistent and allows its privacy, validation and lifecycle rules to be managed in one place.
+Future activity and result submission code must retrieve the authoritative identifier with `StudentContext.getStudentId()`. It must submit `studentId`, not a display name, and the backend must continue to validate that ID. The browser session is a convenience and is not a security boundary.
 
 ## Backend boundaries
 
-Backend services are future concerns and are not implemented in Component 1. Two cohesive domains are planned.
+The first Learning API integration is implemented through the separate Google Apps Script Web App. Two cohesive domains remain the planned boundary.
 
 ### Learning API
 
-The Learning API will own:
+The Learning API owns student identification and will own:
 
 - activities
 - diagnostics
@@ -98,14 +100,17 @@ Each domain should keep closely related behaviour and data together (high cohesi
 
 ```mermaid
 flowchart LR
-    Shell["Application shell"] --> Context["Learner context"]
+    SignIn["Student sign-in form"] --> Client["Student API client"]
+    Client --> AppsScript["Google Apps Script Web App"]
+    AppsScript --> Context["Student context"]
+    Context --> Session["Versioned local session"]
     Activities["Future activities"] --> Context
-    Context --> Learning["Learning API"]
+    Context --> Learning["Future result submission"]
     Projects["Future project workspace"] --> Evidence["Project / Evidence API"]
     Learning -. "documented contract only" .- Evidence
 ```
 
-No API URL, spreadsheet identifier, key or credential belongs in client-side source code. Runtime integration design must be reviewed before either API is connected.
+`student-api-config.js` is the only location for the public Apps Script `/exec` URL. Spreadsheet identifiers, private learner data, API keys and credentials do not belong in client-side source code.
 
 ## Accessibility approach
 
@@ -118,6 +123,10 @@ The shell provides:
 - an accessible mobile menu button using `aria-expanded` and `aria-controls`;
 - Escape-key menu closing and focus return;
 - `aria-current="page"` for the active global navigation item;
+- a semantic sign-in form with an explicit text-input label;
+- an accessible modal heading, description, error region and loading announcement;
+- focus placement for dialog opening, validation errors, sign-in and sign-out;
+- touch-friendly account and form controls;
 - responsive layouts that do not rely on pointer interaction;
 - system fonts and no external asset dependency;
 - reduced-motion handling.
@@ -126,14 +135,14 @@ Future components must retain these behaviours and test any new interactive cont
 
 ## Security and privacy
 
-The repository must never contain API keys, credentials, private learner data, spreadsheet IDs or Apps Script URLs. Git history is not a safe place for secrets, even if a later commit removes them.
+The repository must never contain API keys, credentials, private learner data or spreadsheet IDs. Git history is not a safe place for secrets, even if a later commit removes them. The deployed Apps Script Web App URL is public client configuration and is kept in one file.
 
-Because the application is currently static, it has no authentication or authorisation boundary. Future learner or evidence features must not rely on hidden HTML or client-side checks to protect data.
+Student ID lookup is identification, not password authentication or authorisation. Public learning content is not locked behind it. Future learner or evidence features must not rely on hidden HTML, local storage or client-side checks to protect data.
 
 ## Architectural influences
 
 The shell adapts the reusable ideas requested from the OCR Unit 3 Cyber Security Hub: one shared learner identity, reusable navigation, generic future activity concepts, accessibility and static hosting compatibility. It does not copy implementation details or create a dependency between the two hubs.
 
-## Component boundary
+## Current component boundary
 
-Component 1 ends at the stable application shell. The next component should introduce the first agreed content model and validate it in the Foundations route before expanding into activities or backend integration.
+Priority 1 ends with a reusable student API client, persistent safe session, global context, and accessible header interface. No existing activity or submission flow was present to integrate. The next personalised phase can consume `StudentContext.getStudentId()` when the Student Progress Dashboard is designed.

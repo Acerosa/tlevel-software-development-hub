@@ -18,6 +18,28 @@ php -S localhost:8000
 
 Then open `http://localhost:8000/` in a browser.
 
+## Checks
+
+The project has no package dependencies, compiler, bundler, linter or type checker. Run the built-in Node tests from the repository root:
+
+```bash
+node --test test/student-foundation.test.js test/site-integrity.test.js
+```
+
+Use `node --check` for JavaScript syntax checks when changing browser modules.
+
+## Student API setup
+
+The frontend calls the separate Google Apps Script Web App. Once the backend has a stable numbered deployment, open `js/config/student-api-config.js` and set `apiUrl` to its complete `/exec` URL:
+
+```js
+apiUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec"
+```
+
+Do not use an editor or development URL. Do not repeat the URL in individual pages or modules. The URL is public browser configuration, not a credential. Never add the spreadsheet ID or real student records to this repository.
+
+The API client sends a text-based POST request to avoid an unnecessary browser preflight. Its body contains `action: "getStudent"` and the student ID as a string. Leading zeroes are preserved.
+
 ## GitHub Pages
 
 The project uses relative URLs and directory-based routes, so it can be published from a GitHub project repository.
@@ -28,7 +50,7 @@ The project uses relative URLs and directory-based routes, so it can be publishe
 4. Choose the `main` branch and the repository root (`/`).
 5. Save and wait for GitHub Pages to publish the site.
 
-No secret or environment-specific value is required for the static shell.
+The configured Apps Script URL is included in the static files published by GitHub Pages. No server-side environment or secret is required.
 
 ## Branch workflow
 
@@ -76,6 +98,12 @@ Before merging:
 - check that headings remain in a sensible hierarchy;
 - inspect the browser console for errors;
 - confirm every stylesheet and script loads from both the home page and nested routes.
+- open Student sign in and submit an empty ID;
+- confirm unknown, inactive and unavailable-service errors use learner-friendly copy;
+- sign in with an authorised leading-zero test ID without changing real learner records;
+- reload a nested route and confirm the student's name is restored;
+- sign out and confirm the stored session is cleared;
+- repeat the sign-in checks at a narrow mobile viewport.
 
 ## Secrets and learner data
 
@@ -84,7 +112,8 @@ Never commit:
 - API keys or access tokens;
 - credentials;
 - spreadsheet IDs;
-- Apps Script or private service URLs;
 - real learner records or exported submissions.
+
+The public Apps Script `/exec` URL belongs only in `js/config/student-api-config.js`. Do not commit a `/dev` URL, spreadsheet ID or backend configuration details.
 
 Use example data only in future development. If a secret is committed accidentally, treat it as exposed: revoke it and follow the repository’s incident process rather than only deleting the file.
