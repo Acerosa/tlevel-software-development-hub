@@ -414,6 +414,30 @@ test("activity reset can preserve the selected language without preserving answe
   assert.deepEqual(Array.from(reset.submittedSections), []);
 });
 
+test("guest activity progress can be adopted by the newly signed-in learner", function () {
+  const storage = createStorage();
+  let studentId = null;
+  const browserWindow = {
+    localStorage: storage,
+    StudentContext: { getStudentId: function () { return studentId; } },
+    crypto: { randomUUID: function () { return "uuid-adopt"; } }
+  };
+  run("js/activities/activity-state.js", browserWindow);
+  const activity = { id: "foundations-adopt", version: "1.0.0", sections: [{ id: "start" }] };
+  const guestStore = browserWindow.FoundationActivityState.createStore(activity);
+  const guestAttempt = guestStore.start();
+  guestAttempt.responses.Q1 = "answer";
+  guestStore.save(guestAttempt);
+
+  studentId = "00000001";
+  const studentStore = browserWindow.FoundationActivityState.createStore(activity);
+  const adopted = studentStore.adopt(guestAttempt);
+
+  assert.equal(adopted.learnerKey, "00000001");
+  assert.equal(studentStore.load().responses.Q1, "answer");
+  assert.equal(guestStore.load().responses.Q1, "answer");
+});
+
 test("Foundations code does not execute learner-supplied code", function () {
   const source = [
     "js/activities/activity-engine.js",
@@ -446,16 +470,31 @@ test("each activity route loads shared behaviour before its own data and engine"
     const html = read("foundations/" + route + "/index.html");
     const markingIndex = html.indexOf("activity-marking.js");
     const stateIndex = html.indexOf("activity-state.js");
+    const learningApiIndex = html.indexOf("learning-api.js");
     const dataIndex = html.indexOf(dataFile);
     const engineIndex = html.indexOf("activity-engine.js");
 
     assert.ok(markingIndex > -1);
     assert.ok(stateIndex > markingIndex);
+    assert.ok(learningApiIndex > -1);
+    assert.ok(learningApiIndex < engineIndex);
     assert.ok(dataIndex > stateIndex);
     assert.ok(engineIndex > dataIndex);
     assert.match(html, /data-foundation-activity/);
     assert.match(html, /activities\.css/);
   });
+});
+
+test("activity results use the shared learning adapter with retry and identity rebinding", function () {
+  const engine = read("js/activities/activity-engine.js");
+  const learningApi = read("js/core/learning-api.js");
+
+  assert.match(engine, /learningApi\.submitResult\(attempt\.result\)/);
+  assert.match(engine, /StudentContext\.subscribe\(rebindLearnerState\)/);
+  assert.match(engine, /retry-submission/);
+  assert.match(learningApi, /action: "submitResult"/);
+  assert.match(learningApi, /studentContext\.getStudentId\(\)/);
+  assert.doesNotMatch(learningApi, /displayName/);
 });
 
 test("Programming Diagnostic loads its editor, checker and feedback layers separately", function () {

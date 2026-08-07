@@ -28,7 +28,7 @@ node --test test/student-foundation.test.js test/site-integrity.test.js test/fou
 
 Use `node --check` for JavaScript syntax checks when changing browser modules.
 
-`foundations-activities.test.js` validates activity scope, stable IDs, answer keys, feedback, all supported marking types, the result contract, local-state isolation, safe client-side behaviour and activity route dependencies.
+`foundations-activities.test.js` validates activity scope, stable IDs, answer keys, feedback, all supported marking types, the result contract, local-state isolation and adoption, safe client-side behaviour, submission integration and activity route dependencies.
 
 ## Student API setup
 
@@ -40,7 +40,7 @@ apiUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec"
 
 Do not use an editor or development URL. Do not repeat the URL in individual pages or modules. The URL is public browser configuration, not a credential. Never add the spreadsheet ID or real student records to this repository.
 
-The API client sends a text-based POST request to avoid an unnecessary browser preflight. Its body contains `action: "getStudent"` and the student ID as a string. Leading zeroes are preserved.
+The API clients send text-based POST requests to avoid an unnecessary browser preflight. `student-api.js` owns identification. `learning-api.js` owns formative result submission and reads the current ID from `StudentContext`; display names are never used as identifiers. Leading zeroes are preserved.
 
 ## GitHub Pages
 
@@ -126,7 +126,7 @@ Code-editor marking may normalise line endings and harmless whitespace, compare 
 
 Learner code must never be passed to `eval`, `Function`, dynamic scripts, executable frames, browser runtimes or remote execution services. The editor, checker and feedback modules form an intentional boundary for a possible future reviewed runner, but no runner exists in this phase.
 
-Foundations progress is stored under `tlevel.softwareDevelopment.foundations.v1`, scoped to the signed-in student ID or a guest key. It is a local convenience, not assessment evidence. Results follow the documented result contract but are not sent anywhere. Future submission work should use a dedicated Learning API adapter and retrieve identity through `StudentContext.getStudentId()`.
+Foundations progress is stored under `tlevel.softwareDevelopment.foundations.v1`, scoped to the signed-in student ID or a guest key. Guest work is adopted when the learner signs in from an activity and no learner-scoped attempt already exists. A completed signed-in result is sent through the dedicated Learning API adapter. Only activity ID, activity version, attempt ID, score and maximum score are transmitted; response details remain in the browser. Failed requests retain the local result and provide a retry control. These records are formative and are not secure assessment evidence.
 
 ## Manual checks
 

@@ -6,7 +6,7 @@ A GitHub Pages learning hub for the Pearson T Level Digital Software Development
 
 The hub provides one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. It includes the reusable application shell, student identification and session foundation, and a complete client-side Software Development Foundations activity suite.
 
-Learners can identify themselves with their allocated student ID through the separate Google Apps Script API. This is lightweight student identification, not password authentication. Public study pages remain available without signing in.
+Learners can identify themselves with their allocated student ID through the separate Google Apps Script API. This is lightweight student identification, not password authentication. Public study pages remain available without signing in. Signed-in learners can save completed Foundations scores as formative learning records.
 
 ## Technologies
 
@@ -41,7 +41,7 @@ Software Development Foundations includes:
 - Data Design Knowledge Check
 - Testing Methods Classification
 
-The five data-driven activities provide immediate explanatory feedback, section results, review and retry controls, and lightweight browser-local progress. They are formative learning activities rather than official Pearson assessment material. The other curriculum routes remain lightweight placeholders for later components.
+The five data-driven activities provide immediate explanatory feedback, section results, review and retry controls, and lightweight browser-local progress. Completed scores are sent through the shared Learning API only when a learner is signed in. Failed submissions remain local and expose a retry control. They are formative learning activities rather than official Pearson assessment material. The other curriculum routes remain lightweight placeholders for later components.
 
 ## Run locally
 
@@ -70,4 +70,4 @@ The stable Google Apps Script Web App `/exec` URL is configured in `js/config/st
 
 ## Security
 
-Do not commit API keys, credentials, spreadsheet IDs, learner data or exported submissions. The Apps Script Web App URL is a public client configuration value rather than a secret, but it must remain centralised. The browser stores only the safe student profile returned by `getStudent`.
+Do not commit API keys, credentials, spreadsheet IDs, learner data or exported submissions. The Apps Script Web App URL is a public client configuration value rather than a secret, but it must remain centralised. The browser stores the safe student profile, local activity progress, the latest result and its submission status. It sends only the active student ID and narrow score summary to `submitResult`.

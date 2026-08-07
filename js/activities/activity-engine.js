@@ -9,11 +9,13 @@
   var languageService = window.FoundationProgrammingLanguage;
   var programmingEditor = window.FoundationProgrammingEditor;
   var programmingFeedback = window.FoundationProgrammingFeedback;
+  var learningApi = window.LearningApi;
   var mount;
   var store;
   var attempt;
   var currentIndex = 0;
   var languageReturnView = "section";
+  var submissionsInFlight = {};
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -314,10 +316,104 @@
       escapeHtml(revisit.length ? revisit.join(", ") : "No section is currently below the Secure threshold") + ".</p>" +
       '<h3>Section performance</h3><ul class="performance-list">' + rows + "</ul>" + skills +
       '<p class="activity-note">Secure, Developing and Needs Review are learning indicators for this activity. They are not Pearson grades.</p>' +
+      submissionStatusHtml() +
       '<div class="activity-actions"><button class="primary-button" type="button" data-action="restart-activity">Retry the full activity</button>' +
       '<a class="secondary-button" href="../">Back to Foundations</a></div></section>';
     bindEvents();
     focusHeading("#results-heading");
+  }
+
+  function submissionStatusHtml() {
+    var submission = attempt.submission || {};
+    var signedIn = window.StudentContext && window.StudentContext.isSignedIn
+      ? window.StudentContext.isSignedIn()
+      : false;
+    var content;
+
+    if (submission.status === "submitted") {
+      content = '<p><strong>Saved to your learning record.</strong> Attempt ' +
+        escapeHtml(submission.attemptNumber) + " was recorded.</p>";
+    } else if (submission.status === "sending") {
+      content = "<p><strong>Saving your result...</strong></p>";
+    } else if (submission.status === "failed") {
+      content = '<p><strong>Your result is still saved in this browser.</strong> It could not be added to the learning record.</p>' +
+        '<button class="secondary-button" type="button" data-action="retry-submission">Try saving again</button>';
+    } else if (!signedIn) {
+      content = "<p><strong>Saved in this browser only.</strong> Sign in before or after completing an activity to add the result to your learning record.</p>";
+    } else {
+      content = "<p><strong>Ready to save.</strong> Your result will be added to your learning record.</p>";
+    }
+
+    return '<div class="result-submission result-submission--' +
+      escapeHtml(submission.status || (signedIn ? "pending" : "local")) +
+      '" data-submission-status role="status" aria-live="polite">' + content + "</div>";
+  }
+
+  function updateSubmissionStatus() {
+    var status = mount.querySelector("[data-submission-status]");
+    if (!status) {
+      return;
+    }
+    var wrapper = document.createElement("div");
+    wrapper.innerHTML = submissionStatusHtml();
+    status.replaceWith(wrapper.firstElementChild);
+    bindSubmissionControl();
+  }
+
+  function bindSubmissionControl() {
+    var retry = mount.querySelector('[data-action="retry-submission"]');
+    if (retry) {
+      retry.addEventListener("click", submitCurrentResult);
+    }
+  }
+
+  function submitCurrentResult() {
+    var requestKey = store.key + ":" + attempt.attemptId;
+    if (!attempt.result || submissionsInFlight[requestKey] ||
+        attempt.submission && attempt.submission.status === "submitted") {
+      return;
+    }
+
+    var signedIn = window.StudentContext && window.StudentContext.isSignedIn
+      ? window.StudentContext.isSignedIn()
+      : false;
+    if (!learningApi || !signedIn) {
+      attempt.submission = { status: "local" };
+      store.save(attempt);
+      updateSubmissionStatus();
+      return;
+    }
+
+    var submittedAttempt = attempt;
+    var submittedStore = store;
+    submissionsInFlight[requestKey] = true;
+    attempt.submission = { status: "sending" };
+    store.save(attempt);
+    updateSubmissionStatus();
+
+    learningApi.submitResult(attempt.result).then(function (submission) {
+      delete submissionsInFlight[requestKey];
+      submittedAttempt.submission = {
+        status: "submitted",
+        attemptNumber: submission.attemptNumber,
+        submittedAt: submission.submittedAt,
+        duplicate: submission.duplicate
+      };
+      submittedStore.save(submittedAttempt);
+      if (attempt === submittedAttempt && store.key === submittedStore.key) {
+        updateSubmissionStatus();
+      }
+    }).catch(function (error) {
+      delete submissionsInFlight[requestKey];
+      submittedAttempt.submission = {
+        status: "failed",
+        errorCode: error && error.code ? error.code : "NETWORK_ERROR"
+      };
+      submittedStore.save(submittedAttempt);
+      if (attempt === submittedAttempt && store.key === submittedStore.key) {
+        updateSubmissionStatus();
+      }
+    });
   }
 
   function collectQuestionResponse(question, panel) {
@@ -410,11 +506,13 @@
 
     if (attempt.submittedSections.length === activity.sections.length) {
       attempt.result = marking.createResult(activity, attempt);
+      attempt.submission = null;
     }
     store.save(attempt);
 
     if (attempt.result) {
       renderResults();
+      submitCurrentResult();
       return;
     }
 
@@ -451,6 +549,7 @@
       return sectionId !== section.id;
     });
     attempt.result = null;
+    attempt.submission = null;
     store.save(attempt);
     renderSection();
     focusHeading("#section-heading");
@@ -533,9 +632,44 @@
           renderResults();
         } else if (action === "change-language") {
           showLanguageChange();
+        } else if (action === "retry-submission") {
+          submitCurrentResult();
         }
       });
     });
+  }
+
+  function rebindLearnerState(student) {
+    var nextStore = stateService.createStore(baseActivity);
+    if (!store || nextStore.key === store.key) {
+      return;
+    }
+
+    var previousAttempt = attempt;
+    var nextAttempt = nextStore.load();
+    var previousWasGuest = store.learnerKey === encodeURIComponent("guest");
+    if (student && previousWasGuest && !nextAttempt && hasAttemptProgress()) {
+      nextAttempt = nextStore.adopt(previousAttempt);
+    }
+
+    store = nextStore;
+    attempt = nextAttempt || store.start();
+    if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
+      renderLanguageSelection("", false);
+      return;
+    }
+    if (!prepareActivity(attempt.programmingLanguage)) {
+      return;
+    }
+    currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
+      return section.id === attempt.currentSectionId;
+    }));
+    if (attempt.result) {
+      renderResults();
+      submitCurrentResult();
+    } else {
+      renderSection();
+    }
   }
 
   function hasAttemptProgress() {
@@ -656,8 +790,13 @@
 
     if (attempt.result) {
       renderResults();
+      submitCurrentResult();
     } else {
       renderSection();
+    }
+
+    if (window.StudentContext && window.StudentContext.subscribe) {
+      window.StudentContext.subscribe(rebindLearnerState);
     }
   }
 
