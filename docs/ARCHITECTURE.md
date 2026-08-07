@@ -93,9 +93,33 @@ versioned local attempt and consistent result
 future Learning API adapter
 ```
 
-Activity content is stored in `js/data/foundations/` and is kept separate from rendering and state behaviour. Every activity has a stable ID and semantic version. Every question has a stable ID such as `FOUND-PROG-VAR-001`. Supported data-driven interactions are single choice, multiple select, short text, matching and ordering. Ordering uses labelled position controls rather than mandatory drag-and-drop.
+Activity content is stored in `js/data/foundations/` and is kept separate from rendering and state behaviour. Every activity has a stable ID and semantic version. Every question has a stable ID such as `FOUND-PROG-VAR-001`. Shared interactions are single choice, multiple select, short text, matching and ordering. The Programming Diagnostic also supports predicted output, inline code gaps, clickable line selection, keyboard-controlled code ordering and lightweight code editors.
 
 `activity-engine.js` renders section navigation, progress, questions, feedback and results. `activity-marking.js` contains unit-testable answer comparison, scoring, section indicators and result creation. `activity-state.js` owns lightweight activity progress. `foundations-landing.js` derives Start, Continue and Revisit states without inventing completion data.
+
+### Programming exercise extension
+
+The Programming Diagnostic keeps its programming controls behind a small extension boundary:
+
+```text
+concept question and selected language variant
+                    ↓
+programming-editor.js renders and collects the response
+                    ↓
+programming-checker.js checks known deterministic rules
+                    ↓
+programming-feedback.js presents accessible feedback
+                    ↓
+shared activity scoring, result and local state
+```
+
+`programming-language.js` is the single place that defines the supported language IDs: `python`, `javascript` and `csharp`. It resolves one conceptual question into the selected syntax representation. A language-aware question stores shared metadata at the question level and places only syntax-specific fields such as `code`, `starterCode`, `answers`, rules and feedback inside `languages.python`, `languages.javascript` and `languages.csharp`. The Basic SQL section has no language variants and is resolved unchanged.
+
+The learner selects a language once before starting. That value is stored on the existing activity attempt. Returning to the route restores it. A language change with existing responses requires confirmation and restarts the diagnostic, which prevents responses from different language variants being mixed. A full retry clears answers but retains the selected language.
+
+The checker never executes submitted code. It compares normalised line endings and harmless whitespace, accepted answer variants, and small required or prohibited regular-expression rules. Exercises are deliberately constrained so these checks stay understandable. It does not attempt parsing, compilation or semantic equivalence.
+
+The editor, checker and feedback renderer are separate so a future reviewed code-runner adapter could replace the checking step without redesigning the exercise controls. That future work must not pass arbitrary code to `eval`, `Function`, injected scripts, frames or an untrusted remote service.
 
 The result model is ready for a future Learning API adapter and contains:
 
@@ -107,6 +131,8 @@ The result model is ready for a future Learning API adapter and contains:
 - `score`, `maxScore` and `percentage`
 - section summaries
 - question responses and awarded scores
+
+Programming Diagnostic results also contain the selected language and summaries for Knowledge, Code reading and Coding / debugging. These extra fields remain formative and optional for other activities.
 
 No result is currently sent to a backend. Client-side answer keys are appropriate for these formative activities and are not presented as secure assessment material.
 
@@ -124,7 +150,7 @@ The browser session contains only:
 
 `StudentSession` is the only module that reads or writes the student identification session in local storage. It uses the versioned key `tlevel.softwareDevelopment.studentSession.v1`, validates restored data and discards malformed values. Restoration happens once as the scripts load and does not call the API again on every page view.
 
-Foundations progress uses a separate versioned namespace, `tlevel.softwareDevelopment.foundations.v1`. `FoundationActivityState` scopes an attempt to the current student ID when available, or to a guest key when signed out. It stores only the current responses, submitted sections and most recent result. This browser-local data improves continuity but is not authoritative evidence or a security boundary.
+Foundations progress uses a separate versioned namespace, `tlevel.softwareDevelopment.foundations.v1`. `FoundationActivityState` scopes an attempt to the current student ID when available, or to a guest key when signed out. It stores only the current responses, submitted sections, selected programming language when applicable and most recent result. This browser-local data improves continuity but is not authoritative evidence or a security boundary.
 
 Future activity and result submission code must retrieve the authoritative identifier with `StudentContext.getStudentId()`. It must submit `studentId`, not a display name, and the backend must continue to validate that ID. The browser session is a convenience and is not a security boundary.
 
@@ -188,7 +214,7 @@ The shell provides:
 - system fonts and no external asset dependency;
 - reduced-motion handling.
 
-The activity suite adds semantic fieldsets and legends, native radio buttons, checkboxes and selects, labelled short-answer fields, accessible progress values, text-based correctness indicators, live error and feedback regions, keyboard-operable section navigation, horizontally contained data tables and an HTML/CSS entity relationship representation.
+The activity suite adds semantic fieldsets and legends, native radio buttons, checkboxes and selects, labelled short-answer fields, accessible progress values, text-based correctness indicators, live error and feedback regions, keyboard-operable section navigation, horizontally contained data tables and an HTML/CSS entity relationship representation. Programming controls add labelled monospaced editors, clickable code lines, move up and move down ordering buttons, reset and copy controls, a Ctrl or Command plus Enter checking shortcut, visible focus states, contained horizontal scrolling and progressive native `details` hints.
 
 Future components must retain these behaviours and test any new interactive control with a keyboard and assistive technology.
 
@@ -204,4 +230,4 @@ The shell adapts the reusable ideas requested from the OCR Unit 3 Cyber Security
 
 ## Current component boundary
 
-Software Development Foundations ends with five complete formative activities, a reusable renderer, deterministic marking, browser-local continuity and a consistent result contract. It does not submit attempts, update Google Sheets, generate assessment evidence or provide a teacher dashboard. A future Learning API adapter can combine the result contract with `StudentContext.getStudentId()` without changing question content or the activity renderer.
+Software Development Foundations ends with five complete formative activities, a reusable renderer, deterministic marking, browser-local continuity and a consistent result contract. Programming code is never executed, so the editor is not a compiler and cannot prove that every equivalent program is correct. The component does not submit attempts, update Google Sheets, generate assessment evidence or provide a teacher dashboard. A future Learning API adapter can combine the result contract with `StudentContext.getStudentId()` without changing question content or the activity renderer.

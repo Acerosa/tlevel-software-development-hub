@@ -93,12 +93,38 @@ Prefer small commits that keep code, tests and related documentation together. D
 2. Create a directory under `foundations/` containing an `index.html` route that follows the existing breadcrumb and shell pattern.
 3. Create a data file under `js/data/foundations/` with a stable activity ID, semantic version, sections and stable question IDs.
 4. Load shared marking and state modules, then the activity data, then `activity-engine.js`.
-5. Use a supported interaction type: `single`, `multiple`, `text`, `matching` or `order`.
+5. Use a shared interaction type: `single`, `multiple`, `text`, `matching` or `order`.
 6. Provide concise explanatory feedback for both correct and incorrect responses.
 7. Extend `foundations-activities.test.js` with the expected activity scope and any new marking rule.
 8. Test empty submissions, correct and incorrect answers, section review, retry, saved progress, narrow layouts and keyboard focus.
 
 Question data owns prompts, options, answers, code samples, small tables and feedback. Rendering, DOM events, scoring and persistence belong in the shared activity modules. Do not embed large question banks in HTML or add activity-specific identity forms.
+
+### Programming Diagnostic questions
+
+The Programming Diagnostic route loads these modules between shared state and its question data:
+
+1. `programming-language.js`
+2. `programming-checker.js`
+3. `programming-feedback.js`
+4. `programming-editor.js`
+
+Its additional question types are `predict-output`, `code-gap`, `line-select`, `code-order` and `code-editor`. Each question should identify one of the result skills: `knowledge`, `code-reading` or `coding-debugging`.
+
+To add a language-aware exercise:
+
+1. Keep the concept, prompt, stable question ID, skill and general feedback on the question.
+2. Add one variant under each of `languages.python`, `languages.javascript` and `languages.csharp`.
+3. Put syntax-specific code, starter code, accepted responses, checking rules and feedback inside the variant.
+4. Keep the three variants equivalent in concept and difficulty.
+5. Use valid beginner-level syntax and the established naming and output conventions for each language.
+6. Add resolution and positive and negative marking cases to `foundations-activities.test.js`.
+
+Basic SQL questions stay outside `languages` and use the shared SQL label. A missing required language variant is a data error and prevents the activity from loading with a partially mixed question bank.
+
+Code-editor marking may normalise line endings and harmless whitespace, compare a small accepted-variant list, or apply explicit required and prohibited patterns. Do not create a loose rule that lets a known incorrect solution pass. If an answer cannot be checked reliably without running it, redesign it as a code gap, line selection, ordering or another constrained interaction.
+
+Learner code must never be passed to `eval`, `Function`, dynamic scripts, executable frames, browser runtimes or remote execution services. The editor, checker and feedback modules form an intentional boundary for a possible future reviewed runner, but no runner exists in this phase.
 
 Foundations progress is stored under `tlevel.softwareDevelopment.foundations.v1`, scoped to the signed-in student ID or a guest key. It is a local convenience, not assessment evidence. Results follow the documented result contract but are not sent anywhere. Future submission work should use a dedicated Learning API adapter and retrieve identity through `StudentContext.getStudentId()`.
 
@@ -124,6 +150,11 @@ Before merging:
 - open all five Foundations activities from the landing page;
 - submit an empty section and confirm the error summary receives focus;
 - complete and retry each supported interaction type;
+- select Python, JavaScript and C# in separate clean attempts and confirm the correct syntax appears;
+- change language after entering an answer and confirm the restart warning prevents mixed-language progress;
+- check predicted output, code gaps, clickable lines, keyboard ordering and code-editor reset;
+- use Ctrl or Command plus Enter in a code field and confirm feedback is announced and focused;
+- complete the Programming Diagnostic and verify topic scores, skill scores and selected language;
 - confirm feedback explains the reason and is not communicated by colour alone;
 - confirm section scores and the final total match the submitted responses;
 - review complex tables, code samples, ordering controls and the ERD at narrow widths;

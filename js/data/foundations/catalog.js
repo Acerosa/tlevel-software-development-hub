@@ -4,11 +4,11 @@
   window.FoundationActivityCatalog = Object.freeze([
     {
       id: "foundations-programming-diagnostic",
-      version: "1.0.0",
+      version: "2.0.0",
       title: "Programming Diagnostic",
       purpose: "Check what you remember about core programming and introductory database concepts.",
       type: "Diagnostic",
-      detail: "Seven sections with code reading, tracing, matching and short answer tasks.",
+      detail: "Choose Python, JavaScript or C#, then work through code reading, completion and debugging tasks.",
       topics: ["Variables", "Selection", "Iteration", "Functions", "Arrays/lists", "Debugging", "Basic SQL"],
       path: "./programming-diagnostic/"
     },

@@ -35,7 +35,7 @@ Available shell routes:
 
 Software Development Foundations includes:
 
-- Programming Diagnostic covering seven topics
+- Programming Diagnostic covering seven topics with Python, JavaScript or C# code reading, completion, debugging and small coding exercises
 - Requirements Classification
 - Problem Decomposition
 - Data Design Knowledge Check

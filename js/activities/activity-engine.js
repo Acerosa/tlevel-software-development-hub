@@ -4,11 +4,16 @@
   var utils = window.AppUtils;
   var marking = window.FoundationActivityMarking;
   var stateService = window.FoundationActivityState;
-  var activity = window.FoundationActivityData;
+  var baseActivity = window.FoundationActivityData;
+  var activity = baseActivity;
+  var languageService = window.FoundationProgrammingLanguage;
+  var programmingEditor = window.FoundationProgrammingEditor;
+  var programmingFeedback = window.FoundationProgrammingFeedback;
   var mount;
   var store;
   var attempt;
   var currentIndex = 0;
+  var languageReturnView = "section";
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -144,6 +149,9 @@
 
   function feedbackFor(question, response) {
     var marked = marking.markQuestion(question, response);
+    if (programmingFeedback && programmingEditor && programmingEditor.supports(question)) {
+      return programmingFeedback.render(marked);
+    }
     return (
       '<div class="question-feedback question-feedback--' + (marked.correct ? "correct" : "incorrect") +
       '" role="status"><p><strong>' + (marked.correct ? "Correct." : "Review this.") +
@@ -160,19 +168,22 @@
       classes += marked.correct ? " question-panel--correct" : " question-panel--incorrect";
     }
 
-    var answerHtml = question.type === "text"
-      ? textAnswer(question, submitted)
-      : question.type === "matching"
-        ? matchingAnswer(question, submitted)
-        : question.type === "order"
-          ? orderAnswer(question, submitted)
-          : optionList(question, submitted);
+    var isProgrammingExercise = programmingEditor && programmingEditor.supports(question);
+    var answerHtml = isProgrammingExercise
+      ? programmingEditor.render(question, response, submitted)
+      : question.type === "text"
+        ? textAnswer(question, submitted)
+        : question.type === "matching"
+          ? matchingAnswer(question, submitted)
+          : question.type === "order"
+            ? orderAnswer(question, submitted)
+            : optionList(question, submitted);
 
     return (
       '<fieldset class="' + classes + '" data-question-id="' + escapeHtml(question.id) + '">' +
       '<legend>' + number + ". " + escapeHtml(question.prompt) + "</legend>" +
       (question.context ? '<p class="question-context">' + escapeHtml(question.context) + "</p>" : "") +
-      (question.code ? '<pre class="code-sample"><code>' + escapeHtml(question.code) + "</code></pre>" : "") +
+      (question.code && !isProgrammingExercise ? '<pre class="code-sample"><code>' + escapeHtml(question.code) + "</code></pre>" : "") +
       renderTable(question.table) + renderErd(question.erd) + answerHtml +
       (submitted ? feedbackFor(question, response) : "") +
       "</fieldset>"
@@ -203,6 +214,15 @@
       '<nav class="section-navigator" aria-label="Activity sections"><h2>Sections</h2>' +
       '<ol class="section-navigator__list">' + buttons + "</ol></nav></section>"
     );
+  }
+
+  function languageControl() {
+    if (!activity.programmingLanguageLabel) {
+      return "";
+    }
+    return '<div class="activity-language"><span><strong>Language:</strong> ' +
+      escapeHtml(activity.programmingLanguageLabel) + '</span><button class="activity-language__change" ' +
+      'type="button" data-action="change-language">Change language</button></div>';
   }
 
   function sectionSummary(section) {
@@ -242,7 +262,7 @@
       return renderQuestion(question, index + 1, submitted);
     }).join("");
 
-    mount.innerHTML = '<div class="activity-shell">' + progressHtml() +
+    mount.innerHTML = '<div class="activity-shell">' + languageControl() + progressHtml() +
       '<section class="activity-section" aria-labelledby="section-heading">' +
       '<header class="activity-section__header"><p class="activity-section__eyebrow">Section ' +
       (currentIndex + 1) + " of " + activity.sections.length + '</p><h2 id="section-heading" tabindex="-1">' +
@@ -270,17 +290,29 @@
         escapeHtml(section.sectionId) + '">Review section</button></li>'
       );
     }).join("");
+    var skills = result.skills && result.skills.length
+      ? '<h3>Programming skill areas</h3><ul class="performance-list performance-list--skills">' +
+        result.skills.map(function (skill) {
+          return '<li class="performance-row"><span><strong>' + escapeHtml(skill.title) +
+            '</strong><br>' + skill.score + " of " + skill.maxScore + ' correct</span><span class="performance-row__status">' +
+            skill.percentage + "% · " + escapeHtml(skill.status) + "</span></li>";
+        }).join("") + "</ul>"
+      : "";
+    var languageSummary = result.programmingLanguageLabel
+      ? '<p class="result-language"><strong>Selected language:</strong> ' +
+        escapeHtml(result.programmingLanguageLabel) + "</p>"
+      : "";
 
-    mount.innerHTML = '<section class="activity-results" aria-labelledby="results-heading">' +
+    mount.innerHTML = languageControl() + '<section class="activity-results" aria-labelledby="results-heading">' +
       '<h2 id="results-heading" tabindex="-1">Activity result</h2>' +
-      '<p>' + escapeHtml(activity.resultIntro || "Use this summary to decide what to review next.") + "</p>" +
+      '<p>' + escapeHtml(activity.resultIntro || "Use this summary to decide what to review next.") + "</p>" + languageSummary +
       '<div class="result-score"><span class="result-score__value">' + result.percentage + '%</span><span>' +
       result.score + " of " + result.maxScore + " correct</span></div>" +
       '<p><strong>Areas of relative confidence:</strong> ' +
       escapeHtml(confidence.length ? confidence.join(", ") : "Keep practising across all sections") + ".</p>" +
       '<p><strong>Areas to revisit:</strong> ' +
       escapeHtml(revisit.length ? revisit.join(", ") : "No section is currently below the Secure threshold") + ".</p>" +
-      '<h3>Section performance</h3><ul class="performance-list">' + rows + "</ul>" +
+      '<h3>Section performance</h3><ul class="performance-list">' + rows + "</ul>" + skills +
       '<p class="activity-note">Secure, Developing and Needs Review are learning indicators for this activity. They are not Pearson grades.</p>' +
       '<div class="activity-actions"><button class="primary-button" type="button" data-action="restart-activity">Retry the full activity</button>' +
       '<a class="secondary-button" href="../">Back to Foundations</a></div></section>';
@@ -289,6 +321,10 @@
   }
 
   function collectQuestionResponse(question, panel) {
+    if (programmingEditor && programmingEditor.supports(question)) {
+      return programmingEditor.collect(question, panel);
+    }
+
     if (question.type === "multiple") {
       return Array.from(panel.querySelectorAll('input[name="' + question.id + '"]:checked')).map(function (input) {
         return input.value;
@@ -424,7 +460,7 @@
     if (typeof window.confirm === "function" && !window.confirm("Restart this activity and clear this browser's saved attempt?")) {
       return;
     }
-    attempt = store.reset();
+    attempt = store.reset({ programmingLanguage: attempt.programmingLanguage });
     currentIndex = 0;
     renderSection();
     focusHeading("#section-heading");
@@ -452,6 +488,34 @@
       });
     }
 
+    var section = activity.sections[currentIndex];
+    if (section && programmingEditor) {
+      section.questions.forEach(function (question) {
+        if (!programmingEditor.supports(question)) {
+          return;
+        }
+        var panel = mount.querySelector('[data-question-id="' + question.id + '"]');
+        if (!panel) {
+          return;
+        }
+        programmingEditor.bind(question, panel, {
+          onChange: function () {
+            attempt.responses[question.id] = programmingEditor.collect(question, panel);
+            store.save(attempt);
+            var error = mount.querySelector("[data-activity-error]");
+            if (error) {
+              error.hidden = true;
+            }
+          },
+          onCheck: function (response, feedbackContainer) {
+            attempt.responses[question.id] = response;
+            store.save(attempt);
+            programmingFeedback.renderInto(feedbackContainer, marking.markQuestion(question, response));
+          }
+        });
+      });
+    }
+
     mount.querySelectorAll("[data-action]").forEach(function (control) {
       control.addEventListener("click", function () {
         var action = control.dataset.action;
@@ -467,9 +531,99 @@
           restartActivity();
         } else if (action === "show-results") {
           renderResults();
+        } else if (action === "change-language") {
+          showLanguageChange();
         }
       });
     });
+  }
+
+  function hasAttemptProgress() {
+    return attempt.submittedSections.length > 0 || Boolean(attempt.result) ||
+      Object.keys(attempt.responses).some(function (questionId) {
+        var question = questionById(questionId);
+        return question && marking.hasResponse(question, attempt.responses[questionId]);
+      });
+  }
+
+  function prepareActivity(languageId) {
+    try {
+      activity = baseActivity.requiresProgrammingLanguage
+        ? languageService.resolveActivity(baseActivity, languageId)
+        : baseActivity;
+      return true;
+    } catch (error) {
+      mount.innerHTML = '<p class="activity-load-error" role="alert">This language version could not be loaded. Please return to Foundations and try again.</p>';
+      return false;
+    }
+  }
+
+  function renderLanguageSelection(selectedLanguage, canCancel) {
+    var options = languageService.languages.map(function (language) {
+      return '<label class="language-option"><input type="radio" name="programming-language" value="' +
+        escapeHtml(language.id) + '" ' + (selectedLanguage === language.id ? "checked" : "") +
+        '><span><strong>' + escapeHtml(language.label) + '</strong><small>Use ' +
+        escapeHtml(language.label) + " syntax throughout the programming sections.</small></span></label>";
+    }).join("");
+    mount.innerHTML = '<section class="language-selection" aria-labelledby="language-selection-heading">' +
+      '<p class="activity-section__eyebrow">Programming Diagnostic</p><h2 id="language-selection-heading" tabindex="-1">Choose your programming language</h2>' +
+      '<p>Choose the language you are most comfortable using. The programming concepts are the same, but code examples and exercises will use your selected language.</p>' +
+      '<form data-language-form><fieldset><legend class="visually-hidden">Programming language</legend><div class="language-options">' +
+      options + '</div><div class="activity-error-summary" data-language-error tabindex="-1" hidden></div>' +
+      '<div class="activity-actions"><button class="primary-button" type="submit">' +
+      (selectedLanguage ? "Use selected language" : "Start diagnostic") + "</button>" +
+      (canCancel ? '<button class="secondary-button" type="button" data-cancel-language>Cancel</button>' : "") +
+      "</div></fieldset></form></section>";
+
+    mount.querySelector("[data-language-form]").addEventListener("submit", function (event) {
+      event.preventDefault();
+      var selected = mount.querySelector('input[name="programming-language"]:checked');
+      if (!selected) {
+        var error = mount.querySelector("[data-language-error]");
+        error.textContent = "Choose Python, JavaScript or C# before starting the diagnostic.";
+        error.hidden = false;
+        error.focus();
+        return;
+      }
+      var changed = attempt.programmingLanguage && attempt.programmingLanguage !== selected.value;
+      if (changed && hasAttemptProgress() && typeof window.confirm === "function" &&
+          !window.confirm("Changing language will restart this diagnostic and clear its saved answers. Continue?")) {
+        return;
+      }
+      if (changed && hasAttemptProgress()) {
+        attempt = store.reset({ programmingLanguage: selected.value });
+        currentIndex = 0;
+      } else {
+        attempt.programmingLanguage = selected.value;
+        store.save(attempt);
+      }
+      if (prepareActivity(selected.value)) {
+        renderSection();
+        focusHeading("#section-heading");
+      }
+    });
+    var cancel = mount.querySelector("[data-cancel-language]");
+    if (cancel) {
+      cancel.addEventListener("click", function () {
+        if (prepareActivity(attempt.programmingLanguage)) {
+          if (languageReturnView === "results" && attempt.result) {
+            renderResults();
+          } else {
+            renderSection();
+            focusHeading("#section-heading");
+          }
+        }
+      });
+    }
+    focusHeading("#language-selection-heading");
+  }
+
+  function showLanguageChange() {
+    if (!attempt.result) {
+      collectCurrentResponses();
+    }
+    languageReturnView = attempt.result ? "results" : "section";
+    renderLanguageSelection(attempt.programmingLanguage, true);
   }
 
   function initialise() {
@@ -478,14 +632,24 @@
       return;
     }
 
-    var errors = marking.validateActivity(activity);
+    var errors = marking.validateActivity(baseActivity);
+    if (languageService && baseActivity.requiresProgrammingLanguage) {
+      errors = errors.concat(languageService.validateActivity(baseActivity));
+    }
     if (errors.length) {
       mount.innerHTML = '<p class="activity-load-error" role="alert">This activity could not be loaded. Please return to Foundations and try again.</p>';
       return;
     }
 
-    store = stateService.createStore(activity);
+    store = stateService.createStore(baseActivity);
     attempt = store.start();
+    if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
+      renderLanguageSelection("", false);
+      return;
+    }
+    if (!prepareActivity(attempt.programmingLanguage)) {
+      return;
+    }
     currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
       return section.id === attempt.currentSectionId;
     }));
