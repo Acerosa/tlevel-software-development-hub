@@ -62,6 +62,18 @@
 
     dialog.querySelector("[data-student-dialog-close]").addEventListener("click", closeDialog);
     form.addEventListener("submit", handleSubmit);
+    input.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter") {
+        return;
+      }
+
+      event.preventDefault();
+      if (typeof form.requestSubmit === "function") {
+        form.requestSubmit();
+      } else {
+        submitButton.click();
+      }
+    });
   }
 
   function openDialog() {

@@ -107,6 +107,8 @@ test("student sign in uses one text ID and does not introduce passwords", functi
   assert.doesNotMatch(source, /type=["'](?:password|number)["']/i);
   const studentUi = read("js/core/student-ui.js");
   assert.match(studentUi, /name="studentId" type="text"/);
+  assert.match(studentUi, /event\.key !== "Enter"/);
+  assert.match(studentUi, /form\.requestSubmit\(\)/);
   assert.match(read("js/core/student-context.js"), /getStudentId/);
 });
 
