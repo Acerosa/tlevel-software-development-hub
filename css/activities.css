@@ -877,6 +877,28 @@ input.programming-output {
   background: var(--colour-teal-pale);
 }
 
+.result-submission {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border: 1px solid var(--colour-border);
+  border-left: 0.25rem solid var(--colour-teal);
+  background: var(--colour-white);
+}
+
+.result-submission p {
+  flex: 1 1 20rem;
+  margin: 0;
+}
+
+.result-submission--failed {
+  border-left-color: var(--colour-error);
+  background: var(--colour-error-pale);
+}
+
 .activity-load-error {
   padding: 1rem;
   border-left: 0.3rem solid var(--colour-error);

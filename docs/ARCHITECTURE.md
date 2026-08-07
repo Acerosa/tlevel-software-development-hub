@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository contains the reusable application shell, the Priority 1 student identification foundation and the Software Development Foundations activity suite. It establishes the navigation, visual language, page structure, formative activity model and integration boundaries. It does not yet contain assessment systems, progress dashboards or result submission.
+This repository contains the reusable application shell, the student identification foundation and the Software Development Foundations activity suite. It establishes the navigation, visual language, page structure, formative activity model and integration boundaries. It includes narrow formative result submission, but it does not contain a secure assessment system or learner progress dashboard.
 
 The site is a collection of static HTML pages enhanced with shared CSS and JavaScript. It can be served directly by GitHub Pages without a build step.
 
@@ -90,12 +90,12 @@ learner interaction and explanatory feedback
               ↓
 versioned local attempt and consistent result
               ↓
-future Learning API adapter
+Learning API adapter
 ```
 
 Activity content is stored in `js/data/foundations/` and is kept separate from rendering and state behaviour. Every activity has a stable ID and semantic version. Every question has a stable ID such as `FOUND-PROG-VAR-001`. Shared interactions are single choice, multiple select, short text, matching and ordering. The Programming Diagnostic also supports predicted output, inline code gaps, clickable line selection, keyboard-controlled code ordering and lightweight code editors.
 
-`activity-engine.js` renders section navigation, progress, questions, feedback and results. `activity-marking.js` contains unit-testable answer comparison, scoring, section indicators and result creation. `activity-state.js` owns lightweight activity progress. `foundations-landing.js` derives Start, Continue and Revisit states without inventing completion data.
+`activity-engine.js` renders section navigation, progress, questions, feedback, results and submission status. `activity-marking.js` contains unit-testable answer comparison, scoring, section indicators and result creation. `activity-state.js` owns lightweight activity progress and safe guest-to-student adoption. `learning-api.js` owns result transport. `foundations-landing.js` derives Start, Continue and Revisit states without inventing completion data.
 
 ### Programming exercise extension
 
@@ -121,7 +121,7 @@ The checker never executes submitted code. It compares normalised line endings a
 
 The editor, checker and feedback renderer are separate so a future reviewed code-runner adapter could replace the checking step without redesigning the exercise controls. That future work must not pass arbitrary code to `eval`, `Function`, injected scripts, frames or an untrusted remote service.
 
-The result model is ready for a future Learning API adapter and contains:
+The result model is consumed by the Learning API adapter and contains:
 
 - `activityId`
 - `activityVersion`
@@ -134,7 +134,7 @@ The result model is ready for a future Learning API adapter and contains:
 
 Programming Diagnostic results also contain the selected language and summaries for Knowledge, Code reading and Coding / debugging. These extra fields remain formative and optional for other activities.
 
-No result is currently sent to a backend. Client-side answer keys are appropriate for these formative activities and are not presented as secure assessment material.
+Signed-in completed results are sent to the backend as a narrow score summary. Client-side answer keys and ID-only identification are appropriate for formative activity records, but they are not secure assessment evidence.
 
 ## Learner identity boundary
 
@@ -152,7 +152,7 @@ The browser session contains only:
 
 Foundations progress uses a separate versioned namespace, `tlevel.softwareDevelopment.foundations.v1`. `FoundationActivityState` scopes an attempt to the current student ID when available, or to a guest key when signed out. It stores only the current responses, submitted sections, selected programming language when applicable and most recent result. This browser-local data improves continuity but is not authoritative evidence or a security boundary.
 
-Future activity and result submission code must retrieve the authoritative identifier with `StudentContext.getStudentId()`. It must submit `studentId`, not a display name, and the backend must continue to validate that ID. The browser session is a convenience and is not a security boundary.
+Result submission retrieves the current identifier with `StudentContext.getStudentId()`. It submits `studentId`, not a display name, and the backend validates that ID and the configured activity. The browser session is a convenience and is not a security boundary.
 
 ## Backend boundaries
 
@@ -160,7 +160,7 @@ The first Learning API integration is implemented through the separate Google Ap
 
 ### Learning API
 
-The Learning API owns student identification and is the planned owner of:
+The Learning API owns student identification, formative submissions and progress. It remains the planned owner of richer activity and diagnostic services:
 
 - activities
 - diagnostics
@@ -183,12 +183,13 @@ Each domain should keep closely related behaviour and data together (high cohesi
 flowchart LR
     SignIn["Student sign-in form"] --> Client["Student API client"]
     Client --> AppsScript["Google Apps Script Web App"]
-    AppsScript --> Context["Student context"]
+    Client --> Context["Student context"]
     Context --> Session["Versioned local session"]
     Activities["Foundations activities"] --> Context
     Activities --> Local["Versioned local attempt"]
-    Context --> Learning["Future result submission adapter"]
+    Context --> Learning["Result submission adapter"]
     Local -. "result contract" .-> Learning
+    Learning --> AppsScript
     Projects["Future project workspace"] --> Evidence["Project / Evidence API"]
     Learning -. "documented contract only" .- Evidence
 ```
@@ -230,4 +231,4 @@ The shell adapts the reusable ideas requested from the OCR Unit 3 Cyber Security
 
 ## Current component boundary
 
-Software Development Foundations ends with five complete formative activities, a reusable renderer, deterministic marking, browser-local continuity and a consistent result contract. Programming code is never executed, so the editor is not a compiler and cannot prove that every equivalent program is correct. The component does not submit attempts, update Google Sheets, generate assessment evidence or provide a teacher dashboard. A future Learning API adapter can combine the result contract with `StudentContext.getStudentId()` without changing question content or the activity renderer.
+Software Development Foundations contains five complete formative activities, a reusable renderer, deterministic marking, browser-local continuity and a consistent result contract. Programming code is never executed, so the editor is not a compiler and cannot prove that every equivalent program is correct. Signed-in result summaries can update Google Sheets through the Learning API, but the component does not generate secure assessment evidence or provide a teacher dashboard.

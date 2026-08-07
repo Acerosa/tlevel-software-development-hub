@@ -42,6 +42,23 @@ function createApiRuntime(fetchImplementation, apiUrl = "https://example.test/ex
   return runtime;
 }
 
+function createLearningApiRuntime(fetchImplementation, studentId = "00123456") {
+  const runtime = createContext({
+    STUDENT_API_CONFIG: {
+      apiUrl: "https://example.test/exec",
+      requestTimeoutMs: 100
+    },
+    StudentContext: {
+      getStudentId: function () { return studentId; }
+    },
+    location: { pathname: "/foundations/testing-methods/" },
+    fetch: fetchImplementation
+  });
+
+  runScript(runtime.context, "js/core/learning-api.js");
+  return runtime;
+}
+
 function jsonResponse(payload, ok = true) {
   return {
     ok,
@@ -193,6 +210,97 @@ test("a missing API URL produces a configuration error", async function () {
     function (error) {
       return error.code === "CONFIGURATION_ERROR";
     }
+  );
+});
+
+test("submitResult uses the active student ID and the narrow result contract", async function () {
+  let capturedRequest;
+  const runtime = createLearningApiRuntime(async function (url, options) {
+    capturedRequest = { url, options };
+    return jsonResponse({
+      success: true,
+      data: {
+        submission: {
+          attemptId: "foundations-testing-methods-attempt-1",
+          activityId: "foundations-testing-methods",
+          attemptNumber: 1,
+          score: 18,
+          maxScore: 22,
+          percentage: 81.82,
+          status: "completed",
+          submittedAt: "2026-08-07T15:00:00.000Z",
+          duplicate: false
+        },
+        progress: { activitiesAttempted: 1 }
+      }
+    });
+  });
+
+  const submission = await runtime.window.LearningApi.submitResult({
+    activityId: "foundations-testing-methods",
+    activityVersion: "1.0.0",
+    attemptId: "foundations-testing-methods-attempt-1",
+    startedAt: "2026-08-07T14:45:00.000Z",
+    completedAt: "2026-08-07T15:00:00.000Z",
+    score: 18,
+    maxScore: 22,
+    percentage: 82,
+    responses: { privateDetail: "not submitted" }
+  });
+  const body = JSON.parse(capturedRequest.options.body);
+
+  assert.equal(capturedRequest.url, "https://example.test/exec");
+  assert.deepEqual(body, {
+    action: "submitResult",
+    studentId: "00123456",
+    result: {
+      activityId: "foundations-testing-methods",
+      activityVersion: "1.0.0",
+      attemptId: "foundations-testing-methods-attempt-1",
+      score: 18,
+      maxScore: 22
+    },
+    sourcePage: "/foundations/testing-methods/"
+  });
+  assert.equal(submission.attemptNumber, 1);
+  assert.equal(submission.percentage, 81.82);
+  assert.equal(Object.prototype.hasOwnProperty.call(body.result, "responses"), false);
+});
+
+test("submitResult does not send anything while signed out", async function () {
+  let requestCount = 0;
+  const runtime = createLearningApiRuntime(async function () {
+    requestCount += 1;
+    return jsonResponse({ success: true });
+  }, null);
+
+  await assert.rejects(
+    runtime.window.LearningApi.submitResult({
+      activityId: "foundations-testing-methods",
+      activityVersion: "1.0.0",
+      attemptId: "attempt-1",
+      score: 1,
+      maxScore: 22
+    }),
+    function (error) { return error.code === "SIGN_IN_REQUIRED"; }
+  );
+  assert.equal(requestCount, 0);
+});
+
+test("submitResult keeps backend errors predictable", async function () {
+  const runtime = createLearningApiRuntime(async function () {
+    return jsonResponse({ success: false, error: "ACTIVITY_NOT_FOUND" });
+  });
+
+  await assert.rejects(
+    runtime.window.LearningApi.submitResult({
+      activityId: "not-configured",
+      activityVersion: "1.0.0",
+      attemptId: "attempt-1",
+      score: 1,
+      maxScore: 1
+    }),
+    function (error) { return error.code === "ACTIVITY_NOT_FOUND"; }
   );
 });
 

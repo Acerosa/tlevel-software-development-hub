@@ -93,12 +93,23 @@
       return attempt;
     }
 
+    function adopt(sourceAttempt) {
+      var adopted = clone(sourceAttempt);
+      if (!adopted || adopted.activityId !== activity.id || adopted.activityVersion !== activity.version) {
+        return null;
+      }
+      adopted.learnerKey = learnerKey;
+      save(adopted);
+      return clone(adopted);
+    }
+
     return Object.freeze({
       key: key,
       learnerKey: learnerKey,
       load: load,
       save: save,
       reset: reset,
+      adopt: adopt,
       start: function () {
         var existing = load();
         if (existing) {
