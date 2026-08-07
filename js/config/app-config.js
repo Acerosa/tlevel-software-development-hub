@@ -22,15 +22,12 @@
       { id: "help", label: "Help", path: "help/" }
     ]),
     learnerContext: Object.freeze({
-      status: "architecture-only",
+      status: "student-identification",
       fields: Object.freeze([
-        "Academic Year",
-        "Programme",
-        "Qualification",
-        "Class Group",
         "Student ID",
         "First Name",
-        "Surname"
+        "Display Name",
+        "Class Group"
       ])
     }),
     futureApiDomains: Object.freeze({
