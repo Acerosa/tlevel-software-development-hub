@@ -53,7 +53,7 @@ node --test test/student-foundation.test.js test/site-integrity.test.js
 
 ## Student API configuration
 
-Set the deployed Google Apps Script Web App `/exec` URL in `js/config/student-api-config.js`. The value is centralised there so it is not repeated across pages. A stable numbered Web App deployment is required before real sign-in can work.
+The stable Google Apps Script Web App `/exec` URL is configured in `js/config/student-api-config.js`. The value is centralised there so it is not repeated across pages. Update the existing backend deployment for future backend versions so the frontend URL remains stable.
 
 ## Documentation
 

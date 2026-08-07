@@ -105,7 +105,8 @@ test("student sign in uses one text ID and does not introduce passwords", functi
   const source = sourceFiles.map(read).join("\n");
 
   assert.doesNotMatch(source, /type=["'](?:password|number)["']/i);
-  assert.match(read("js/core/student-ui.js"), /name="studentId" type="text"/);
+  const studentUi = read("js/core/student-ui.js");
+  assert.match(studentUi, /name="studentId" type="text"/);
   assert.match(read("js/core/student-context.js"), /getStudentId/);
 });
 
@@ -116,7 +117,14 @@ test("API configuration is central and contains no committed learner list", func
     .map(function (filename) { return read("js/core/" + filename); })
     .join("\n");
 
-  assert.match(config, /apiUrl:\s*""/);
+  assert.match(
+    config,
+    /apiUrl:\s*"https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec"/
+  );
+  assert.equal(
+    (config.match(/script\.google\.com\/macros\/s\//g) || []).length,
+    1
+  );
   assert.doesNotMatch(allJavaScript, /script\.google\.com\/macros\/s\//);
   assert.doesNotMatch(allJavaScript, /student(?:s|List)\s*=\s*\[/i);
 });

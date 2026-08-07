@@ -30,7 +30,7 @@ Use `node --check` for JavaScript syntax checks when changing browser modules.
 
 ## Student API setup
 
-The frontend calls the separate Google Apps Script Web App. Once the backend has a stable numbered deployment, open `js/config/student-api-config.js` and set `apiUrl` to its complete `/exec` URL:
+The frontend calls the separate Google Apps Script Web App. Its stable numbered deployment is configured in `js/config/student-api-config.js`. If the deployment is deliberately replaced, set `apiUrl` to the new complete `/exec` URL:
 
 ```js
 apiUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec"
