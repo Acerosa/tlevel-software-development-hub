@@ -13,6 +13,8 @@
   --colour-border: #c9d3dc;
   --colour-border-dark: #a9b7c3;
   --colour-focus: #ffbf47;
+  --colour-error: #b10e1e;
+  --colour-error-pale: #fff1f1;
   --page-width: 70rem;
   --reading-width: 46rem;
   --font-sans: Arial, Helvetica, sans-serif;

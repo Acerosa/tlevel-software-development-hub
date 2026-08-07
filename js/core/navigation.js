@@ -58,8 +58,9 @@
       quickLink(resources, currentPage, root, "Resources") +
       quickLink(help, currentPage, root, "Help") +
       "</ul></nav>" +
+      '<div class="site-header__actions"><div class="student-account" data-student-account></div>' +
       '<button class="nav-toggle" type="button" aria-expanded="false" ' +
-      'aria-controls="global-navigation">Menu</button>' +
+      'aria-controls="global-navigation">Menu</button></div>' +
       "</div>" +
       '<nav class="site-nav" id="global-navigation" aria-label="Main navigation">' +
       '<div class="page-width"><ul class="site-nav__list">' + mobileLinks + "</ul></div>" +

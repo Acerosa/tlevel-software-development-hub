@@ -34,6 +34,40 @@
   display: none;
 }
 
+.site-header__actions,
+.student-account {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.student-account__name {
+  max-width: 9rem;
+  overflow: hidden;
+  color: var(--colour-white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.student-account__button {
+  min-height: 2.6rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid #b5c7d5;
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--colour-white);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.student-account__button:hover {
+  background: var(--colour-navy-light);
+}
+
 .site-header__links {
   display: flex;
   align-items: center;
@@ -284,6 +318,121 @@
   font-weight: 700;
 }
 
+.student-sign-in-dialog {
+  width: min(calc(100% - 2rem), 31rem);
+  padding: 0;
+  border: 1px solid var(--colour-border-dark);
+  border-radius: 0.35rem;
+  background: var(--colour-white);
+  color: var(--colour-ink);
+  box-shadow: 0 1rem 3rem rgba(13, 42, 66, 0.25);
+}
+
+.student-sign-in-dialog::backdrop {
+  background: rgba(13, 42, 66, 0.62);
+}
+
+.student-sign-in-dialog > p,
+.student-sign-in-dialog > form {
+  margin-inline: 1.5rem;
+}
+
+.student-sign-in-dialog > form {
+  margin-bottom: 1.5rem;
+}
+
+.student-sign-in-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1.15rem 1.5rem;
+  border-bottom: 1px solid var(--colour-border);
+  background: var(--colour-teal-pale);
+}
+
+.student-sign-in-dialog__header h2 {
+  margin: 0;
+}
+
+.student-sign-in-dialog__close {
+  min-height: 2.6rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--colour-border-dark);
+  border-radius: 0.2rem;
+  background: var(--colour-white);
+  color: var(--colour-ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 700;
+}
+
+.form-group input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.6rem 0.7rem;
+  border: 2px solid var(--colour-border-dark);
+  border-radius: 0.2rem;
+  color: var(--colour-ink);
+  font: inherit;
+}
+
+.form-group input[aria-invalid="true"] {
+  border-color: var(--colour-error);
+}
+
+.form-error {
+  padding: 0.75rem;
+  border-left: 0.3rem solid var(--colour-error);
+  background: var(--colour-error-pale);
+  color: #730b17;
+  font-weight: 700;
+}
+
+.student-sign-in-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.primary-button {
+  min-height: 3rem;
+  padding: 0.65rem 1.1rem;
+  border: 2px solid var(--colour-link);
+  border-radius: 0.2rem;
+  background: var(--colour-link);
+  color: var(--colour-white);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: var(--colour-navy-light);
+}
+
+.primary-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.loading-message {
+  color: var(--colour-muted);
+  font-size: 0.9rem;
+}
+
 .site-footer {
   padding-block: 1.5rem;
   border-top: 1px solid var(--colour-border-dark);
@@ -329,5 +478,33 @@
 
   .study-card {
     padding: 1.5rem;
+  }
+}
+
+@media (max-width: 32rem) {
+  .site-header__bar {
+    gap: 0.65rem;
+  }
+
+  .brand__context,
+  .student-account__name {
+    display: none;
+  }
+
+  .student-account__button,
+  .nav-toggle {
+    padding-inline: 0.55rem;
+    font-size: 0.8rem;
+  }
+
+  .student-sign-in-dialog__header,
+  .student-sign-in-dialog > p,
+  .student-sign-in-dialog > form {
+    margin-inline: 1rem;
+  }
+
+  .student-sign-in-dialog__header {
+    margin-inline: 0;
+    padding-inline: 1rem;
   }
 }
