@@ -23,10 +23,12 @@ Then open `http://localhost:8000/` in a browser.
 The project has no package dependencies, compiler, bundler, linter or type checker. Run the built-in Node tests from the repository root:
 
 ```bash
-node --test test/student-foundation.test.js test/site-integrity.test.js
+node --test test/student-foundation.test.js test/site-integrity.test.js test/foundations-activities.test.js
 ```
 
 Use `node --check` for JavaScript syntax checks when changing browser modules.
+
+`foundations-activities.test.js` validates activity scope, stable IDs, answer keys, feedback, all supported marking types, the result contract, local-state isolation, safe client-side behaviour and activity route dependencies.
 
 ## Student API setup
 
@@ -85,6 +87,21 @@ Prefer small commits that keep code, tests and related documentation together. D
 6. Add a unique page title, description, one `h1` and a breadcrumb.
 7. Test the route from the home page and from the route back to Home.
 
+## Adding a Foundations activity
+
+1. Add stable catalogue metadata to `js/data/foundations/catalog.js`.
+2. Create a directory under `foundations/` containing an `index.html` route that follows the existing breadcrumb and shell pattern.
+3. Create a data file under `js/data/foundations/` with a stable activity ID, semantic version, sections and stable question IDs.
+4. Load shared marking and state modules, then the activity data, then `activity-engine.js`.
+5. Use a supported interaction type: `single`, `multiple`, `text`, `matching` or `order`.
+6. Provide concise explanatory feedback for both correct and incorrect responses.
+7. Extend `foundations-activities.test.js` with the expected activity scope and any new marking rule.
+8. Test empty submissions, correct and incorrect answers, section review, retry, saved progress, narrow layouts and keyboard focus.
+
+Question data owns prompts, options, answers, code samples, small tables and feedback. Rendering, DOM events, scoring and persistence belong in the shared activity modules. Do not embed large question banks in HTML or add activity-specific identity forms.
+
+Foundations progress is stored under `tlevel.softwareDevelopment.foundations.v1`, scoped to the signed-in student ID or a guest key. It is a local convenience, not assessment evidence. Results follow the documented result contract but are not sent anywhere. Future submission work should use a dedicated Learning API adapter and retrieve identity through `StudentContext.getStudentId()`.
+
 ## Manual checks
 
 Before merging:
@@ -104,6 +121,14 @@ Before merging:
 - reload a nested route and confirm the student's name is restored;
 - sign out and confirm the stored session is cleared;
 - repeat the sign-in checks at a narrow mobile viewport.
+- open all five Foundations activities from the landing page;
+- submit an empty section and confirm the error summary receives focus;
+- complete and retry each supported interaction type;
+- confirm feedback explains the reason and is not communicated by colour alone;
+- confirm section scores and the final total match the submitted responses;
+- review complex tables, code samples, ordering controls and the ERD at narrow widths;
+- confirm the landing page changes only from saved local activity state;
+- check the browser console throughout a full activity completion.
 
 ## Secrets and learner data
 

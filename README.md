@@ -4,7 +4,7 @@ A GitHub Pages learning hub for the Pearson T Level Digital Software Development
 
 ## Purpose
 
-The hub provides one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. It currently includes the reusable application shell, lightweight landing pages, and the student identification and session foundation.
+The hub provides one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. It includes the reusable application shell, student identification and session foundation, and a complete client-side Software Development Foundations activity suite.
 
 Learners can identify themselves with their allocated student ID through the separate Google Apps Script API. This is lightweight student identification, not password authentication. Public study pages remain available without signing in.
 
@@ -33,7 +33,15 @@ Available shell routes:
 - Resources
 - Help
 
-These routes are intentionally lightweight placeholders for later curriculum components. The shared header is ready to display the current learner and provide sign-in and sign-out controls.
+Software Development Foundations includes:
+
+- Programming Diagnostic covering seven topics
+- Requirements Classification
+- Problem Decomposition
+- Data Design Knowledge Check
+- Testing Methods Classification
+
+The five data-driven activities provide immediate explanatory feedback, section results, review and retry controls, and lightweight browser-local progress. They are formative learning activities rather than official Pearson assessment material. The other curriculum routes remain lightweight placeholders for later components.
 
 ## Run locally
 
@@ -48,7 +56,7 @@ Open `http://localhost:8000/`.
 Run the dependency-free checks with:
 
 ```bash
-node --test test/student-foundation.test.js test/site-integrity.test.js
+node --test test/student-foundation.test.js test/site-integrity.test.js test/foundations-activities.test.js
 ```
 
 ## Student API configuration
