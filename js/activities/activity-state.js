@@ -52,8 +52,8 @@
     return activityId + "-" + uniquePart;
   }
 
-  function newAttempt(activity, learnerKey) {
-    return {
+  function newAttempt(activity, learnerKey, seed) {
+    var attempt = {
       activityId: activity.id,
       activityVersion: activity.version,
       attemptId: createAttemptId(activity.id),
@@ -64,6 +64,10 @@
       result: null,
       learnerKey: learnerKey
     };
+    if (seed && seed.programmingLanguage) {
+      attempt.programmingLanguage = seed.programmingLanguage;
+    }
+    return attempt;
   }
 
   function createStore(activity) {
@@ -82,9 +86,9 @@
       return write(key, attempt);
     }
 
-    function reset() {
+    function reset(seed) {
       remove(key);
-      var attempt = newAttempt(activity, learnerKey);
+      var attempt = newAttempt(activity, learnerKey, seed);
       save(attempt);
       return attempt;
     }

@@ -40,6 +40,11 @@
   }
 
   function hasResponse(question, response) {
+    var programmingChecker = window.FoundationProgrammingChecker;
+    if (programmingChecker && programmingChecker.supports(question)) {
+      return programmingChecker.hasResponse(question, response);
+    }
+
     if (question.type === "multiple" || question.type === "order") {
       return Array.isArray(response) && response.length > 0;
     }
@@ -58,6 +63,11 @@
   function isCorrect(question, response) {
     if (!hasResponse(question, response)) {
       return false;
+    }
+
+    var programmingChecker = window.FoundationProgrammingChecker;
+    if (programmingChecker && programmingChecker.supports(question)) {
+      return programmingChecker.mark(question, response).correct;
     }
 
     if (question.type === "multiple") {
@@ -85,6 +95,10 @@
     var correct = isCorrect(question, response);
     var maxScore = Number.isFinite(question.points) ? question.points : 1;
     var feedback = question.feedback || {};
+    var programmingChecker = window.FoundationProgrammingChecker;
+    var programmingMark = programmingChecker && programmingChecker.supports(question)
+      ? programmingChecker.mark(question, response)
+      : null;
 
     return {
       questionId: question.id,
@@ -92,7 +106,9 @@
       correct: correct,
       score: correct ? maxScore : 0,
       maxScore: maxScore,
-      feedback: correct ? feedback.correct : feedback.incorrect
+      feedback: correct ? feedback.correct : feedback.incorrect,
+      detail: programmingMark ? programmingMark.detail : "",
+      skill: question.skill || null
     };
   }
 
@@ -142,7 +158,7 @@
       return total + section.maxScore;
     }, 0);
 
-    return {
+    var result = {
       activityId: activity.id,
       activityVersion: activity.version,
       attemptId: attempt.attemptId,
@@ -163,7 +179,7 @@
       }),
       responses: sectionResults.reduce(function (all, section) {
         return all.concat(section.responses.map(function (response) {
-          return {
+          var responseResult = {
             questionId: response.questionId,
             sectionId: section.sectionId,
             response: response.response,
@@ -171,15 +187,55 @@
             score: response.score,
             maxScore: response.maxScore
           };
+          if (response.skill) {
+            responseResult.skill = response.skill;
+          }
+          return responseResult;
         }));
       }, [])
     };
+
+    var skillLabels = {
+      "knowledge": "Knowledge",
+      "code-reading": "Code reading",
+      "coding-debugging": "Coding / debugging"
+    };
+    var markedResponses = sectionResults.reduce(function (all, section) {
+      return all.concat(section.responses);
+    }, []);
+    var skillIds = Object.keys(skillLabels).filter(function (skillId) {
+      return markedResponses.some(function (response) { return response.skill === skillId; });
+    });
+    if (skillIds.length) {
+      result.skills = skillIds.map(function (skillId) {
+        var responses = markedResponses.filter(function (response) { return response.skill === skillId; });
+        var skillScore = responses.reduce(function (total, response) { return total + response.score; }, 0);
+        var skillMaxScore = responses.reduce(function (total, response) { return total + response.maxScore; }, 0);
+        var skillPercentage = percentage(skillScore, skillMaxScore);
+        return {
+          skillId: skillId,
+          title: skillLabels[skillId],
+          score: skillScore,
+          maxScore: skillMaxScore,
+          percentage: skillPercentage,
+          status: statusForPercentage(skillPercentage)
+        };
+      });
+    }
+    if (activity.programmingLanguage) {
+      result.programmingLanguage = activity.programmingLanguage;
+      result.programmingLanguageLabel = activity.programmingLanguageLabel;
+    }
+    return result;
   }
 
   function validateActivity(activity) {
     var errors = [];
     var ids = Object.create(null);
-    var supportedTypes = ["single", "multiple", "text", "matching", "order"];
+    var supportedTypes = [
+      "single", "multiple", "text", "matching", "order",
+      "predict-output", "code-gap", "line-select", "code-order", "code-editor"
+    ];
 
     if (!activity || typeof activity !== "object") {
       return ["Activity data is missing."];
