@@ -3,6 +3,7 @@
 
   var config = window.STUDENT_API_CONFIG;
   var studentContext = window.StudentContext;
+  var supabaseLearningApi = window.SupabaseLearningApi;
 
   function LearningApiError(code) {
     this.name = "LearningApiError";
@@ -108,7 +109,28 @@
     });
   }
 
-  function submitResult(result) {
+  function canSubmit(result) {
+    if (supabaseLearningApi && supabaseLearningApi.canSubmit(result)) {
+      return true;
+    }
+
+    try {
+      requireApiUrl();
+      requireStudentId();
+      resultPayload(result);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function modeFor(result) {
+    return supabaseLearningApi && supabaseLearningApi.canSubmit(result)
+      ? "supabase"
+      : "legacy";
+  }
+
+  function submitLegacyResult(result) {
     var apiUrl;
     var studentId;
     var submittedResult;
@@ -158,7 +180,16 @@
     });
   }
 
+  function submitResult(result) {
+    if (modeFor(result) === "supabase") {
+      return supabaseLearningApi.submitResult(result);
+    }
+    return submitLegacyResult(result);
+  }
+
   window.LearningApi = Object.freeze({
+    canSubmit: canSubmit,
+    modeFor: modeFor,
     submitResult: submitResult
   });
 })();

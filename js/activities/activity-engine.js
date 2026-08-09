@@ -325,9 +325,11 @@
 
   function submissionStatusHtml() {
     var submission = attempt.submission || {};
-    var signedIn = window.StudentContext && window.StudentContext.isSignedIn
-      ? window.StudentContext.isSignedIn()
-      : false;
+    var signedIn = learningApi && learningApi.canSubmit && attempt.result
+      ? learningApi.canSubmit(attempt.result)
+      : window.StudentContext && window.StudentContext.isSignedIn
+        ? window.StudentContext.isSignedIn()
+        : false;
     var content;
 
     if (submission.status === "submitted") {
@@ -374,9 +376,11 @@
       return;
     }
 
-    var signedIn = window.StudentContext && window.StudentContext.isSignedIn
-      ? window.StudentContext.isSignedIn()
-      : false;
+    var signedIn = learningApi && learningApi.canSubmit
+      ? learningApi.canSubmit(attempt.result)
+      : window.StudentContext && window.StudentContext.isSignedIn
+        ? window.StudentContext.isSignedIn()
+        : false;
     if (!learningApi || !signedIn) {
       attempt.submission = { status: "local" };
       store.save(attempt);

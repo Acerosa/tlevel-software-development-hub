@@ -115,7 +115,7 @@ select
   round(avg(100 * ranked_attempts.score / ranked_attempts.max_score), 2)
     as latest_group_average_percentage,
   round(
-    100 * count(*)
+    100 * count(*)::numeric
       / nullif((
         select count(*)
         from learning.enrolments as active_enrolment
@@ -175,7 +175,7 @@ select
   case
     when coalesce(assignment_counts.assigned_activities, 0) = 0 then 0
     else round(
-      100 * count(latest_attempts.activity_version_id)
+      100 * count(latest_attempts.activity_version_id)::numeric
         / assignment_counts.assigned_activities,
       2
     )
