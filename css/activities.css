@@ -14,7 +14,7 @@
   border: 1px solid var(--colour-border);
   border-radius: 0.3rem;
   background: var(--colour-white);
-  box-shadow: 0 1px 2px rgba(21, 37, 54, 0.06);
+  box-shadow: 0 1px 2px var(--colour-shadow);
 }
 
 .activity-card > * {
@@ -63,7 +63,7 @@
   padding: 0.15rem 0.45rem;
   border: 1px solid var(--colour-border);
   border-radius: 999px;
-  background: #f4f7f9;
+  background: var(--colour-surface-muted);
   font-size: 0.78rem;
 }
 
@@ -77,22 +77,22 @@
   padding: 0.2rem 0.5rem;
   border: 1px solid var(--colour-border-dark);
   border-radius: 0.2rem;
-  background: #f4f7f9;
+  background: var(--colour-surface-muted);
   color: var(--colour-muted);
   font-size: 0.76rem;
   font-weight: 700;
 }
 
 .activity-status--in-progress {
-  border-color: #d4a72c;
-  background: #fff8db;
-  color: #664d03;
+  border-color: var(--colour-warning);
+  background: var(--colour-warning-bg);
+  color: var(--colour-warning-text);
 }
 
 .activity-status--completed {
-  border-color: #76b38f;
+  border-color: var(--colour-success-border);
   background: var(--colour-green-pale);
-  color: #155c37;
+  color: var(--colour-success-text);
 }
 
 .activity-shell {
@@ -109,7 +109,7 @@
   padding: 0.65rem 0.8rem;
   border: 1px solid var(--colour-border);
   border-radius: 0.25rem;
-  background: #f4f7f9;
+  background: var(--colour-surface-muted);
   font-size: 0.9rem;
 }
 
@@ -203,7 +203,7 @@
   overflow: hidden;
   height: 0.65rem;
   border-radius: 999px;
-  background: #dbe4ea;
+  background: var(--colour-border-subtle);
 }
 
 .activity-progress__bar {
@@ -243,7 +243,7 @@
 }
 
 .section-navigator__button:hover {
-  background: #f4f7f9;
+  background: var(--colour-surface-muted);
 }
 
 .section-navigator__button[aria-current="step"] {
@@ -280,7 +280,7 @@
   padding: 1.1rem;
   border: 1px solid var(--colour-border);
   border-radius: 0.25rem;
-  background: #fbfcfd;
+  background: var(--colour-input-bg);
 }
 
 .question-panel--error {
@@ -362,8 +362,8 @@
   margin: 0 0 0.85rem;
   padding: 0.9rem;
   border-left: 0.25rem solid var(--colour-teal);
-  background: #edf2f5;
-  color: #102534;
+  background: var(--colour-info-bg);
+  color: var(--colour-text-secondary);
   font: 0.9rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
   white-space: pre;
 }
@@ -383,7 +383,7 @@
   gap: 0.55rem;
   padding: 0.55rem 0.7rem;
   border-bottom: 1px solid var(--colour-border);
-  background: #e8eef2;
+  background: var(--colour-info-bg);
 }
 
 .programming-language-badge {
@@ -425,8 +425,8 @@
   margin: 0;
   border-left: 0;
   border-radius: 0;
-  background: #142936;
-  color: #f5f8fa;
+  background: var(--colour-code-bg);
+  color: var(--colour-code-text);
 }
 
 .programming-code code {
@@ -446,7 +446,7 @@
 .programming-code__number {
   width: 2.5rem;
   padding-right: 0.85rem;
-  color: #a9bac4;
+  color: var(--colour-code-muted);
   text-align: right;
   user-select: none;
 }
@@ -470,8 +470,8 @@
   padding: 0.7rem;
   border: 2px solid var(--colour-border-dark);
   border-radius: 0.2rem;
-  background: #fbfcfd;
-  color: #102534;
+  background: var(--colour-input-bg);
+  color: var(--colour-text-secondary);
   font: 0.92rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
@@ -496,8 +496,8 @@ input.programming-output {
 .code-gap {
   max-width: 100%;
   overflow-x: auto;
-  background: #142936;
-  color: #f5f8fa;
+  background: var(--colour-code-bg);
+  color: var(--colour-code-text);
 }
 
 .code-gap pre {
@@ -512,18 +512,18 @@ input.programming-output {
 .code-gap__input {
   min-height: 2.35rem;
   padding: 0.25rem 0.4rem;
-  border: 2px solid #8fd7df;
+  border: 2px solid var(--colour-accent);
   border-radius: 0.2rem;
   background: var(--colour-white);
-  color: #102534;
+  color: var(--colour-text-secondary);
   font: inherit;
 }
 
 .code-line-selector {
   overflow-x: auto;
   padding: 0.45rem 0;
-  background: #142936;
-  color: #f5f8fa;
+  background: var(--colour-code-bg);
+  color: var(--colour-code-text);
 }
 
 .code-line-choice {
@@ -537,7 +537,7 @@ input.programming-output {
 
 .code-line-choice:hover,
 .code-line-choice:has(input:checked) {
-  background: #244557;
+  background: var(--colour-surface-muted);
 }
 
 .code-line-choice input {
@@ -547,7 +547,7 @@ input.programming-output {
 }
 
 .code-line-choice__number {
-  color: #b8c7cf;
+  color: var(--colour-code-muted);
   font: 0.9rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
   text-align: right;
 }
@@ -560,12 +560,12 @@ input.programming-output {
 
 .code-line-choice--answer {
   box-shadow: inset 0.3rem 0 var(--colour-green);
-  background: #1d4935;
+  background: var(--colour-success-bg);
 }
 
 .code-line-choice--selected-incorrect {
   box-shadow: inset 0.3rem 0 var(--colour-error);
-  background: #5c2730;
+  background: var(--colour-error-bg);
 }
 
 .code-order {
@@ -574,7 +574,7 @@ input.programming-output {
   margin: 0;
   padding: 0.75rem;
   list-style: none;
-  background: #edf2f5;
+  background: var(--colour-info-bg);
 }
 
 .code-order__item {
@@ -595,7 +595,7 @@ input.programming-output {
   place-items: center;
   border-radius: 50%;
   background: var(--colour-navy);
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -677,7 +677,7 @@ input.programming-output {
 .code-tool-button:focus-visible,
 .code-move-button:focus-visible,
 .activity-language__change:focus-visible {
-  outline: 0.2rem solid #ffbf47;
+  outline: 0.2rem solid var(--colour-focus);
   outline-offset: 0.12rem;
 }
 
@@ -706,7 +706,7 @@ input.programming-output {
 
 .data-table th,
 .matching-table th {
-  background: #edf2f5;
+  background: var(--colour-info-bg);
 }
 
 .matching-table select {
@@ -737,7 +737,7 @@ input.programming-output {
   margin-top: 0.85rem;
   padding: 0.75rem;
   border-left: 0.25rem solid var(--colour-border-dark);
-  background: #edf2f5;
+  background: var(--colour-info-bg);
 }
 
 .question-feedback--correct {
@@ -759,7 +759,7 @@ input.programming-output {
   padding: 0.8rem;
   border-left: 0.3rem solid var(--colour-error);
   background: var(--colour-error-pale);
-  color: #730b17;
+  color: var(--colour-error-text);
   font-weight: 700;
 }
 
@@ -862,7 +862,7 @@ input.programming-output {
   margin: 0;
   padding: 0.55rem;
   background: var(--colour-navy);
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font-size: 0.95rem;
 }
 
