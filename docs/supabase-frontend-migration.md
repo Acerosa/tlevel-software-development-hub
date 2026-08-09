@@ -62,6 +62,14 @@ To use the preserved Apps Script implementation in a controlled development roll
 
 Run the complete Node suite with `node --test test/*.test.js`. Run local `supabase start`, `supabase db reset --local` and `supabase test db` after any migration change. Hosted synthetic tests use real Auth sessions and verify all five activity payloads, RLS isolation, idempotency, progress and teacher analytics. Do not commit `.env`, passwords, service-role/secret keys, CLI tokens or `supabase/.temp`.
 
+## Production-like GitHub Pages check
+
+The deployed static site is available at <https://acerosa.github.io/tlevel-software-development-hub/>. GitHub Pages builds the repository `main` branch from its root using the legacy Pages deployment; the current production-like deployment is commit `40e79eac843c7b459b31c1606ba9febb5b05f457`.
+
+The site uses the hosted Supabase project `RR NHC Hub` (`hubwpkrqndorznwzvaer`) as its default backend. Auth uses the direct email/password flow with SDK session persistence (`detectSessionInUrl: false`), so this static deployment does not require an OAuth callback route. The configured Supabase Auth Site URL and allowed redirect URLs must remain restricted to the approved Pages origin if the Auth configuration is changed.
+
+The production-like check uses only synthetic Auth identities and verifies deployed sign-in/session restoration, all five Foundations submissions, Programming Diagnostic Python/JavaScript/C# metadata, question-level persistence, progress, analytics, student isolation, teacher-group isolation and anonymous/private-schema denial. No real learner data is present. Before real-student onboarding, establish institution-approved provisioning and separate development/staging and production controls.
+
 ## Known limitations
 
 - Student onboarding still requires an institution-approved Auth invitation/password or recovery process.
