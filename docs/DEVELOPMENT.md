@@ -23,16 +23,22 @@ Then open `http://localhost:8000/` in a browser.
 The project has no package dependencies, compiler, bundler, linter or type checker. Run the built-in Node tests from the repository root:
 
 ```bash
-node --test test/student-foundation.test.js test/site-integrity.test.js test/foundations-activities.test.js
+node --test test/*.test.js
 ```
 
 Use `node --check` for JavaScript syntax checks when changing browser modules.
 
 `foundations-activities.test.js` validates activity scope, stable IDs, answer keys, feedback, all supported marking types, the result contract, local-state isolation and adoption, safe client-side behaviour, submission integration and activity route dependencies.
 
-## Student API setup
+## Supabase frontend setup
 
-The frontend calls the separate Google Apps Script Web App. Its stable numbered deployment is configured in `js/config/student-api-config.js`. If the deployment is deliberately replaced, set `apiUrl` to the new complete `/exec` URL:
+The normal browser backend is Supabase. `js/config/supabase-config.js` contains only the hosted project URL and browser-safe publishable key. Every page loads the official `@supabase/supabase-js` client, then the single `SupabaseClient`, `SupabaseAuth`, `StudentContext`, `SupabaseAnalytics` and `LearningApi` boundary.
+
+The Auth SDK owns session persistence, token refresh and sign-out. The browser calls only the exposed `api` views and `api.submit_attempt`; it never queries `learning` tables directly. The complete endpoint mapping, onboarding process, rollback procedure and known limitations are in `docs/supabase-frontend-migration.md`.
+
+## Legacy Apps Script rollback
+
+The preserved Google Apps Script Web App is an explicit rollback/reference implementation. Its stable numbered deployment remains configured in `js/config/student-api-config.js`. If the deployment is deliberately replaced, set `apiUrl` to the new complete `/exec` URL:
 
 ```js
 apiUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec"
@@ -40,7 +46,7 @@ apiUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec"
 
 Do not use an editor or development URL. Do not repeat the URL in individual pages or modules. The URL is public browser configuration, not a credential. Never add the spreadsheet ID or real student records to this repository.
 
-The API clients send text-based POST requests to avoid an unnecessary browser preflight. `student-api.js` owns identification. `learning-api.js` owns formative result submission and reads the current ID from `StudentContext`; display names are never used as identifiers. Leading zeroes are preserved.
+Set `backend: "apps-script"` in `js/config/supabase-config.js` only for a controlled development rollback. This restores the legacy ID-based sign-in and narrow result contract. Do not expose a learner-facing backend toggle and do not dual-write. The default is `backend: "supabase"`.
 
 ## GitHub Pages
 
@@ -52,7 +58,7 @@ The project uses relative URLs and directory-based routes, so it can be publishe
 4. Choose the `main` branch and the repository root (`/`).
 5. Save and wait for GitHub Pages to publish the site.
 
-The configured Apps Script URL is included in the static files published by GitHub Pages. No server-side environment or secret is required.
+The configured Supabase URL and publishable key are included in the static files published by GitHub Pages. No server-side environment or privileged secret is required.
 
 ## Branch workflow
 
@@ -126,7 +132,7 @@ Code-editor marking may normalise line endings and harmless whitespace, compare 
 
 Learner code must never be passed to `eval`, `Function`, dynamic scripts, executable frames, browser runtimes or remote execution services. The editor, checker and feedback modules form an intentional boundary for a possible future reviewed runner, but no runner exists in this phase.
 
-Foundations progress is stored under `tlevel.softwareDevelopment.foundations.v1`, scoped to the signed-in student ID or a guest key. Guest work is adopted when the learner signs in from an activity and no learner-scoped attempt already exists. A completed signed-in result is sent through the dedicated Learning API adapter. Only activity ID, activity version, attempt ID, score and maximum score are transmitted; response details remain in the browser. Failed requests retain the local result and provide a retry control. These records are formative and are not secure assessment evidence.
+Foundations drafts remain under `tlevel.softwareDevelopment.foundations.v1`, scoped to the current learner context or a guest key. Guest work is adopted when the learner signs in from an activity and no learner-scoped attempt already exists. A completed signed-in result is sent through `api.submit_attempt` with question-level JSON evidence; the server derives identity, assignment, attempt number, totals and timestamps. Failed requests retain the local result and provide a retry control. These records are formative and are not secure assessment evidence.
 
 ## Manual checks
 
@@ -141,11 +147,11 @@ Before merging:
 - check that headings remain in a sensible hierarchy;
 - inspect the browser console for errors;
 - confirm every stylesheet and script loads from both the home page and nested routes.
-- open Student sign in and submit an empty ID;
-- confirm unknown, inactive and unavailable-service errors use learner-friendly copy;
-- sign in with an authorised leading-zero test ID without changing real learner records;
+- open Student sign in and submit empty email/password;
+- confirm invalid credentials, missing profile and unavailable-service errors use learner-friendly copy;
+- sign in with an authorised synthetic Auth account without changing real learner records;
 - reload a nested route and confirm the student's name is restored;
-- sign out and confirm the stored session is cleared;
+- sign out and confirm the SDK session is cleared;
 - repeat the sign-in checks at a narrow mobile viewport.
 - open all five Foundations activities from the landing page;
 - submit an empty section and confirm the error summary receives focus;
@@ -158,7 +164,7 @@ Before merging:
 - confirm feedback explains the reason and is not communicated by colour alone;
 - confirm section scores and the final total match the submitted responses;
 - review complex tables, code samples, ordering controls and the ERD at narrow widths;
-- confirm the landing page changes only from saved local activity state;
+- confirm the landing page uses Supabase progress when authenticated and local state as draft fallback;
 - check the browser console throughout a full activity completion.
 
 ## Secrets and learner data
@@ -170,6 +176,6 @@ Never commit:
 - spreadsheet IDs;
 - real learner records or exported submissions.
 
-The public Apps Script `/exec` URL belongs only in `js/config/student-api-config.js`. Do not commit a `/dev` URL, spreadsheet ID or backend configuration details.
+The public Apps Script `/exec` URL belongs only in `js/config/student-api-config.js` for rollback. Do not commit a `/dev` URL, spreadsheet ID or backend configuration details. The Supabase publishable key is allowed in `supabase-config.js`; never commit service-role/secret keys, Auth passwords, database passwords, CLI tokens or connection strings.
 
 Use example data only in future development. If a secret is committed accidentally, treat it as exposed: revoke it and follow the repository’s incident process rather than only deleting the file.

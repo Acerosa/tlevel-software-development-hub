@@ -4,6 +4,7 @@
   window.APP_CONFIG = Object.freeze({
     siteName: "T Level Digital Software Development Hub",
     shortName: "Software Development Hub",
+    backend: "supabase",
     currentPhase: "Phase 1: Technical Foundations",
     navigation: Object.freeze([
       { id: "home", label: "Home", path: "" },
@@ -22,12 +23,13 @@
       { id: "help", label: "Help", path: "help/" }
     ]),
     learnerContext: Object.freeze({
-      status: "student-identification",
+      status: "supabase-authenticated",
       fields: Object.freeze([
-        "Student ID",
+        "Student number",
         "First Name",
         "Display Name",
-        "Class Group"
+        "Class Group",
+        "Auth session"
       ])
     }),
     futureApiDomains: Object.freeze({

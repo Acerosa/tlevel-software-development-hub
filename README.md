@@ -4,9 +4,9 @@ A GitHub Pages learning hub for the Pearson T Level Digital Software Development
 
 ## Purpose
 
-The hub provides one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. It includes the reusable application shell, student identification and session foundation, and a complete client-side Software Development Foundations activity suite.
+The hub provides one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. It includes the reusable application shell, a Supabase Auth session foundation, and a complete Software Development Foundations activity suite.
 
-Learners can identify themselves with their allocated student ID through the separate Google Apps Script API. This is lightweight student identification, not password authentication. Public study pages remain available without signing in. Signed-in learners can save completed Foundations scores as formative learning records.
+Learners authenticate with a Supabase Auth session and resolve their safe profile through the exposed `api` views. Public study pages remain available without signing in. Signed-in learners can save completed Foundations scores and question-level evidence as formative learning records.
 
 ## Technologies
 
@@ -41,7 +41,7 @@ Software Development Foundations includes:
 - Data Design Knowledge Check
 - Testing Methods Classification
 
-The five data-driven activities provide immediate explanatory feedback, section results, review and retry controls, and lightweight browser-local progress. Completed scores are sent through the shared Learning API only when a learner is signed in. Failed submissions remain local and expose a retry control. They are formative learning activities rather than official Pearson assessment material. The other curriculum routes remain lightweight placeholders for later components.
+The five data-driven activities provide immediate explanatory feedback, section results, review and retry controls, browser-local draft recovery and Supabase-backed progress. Completed attempts use one shared `api.submit_attempt` adapter and preserve heterogeneous question evidence. Failed submissions remain local and expose a retry control. They are formative learning activities rather than official Pearson assessment material. The other curriculum routes remain lightweight placeholders for later components.
 
 ## Run locally
 
@@ -61,7 +61,7 @@ node --test test/student-foundation.test.js test/site-integrity.test.js test/fou
 
 ## Student API configuration
 
-The stable Google Apps Script Web App `/exec` URL is configured in `js/config/student-api-config.js`. The value is centralised there so it is not repeated across pages. Update the existing backend deployment for future backend versions so the frontend URL remains stable.
+The browser-safe Supabase project URL and publishable key are configured in `js/config/supabase-config.js`. The legacy Google Apps Script `/exec` URL remains in `js/config/student-api-config.js` for the documented rollback path only.
 
 ## Documentation
 
@@ -70,4 +70,6 @@ The stable Google Apps Script Web App `/exec` URL is configured in `js/config/st
 
 ## Security
 
-Do not commit API keys, credentials, spreadsheet IDs, learner data or exported submissions. The Apps Script Web App URL is a public client configuration value rather than a secret, but it must remain centralised. The browser stores the safe student profile, local activity progress, the latest result and its submission status. It sends only the active student ID and narrow score summary to `submitResult`.
+Do not commit credentials, spreadsheet IDs, learner data or exported submissions. The Supabase publishable key is browser-safe; service-role/secret keys, database passwords and CLI tokens are never client configuration. The Supabase SDK manages Auth persistence. Browser drafts remain local, while authoritative attempts, responses and progress are stored through the scoped `api` views/RPC.
+
+The current architecture, endpoint mapping, onboarding path, rollback procedure and limitations are documented in [docs/supabase-frontend-migration.md](docs/supabase-frontend-migration.md).

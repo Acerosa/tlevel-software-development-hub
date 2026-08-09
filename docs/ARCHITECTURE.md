@@ -2,7 +2,9 @@
 
 ## Scope
 
-This repository contains the reusable application shell, the student identification foundation and the Software Development Foundations activity suite. It establishes the navigation, visual language, page structure, formative activity model and integration boundaries. It includes narrow formative result submission, but it does not contain a secure assessment system or learner progress dashboard.
+This repository contains the reusable application shell, the Supabase Auth learner foundation and the Software Development Foundations activity suite. It establishes the navigation, visual language, page structure, formative activity model and integration boundaries. It includes scoped formative result submission and progress/analytics service models, but it does not contain a secure assessment system or a full teacher dashboard.
+
+The current migration boundary and rollback procedure are documented in [supabase-frontend-migration.md](supabase-frontend-migration.md). Supabase is the default frontend backend; the Apps Script/Google Sheets implementation remains intact as an explicit rollback/reference path.
 
 The site is a collection of static HTML pages enhanced with shared CSS and JavaScript. It can be served directly by GitHub Pages without a build step.
 
