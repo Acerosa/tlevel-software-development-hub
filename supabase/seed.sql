@@ -130,17 +130,6 @@ insert into learning.academic_years (
   true
 );
 
-insert into learning.courses (
-  id, stable_key, code, title, qualification_level, active
-) values (
-  '50000000-0000-4000-8000-000000000001',
-  't-level-digital-software-development',
-  'TLEVEL-SD',
-  'T Level Digital Software Development',
-  'Level 3',
-  true
-);
-
 insert into learning.groups (
   id, academic_year_id, course_id, code, name, active
 ) values
@@ -235,132 +224,25 @@ insert into learning.teacher_group_access (
     '2026-09-01T00:00:00Z'
   );
 
-insert into learning.modules (
-  id, course_id, stable_key, title, sort_order, active
-) values (
-  '80000000-0000-4000-8000-000000000001',
-  '50000000-0000-4000-8000-000000000001',
-  'software-development-foundations',
-  'Software Development Foundations',
-  1,
-  true
-);
-
-insert into learning.topics (
-  id, module_id, stable_key, title, sort_order, active
-) values
-  (
-    '81000000-0000-4000-8000-000000000001',
-    '80000000-0000-4000-8000-000000000001',
-    'requirements-classification',
-    'Requirements classification',
-    1,
-    true
-  ),
-  (
-    '81000000-0000-4000-8000-000000000002',
-    '80000000-0000-4000-8000-000000000001',
-    'requirement-testability',
-    'Requirement testability',
-    2,
-    true
-  );
-
-insert into learning.activities (
-  id, module_id, stable_key, title, activity_type, git_path, active
-) values (
-  '90000000-0000-4000-8000-000000000001',
-  '80000000-0000-4000-8000-000000000001',
-  'foundations-requirements-classification',
-  'Requirements Classification',
-  'classification',
-  'js/data/foundations/requirements-classification.js',
-  true
-);
-
-insert into learning.activity_versions (
-  id,
-  activity_id,
-  version,
-  content_hash,
-  git_commit_sha,
-  max_score,
-  question_count,
-  published_at
-) values (
-  '91000000-0000-4000-8000-000000000001',
-  '90000000-0000-4000-8000-000000000001',
-  '1.0.0',
-  '3e2f2a5efb06916ecafc204b6358d43df0d13d9e239c1896adde523f48a03755',
-  'd927af061adeeea2394a396182f9a5b3290715b4',
-  20,
-  20,
-  null
-);
-
-insert into learning.questions (
-  id,
-  activity_version_id,
-  stable_key,
-  section_key,
-  section_title,
-  question_type,
-  analytics_title,
-  ordinal,
-  max_score
-) values
-  ('a0000000-0000-4000-8000-000000000001', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-001', 'classification', 'Classify the requirements', 'single', 'Classification item 01', 1, 1),
-  ('a0000000-0000-4000-8000-000000000002', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-002', 'classification', 'Classify the requirements', 'single', 'Classification item 02', 2, 1),
-  ('a0000000-0000-4000-8000-000000000003', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-003', 'classification', 'Classify the requirements', 'single', 'Classification item 03', 3, 1),
-  ('a0000000-0000-4000-8000-000000000004', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-004', 'classification', 'Classify the requirements', 'single', 'Classification item 04', 4, 1),
-  ('a0000000-0000-4000-8000-000000000005', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-005', 'classification', 'Classify the requirements', 'single', 'Classification item 05', 5, 1),
-  ('a0000000-0000-4000-8000-000000000006', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-006', 'classification', 'Classify the requirements', 'single', 'Classification item 06', 6, 1),
-  ('a0000000-0000-4000-8000-000000000007', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-007', 'classification', 'Classify the requirements', 'single', 'Classification item 07', 7, 1),
-  ('a0000000-0000-4000-8000-000000000008', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-008', 'classification', 'Classify the requirements', 'single', 'Classification item 08', 8, 1),
-  ('a0000000-0000-4000-8000-000000000009', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-009', 'classification', 'Classify the requirements', 'single', 'Classification item 09', 9, 1),
-  ('a0000000-0000-4000-8000-000000000010', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-010', 'classification', 'Classify the requirements', 'single', 'Classification item 10', 10, 1),
-  ('a0000000-0000-4000-8000-000000000011', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-011', 'classification', 'Classify the requirements', 'single', 'Classification item 11', 11, 1),
-  ('a0000000-0000-4000-8000-000000000012', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-012', 'classification', 'Classify the requirements', 'single', 'Classification item 12', 12, 1),
-  ('a0000000-0000-4000-8000-000000000013', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-013', 'classification', 'Classify the requirements', 'single', 'Classification item 13', 13, 1),
-  ('a0000000-0000-4000-8000-000000000014', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-014', 'classification', 'Classify the requirements', 'single', 'Classification item 14', 14, 1),
-  ('a0000000-0000-4000-8000-000000000015', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-TEST-001', 'testability', 'Requirement quality challenge', 'single', 'Testability item 01', 15, 1),
-  ('a0000000-0000-4000-8000-000000000016', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-TEST-002', 'testability', 'Requirement quality challenge', 'single', 'Testability item 02', 16, 1),
-  ('a0000000-0000-4000-8000-000000000017', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-TEST-003', 'testability', 'Requirement quality challenge', 'single', 'Testability item 03', 17, 1),
-  ('a0000000-0000-4000-8000-000000000018', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-TEST-004', 'testability', 'Requirement quality challenge', 'single', 'Testability item 04', 18, 1),
-  ('a0000000-0000-4000-8000-000000000019', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-TEST-005', 'testability', 'Requirement quality challenge', 'single', 'Testability item 05', 19, 1),
-  ('a0000000-0000-4000-8000-000000000020', '91000000-0000-4000-8000-000000000001', 'FOUND-REQ-TEST-006', 'testability', 'Requirement quality challenge', 'single', 'Testability item 06', 20, 1);
-
-insert into learning.question_topics (question_id, topic_id, weight)
-select
-  question.id,
-  case
-    when question.section_key = 'classification'
-      then '81000000-0000-4000-8000-000000000001'::uuid
-    else '81000000-0000-4000-8000-000000000002'::uuid
-  end,
-  1
-from learning.questions as question
-where question.activity_version_id = '91000000-0000-4000-8000-000000000001';
-
-update learning.activity_versions
-set published_at = '2026-08-09T00:00:00Z'
-where id = '91000000-0000-4000-8000-000000000001'
-  and published_at is null;
-
 insert into learning.activity_assignments (
   id, group_id, activity_version_id, required, active
-) values
-  (
-    '92000000-0000-4000-8000-000000000001',
-    '60000000-0000-4000-8000-000000000001',
-    '91000000-0000-4000-8000-000000000001',
-    true,
-    true
-  ),
-  (
-    '92000000-0000-4000-8000-000000000002',
-    '60000000-0000-4000-8000-000000000002',
-    '91000000-0000-4000-8000-000000000001',
-    true,
-    true
-  );
+)
+select
+  case
+    when learner_group.id = '60000000-0000-4000-8000-000000000001'
+      and activity_version.id = '91000000-0000-4000-8000-000000000001'
+      then '92000000-0000-4000-8000-000000000001'::uuid
+    when learner_group.id = '60000000-0000-4000-8000-000000000002'
+      and activity_version.id = '91000000-0000-4000-8000-000000000001'
+      then '92000000-0000-4000-8000-000000000002'::uuid
+    else md5(learner_group.id::text || activity_version.id::text)::uuid
+  end,
+  learner_group.id,
+  activity_version.id,
+  true,
+  true
+from learning.groups as learner_group
+cross join learning.activity_versions as activity_version
+where learner_group.code in ('TEST-GROUP-A', 'TEST-GROUP-B')
+  and activity_version.published_at is not null
+  and activity_version.retired_at is null;
