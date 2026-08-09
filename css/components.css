@@ -1,8 +1,8 @@
 .site-header {
-  border-top: 0.3rem solid #4a4f52;
+  border-top: 0.3rem solid var(--colour-header-top);
   border-bottom: 0.2rem solid var(--colour-teal);
   background: var(--colour-navy);
-  color: var(--colour-white);
+  color: var(--colour-header-text);
 }
 
 .site-header__bar {
@@ -15,7 +15,7 @@
 
 .brand {
   display: grid;
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   line-height: 1.2;
   text-decoration: none;
 }
@@ -26,7 +26,7 @@
 }
 
 .brand__context {
-  color: #c8d6e1;
+  color: var(--colour-header-muted);
   font-size: 0.78rem;
 }
 
@@ -41,10 +41,36 @@
   gap: 0.65rem;
 }
 
+.theme-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--colour-header-text);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.theme-control__select {
+  min-height: 2.35rem;
+  max-width: 7.5rem;
+  padding: 0.3rem 1.6rem 0.3rem 0.45rem;
+  border: 1px solid var(--colour-header-border);
+  border-radius: 0.2rem;
+  background: var(--colour-header-surface);
+  color: var(--colour-header-text);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.theme-control__select:hover {
+  border-color: var(--colour-header-accent);
+}
+
 .student-account__name {
   max-width: 9rem;
   overflow: hidden;
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font-size: 0.9rem;
   font-weight: 700;
   text-overflow: ellipsis;
@@ -54,10 +80,10 @@
 .student-account__button {
   min-height: 2.6rem;
   padding: 0.45rem 0.7rem;
-  border: 1px solid #b5c7d5;
+  border: 1px solid var(--colour-header-border);
   border-radius: 0.2rem;
   background: transparent;
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font: inherit;
   font-size: 0.85rem;
   font-weight: 700;
@@ -79,7 +105,7 @@
 
 .site-header__link {
   padding-block: 0.35rem;
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
@@ -87,15 +113,15 @@
 
 .site-header__link:hover,
 .site-header__link[aria-current="page"] {
-  border-bottom: 0.15rem solid #70d3df;
+  border-bottom: 0.15rem solid var(--colour-header-accent);
 }
 
 .nav-toggle {
   padding: 0.55rem 0.8rem;
-  border: 1px solid #b5c7d5;
+  border: 1px solid var(--colour-header-border);
   border-radius: 0.2rem;
   background: transparent;
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -107,7 +133,7 @@
 
 .site-nav {
   display: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid var(--colour-header-divider);
   background: var(--colour-navy-light);
 }
 
@@ -126,7 +152,7 @@
   display: block;
   padding: 0.6rem 0.75rem;
   border-left: 0.2rem solid transparent;
-  color: var(--colour-white);
+  color: var(--colour-header-text);
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
@@ -134,8 +160,8 @@
 
 .site-nav__link:hover,
 .site-nav__link--current {
-  border-left-color: #70d3df;
-  background: rgba(255, 255, 255, 0.08);
+  border-left-color: var(--colour-header-accent);
+  background: var(--colour-header-hover);
 }
 
 .study-layout {
@@ -168,7 +194,7 @@
 }
 
 .course-navigation__item + .course-navigation__item {
-  border-top: 1px solid #dbe2e8;
+  border-top: 1px solid var(--colour-border-subtle);
 }
 
 .course-navigation__link {
@@ -185,7 +211,7 @@
 }
 
 .course-navigation__link:hover {
-  background: #f4f7f9;
+  background: var(--colour-surface-muted);
   text-decoration: underline;
 }
 
@@ -197,10 +223,10 @@
 .phase-badge {
   flex: 0 0 auto;
   padding: 0.1rem 0.45rem;
-  border: 1px solid #76b38f;
+  border: 1px solid var(--colour-success-border);
   border-radius: 999px;
   background: var(--colour-green-pale);
-  color: #155c37;
+  color: var(--colour-success-text);
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -251,7 +277,7 @@
   border: 1px solid var(--colour-border);
   border-radius: 0.3rem;
   background: var(--colour-white);
-  box-shadow: 0 1px 2px rgba(21, 37, 54, 0.06);
+  box-shadow: 0 1px 2px var(--colour-shadow);
 }
 
 .study-card h2,
@@ -261,7 +287,7 @@
 
 .study-card p {
   max-width: var(--reading-width);
-  color: #34475a;
+  color: var(--colour-text-secondary);
 }
 
 .study-card p:last-child,
@@ -277,10 +303,10 @@
   display: inline-block;
   margin-bottom: 0.65rem;
   padding: 0.15rem 0.5rem;
-  border: 1px solid #76b38f;
+  border: 1px solid var(--colour-success-border);
   border-radius: 0.2rem;
   background: var(--colour-green-pale);
-  color: #155c37;
+  color: var(--colour-success-text);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -298,7 +324,7 @@
 }
 
 .study-links li + li {
-  border-top: 1px solid #dbe2e8;
+  border-top: 1px solid var(--colour-border-subtle);
 }
 
 .study-links a {
@@ -325,11 +351,11 @@
   border-radius: 0.35rem;
   background: var(--colour-white);
   color: var(--colour-ink);
-  box-shadow: 0 1rem 3rem rgba(13, 42, 66, 0.25);
+  box-shadow: 0 1rem 3rem var(--colour-dialog-shadow);
 }
 
 .student-sign-in-dialog::backdrop {
-  background: rgba(13, 42, 66, 0.62);
+  background: var(--colour-backdrop);
 }
 
 .student-sign-in-dialog > p,
@@ -396,7 +422,7 @@
   padding: 0.75rem;
   border-left: 0.3rem solid var(--colour-error);
   background: var(--colour-error-pale);
-  color: #730b17;
+  color: var(--colour-error-text);
   font-weight: 700;
 }
 
@@ -413,7 +439,7 @@
   border: 2px solid var(--colour-link);
   border-radius: 0.2rem;
   background: var(--colour-link);
-  color: var(--colour-white);
+  color: var(--colour-on-primary);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -495,6 +521,22 @@
   .nav-toggle {
     padding-inline: 0.55rem;
     font-size: 0.8rem;
+  }
+
+  .theme-control__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .theme-control__select {
+    max-width: 5.6rem;
+    padding-inline: 0.35rem;
+    font-size: 0.75rem;
   }
 
   .student-sign-in-dialog__header,

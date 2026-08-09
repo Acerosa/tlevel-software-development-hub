@@ -69,7 +69,9 @@ test("all GitHub Pages routes load the student foundation in dependency order", 
     "student-api.js",
     "student-context.js",
     "navigation.js",
-    "student-ui.js"
+    "student-ui.js",
+    "theme-bootstrap.js",
+    "theme.js"
   ];
 
   assert.equal(routeFiles.length, 15);

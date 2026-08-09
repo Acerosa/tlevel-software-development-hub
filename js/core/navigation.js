@@ -58,7 +58,15 @@
       quickLink(resources, currentPage, root, "Resources") +
       quickLink(help, currentPage, root, "Help") +
       "</ul></nav>" +
-      '<div class="site-header__actions"><div class="student-account" data-student-account></div>' +
+      '<div class="site-header__actions">' +
+      '<div class="theme-control" data-theme-control>' +
+      '<label class="theme-control__label" for="theme-select">Theme</label>' +
+      '<select id="theme-select" class="theme-control__select" data-theme-select>' +
+      '<option value="system">System</option>' +
+      '<option value="light">Light</option>' +
+      '<option value="dark">Dark</option>' +
+      '</select></div>' +
+      '<div class="student-account" data-student-account></div>' +
       '<button class="nav-toggle" type="button" aria-expanded="false" ' +
       'aria-controls="global-navigation">Menu</button></div>' +
       "</div>" +
@@ -67,6 +75,9 @@
       "</nav></header>";
 
     initialiseMenu(headerMount);
+    if (window.ThemeService) {
+      window.ThemeService.attachControls(headerMount);
+    }
   }
 
   function renderCourseNavigation() {

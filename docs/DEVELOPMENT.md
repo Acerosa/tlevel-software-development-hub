@@ -30,6 +30,14 @@ Use `node --check` for JavaScript syntax checks when changing browser modules.
 
 `foundations-activities.test.js` validates activity scope, stable IDs, answer keys, feedback, all supported marking types, the result contract, local-state isolation and adoption, safe client-side behaviour, submission integration and activity route dependencies.
 
+## Theme system
+
+The shared site supports `system`, `light` and `dark` themes. The default is `system`, which follows `prefers-color-scheme` and updates while the page is open. A learner's preference is stored in local storage under `tlevel.softwareDevelopment.theme.v1`; this is presentation state only and is independent of Supabase sessions, activity drafts and submissions.
+
+The early no-flash bootstrap lives at `js/core/theme-bootstrap.js`. The reusable service at `js/core/theme.js` owns preference validation, persistence, resolution, DOM application and live system-theme changes. Shared navigation renders the accessible select control on every route and attaches it through the service.
+
+Use semantic custom properties from `css/main.css` for new UI (`--colour-bg`, `--colour-surface`, `--colour-text`, `--colour-text-muted`, `--colour-border`, `--colour-primary`, state tokens, `--colour-input-bg` and `--colour-code-bg`). Add a light value and a deliberately readable dark override under `html[data-theme="dark"]`; do not introduce component-specific hard-coded colours. Preserve visible `:focus-visible` outlines, distinguish state with text or structure as well as colour, and check disabled, hover, validation, feedback and code/editor states in both themes.
+
 ## Supabase frontend setup
 
 The normal browser backend is Supabase. `js/config/supabase-config.js` contains only the hosted project URL and browser-safe publishable key. Every page loads the official `@supabase/supabase-js` client, then the single `SupabaseClient`, `SupabaseAuth`, `StudentContext`, `SupabaseAnalytics` and `LearningApi` boundary.

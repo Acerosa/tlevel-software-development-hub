@@ -1,23 +1,118 @@
 :root {
-  --colour-ink: #152536;
-  --colour-muted: #526273;
-  --colour-navy: #0d2a42;
-  --colour-navy-light: #143b57;
-  --colour-link: #006477;
-  --colour-teal: #00839a;
-  --colour-teal-pale: #e8f5f7;
-  --colour-green: #237a4b;
-  --colour-green-pale: #edf8f1;
-  --colour-white: #ffffff;
-  --colour-page: #eef3f6;
+  --colour-bg: #eef3f6;
+  --colour-surface: #ffffff;
+  --colour-surface-elevated: #ffffff;
+  --colour-surface-muted: #f4f7f9;
+  --colour-text: #152536;
+  --colour-text-muted: #526273;
+  --colour-text-secondary: #34475a;
+  --colour-heading: #152536;
   --colour-border: #c9d3dc;
-  --colour-border-dark: #a9b7c3;
-  --colour-focus: #ffbf47;
+  --colour-border-strong: #a9b7c3;
+  --colour-border-subtle: #dbe2e8;
+  --colour-primary: #006477;
+  --colour-primary-hover: #0d2a42;
+  --colour-on-primary: #ffffff;
+  --colour-primary-soft: #e8f5f7;
+  --colour-accent: #00839a;
+  --colour-success: #237a4b;
+  --colour-success-bg: #edf8f1;
+  --colour-success-border: #76b38f;
+  --colour-success-text: #155c37;
+  --colour-warning: #8a6100;
+  --colour-warning-bg: #fff8db;
+  --colour-warning-text: #664d03;
   --colour-error: #b10e1e;
-  --colour-error-pale: #fff1f1;
+  --colour-error-bg: #fff1f1;
+  --colour-error-text: #730b17;
+  --colour-info-bg: #edf2f5;
+  --colour-input-bg: #ffffff;
+  --colour-code-bg: #142936;
+  --colour-code-text: #f5f8fa;
+  --colour-code-muted: #a9bac4;
+  --colour-focus: #ffbf47;
+  --colour-shadow: rgba(21, 37, 54, 0.06);
+  --colour-dialog-shadow: rgba(13, 42, 66, 0.25);
+  --colour-backdrop: rgba(13, 42, 66, 0.62);
+  --colour-header: #0d2a42;
+  --colour-header-surface: #143b57;
+  --colour-header-top: #4a4f52;
+  --colour-header-text: #ffffff;
+  --colour-header-muted: #c8d6e1;
+  --colour-header-border: #b5c7d5;
+  --colour-header-accent: #70d3df;
+  --colour-header-divider: rgba(255, 255, 255, 0.2);
+  --colour-header-hover: rgba(255, 255, 255, 0.08);
+
+  /* Backwards-compatible aliases for the existing stylesheet vocabulary. */
+  --colour-ink: var(--colour-text);
+  --colour-muted: var(--colour-text-muted);
+  --colour-navy: var(--colour-header);
+  --colour-navy-light: var(--colour-header-surface);
+  --colour-link: var(--colour-primary);
+  --colour-teal: var(--colour-accent);
+  --colour-teal-pale: var(--colour-primary-soft);
+  --colour-green: var(--colour-success);
+  --colour-green-pale: var(--colour-success-bg);
+  --colour-white: var(--colour-surface);
+  --colour-page: var(--colour-bg);
+  --colour-border-dark: var(--colour-border-strong);
+  --colour-error-pale: var(--colour-error-bg);
+  --colour-ink-soft: var(--colour-text-muted);
   --page-width: 70rem;
   --reading-width: 46rem;
   --font-sans: Arial, Helvetica, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --colour-bg: #101820;
+  --colour-surface: #172632;
+  --colour-surface-elevated: #1d303d;
+  --colour-surface-muted: #203541;
+  --colour-text: #edf5f7;
+  --colour-text-muted: #b7c8d0;
+  --colour-text-secondary: #d0dee3;
+  --colour-heading: #f7fbfc;
+  --colour-border: #45606e;
+  --colour-border-strong: #66818e;
+  --colour-border-subtle: #304955;
+  --colour-primary: #75d7df;
+  --colour-primary-hover: #a6edf1;
+  --colour-on-primary: #08171c;
+  --colour-primary-soft: #1c414c;
+  --colour-accent: #79dce4;
+  --colour-success: #72d79e;
+  --colour-success-bg: #183b2c;
+  --colour-success-border: #4d9d70;
+  --colour-success-text: #b8f0cb;
+  --colour-warning: #f2c96b;
+  --colour-warning-bg: #473a1b;
+  --colour-warning-text: #ffe5a3;
+  --colour-error: #ff929d;
+  --colour-error-bg: #4a222a;
+  --colour-error-text: #ffc3c9;
+  --colour-info-bg: #253a46;
+  --colour-input-bg: #1b2d39;
+  --colour-code-bg: #0b151c;
+  --colour-code-text: #edf8fa;
+  --colour-code-muted: #b4c9d1;
+  --colour-shadow: rgba(0, 0, 0, 0.32);
+  --colour-dialog-shadow: rgba(0, 0, 0, 0.55);
+  --colour-backdrop: rgba(3, 12, 18, 0.78);
+  --colour-header: #0a1a28;
+  --colour-header-surface: #112b3d;
+  --colour-header-top: #6e7d84;
+  --colour-header-text: #f4fbfc;
+  --colour-header-muted: #c2d6dd;
+  --colour-header-border: #91b4c2;
+  --colour-header-accent: #8de6ed;
+  --colour-header-divider: rgba(255, 255, 255, 0.24);
+  --colour-header-hover: rgba(255, 255, 255, 0.12);
 }
 
 *,
@@ -51,7 +146,7 @@ h1,
 h2,
 h3 {
   margin-block: 0 0.65rem;
-  color: var(--colour-ink);
+  color: var(--colour-heading);
   line-height: 1.25;
 }
 
