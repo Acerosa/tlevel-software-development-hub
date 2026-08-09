@@ -64,7 +64,7 @@ Run the complete Node suite with `node --test test/*.test.js`. Run local `supaba
 
 ## Production-like GitHub Pages check
 
-The deployed static site is available at <https://acerosa.github.io/tlevel-software-development-hub/>. GitHub Pages builds the repository `main` branch from its root using the legacy Pages deployment; the current production-like deployment is commit `40e79eac843c7b459b31c1606ba9febb5b05f457`.
+The deployed static site is available at <https://acerosa.github.io/tlevel-software-development-hub/>. GitHub Pages builds the repository `main` branch from its root using the legacy Pages deployment; the Supabase code was first deployed in commit `40e79eac843c7b459b31c1606ba9febb5b05f457`.
 
 The site uses the hosted Supabase project `RR NHC Hub` (`hubwpkrqndorznwzvaer`) as its default backend. Auth uses the direct email/password flow with SDK session persistence (`detectSessionInUrl: false`), so this static deployment does not require an OAuth callback route. The configured Supabase Auth Site URL and allowed redirect URLs must remain restricted to the approved Pages origin if the Auth configuration is changed.
 
