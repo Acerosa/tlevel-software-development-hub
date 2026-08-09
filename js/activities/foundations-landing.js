@@ -4,6 +4,9 @@
   var utils = window.AppUtils;
   var state = window.FoundationActivityState;
   var catalog = window.FoundationActivityCatalog || [];
+  var analytics = window.SupabaseAnalytics;
+  var remoteProgress = null;
+  var refreshToken = 0;
 
   function escapeHtml(value) {
     return String(value)
@@ -20,7 +23,7 @@
     }
 
     mount.innerHTML = catalog.map(function (activity) {
-      var summary = state.getSummary(activity.id, activity.version);
+      var summary = remoteSummary(activity) || state.getSummary(activity.id, activity.version);
       var topics = activity.topics.map(function (topic) {
         return "<li>" + escapeHtml(topic) + "</li>";
       }).join("");
@@ -43,10 +46,55 @@
     }).join("");
   }
 
+  function remoteSummary(activity) {
+    if (!remoteProgress) {
+      return null;
+    }
+    var progress = remoteProgress.activities.filter(function (item) {
+      return item.activity_key === activity.id && item.activity_version === activity.version;
+    })[0];
+    if (progress) {
+      return {
+        status: "completed",
+        label: "Completed, " + progress.latest_score + "/" + progress.max_score,
+        action: "Revisit activity",
+        percentage: progress.max_score > 0
+          ? Math.round((Number(progress.latest_score) / Number(progress.max_score)) * 100)
+          : 0
+      };
+    }
+    var assigned = remoteProgress.assignments.some(function (item) {
+      return item.activity_key === activity.id && item.activity_version === activity.version;
+    });
+    return assigned ? { status: "not-started", label: "Assigned", action: "Start activity" } : null;
+  }
+
+  function refreshRemoteProgress() {
+    if (!analytics || !window.StudentContext || !window.StudentContext.isSignedIn()) {
+      remoteProgress = null;
+      render();
+      return;
+    }
+    var token = ++refreshToken;
+    analytics.studentProgress().then(function (progress) {
+      if (token !== refreshToken) return;
+      remoteProgress = progress;
+      render();
+    }).catch(function () {
+      if (token === refreshToken) {
+        remoteProgress = null;
+        render();
+      }
+    });
+  }
+
   utils.onReady(function () {
     render();
     if (window.StudentContext && window.StudentContext.subscribe) {
-      window.StudentContext.subscribe(render);
+      window.StudentContext.subscribe(function () {
+        render();
+        refreshRemoteProgress();
+      });
     }
   });
 })();

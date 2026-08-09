@@ -2,8 +2,10 @@
   "use strict";
 
   var config = window.STUDENT_API_CONFIG;
+  var supabaseConfig = window.SUPABASE_CONFIG || {};
   var studentContext = window.StudentContext;
   var supabaseLearningApi = window.SupabaseLearningApi;
+  var supabaseAnalytics = window.SupabaseAnalytics;
 
   function LearningApiError(code) {
     this.name = "LearningApiError";
@@ -110,6 +112,10 @@
   }
 
   function canSubmit(result) {
+    if (modeFor(result) === "supabase") {
+      return Boolean(supabaseLearningApi && supabaseLearningApi.canSubmit(result));
+    }
+
     if (supabaseLearningApi && supabaseLearningApi.canSubmit(result)) {
       return true;
     }
@@ -125,9 +131,14 @@
   }
 
   function modeFor(result) {
+    if (supabaseConfig.backend === "supabase") {
+      return "supabase";
+    }
+    if (supabaseConfig.backend === "apps-script") {
+      return "legacy";
+    }
     return supabaseLearningApi && supabaseLearningApi.canSubmit(result)
-      ? "supabase"
-      : "legacy";
+      ? "supabase" : "legacy";
   }
 
   function submitLegacyResult(result) {
@@ -187,9 +198,35 @@
     return submitLegacyResult(result);
   }
 
+  function getProgress() {
+    if (supabaseConfig.backend === "supabase" && supabaseLearningApi) {
+      return Promise.all([
+        supabaseLearningApi.getMyActivityProgress(),
+        supabaseLearningApi.getMyAttempts(),
+        supabaseLearningApi.getMyAssignments()
+      ]).then(function (values) {
+        return {
+          activities: Array.isArray(values[0]) ? values[0] : [],
+          attempts: Array.isArray(values[1]) ? values[1] : [],
+          assignments: Array.isArray(values[2]) ? values[2] : []
+        };
+      });
+    }
+    return Promise.reject(new LearningApiError("SUPABASE_REQUIRED"));
+  }
+
+  function getTeacherAnalytics() {
+    if (supabaseConfig.backend !== "supabase" || !supabaseAnalytics) {
+      return Promise.reject(new LearningApiError("SUPABASE_REQUIRED"));
+    }
+    return supabaseAnalytics.teacherAnalytics();
+  }
+
   window.LearningApi = Object.freeze({
     canSubmit: canSubmit,
     modeFor: modeFor,
-    submitResult: submitResult
+    submitResult: submitResult,
+    getProgress: getProgress,
+    getTeacherAnalytics: getTeacherAnalytics
   });
 })();

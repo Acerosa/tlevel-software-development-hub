@@ -338,7 +338,11 @@
     } else if (submission.status === "sending") {
       content = "<p><strong>Saving your result...</strong></p>";
     } else if (submission.status === "failed") {
+      var failureMessage = submission.errorCode === "ATTEMPT_ID_CONFLICT"
+        ? "This attempt ID conflicts with an existing submission. Restart the activity to create a new attempt."
+        : "It could not be added to the learning record. Check your connection and try again.";
       content = '<p><strong>Your result is still saved in this browser.</strong> It could not be added to the learning record.</p>' +
+        '<p>' + escapeHtml(failureMessage) + "</p>" +
         '<button class="secondary-button" type="button" data-action="retry-submission">Try saving again</button>';
     } else if (!signedIn) {
       content = "<p><strong>Saved in this browser only.</strong> Sign in before or after completing an activity to add the result to your learning record.</p>";

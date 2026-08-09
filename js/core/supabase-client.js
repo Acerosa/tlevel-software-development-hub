@@ -2,12 +2,15 @@
   "use strict";
 
   var config = window.SUPABASE_CONFIG || {};
+  var hostedClient = null;
+  var hostedSession = null;
   var refreshInFlight = null;
 
-  function SupabaseClientError(code, message) {
+  function SupabaseClientError(code, message, status) {
     this.name = "SupabaseClientError";
     this.code = code || "SUPABASE_ERROR";
     this.message = message || "The Supabase service could not complete the request.";
+    this.status = status || 0;
   }
 
   SupabaseClientError.prototype = Object.create(Error.prototype);
@@ -25,17 +28,45 @@
       : "";
   }
 
-  function isConfigured() {
+  function hasValidConfiguration() {
     return /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(projectUrl()) &&
       Boolean(publishableKey());
   }
 
+  function library() {
+    return window.supabase && typeof window.supabase.createClient === "function"
+      ? window.supabase
+      : null;
+  }
+
+  function client() {
+    var sdk = library();
+    if (!sdk || !hasValidConfiguration()) {
+      return null;
+    }
+    if (!hostedClient) {
+      hostedClient = sdk.createClient(projectUrl(), publishableKey(), {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: false
+        }
+      });
+    }
+    return hostedClient;
+  }
+
   function requireConfiguration() {
-    if (!isConfigured()) {
+    if (!hasValidConfiguration()) {
       throw new SupabaseClientError("CONFIGURATION_ERROR");
     }
   }
 
+  /*
+   * This small REST fallback exists for the repository's VM test harnesses,
+   * which do not load the browser SDK. Production pages load @supabase/supabase-js
+   * and the SDK owns Auth persistence and token refresh.
+   */
   function storageKey() {
     return typeof config.sessionStorageKey === "string" && config.sessionStorageKey.trim()
       ? config.sessionStorageKey.trim()
@@ -53,37 +84,25 @@
     );
   }
 
-  function getSession() {
+  function fallbackGetSession() {
     var stored;
     try {
-      stored = window.localStorage.getItem(storageKey());
+      stored = window.localStorage && window.localStorage.getItem(storageKey());
     } catch (error) {
       return null;
     }
-
     if (!stored) {
       return null;
     }
-
     try {
       var session = JSON.parse(stored);
-      if (!validSession(session)) {
-        clearSession();
-        return null;
-      }
-      return {
-        accessToken: session.accessToken,
-        refreshToken: session.refreshToken,
-        expiresAt: session.expiresAt,
-        userId: session.userId
-      };
+      return validSession(session) ? session : null;
     } catch (error) {
-      clearSession();
       return null;
     }
   }
 
-  function saveSession(session) {
+  function fallbackSaveSession(session) {
     if (!validSession(session)) {
       throw new SupabaseClientError("INVALID_AUTH_RESPONSE");
     }
@@ -92,10 +111,18 @@
     } catch (error) {
       throw new SupabaseClientError("SESSION_STORAGE_ERROR");
     }
-    return getSession();
+    return session;
   }
 
   function clearSession() {
+    hostedSession = null;
+    var activeClient = client();
+    if (activeClient) {
+      if (activeClient.auth && typeof activeClient.auth.signOut === "function") {
+        activeClient.auth.signOut().catch(function () {});
+      }
+      return true;
+    }
     try {
       window.localStorage.removeItem(storageKey());
       return true;
@@ -104,35 +131,20 @@
     }
   }
 
-  function sessionFromAuthPayload(payload) {
-    var expiresAt = payload && Number(payload.expires_at);
-    if (!Number.isFinite(expiresAt) && payload && Number.isFinite(Number(payload.expires_in))) {
-      expiresAt = Math.floor(Date.now() / 1000) + Number(payload.expires_in);
-    }
-    var session = {
-      accessToken: payload && typeof payload.access_token === "string"
-        ? payload.access_token : "",
-      refreshToken: payload && typeof payload.refresh_token === "string"
-        ? payload.refresh_token : "",
-      expiresAt: expiresAt,
-      userId: payload && payload.user && typeof payload.user.id === "string"
-        ? payload.user.id : ""
-    };
-    return saveSession(session);
+  function normaliseHostedSession(session) {
+    hostedSession = session || null;
+    return hostedSession;
   }
 
   function responseError(payload, status) {
-    var code = payload && (
-      payload.code || payload.error_code || payload.error
-    );
-    var message = payload && (
-      payload.message || payload.error_description || payload.msg
-    );
+    var code = payload && (payload.code || payload.error_code || payload.error);
+    var message = payload && (payload.message || payload.error_description || payload.msg);
     return new SupabaseClientError(
       typeof code === "string" && code ? code : "HTTP_" + String(status || 0),
       typeof message === "string" && message
         ? message
-        : "The Supabase request was not successful."
+        : "The Supabase request was not successful.",
+      status
     );
   }
 
@@ -144,9 +156,7 @@
       return Promise.reject(error);
     }
 
-    var controller = typeof AbortController === "function"
-      ? new AbortController()
-      : null;
+    var controller = typeof AbortController === "function" ? new AbortController() : null;
     var timeout = window.setTimeout(function () {
       if (controller) controller.abort();
     }, config.requestTimeoutMs || 15000);
@@ -196,8 +206,31 @@
     });
   }
 
+  function getSession() {
+    return hostedClient ? hostedSession : fallbackGetSession();
+  }
+
+  function getSessionAsync() {
+    var activeClient = client();
+    if (!activeClient) {
+      return Promise.resolve(fallbackGetSession());
+    }
+    return activeClient.auth.getSession().then(function (result) {
+      if (result.error) {
+        throw new SupabaseClientError(
+          result.error.code || "AUTH_SESSION_ERROR",
+          result.error.message
+        );
+      }
+      return normaliseHostedSession(result.data && result.data.session);
+    });
+  }
+
   function refreshSession() {
-    var session = getSession();
+    if (client()) {
+      return getSessionAsync();
+    }
+    var session = fallbackGetSession();
     if (!session) {
       return Promise.reject(new SupabaseClientError("AUTHENTICATION_REQUIRED"));
     }
@@ -208,7 +241,15 @@
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ refresh_token: session.refreshToken })
-    }).then(sessionFromAuthPayload).then(function (nextSession) {
+    }).then(function (payload) {
+      var next = {
+        accessToken: payload && payload.access_token || "",
+        refreshToken: payload && payload.refresh_token || "",
+        expiresAt: Number(payload && payload.expires_at),
+        userId: payload && payload.user && payload.user.id || ""
+      };
+      return fallbackSaveSession(next);
+    }).then(function (nextSession) {
       refreshInFlight = null;
       return nextSession;
     }, function (error) {
@@ -220,20 +261,22 @@
   }
 
   function validAccessSession() {
-    var session = getSession();
-    if (!session) {
-      return Promise.reject(new SupabaseClientError("AUTHENTICATION_REQUIRED"));
-    }
-    if (session.expiresAt > Math.floor(Date.now() / 1000) + 60) {
-      return Promise.resolve(session);
-    }
-    return refreshSession();
+    return getSessionAsync().then(function (session) {
+      if (!session) {
+        throw new SupabaseClientError("AUTHENTICATION_REQUIRED");
+      }
+      if (client() || session.expiresAt > Math.floor(Date.now() / 1000) + 60) {
+        return session;
+      }
+      return refreshSession();
+    });
   }
 
   function authenticatedRequest(path, options) {
     return validAccessSession().then(function (session) {
+      var accessToken = session.access_token || session.accessToken;
       return fetchJson(path, Object.assign({}, options || {}, {
-        accessToken: session.accessToken
+        accessToken: accessToken
       }));
     });
   }
@@ -244,18 +287,47 @@
     if (!valid) {
       return Promise.reject(new SupabaseClientError("INVALID_AUTH_CREDENTIALS"));
     }
+    var activeClient = client();
+    if (activeClient) {
+      return activeClient.auth.signInWithPassword({
+        email: email.trim(),
+        password: password
+      }).then(function (result) {
+        if (result.error) {
+          throw new SupabaseClientError(
+            result.error.code || "AUTHENTICATION_FAILED",
+            result.error.message
+          );
+        }
+        return normaliseHostedSession(result.data && result.data.session);
+      });
+    }
     return fetchJson("/auth/v1/token?grant_type=password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email.trim(),
-        password: password
-      })
-    }).then(sessionFromAuthPayload);
+      body: JSON.stringify({ email: email.trim(), password: password })
+    }).then(function (payload) {
+      return fallbackSaveSession({
+        accessToken: payload && payload.access_token || "",
+        refreshToken: payload && payload.refresh_token || "",
+        expiresAt: Number(payload && payload.expires_at),
+        userId: payload && payload.user && payload.user.id || ""
+      });
+    });
   }
 
   function signOut() {
-    var session = getSession();
+    var activeClient = client();
+    if (activeClient) {
+      return activeClient.auth.signOut().then(function (result) {
+        if (result.error) {
+          throw new SupabaseClientError("SIGN_OUT_FAILED", result.error.message);
+        }
+        clearSession();
+        return true;
+      });
+    }
+    var session = fallbackGetSession();
     if (!session) {
       clearSession();
       return Promise.resolve(true);
@@ -272,13 +344,33 @@
     });
   }
 
+  function onAuthStateChange(listener) {
+    var activeClient = client();
+    if (!activeClient || typeof listener !== "function") {
+      return function () {};
+    }
+    var subscription = activeClient.auth.onAuthStateChange(function (event, session) {
+      normaliseHostedSession(session);
+      listener(event, session);
+    });
+    return function () {
+      if (subscription && subscription.data && subscription.data.subscription) {
+        subscription.data.subscription.unsubscribe();
+      }
+    };
+  }
+
   window.SupabaseClient = Object.freeze({
-    isConfigured: isConfigured,
+    isConfigured: hasValidConfiguration,
+    hasSdk: function () { return Boolean(client()); },
+    getClient: client,
     getSession: getSession,
+    getSessionAsync: getSessionAsync,
     hasSession: function () { return Boolean(getSession()); },
     clearSession: clearSession,
     signInWithPassword: signInWithPassword,
     signOut: signOut,
+    onAuthStateChange: onAuthStateChange,
     request: authenticatedRequest,
     Error: SupabaseClientError
   });

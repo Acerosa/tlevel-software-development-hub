@@ -3,6 +3,7 @@
 
   var config = window.SUPABASE_CONFIG || {};
   var client = window.SupabaseClient;
+  var auth = window.SupabaseAuth;
 
   function SupabaseLearningError(code, message) {
     this.name = "SupabaseLearningError";
@@ -12,6 +13,24 @@
 
   SupabaseLearningError.prototype = Object.create(Error.prototype);
   SupabaseLearningError.prototype.constructor = SupabaseLearningError;
+
+  function mappedError(error) {
+    var sourceCode = error && error.code ? String(error.code) : "";
+    var sourceMessage = error && error.message ? String(error.message) : "";
+    if (sourceMessage.indexOf("CLIENT_ATTEMPT_ID_CONFLICT") !== -1 || sourceCode === "23505") {
+      return new SupabaseLearningError(
+        "ATTEMPT_ID_CONFLICT",
+        "This attempt ID already belongs to a different submission. Start a new attempt before retrying."
+      );
+    }
+    if (sourceCode === "42501" || sourceCode === "AUTHENTICATION_REQUIRED") {
+      return new SupabaseLearningError("PERMISSION_DENIED", "Your authenticated learner session cannot submit this activity.");
+    }
+    if (sourceCode === "NETWORK_ERROR") {
+      return new SupabaseLearningError("NETWORK_ERROR", "The learning service could not be reached. Your completed work remains saved here.");
+    }
+    return new SupabaseLearningError(sourceCode || "SERVER_ERROR", sourceMessage || undefined);
+  }
 
   function enabledActivities() {
     return Array.isArray(config.enabledActivities)
@@ -28,7 +47,9 @@
     return Boolean(
       client &&
       client.isConfigured() &&
-      client.hasSession() &&
+      (auth && auth.isAuthenticated
+        ? auth.isAuthenticated()
+        : client.hasSession && client.hasSession()) &&
       result &&
       isEnabledFor(result.activityId)
     );
@@ -131,10 +152,7 @@
       if (error && error.name === "SupabaseLearningError") {
         throw error;
       }
-      throw new SupabaseLearningError(
-        error && error.code ? error.code : "NETWORK_ERROR",
-        error && error.message ? error.message : undefined
-      );
+      throw mappedError(error);
     });
   }
 
@@ -145,11 +163,27 @@
     );
   }
 
+  function getMyAttempts() {
+    return client.request(
+      "/rest/v1/my_attempts?select=*&order=received_at.asc",
+      { schema: "api" }
+    );
+  }
+
+  function getMyAssignments() {
+    return client.request(
+      "/rest/v1/my_assignments?select=*&order=activity_key.asc",
+      { schema: "api" }
+    );
+  }
+
   window.SupabaseLearningApi = Object.freeze({
     isEnabledFor: isEnabledFor,
     canSubmit: canSubmit,
     submitResult: submitResult,
     getMyActivityProgress: getMyActivityProgress,
+    getMyAttempts: getMyAttempts,
+    getMyAssignments: getMyAssignments,
     Error: SupabaseLearningError
   });
 })();

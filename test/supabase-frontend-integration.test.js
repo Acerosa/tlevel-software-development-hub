@@ -82,16 +82,22 @@ test("the browser config has only public fields and enables Requirements first",
   const config = runtime.window.SUPABASE_CONFIG;
 
   assert.deepEqual(Array.from(Object.keys(config)).sort(), [
+    "backend",
     "enabledActivities",
     "projectUrl",
     "publishableKey",
     "requestTimeoutMs",
     "sessionStorageKey"
   ]);
+  assert.equal(config.backend, "supabase");
   assert.equal(config.projectUrl, "https://hubwpkrqndorznwzvaer.supabase.co");
-  assert.equal(config.publishableKey, "");
+  assert.match(config.publishableKey, /^sb_publishable_/);
   assert.deepEqual(Array.from(config.enabledActivities), [
-    "foundations-requirements-classification"
+    "foundations-requirements-classification",
+    "foundations-problem-decomposition",
+    "foundations-data-design",
+    "foundations-testing-methods",
+    "foundations-programming-diagnostic"
   ]);
   assert.doesNotMatch(read("js/config/supabase-config.js"), /service_role|sb_secret_/i);
 
@@ -115,7 +121,7 @@ test("the browser config has only public fields and enables Requirements first",
     "foundations/testing-methods/index.html",
     "foundations/programming-diagnostic/index.html"
   ].forEach(function (page) {
-    assert.doesNotMatch(read(page), /supabase-(?:config|client|auth|learning-api)\.js/);
+    assert.match(read(page), /supabase-(?:config|client|auth|learning-api|analytics)\.js/);
   });
 });
 
@@ -153,7 +159,7 @@ test("password sign-in stores a separate Supabase session and reads a safe profi
     firstName: "Synthetic",
     displayName: "Synthetic Student"
   });
-  assert.equal(requests.length, 2);
+  assert.equal(requests.length, 3);
   assert.match(requests[0].url, /\/auth\/v1\/token\?grant_type=password$/);
   assert.equal(requests[0].options.headers.apikey, "sb_publishable_browser_test_key");
   assert.deepEqual(JSON.parse(requests[0].options.body), {
@@ -164,6 +170,7 @@ test("password sign-in stores a separate Supabase session and reads a safe profi
   assert.equal(requests[1].options.headers.Authorization, "Bearer synthetic-access-token");
   assert.equal(requests[1].options.headers["Accept-Profile"], "api");
   assert.equal(requests[1].options.headers["Content-Profile"], "api");
+  assert.match(requests[2].url, /\/rest\/v1\/my_enrolments\?/);
   assert.equal(storage.value(legacyKey), legacyValue);
   assert.equal(JSON.parse(storage.value(supabaseKey)).userId,
     "10000000-0000-4000-8000-000000000001");

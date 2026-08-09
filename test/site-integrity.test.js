@@ -100,7 +100,7 @@ test("existing routes, page content and local navigation targets remain availabl
   });
 });
 
-test("student sign in uses one text ID and does not introduce passwords", function () {
+test("student sign in uses the Supabase Auth boundary", function () {
   const sourceFiles = routeFiles.concat([
     "js/core/student-ui.js",
     "js/core/student-api.js",
@@ -109,12 +109,13 @@ test("student sign in uses one text ID and does not introduce passwords", functi
   ]);
   const source = sourceFiles.map(read).join("\n");
 
-  assert.doesNotMatch(source, /type=["'](?:password|number)["']/i);
+  assert.match(source, /type=["']password["']/i);
   const studentUi = read("js/core/student-ui.js");
-  assert.match(studentUi, /name="studentId" type="text"/);
-  assert.match(studentUi, /event\.key !== "Enter"/);
-  assert.match(studentUi, /form\.requestSubmit\(\)/);
-  assert.match(read("js/core/student-context.js"), /getStudentId/);
+  assert.match(studentUi, /studentContext\.signInWithPassword/);
+  assert.match(read("js/config/supabase-config.js"), /backend:\s*"supabase"/);
+  assert.match(read("js/core/student-context.js"), /auth\.subscribe/);
+  assert.match(read("js/core/supabase-auth.js"), /getSessionAsync/);
+  assert.doesNotMatch(studentUi, /studentId\s*:\s*identifier/);
 });
 
 test("API configuration is central and contains no committed learner list", function () {
