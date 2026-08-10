@@ -19,20 +19,21 @@ function loadActivity(relativePath) {
   return sandbox.window.FoundationActivityData;
 }
 
-test("the Supabase foundation has eight ordered reviewable migrations", function () {
+test("the Supabase foundation has ordered reviewable migrations", function () {
   const migrationNames = fs.readdirSync(migrationsRoot)
     .filter(function (name) { return name.endsWith(".sql"); })
     .sort();
 
   assert.deepEqual(migrationNames, [
-    "20260809000100_create_learning_identity.sql",
-    "20260809000200_create_learning_curriculum.sql",
-    "20260809000300_create_learning_records.sql",
-    "20260809000400_create_learning_rls.sql",
-    "20260809000500_create_learning_api.sql",
-    "20260809000600_extend_curriculum_manifest.sql",
-    "20260809000700_extend_learning_api.sql",
-    "20260809000800_import_foundations_manifest.sql"
+    '20260809000100_create_learning_identity.sql',
+    '20260809000200_create_learning_curriculum.sql',
+    '20260809000300_create_learning_records.sql',
+    '20260809000400_create_learning_rls.sql',
+    '20260809000500_create_learning_api.sql',
+    '20260809000600_extend_curriculum_manifest.sql',
+    '20260809000700_extend_learning_api.sql',
+    '20260809000800_import_foundations_manifest.sql',
+    '20260810085132_enable_multi_course_enrolments.sql'
   ]);
 });
 

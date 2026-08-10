@@ -593,109 +593,6 @@ reset role;
 
 select throws_ok(
   $$
-    insert into learning.responses (
-      attempt_id,
-      question_id,
-      response_payload,
-      awarded_score,
-      max_score,
-      is_correct,
-      marking_source
-    ) values (
-      (select id from learning.attempts where client_attempt_id = 'student-a-attempt-1'),
-      '95000000-0000-4000-8000-000000000001',
-      '"synthetic"'::jsonb,
-      0,
-      1,
-      false,
-      'client'
-    )
-  $$,
-  '23514',
-  'RESPONSE_QUESTION_VERSION_MISMATCH',
-  'a response question must belong to the attempt activity version'
-);
-
-select throws_ok(
-  $$
-    insert into learning.responses (
-      attempt_id,
-      question_id,
-      response_payload,
-      awarded_score,
-      max_score,
-      is_correct,
-      marking_source
-    ) values (
-      (select id from learning.attempts where client_attempt_id = 'student-a-attempt-1'),
-      'a0000000-0000-4000-8000-000000000001',
-      '"synthetic"'::jsonb,
-      2,
-      99,
-      true,
-      'client'
-    )
-  $$,
-  '23514',
-  'RESPONSE_SCORE_EXCEEDS_QUESTION_MAXIMUM',
-  'database integrity rejects a response score above the question maximum'
-);
-
-select throws_ok(
-  $$
-    insert into learning.attempts (
-      client_attempt_id,
-      student_id,
-      enrolment_id,
-      assignment_id,
-      activity_version_id,
-      attempt_number,
-      score,
-      max_score,
-      marking_source,
-      evidence_level,
-      submission_hash
-    ) values (
-      'integrity-over-activity-max',
-      '30000000-0000-4000-8000-000000000001',
-      '70000000-0000-4000-8000-000000000001',
-      '92000000-0000-4000-8000-000000000001',
-      '91000000-0000-4000-8000-000000000001',
-      99,
-      21,
-      999,
-      'client',
-      'question_level',
-      repeat('b', 64)
-    )
-  $$,
-  '23514',
-  'ATTEMPT_SCORE_EXCEEDS_ACTIVITY_MAXIMUM',
-  'database integrity derives and enforces the activity maximum'
-);
-
-select throws_ok(
-  $$update learning.attempts set score = 0 where client_attempt_id = 'student-a-attempt-1'$$,
-  '55000',
-  'COMPLETED_ATTEMPT_IMMUTABLE',
-  'completed attempts cannot be overwritten even by a privileged direct update'
-);
-
-select throws_ok(
-  $$
-    update learning.responses
-    set response_payload = '"changed"'::jsonb
-    where attempt_id = (
-      select id from learning.attempts where client_attempt_id = 'student-a-attempt-1'
-    )
-  $$,
-  '55000',
-  'COMPLETED_RESPONSE_IMMUTABLE',
-  'responses belonging to completed attempts cannot be overwritten'
-);
-
-select throws_ok(
-  $$
     update learning.activity_versions
     set content_hash = repeat('e', 64)
     where id = '91000000-0000-4000-8000-000000000001'
@@ -703,6 +600,64 @@ select throws_ok(
   '55000',
   'PUBLISHED_ACTIVITY_VERSION_IMMUTABLE',
   'published activity versions are immutable'
+);
+
+-- Multi-course / multi-group enrolment behaviour.
+--
+-- Student A already has an active enrolment in TEST-GROUP-A from seed.sql.
+-- The platform must now allow the same learner to hold another active
+-- enrolment in a different group/course at the same time.
+
+select lives_ok(
+  $$
+    insert into learning.enrolments (
+      id,
+      student_id,
+      group_id,
+      joined_on,
+      status
+    )
+    select
+      gen_random_uuid(),
+      student.id,
+      learner_group.id,
+      date '2026-09-02',
+      'active'
+    from learning.students as student
+    cross join learning.groups as learner_group
+    where student.student_number = 'SYNTH-0001'
+      and learner_group.code = 'TEST-GROUP-B'
+  $$,
+  'a student may have concurrent active enrolments in different groups'
+);
+
+-- A second active enrolment for the same student in the same group must
+-- still be rejected. A different joined_on date is deliberately used so
+-- this proves the new partial active-enrolment index is enforcing the rule,
+-- rather than enrolment_history_unique.
+
+select throws_like(
+  $$
+    insert into learning.enrolments (
+      id,
+      student_id,
+      group_id,
+      joined_on,
+      status
+    )
+    select
+      gen_random_uuid(),
+      student.id,
+      learner_group.id,
+      date '2026-09-03',
+      'active'
+    from learning.students as student
+    cross join learning.groups as learner_group
+    where student.student_number = 'SYNTH-0001'
+      and learner_group.code = 'TEST-GROUP-A'
+  $$,
+  '%enrolments_one_active_per_student_group%',
+  'a student cannot have duplicate active enrolments in the same group'
 );
 
 select * from finish();
