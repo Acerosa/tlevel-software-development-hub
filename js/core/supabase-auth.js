@@ -182,6 +182,26 @@
     });
   }
 
+  function signUpWithPassword(email, password) {
+    state.status = "loading";
+    state.error = null;
+    notify();
+    return client.signUpWithPassword(email, password).then(function (session) {
+      if (!session) {
+        state.status = "signed-out";
+        notify();
+        return null;
+      }
+      return loadContext(session).then(function () { return state.profile; });
+    }).catch(function (error) {
+      state.status = "error";
+      state.error = error;
+      notify();
+      client.clearSession();
+      throw error;
+    });
+  }
+
   function restoreProfile() {
     return initialise().then(function () {
       return state.profile;
@@ -216,6 +236,7 @@
   window.SupabaseAuth = Object.freeze({
     initialise: initialise,
     signInWithPassword: signInWithPassword,
+    signUpWithPassword: signUpWithPassword,
     restoreProfile: restoreProfile,
     getProfile: getProfile,
     getEnrolments: getEnrolments,

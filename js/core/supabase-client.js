@@ -316,6 +316,36 @@
     });
   }
 
+  function signUpWithPassword(email, password) {
+    var valid = typeof email === "string" && email.trim() &&
+      typeof password === "string" && password;
+    if (!valid) {
+      return Promise.reject(new SupabaseClientError("INVALID_AUTH_CREDENTIALS"));
+    }
+    var activeClient = client();
+    if (activeClient) {
+      return activeClient.auth.signUp({ email: email.trim(), password: password }).then(function (result) {
+        if (result.error) {
+          throw new SupabaseClientError(result.error.code || "AUTH_SIGN_UP_FAILED", result.error.message);
+        }
+        return normaliseHostedSession(result.data && result.data.session);
+      });
+    }
+    return fetchJson("/auth/v1/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email.trim(), password: password })
+    }).then(function (payload) {
+      if (!payload || !payload.access_token) return null;
+      return fallbackSaveSession({
+        accessToken: payload.access_token,
+        refreshToken: payload.refresh_token || "",
+        expiresAt: Number(payload.expires_at),
+        userId: payload.user && payload.user.id || ""
+      });
+    });
+  }
+
   function signOut() {
     var activeClient = client();
     if (activeClient) {
@@ -369,6 +399,7 @@
     hasSession: function () { return Boolean(getSession()); },
     clearSession: clearSession,
     signInWithPassword: signInWithPassword,
+    signUpWithPassword: signUpWithPassword,
     signOut: signOut,
     onAuthStateChange: onAuthStateChange,
     request: authenticatedRequest,

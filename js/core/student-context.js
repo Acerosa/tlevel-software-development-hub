@@ -73,6 +73,12 @@
     });
   }
 
+  function signUpWithPassword(email, password) {
+    return auth.signUpWithPassword(email, password).then(function (profile) {
+      return profile ? setCurrent(contextFromAuth(auth.getLearnerContext())) : null;
+    });
+  }
+
   function signOut() {
     if (usingSupabase) {
       return auth.signOut().then(function () {
@@ -112,6 +118,7 @@
     isSignedIn: isSignedIn,
     signIn: signIn,
     signInWithPassword: signInWithPassword,
+    signUpWithPassword: signUpWithPassword,
     signOut: signOut,
     subscribe: subscribe,
     isSupabase: function () { return usingSupabase; }

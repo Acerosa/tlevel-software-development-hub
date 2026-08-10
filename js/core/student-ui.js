@@ -16,12 +16,15 @@
   var loadingMessage;
   var liveStatus;
   var loading = false;
+  var authMode = "sign-in";
 
   var errorMessages = Object.freeze({
     INVALID_STUDENT_ID: "Enter your student ID.",
     STUDENT_NOT_FOUND: "We couldn't find that student ID. Check it and try again.",
     INVALID_AUTH_CREDENTIALS: "Enter your email and password.",
     AUTHENTICATION_FAILED: "Those sign-in details were not recognised.",
+    AUTH_SIGN_UP_FAILED: "We couldn't create that account. Check the details and try again.",
+    PASSWORD_MISMATCH: "The passwords do not match.",
     INVALID_LOGIN_CREDENTIALS: "Those sign-in details were not recognised.",
     STUDENT_IDENTITY_NOT_FOUND: "Your learner profile is not available. Please speak to your tutor.",
     STUDENT_INACTIVE: "Your student account is not currently active. Please speak to your tutor.",
@@ -48,6 +51,9 @@
     var passwordField = useSupabase
       ? '<div class="form-group"><label for="student-password">Password</label>' +
         '<input id="student-password" name="password" type="password" autocomplete="current-password" ' +
+        'aria-describedby="student-sign-in-help student-sign-in-error" minlength="8"></div>' +
+        '<div class="form-group" data-confirm-password hidden><label for="student-password-confirm">Confirm password</label>' +
+        '<input id="student-password-confirm" name="passwordConfirm" type="password" autocomplete="new-password" minlength="8" ' +
         'aria-describedby="student-sign-in-help student-sign-in-error"></div>'
       : "";
     dialog.innerHTML =
@@ -66,7 +72,8 @@
       passwordField +
       '<p class="form-error" id="student-sign-in-error" role="alert" aria-live="assertive" tabindex="-1" hidden></p>' +
       '<div class="student-sign-in-form__actions"><button class="primary-button" type="submit" data-student-submit>Continue</button>' +
-      '<span class="loading-message" data-student-loading aria-live="polite"></span></div></form>';
+      '<span class="loading-message" data-student-loading aria-live="polite"></span></div>' +
+      (useSupabase ? '<button class="text-button" type="button" data-auth-mode-toggle>Create an account</button>' : '') + '</form>';
 
     document.body.appendChild(dialog);
     form = dialog.querySelector("[data-student-sign-in-form]");
@@ -78,6 +85,17 @@
 
     dialog.querySelector("[data-student-dialog-close]").addEventListener("click", closeDialog);
     form.addEventListener("submit", handleSubmit);
+    if (useSupabase) dialog.querySelector("[data-auth-mode-toggle]").addEventListener("click", toggleAuthMode);
+  }
+
+  function toggleAuthMode() {
+    authMode = authMode === "sign-in" ? "sign-up" : "sign-in";
+    dialog.querySelector("#student-sign-in-heading").textContent = authMode === "sign-up" ? "Create learner account" : "Student sign in";
+    dialog.querySelector("#student-sign-in-help").textContent = authMode === "sign-up" ? "Create an account with your email address and a password of at least 8 characters." : "Use the email and password provided for your learner account.";
+    dialog.querySelector("[data-student-submit]").textContent = authMode === "sign-up" ? "Create account" : "Continue";
+    dialog.querySelector("[data-confirm-password]").hidden = authMode !== "sign-up";
+    dialog.querySelector("[data-auth-mode-toggle]").textContent = authMode === "sign-up" ? "Back to sign in" : "Create an account";
+    clearError();
   }
 
   function openDialog() {
@@ -127,6 +145,11 @@
 
   function completeSignIn(student) {
     setLoading(false);
+    if (!student) {
+      closeDialog();
+      liveStatus.textContent = "Account created. Check your email to confirm it before signing in.";
+      return;
+    }
     closeDialog();
     liveStatus.textContent = "Welcome, " + student.firstName + ". You are signed in.";
     var signOutButton = document.querySelector("[data-student-sign-out]");
@@ -140,14 +163,19 @@
 
     var identifier = identifierInput.value.trim();
     var password = passwordInput ? passwordInput.value : "";
-    if (!identifier || (useSupabase && !password)) {
+    var confirmation = dialog.querySelector("#student-password-confirm");
+    if (!identifier || (useSupabase && (!password || password.length < 8))) {
       showError(messageForErrorCode(useSupabase ? "INVALID_AUTH_CREDENTIALS" : "INVALID_STUDENT_ID"), true);
+      return;
+    }
+    if (authMode === "sign-up" && (!confirmation || confirmation.value !== password)) {
+      showError(messageForErrorCode("PASSWORD_MISMATCH"), false);
       return;
     }
 
     setLoading(true);
     var request = useSupabase
-      ? studentContext.signInWithPassword(identifier, password)
+      ? (authMode === "sign-up" ? studentContext.signUpWithPassword(identifier, password) : studentContext.signInWithPassword(identifier, password))
       : legacyApi.getStudent(identifier).then(function (student) {
         studentContext.signIn(student);
         return student;
