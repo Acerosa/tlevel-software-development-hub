@@ -131,7 +131,15 @@ insert into learning.academic_years (
 );
 
 insert into learning.groups (
-  id, academic_year_id, course_id, code, name, active
+  id,
+  academic_year_id,
+  course_id,
+  code,
+  name,
+  active,
+  year_group,
+  registration_key,
+  registration_open
 ) values
   (
     '60000000-0000-4000-8000-000000000001',
@@ -139,6 +147,9 @@ insert into learning.groups (
     '50000000-0000-4000-8000-000000000001',
     'TEST-GROUP-A',
     'Synthetic Test Group A',
+    true,
+    'Year 1',
+    'synthetic-year-1-a',
     true
   ),
   (
@@ -147,7 +158,10 @@ insert into learning.groups (
     '50000000-0000-4000-8000-000000000001',
     'TEST-GROUP-B',
     'Synthetic Test Group B',
-    true
+    true,
+    'Year 2',
+    'synthetic-year-2-b',
+    false
   );
 
 insert into learning.students (
