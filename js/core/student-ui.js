@@ -64,6 +64,10 @@
       '<p id="student-sign-in-help">' +
       (useSupabase ? "Use the email and password provided for your learner account." :
         "Use the student ID allocated to you by your tutor.") + "</p>" +
+      (useSupabase ? '<div class="student-auth-forms" role="tablist" aria-label="Account forms">' +
+        '<button class="text-button" type="button" data-auth-login role="tab" aria-selected="true">Sign in</button>' +
+        '<button class="text-button" type="button" data-auth-register role="tab" aria-selected="false">Register</button>' +
+        '</div>' : '') +
       '<form class="student-sign-in-form" data-student-sign-in-form novalidate>' +
       '<div class="form-group"><label for="student-identifier">' + identityLabel + "</label>" +
       '<input id="student-identifier" name="' + identityName + '" type="' + identityType +
@@ -73,10 +77,7 @@
       '<p class="form-error" id="student-sign-in-error" role="alert" aria-live="assertive" tabindex="-1" hidden></p>' +
       '<div class="student-sign-in-form__actions"><button class="primary-button" type="submit" data-student-submit>Continue</button>' +
       '<span class="loading-message" data-student-loading aria-live="polite"></span></div>' +
-      (useSupabase ? '<div class="student-auth-forms" role="group" aria-label="Account forms">' +
-        '<button class="text-button" type="button" data-auth-login aria-current="page">Sign in</button>' +
-        '<button class="text-button" type="button" data-auth-register aria-current="false">Register</button>' +
-        '</div><button class="text-button" type="button" data-auth-mode-toggle>Create an account</button>' : '') + '</form>';
+      (useSupabase ? '<button class="text-button" type="button" data-auth-mode-toggle>Switch form</button>' : '') + '</form>';
 
     document.body.appendChild(dialog);
     form = dialog.querySelector("[data-student-sign-in-form]");
@@ -106,8 +107,8 @@
     dialog.querySelector("[data-student-submit]").textContent = authMode === "sign-up" ? "Create account" : "Continue";
     dialog.querySelector("[data-confirm-password]").hidden = authMode !== "sign-up";
     dialog.querySelector("[data-auth-mode-toggle]").textContent = authMode === "sign-up" ? "Back to sign in" : "Create an account";
-    dialog.querySelector("[data-auth-login]").setAttribute("aria-current", authMode === "sign-in" ? "page" : "false");
-    dialog.querySelector("[data-auth-register]").setAttribute("aria-current", authMode === "sign-up" ? "page" : "false");
+    dialog.querySelector("[data-auth-login]").setAttribute("aria-selected", authMode === "sign-in" ? "true" : "false");
+    dialog.querySelector("[data-auth-register]").setAttribute("aria-selected", authMode === "sign-up" ? "true" : "false");
     clearError();
   }
 
