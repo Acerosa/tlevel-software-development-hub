@@ -2,6 +2,12 @@
 
 This is the backend contract for the OCR Level 3 IT Unit 3 Cyber Security frontend. The frontend uses the existing shared Supabase project and must not query the private `learning` schema directly.
 
+## Supabase configuration
+
+- Project ref: `hubwpkrqndorznwzvaer`
+- Project URL: `https://hubwpkrqndorznwzvaer.supabase.co`
+- Browser key: the public Supabase publishable key from the frontend configuration. Never use or commit a service-role key.
+
 ## Catalogue identity
 
 - Course stable key: `ocr-level-3-it`
@@ -30,6 +36,8 @@ Use the `api` schema only:
 
 Teacher-only views are also available under `api.teacher_group_*` and are group-scoped by RLS/definer checks; they are not learner UI endpoints.
 
+Views return only learner-safe projections. Typical fields include stable course/module/activity/week keys, titles, versions, delivery ordering/windows, attempt scores/status/timestamps, response evidence, and derived progress. Filter learner views by the authenticated session context; do not add a client-supplied learner ID filter as an authorization mechanism.
+
 Question rows are stored privately. Do not expose raw `learning.questions` through the Data API until a separate review confirms the intended public content boundary; the current API contract does not expose answer keys or mark schemes.
 
 ## Submission RPC
@@ -52,6 +60,20 @@ api.submit_attempt(
 `p_responses` is heterogeneous JSON evidence. It can represent retrieval answers, single/multiple choice, matching/order structures, text/reflection evidence, and programming evidence. The RPC derives identity and totals server-side, validates activity/version/assignment eligibility, preserves idempotency by learner plus client attempt ID, and returns attempt ID, attempt number, score, maximum score, marking source, evidence level, received time, and idempotency status.
 
 The frontend must not send `student_id`, `assignment_id`, `enrolment_id`, `attempt_number`, `max_score`, or a browser-calculated total.
+
+Example browser call:
+
+```js
+supabase.rpc('submit_attempt', {
+  p_activity_key: 'week2-session1-retrieval',
+  p_activity_version: '1.0.0',
+  p_client_attempt_id: crypto.randomUUID(),
+  p_responses: [{ question_id: 'S1Q1', response: 'A' }],
+  p_source_page: '/week-2/session-1-retrieval/'
+});
+```
+
+Anonymous calls are denied. Typical controlled errors include `AUTH_REQUIRED`, `UNKNOWN_ACTIVITY`, `VERSION_MISMATCH`, `ASSIGNMENT_NOT_FOUND`, `CLIENT_ATTEMPT_ID_CONFLICT`, and invalid-response/score-bound errors.
 
 ## Progress and history
 
