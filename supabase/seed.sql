@@ -246,3 +246,43 @@ cross join learning.activity_versions as activity_version
 where learner_group.code in ('TEST-GROUP-A', 'TEST-GROUP-B')
   and activity_version.published_at is not null
   and activity_version.retired_at is null;
+
+-- Local catalogue delivery rows for the imported Unit 3 activity metadata.
+insert into learning.activity_delivery (
+  activity_version_id,
+  academic_year_id,
+  curriculum_week_id,
+  week_number,
+  session_number,
+  sort_order,
+  active
+)
+select
+  version.id,
+  year.id,
+  week.id,
+  week.week_number,
+  case
+    when activity.stable_key like 'u3-w01-%' then 1
+    else null
+  end,
+  row_number() over (partition by week.id order by activity.stable_key),
+  true
+from learning.activity_versions as version
+join learning.activities as activity on activity.id = version.activity_id
+join learning.modules as module on module.id = activity.module_id
+join learning.courses as course on course.id = module.course_id
+join learning.curriculum_weeks as week
+  on week.module_id = module.id
+  and (
+    activity.stable_key like 'week' || week.week_number || '-%'
+    or (week.week_number = 1 and activity.stable_key like 'u3-w01-%')
+  )
+join learning.academic_years as year on year.code = '2026-27' and year.active
+where course.stable_key = 'ocr-level-3-it'
+  and not exists (
+    select 1 from learning.activity_delivery as existing
+    where existing.activity_version_id = version.id
+      and existing.academic_year_id = year.id
+      and existing.group_id is null
+  );

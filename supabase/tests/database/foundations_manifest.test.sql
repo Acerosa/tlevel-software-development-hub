@@ -57,14 +57,19 @@ select is(
 );
 
 select is(
-  (select count(*) from learning.activity_versions
-    where published_at is not null and retired_at is null),
+  (select count(*) from learning.activity_versions as activity_version
+    join learning.activities as activity on activity.id = activity_version.activity_id
+    where activity.stable_key like 'foundations-%'
+      and activity_version.published_at is not null and activity_version.retired_at is null),
   5::bigint,
   'the manifest publishes one current version for every Foundations activity'
 );
 
 select is(
-  (select count(*) from learning.questions),
+  (select count(*) from learning.questions as question
+    join learning.activity_versions as activity_version on activity_version.id = question.activity_version_id
+    join learning.activities as activity on activity.id = activity_version.activity_id
+    where activity.stable_key like 'foundations-%'),
   112::bigint,
   'the manifest imports all 112 reviewed question identifiers'
 );
@@ -76,7 +81,11 @@ select is(
 );
 
 select is(
-  (select count(*) from learning.question_topics),
+  (select count(*) from learning.question_topics as question_topic
+    join learning.questions as question on question.id = question_topic.question_id
+    join learning.activity_versions as activity_version on activity_version.id = question.activity_version_id
+    join learning.activities as activity on activity.id = activity_version.activity_id
+    where activity.stable_key like 'foundations-%'),
   112::bigint,
   'every manifest question maps to its section-grounded topic'
 );

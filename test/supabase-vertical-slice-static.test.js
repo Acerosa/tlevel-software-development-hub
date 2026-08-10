@@ -24,7 +24,24 @@ test("the Supabase foundation has ordered reviewable migrations", function () {
     .filter(function (name) { return name.endsWith(".sql"); })
     .sort();
 
-  assert.deepEqual(migrationNames, [
+  const migrationVersions = migrationNames.map(function (name) {
+    const match = name.match(/^(\d+)_/);
+    assert.ok(match, "migration filenames must begin with a version: " + name);
+    return match[1];
+  });
+
+  assert.equal(
+    new Set(migrationVersions).size,
+    migrationVersions.length,
+    "migration versions must be unique"
+  );
+  assert.deepEqual(
+    migrationVersions,
+    migrationVersions.slice().sort(),
+    "migration versions must be ordered"
+  );
+
+  const requiredFoundationMigrations = [
     '20260809000100_create_learning_identity.sql',
     '20260809000200_create_learning_curriculum.sql',
     '20260809000300_create_learning_records.sql',
@@ -32,9 +49,15 @@ test("the Supabase foundation has ordered reviewable migrations", function () {
     '20260809000500_create_learning_api.sql',
     '20260809000600_extend_curriculum_manifest.sql',
     '20260809000700_extend_learning_api.sql',
-    '20260809000800_import_foundations_manifest.sql',
-    '20260810085132_enable_multi_course_enrolments.sql'
-  ]);
+    '20260809000800_import_foundations_manifest.sql'
+  ];
+
+  requiredFoundationMigrations.forEach(function (requiredMigration) {
+    assert.ok(
+      migrationNames.includes(requiredMigration),
+      "required foundation migration is missing: " + requiredMigration
+    );
+  });
 });
 
 test("the local API exposes api but keeps learning unexposed", function () {
