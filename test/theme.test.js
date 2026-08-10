@@ -196,6 +196,7 @@ test("every route includes the early bootstrap and shared theme service", functi
     assert.match(html, /theme-bootstrap\.js/, route);
     assert.match(html, /theme\.js/, route);
     assert.match(html, /data-site-header/, route);
+    assert.ok(html.indexOf("theme.js") < html.indexOf("navigation.js"), route + " must load the theme service before navigation");
   });
   assert.match(read("js/core/navigation.js"), /data-theme-select/);
   assert.match(read("js/core/theme.js"), /tlevel\.softwareDevelopment\.theme\.v1/);

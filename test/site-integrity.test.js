@@ -62,6 +62,8 @@ function assertLocalReferenceExists(route, reference) {
 
 test("all GitHub Pages routes load the student foundation in dependency order", function () {
   const scripts = [
+    "theme-bootstrap.js",
+    "theme.js",
     "app-config.js",
     "student-api-config.js",
     "utils.js",
@@ -69,9 +71,7 @@ test("all GitHub Pages routes load the student foundation in dependency order", 
     "student-api.js",
     "student-context.js",
     "navigation.js",
-    "student-ui.js",
-    "theme-bootstrap.js",
-    "theme.js"
+    "student-ui.js"
   ];
 
   assert.equal(routeFiles.length, 15);
