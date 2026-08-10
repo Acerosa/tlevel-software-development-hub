@@ -104,7 +104,7 @@
     var links = sections
       .map(function (item) {
         var currentAttribute = item.id === currentPage ? ' aria-current="page"' : "";
-        var phaseBadge = item.id === "foundations" ? '<span class="phase-badge">Current</span>' : "";
+        var phaseBadge = item.id === currentPage ? '<span class="phase-badge">Current</span>' : "";
         var displayLabel = item.id === "home" ? "Course home" : item.label;
         return (
           '<li class="course-navigation__item"><a class="course-navigation__link" href="' +

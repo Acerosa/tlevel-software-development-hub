@@ -102,6 +102,13 @@ test("existing routes, page content and local navigation targets remain availabl
   });
 });
 
+test("course navigation marks the active section rather than hard-coding Foundations", function () {
+  const navigation = read("js/core/navigation.js");
+
+  assert.match(navigation, /var phaseBadge = item\.id === currentPage/);
+  assert.doesNotMatch(navigation, /var phaseBadge = item\.id === "foundations"/);
+});
+
 test("student sign in uses the Supabase Auth boundary", function () {
   const sourceFiles = routeFiles.concat([
     "js/core/student-ui.js",
