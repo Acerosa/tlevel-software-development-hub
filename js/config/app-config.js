@@ -2,9 +2,13 @@
   "use strict";
 
   window.APP_CONFIG = Object.freeze({
+    hubId: "tlevel-software-development",
+    hubVersion: "0.1.0",
     siteName: "T Level Digital Software Development Hub",
     shortName: "Software Development Hub",
-    backend: "supabase",
+    coreVersion: "0.1.0",
+    learnerApiContractVersion: "0.1.0",
+    submissionContractVersion: "0.1.0",
     currentPhase: "Phase 1: Technical Foundations",
     navigation: Object.freeze([
       { id: "home", label: "Home", path: "" },
@@ -22,30 +26,15 @@
       { id: "resources", label: "Resources", path: "resources/" },
       { id: "help", label: "Help", path: "help/" }
     ]),
-    learnerContext: Object.freeze({
-      status: "supabase-authenticated",
-      fields: Object.freeze([
-        "Student number",
-        "First Name",
-        "Display Name",
-        "Class Group",
-        "Auth session"
-      ])
+    features: Object.freeze({
+      authentication: true,
+      codingExercises: true,
+      onboarding: true,
+      progress: true
     }),
-    futureApiDomains: Object.freeze({
-      learning: Object.freeze([
-        "activities",
-        "diagnostics",
-        "submissions",
-        "progress"
-      ]),
-      projectEvidence: Object.freeze([
-        "requirements",
-        "source logs",
-        "AI logs",
-        "evidence",
-        "project records"
-      ])
+    theme: Object.freeze({
+      primary: "#006477",
+      accent: "#00839a"
     })
   });
 })();

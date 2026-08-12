@@ -1,4 +1,9 @@
-# Supabase frontend migration
+# Supabase frontend migration (historical)
+
+> This document records the pre-Core migration state. Phase 3 removed the Apps
+> Script/runtime-session rollback code and adopted `learning-platform-core`
+> 0.1.0 for Auth, onboarding, learner context, theme, and learner reads. See
+> [ARCHITECTURE.md](ARCHITECTURE.md) for the current implementation.
 
 Status: Supabase is the default browser backend for the five Foundations activities. The Google Apps Script project and Google Sheet remain intact as an explicit rollback/reference path.
 

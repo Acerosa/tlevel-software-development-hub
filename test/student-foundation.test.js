@@ -4,433 +4,177 @@ const path = require("node:path");
 const test = require("node:test");
 const vm = require("node:vm");
 
-const projectRoot = path.resolve(__dirname, "..");
+const root = path.resolve(__dirname, "..");
 
-function runScript(context, relativePath) {
-  const filename = path.join(projectRoot, relativePath);
-  const source = fs.readFileSync(filename, "utf8");
-  vm.runInContext(source, context, { filename });
+function read(file) {
+  return fs.readFileSync(path.join(root, file), "utf8");
 }
 
-function createContext(windowOverrides) {
-  const browserWindow = Object.assign({
-    setTimeout,
-    clearTimeout
-  }, windowOverrides);
-  const context = vm.createContext({
-    window: browserWindow,
-    AbortController,
-    console,
-    setTimeout,
-    clearTimeout
-  });
-
-  return { context, window: browserWindow };
+function run(window, file) {
+  const context = vm.createContext({ window, document: window.document, console, Object, Promise });
+  vm.runInContext(read(file), context, { filename: file });
+  return window;
 }
 
-function createApiRuntime(fetchImplementation, apiUrl = "https://example.test/exec") {
-  const runtime = createContext({
-    STUDENT_API_CONFIG: {
-      apiUrl,
-      requestTimeoutMs: 100,
-      sessionStorageKey: "tlevel.softwareDevelopment.studentSession.v1"
-    },
-    fetch: fetchImplementation
-  });
-
-  runScript(runtime.context, "js/core/student-api.js");
-  return runtime;
-}
-
-function createLearningApiRuntime(fetchImplementation, studentId = "00123456") {
-  const runtime = createContext({
-    STUDENT_API_CONFIG: {
-      apiUrl: "https://example.test/exec",
-      requestTimeoutMs: 100
-    },
-    StudentContext: {
-      getStudentId: function () { return studentId; }
-    },
-    location: { pathname: "/foundations/testing-methods/" },
-    fetch: fetchImplementation
-  });
-
-  runScript(runtime.context, "js/core/learning-api.js");
-  return runtime;
-}
-
-function jsonResponse(payload, ok = true) {
+function learnerRuntime(initialState) {
+  let listener;
+  let context = initialState && initialState.context || null;
+  const calls = [];
+  const auth = {
+    signIn(email, password) { calls.push(["signIn", email, password]); return Promise.resolve({}); },
+    signUp(email, password) { calls.push(["signUp", email, password]); return Promise.resolve({ needsConfirmation: false }); },
+    signOut() { calls.push(["signOut"]); return Promise.resolve(true); }
+  };
+  const learner = {
+    subscribe(next) { listener = next; next(initialState || { status: "signed-out", context: null }); return function () {}; },
+    refresh() { calls.push(["refresh"]); return Promise.resolve({ status: context ? "authenticated" : "onboarding-required" }); },
+    getContext() { return context; }
+  };
+  const window = { LearningPlatform: { platform: { auth, learner } } };
+  run(window, "js/core/student-context.js");
   return {
-    ok,
-    text: async function () {
-      return JSON.stringify(payload);
-    }
+    window,
+    calls,
+    publish(state) { context = state.context || null; listener(state); },
+    setContext(next) { context = next; }
   };
 }
 
-function createStorage() {
-  const values = new Map();
+test("hub configuration matches the canonical manifest contracts", function () {
+  const window = {};
+  run(window, "js/config/app-config.js");
+  const manifest = JSON.parse(read("learning-platform-hub.json"));
 
-  return {
-    getItem: function (key) {
-      return values.has(key) ? values.get(key) : null;
+  assert.equal(window.APP_CONFIG.hubId, manifest.hubId);
+  assert.equal(window.APP_CONFIG.hubVersion, manifest.version);
+  assert.equal(window.APP_CONFIG.coreVersion, manifest.compatibility.required.coreVersion);
+  assert.equal(window.APP_CONFIG.learnerApiContractVersion, manifest.compatibility.required.learnerApiContractVersion);
+  assert.equal(window.APP_CONFIG.submissionContractVersion, manifest.compatibility.required.submissionContractVersion);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(window.APP_CONFIG.features)),
+    manifest.featureFlags
+  );
+});
+
+test("the composition root creates and initialises exactly one Core platform", async function () {
+  let options;
+  let initialisations = 0;
+  const platform = {
+    initialise() { initialisations += 1; return Promise.resolve({ status: "signed-out" }); }
+  };
+  const window = {
+    APP_CONFIG: {
+      hubId: "tlevel-software-development",
+      siteName: "T Level Digital Software Development Hub",
+      coreVersion: "0.1.0",
+      navigation: [{ id: "home", label: "Home", path: "" }],
+      features: { authentication: true },
+      theme: { primary: "#006477", accent: "#00839a" }
     },
-    setItem: function (key, value) {
-      values.set(key, String(value));
+    SUPABASE_CONFIG: {
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example"
     },
-    removeItem: function (key) {
-      values.delete(key);
+    LearningPlatformCore: {
+      createPlatform(value) { options = value; return platform; }
     }
   };
-}
 
-function createSessionRuntime(storage) {
-  const runtime = createContext({
-    STUDENT_API_CONFIG: {
-      sessionStorageKey: "tlevel.softwareDevelopment.studentSession.v1"
-    },
-    localStorage: storage
-  });
+  run(window, "js/core/platform.js");
+  await window.LearningPlatform.ready;
 
-  runScript(runtime.context, "js/core/student-session.js");
-  return runtime;
-}
-
-test("empty student IDs are rejected before a request is made", async function () {
-  let requestCount = 0;
-  const runtime = createApiRuntime(async function () {
-    requestCount += 1;
-    return jsonResponse({ success: true });
-  });
-
-  await assert.rejects(
-    runtime.window.StudentApi.getStudent("   "),
-    function (error) {
-      return error.code === "INVALID_STUDENT_ID";
-    }
-  );
-  assert.equal(requestCount, 0);
+  assert.equal(initialisations, 1);
+  assert.equal(options.hubCode, "tlevel-software-development");
+  assert.equal(options.navigation[0].path, "./");
+  assert.equal(options.supabase.publishableKey, "sb_publishable_example");
+  assert.equal(window.LearningPlatform.platform, platform);
 });
 
-test("student IDs must be text and are never converted to numbers", async function () {
-  const runtime = createApiRuntime(async function () {
-    return jsonResponse({ success: true });
-  });
-
-  await assert.rejects(
-    runtime.window.StudentApi.getStudent(123456),
-    function (error) {
-      return error.code === "INVALID_STUDENT_ID";
-    }
-  );
-});
-
-test("getStudent sends the correct action and preserves leading zeroes", async function () {
-  let capturedRequest;
-  const runtime = createApiRuntime(async function (url, options) {
-    capturedRequest = { url, options };
-    return jsonResponse({
-      success: true,
-      data: {
-        student: {
-          studentId: "00123456",
-          firstName: "Alex",
-          displayName: "Alex Smith",
-          group: "TLEVEL-Y2",
-          email: "must-not-be-retained@example.test",
-          surname: "Smith"
-        }
-      }
-    });
-  });
-
-  const student = await runtime.window.StudentApi.getStudent("  00123456  ");
-  const requestBody = JSON.parse(capturedRequest.options.body);
-
-  assert.equal(capturedRequest.url, "https://example.test/exec");
-  assert.equal(capturedRequest.options.method, "POST");
-  assert.equal(capturedRequest.options.headers["Content-Type"], "text/plain;charset=utf-8");
-  assert.deepEqual(requestBody, {
-    action: "getStudent",
-    studentId: "00123456"
-  });
-  assert.deepEqual(Object.keys(student).sort(), [
-    "displayName",
-    "firstName",
-    "group",
-    "studentId"
-  ]);
-  assert.equal(student.studentId, "00123456");
-});
-
-test("backend student errors remain predictable for the interface", async function () {
-  for (const code of ["STUDENT_NOT_FOUND", "STUDENT_INACTIVE"]) {
-    const runtime = createApiRuntime(async function () {
-      return jsonResponse({ success: false, error: code });
-    });
-
-    await assert.rejects(
-      runtime.window.StudentApi.getStudent("00123456"),
-      function (error) {
-        return error.code === code;
-      }
-    );
-  }
-});
-
-test("network and malformed responses use safe error codes", async function () {
-  const networkRuntime = createApiRuntime(async function () {
-    throw new Error("private transport details");
-  });
-  const malformedRuntime = createApiRuntime(async function () {
-    return { ok: true, text: async function () { return "not-json"; } };
-  });
-
-  await assert.rejects(
-    networkRuntime.window.StudentApi.getStudent("00123456"),
-    function (error) {
-      return error.code === "NETWORK_ERROR";
-    }
-  );
-  await assert.rejects(
-    malformedRuntime.window.StudentApi.getStudent("00123456"),
-    function (error) {
-      return error.code === "INVALID_RESPONSE";
-    }
-  );
-});
-
-test("a missing API URL produces a configuration error", async function () {
-  const runtime = createApiRuntime(async function () {
-    throw new Error("fetch must not run");
-  }, "");
-
-  await assert.rejects(
-    runtime.window.StudentApi.getStudent("00123456"),
-    function (error) {
-      return error.code === "CONFIGURATION_ERROR";
-    }
-  );
-});
-
-test("submitResult uses the active student ID and the narrow result contract", async function () {
-  let capturedRequest;
-  const runtime = createLearningApiRuntime(async function (url, options) {
-    capturedRequest = { url, options };
-    return jsonResponse({
-      success: true,
-      data: {
-        submission: {
-          attemptId: "foundations-testing-methods-attempt-1",
-          activityId: "foundations-testing-methods",
-          attemptNumber: 1,
-          score: 18,
-          maxScore: 22,
-          percentage: 81.82,
-          status: "completed",
-          submittedAt: "2026-08-07T15:00:00.000Z",
-          duplicate: false
-        },
-        progress: { activitiesAttempted: 1 }
-      }
-    });
-  });
-
-  const submission = await runtime.window.LearningApi.submitResult({
-    activityId: "foundations-testing-methods",
-    activityVersion: "1.0.0",
-    attemptId: "foundations-testing-methods-attempt-1",
-    startedAt: "2026-08-07T14:45:00.000Z",
-    completedAt: "2026-08-07T15:00:00.000Z",
-    score: 18,
-    maxScore: 22,
-    percentage: 82,
-    responses: { privateDetail: "not submitted" }
-  });
-  const body = JSON.parse(capturedRequest.options.body);
-
-  assert.equal(capturedRequest.url, "https://example.test/exec");
-  assert.deepEqual(body, {
-    action: "submitResult",
-    studentId: "00123456",
-    result: {
-      activityId: "foundations-testing-methods",
-      activityVersion: "1.0.0",
-      attemptId: "foundations-testing-methods-attempt-1",
-      score: 18,
-      maxScore: 22
-    },
-    sourcePage: "/foundations/testing-methods/"
-  });
-  assert.equal(submission.attemptNumber, 1);
-  assert.equal(submission.percentage, 81.82);
-  assert.equal(Object.prototype.hasOwnProperty.call(body.result, "responses"), false);
-});
-
-test("submitResult does not send anything while signed out", async function () {
-  let requestCount = 0;
-  const runtime = createLearningApiRuntime(async function () {
-    requestCount += 1;
-    return jsonResponse({ success: true });
-  }, null);
-
-  await assert.rejects(
-    runtime.window.LearningApi.submitResult({
-      activityId: "foundations-testing-methods",
-      activityVersion: "1.0.0",
-      attemptId: "attempt-1",
-      score: 1,
-      maxScore: 22
-    }),
-    function (error) { return error.code === "SIGN_IN_REQUIRED"; }
-  );
-  assert.equal(requestCount, 0);
-});
-
-test("submitResult keeps backend errors predictable", async function () {
-  const runtime = createLearningApiRuntime(async function () {
-    return jsonResponse({ success: false, error: "ACTIVITY_NOT_FOUND" });
-  });
-
-  await assert.rejects(
-    runtime.window.LearningApi.submitResult({
-      activityId: "not-configured",
-      activityVersion: "1.0.0",
-      attemptId: "attempt-1",
-      score: 1,
-      maxScore: 1
-    }),
-    function (error) { return error.code === "ACTIVITY_NOT_FOUND"; }
-  );
-});
-
-test("the session stores only the safe student profile", function () {
-  const storage = createStorage();
-  const runtime = createSessionRuntime(storage);
-  const session = runtime.window.StudentSession.saveStudentSession({
-    studentId: "00123456",
-    firstName: "Alex",
-    displayName: "Alex Smith",
-    group: "TLEVEL-Y2",
-    email: "must-not-be-stored@example.test",
-    surname: "Smith",
-    internalData: { row: 25 }
-  });
-  const stored = JSON.parse(storage.getItem(runtime.window.StudentSession.storageKey));
-
-  assert.deepEqual(Object.keys(stored).sort(), [
-    "displayName",
-    "firstName",
-    "group",
-    "signedInAt",
-    "studentId"
-  ]);
-  assert.equal(stored.studentId, "00123456");
-  assert.match(session.signedInAt, /^\d{4}-\d{2}-\d{2}T/);
-});
-
-test("a valid API profile completes the sign-in session flow", async function () {
-  const storage = createStorage();
-  const runtime = createContext({
-    STUDENT_API_CONFIG: {
-      apiUrl: "https://example.test/exec",
-      requestTimeoutMs: 100,
-      sessionStorageKey: "tlevel.softwareDevelopment.studentSession.v1"
-    },
-    localStorage: storage,
-    fetch: async function () {
-      return jsonResponse({
-        success: true,
-        data: {
-          student: {
-            studentId: "00123456",
-            firstName: "Alex",
-            displayName: "Alex Smith",
-            group: "TLEVEL-Y2"
-          }
-        }
-      });
+test("StudentContext exposes a frozen backend-derived learner profile", function () {
+  const runtime = learnerRuntime({
+    status: "authenticated",
+    context: {
+      studentNumber: "00012345",
+      firstName: "Sam",
+      surname: "Taylor",
+      fullName: "Sam Taylor",
+      displayName: "Sam",
+      contactEmail: "sam@example.invalid",
+      yearGroup: "Year 1",
+      academicYear: "2026/27",
+      groupCode: "SD-A",
+      groupName: "Software A",
+      enrolments: [{ status: "active" }]
     }
   });
-  runScript(runtime.context, "js/core/student-session.js");
-  runScript(runtime.context, "js/core/student-api.js");
-  runScript(runtime.context, "js/core/student-context.js");
 
-  const student = await runtime.window.StudentApi.getStudent("00123456");
-  runtime.window.StudentContext.signIn(student);
-
+  const student = runtime.window.StudentContext.getCurrentStudent();
+  assert.equal(student.studentId, "00012345");
+  assert.equal(student.fullName, "Sam Taylor");
+  assert.equal(student.groupCode, "SD-A");
+  assert.equal(Object.isFrozen(student), true);
   assert.equal(runtime.window.StudentContext.isSignedIn(), true);
-  assert.equal(runtime.window.StudentContext.getStudentId(), "00123456");
-  assert.ok(storage.getItem(runtime.window.StudentSession.storageKey));
 });
 
-test("a valid session restores after a fresh page runtime", function () {
-  const storage = createStorage();
-  const firstRuntime = createSessionRuntime(storage);
-  firstRuntime.window.StudentSession.saveStudentSession({
-    studentId: "00000007",
-    firstName: "Sam",
-    displayName: "Sam Jones",
-    group: "TLEVEL-Y2"
+test("StudentContext sign-in delegates to Core Auth and refreshes learner context", async function () {
+  const runtime = learnerRuntime();
+  runtime.setContext({
+    studentNumber: "SYN-001",
+    firstName: "Synthetic",
+    surname: "Learner",
+    fullName: "Synthetic Learner",
+    displayName: "Synthetic",
+    groupCode: "SD-A",
+    enrolments: []
   });
 
-  const reloadRuntime = createSessionRuntime(storage);
-  const restored = reloadRuntime.window.StudentSession.getStudentSession();
-
-  assert.equal(restored.studentId, "00000007");
-  assert.equal(restored.firstName, "Sam");
+  const student = await runtime.window.StudentContext.signInWithPassword("learner@example.invalid", "password123");
+  assert.deepEqual(runtime.calls.slice(0, 2), [
+    ["signIn", "learner@example.invalid", "password123"],
+    ["refresh"]
+  ]);
+  assert.equal(student.studentId, "SYN-001");
 });
 
-test("corrupt session data is discarded without crashing", function () {
-  const storage = createStorage();
-  const storageKey = "tlevel.softwareDevelopment.studentSession.v1";
-  storage.setItem(storageKey, "{broken-json");
-  const runtime = createSessionRuntime(storage);
-
-  assert.equal(runtime.window.StudentSession.getStudentSession(), null);
-  assert.equal(storage.getItem(storageKey), null);
-});
-
-test("global student context signs in, exposes the ID and signs out", function () {
-  const storage = createStorage();
-  const runtime = createSessionRuntime(storage);
-  runScript(runtime.context, "js/core/student-context.js");
-
-  assert.equal(runtime.window.StudentContext.isSignedIn(), false);
-  runtime.window.StudentContext.signIn({
-    studentId: "00012345",
-    firstName: "Taylor",
-    displayName: "Taylor Lee",
-    group: "TLEVEL-Y2"
+test("StudentContext clears display state on Core sign-out", async function () {
+  const runtime = learnerRuntime({
+    status: "authenticated",
+    context: { studentNumber: "SYN-001", firstName: "Synthetic", enrolments: [] }
   });
-  assert.equal(runtime.window.StudentContext.isSignedIn(), true);
-  assert.equal(runtime.window.StudentContext.getStudentId(), "00012345");
-  assert.equal(Object.isFrozen(runtime.window.StudentContext.getCurrentStudent()), true);
-
-  runtime.window.StudentContext.signOut();
-  assert.equal(runtime.window.StudentContext.isSignedIn(), false);
+  await runtime.window.StudentContext.signOut();
   assert.equal(runtime.window.StudentContext.getCurrentStudent(), null);
-  assert.equal(storage.getItem(runtime.window.StudentSession.storageKey), null);
+  assert.equal(runtime.window.StudentContext.isSignedIn(), false);
+  assert.deepEqual(runtime.calls, [["signOut"]]);
 });
 
-test("student-facing messages cover not found, inactive and network errors", function () {
-  const runtime = createContext({
-    AppUtils: { onReady: function () {} },
-    StudentApi: {},
-    StudentContext: {}
-  });
-  runScript(runtime.context, "js/core/student-ui.js");
+test("shared account UI composes Core Auth, learner context, and onboarding", function () {
+  const source = read("js/core/student-ui.js");
+  const styles = read("css/main.css");
+  assert.match(source, /core\.createAccountDialog/);
+  assert.match(source, /authService:\s*platform\.auth/);
+  assert.match(source, /learnerContext:\s*platform\.learner/);
+  assert.match(source, /onboardingService:\s*platform\.onboarding/);
+  assert.doesNotMatch(source, /localStorage|accessToken|refreshToken|studentId\s*:/);
+  assert.match(styles, /\.lp-form__field\[hidden\][\s\S]*display:\s*none\s*!important/);
+});
 
-  assert.equal(
-    runtime.window.StudentSignInUI.messageForErrorCode("STUDENT_NOT_FOUND"),
-    "We couldn't find that student ID. Check it and try again."
-  );
-  assert.equal(
-    runtime.window.StudentSignInUI.messageForErrorCode("STUDENT_INACTIVE"),
-    "Your student account is not currently active. Please speak to your tutor."
-  );
-  assert.equal(
-    runtime.window.StudentSignInUI.messageForErrorCode("NETWORK_ERROR"),
-    "We couldn't connect to the student service. Please try again."
-  );
+test("LearningApi is a Supabase-only compatibility facade", async function () {
+  const calls = [];
+  const window = {
+    SupabaseLearningApi: {
+      canSubmit(result) { calls.push(["canSubmit", result]); return true; },
+      submitResult(result) { calls.push(["submitResult", result]); return Promise.resolve({ ok: true }); }
+    },
+    SupabaseAnalytics: {
+      studentProgress() { calls.push(["progress"]); return Promise.resolve({ activities: [] }); }
+    }
+  };
+  run(window, "js/core/learning-api.js");
+
+  const result = { activityId: "foundations-data-design" };
+  assert.equal(window.LearningApi.modeFor(result), "supabase");
+  assert.equal(window.LearningApi.canSubmit(result), true);
+  assert.deepEqual(await window.LearningApi.submitResult(result), { ok: true });
+  assert.deepEqual(await window.LearningApi.getProgress(), { activities: [] });
+  assert.doesNotMatch(read("js/core/learning-api.js"), /apps-script|script\.google|studentId/i);
 });

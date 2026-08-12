@@ -1,189 +1,142 @@
-# Development guide
+# Development and verification
 
-## Requirements
+## Local site
 
-The site uses vanilla HTML, CSS and JavaScript. There is no package installation, build process or framework.
-
-Use a local web server rather than opening the HTML files directly. From the repository root, run one of the following:
+No install or build is required. Use a local server rather than opening files
+directly:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-or, if PHP is already installed:
+Then open `http://localhost:8000/`.
+
+## Shared platform dependency
+
+The hub consumes the browser build of `@learning-platform/core` 0.1.0 from
+`vendor/learning-platform-core/0.1.0/`. Do not deep-import Core source modules or
+copy Core services into `js/core/`.
+
+To update Core:
+
+1. select one reviewed Core release/commit compatible with the manifest;
+2. copy its unmodified IIFE build, source map, theme/tokens CSS, and licence into
+   a new versioned vendor directory;
+3. update `PROVENANCE.md`, `learning-platform-hub.json`, and `APP_CONFIG`;
+4. pin the supported exact Supabase JS browser version;
+5. update all route references and run the full verification suite;
+6. keep the old vendor directory until the reviewed rollback window closes.
+
+Do not load Core, a hub manifest, or metadata from GitHub at runtime.
+
+## Configuration and script order
+
+`js/config/supabase-config.js` contains only the public project URL and
+publishable key. `js/config/app-config.js` contains hub metadata, navigation,
+feature flags, and brand colours.
+
+Every route must load, in order:
+
+1. the synchronous no-flash theme bootstrap;
+2. hub and Supabase public configuration;
+3. pinned Supabase JS;
+4. the versioned Core IIFE;
+5. `utils.js` and the `platform.js` composition root;
+6. theme/context/submission/progress compatibility adapters;
+7. navigation and shared account UI;
+8. page-specific curriculum modules.
+
+Core/Supabase own the session. Never add a local token store, REST refresh
+fallback, learner profile cache, or second `createClient()` call.
+
+## Tests
+
+Run all repository tests:
 
 ```bash
-php -S localhost:8000
+node --test
 ```
 
-Then open `http://localhost:8000/` in a browser.
-
-## Checks
-
-The project has no package dependencies, compiler, bundler, linter or type checker. Run the built-in Node tests from the repository root:
+Run syntax and whitespace checks:
 
 ```bash
-node --test test/*.test.js
+for file in js/config/*.js js/core/*.js js/activities/*.js js/data/foundations/*.js; do node --check "$file"; done
+git diff --check
 ```
 
-Use `node --check` for JavaScript syntax checks when changing browser modules.
+Validate the canonical manifest with the backend's read-only validator:
 
-`foundations-activities.test.js` validates activity scope, stable IDs, answer keys, feedback, all supported marking types, the result contract, local-state isolation and adoption, safe client-side behaviour, submission integration and activity route dependencies.
-
-## Theme system
-
-The shared site supports `system`, `light` and `dark` themes. The default is `system`, which follows `prefers-color-scheme` and updates while the page is open. A learner's preference is stored in local storage under `tlevel.softwareDevelopment.theme.v1`; this is presentation state only and is independent of Supabase sessions, activity drafts and submissions.
-
-The early no-flash bootstrap lives at `js/core/theme-bootstrap.js`. The reusable service at `js/core/theme.js` owns preference validation, persistence, resolution, DOM application and live system-theme changes. Shared navigation renders the accessible select control on every route and attaches it through the service.
-
-Use semantic custom properties from `css/main.css` for new UI (`--colour-bg`, `--colour-surface`, `--colour-text`, `--colour-text-muted`, `--colour-border`, `--colour-primary`, state tokens, `--colour-input-bg` and `--colour-code-bg`). Add a light value and a deliberately readable dark override under `html[data-theme="dark"]`; do not introduce component-specific hard-coded colours. Preserve visible `:focus-visible` outlines, distinguish state with text or structure as well as colour, and check disabled, hover, validation, feedback and code/editor states in both themes.
-
-## Supabase frontend setup
-
-The normal browser backend is Supabase. `js/config/supabase-config.js` contains only the hosted project URL and browser-safe publishable key. Every page loads the official `@supabase/supabase-js` client, then the single `SupabaseClient`, `SupabaseAuth`, `StudentContext`, `SupabaseAnalytics` and `LearningApi` boundary.
-
-The Auth SDK owns session persistence, token refresh and sign-out. The browser calls only the exposed `api` views and `api.submit_attempt`; it never queries `learning` tables directly. The complete endpoint mapping, onboarding process, rollback procedure and known limitations are in `docs/supabase-frontend-migration.md`.
-
-## Legacy Apps Script rollback
-
-The preserved Google Apps Script Web App is an explicit rollback/reference implementation. Its stable numbered deployment remains configured in `js/config/student-api-config.js`. If the deployment is deliberately replaced, set `apiUrl` to the new complete `/exec` URL:
-
-```js
-apiUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec"
+```bash
+mkdir -p /tmp/learning-platform-empty-hub-registry
+python3 ../learning-platform-backend/scripts/import/validate-hub-manifest.py \
+  learning-platform-hub.json \
+  --registry /tmp/learning-platform-empty-hub-registry
+cmp learning-platform-hub.json \
+  ../learning-platform-backend/supabase/data/manifests/hubs/tlevel-software-development/learning-platform-hub.json
 ```
 
-Do not use an editor or development URL. Do not repeat the URL in individual pages or modules. The URL is public browser configuration, not a credential. Never add the spreadsheet ID or real student records to this repository.
+The isolated registry validates this already-registered manifest without
+reporting itself as a duplicate; the `cmp` then proves it is byte-for-byte the
+reviewed backend copy. New, unregistered hubs should use the validator's normal
+registry default so conflict detection remains active.
 
-Set `backend: "apps-script"` in `js/config/supabase-config.js` only for a controlled development rollback. This restores the legacy ID-based sign-in and narrow result contract. Do not expose a learner-facing backend toggle and do not dual-write. The default is `backend: "supabase"`.
+The repository's `supabase/` directory is a local historical contract fixture,
+not the production migration source. If Docker and the Supabase CLI are
+available, `supabase db reset` plus `supabase test db` may be used to verify that
+snapshot. Do not push it to a hosted project. New backend changes belong in
+`learning-platform-backend`.
+
+## Manual learner checks
+
+Before proposing a release:
+
+- register a synthetic learner, handle email confirmation if enabled, and
+  complete controlled onboarding;
+- sign out/in and reload both root and nested routes to confirm session restore;
+- verify profile/group context and backend assignments/progress;
+- complete, retry, and revisit each Foundations activity;
+- verify Programming Diagnostic in Python, JavaScript, and C#;
+- confirm a failed submission keeps the local retry state and a successful retry
+  keeps the same client attempt ID;
+- verify anonymous users cannot submit and the browser sends no learner,
+  enrolment, assignment, role, or total-score identity fields;
+- test navigation, account/onboarding dialog, theme, activities, and code editors
+  with keyboard-only input at wide and narrow viewports;
+- check light, dark, system theme, reduced motion, and the browser console;
+- serve the repository root exactly as GitHub Pages will and confirm every local
+  asset resolves from all 15 routes.
+
+Use synthetic data only. Never reset, seed, or test destructively against the
+hosted production project.
+
+## Adding routes and activities
+
+Add routes to `APP_CONFIG.navigation`, create a directory `index.html`, set the
+body's `data-page` and `data-root`, and follow the existing semantic shell. Keep
+course-specific route grouping in this repository.
+
+Foundations question data belongs in `js/data/foundations/`; rendering, marking,
+draft state, and submission behaviour belong in the existing shared activity
+modules. Maintain stable activity/question IDs and semantic versions. Do not add
+activity-specific auth, profile, or backend clients.
+
+Programming exercises must not pass learner code to `eval`, `Function`, injected
+scripts, frames, browser runtimes, or unreviewed remote execution. Extend the
+existing editor/checker/feedback boundary and add positive and negative tests.
 
 ## GitHub Pages
 
-The project uses relative URLs and directory-based routes, so it can be published from a GitHub project repository.
+Routes and assets use repository-relative URLs, so the site can be published
+from the `main` branch repository root. The deployable artifact is the checked-in
+tree; no generated documentation page or separate application entry point is
+required.
 
-1. Push the repository to GitHub.
-2. Open **Settings**, then **Pages**, for the repository.
-3. Select **Deploy from a branch**.
-4. Choose the `main` branch and the repository root (`/`).
-5. Save and wait for GitHub Pages to publish the site.
-
-The configured Supabase URL and publishable key are included in the static files published by GitHub Pages. No server-side environment or privileged secret is required.
-
-## Branch workflow
-
-- `main` contains reviewed, publishable work.
-- `dev` is the integration branch for the next coherent component.
-- Create short-lived feature branches from `dev`, such as `feature/foundations-navigation`.
-- Keep each branch focused on one concern.
-- Open a pull request into `dev`, review it, and verify the site before merging.
-- Promote a tested component from `dev` to `main` through a separate pull request.
-
-Do not commit directly to `main` unless the project owner explicitly chooses a simpler workflow.
-
-## Commit guidance
-
-Use concise, imperative commit messages that describe the outcome. Examples:
-
-```text
-feat: establish T Level hub application shell
-docs: record learner context boundary
-fix: retain focus when closing mobile navigation
-```
-
-Prefer small commits that keep code, tests and related documentation together. Do not mix unrelated formatting or content changes into a feature commit.
-
-## Adding a route
-
-1. Add its entry to `APP_CONFIG.navigation` in `js/config/app-config.js`.
-2. Create a directory containing `index.html`.
-3. Set `data-page` on the page body to the navigation entry ID.
-4. Set `data-root` to the correct relative path back to the repository root.
-5. Use relative links for CSS and JavaScript.
-6. Add a unique page title, description, one `h1` and a breadcrumb.
-7. Test the route from the home page and from the route back to Home.
-
-## Adding a Foundations activity
-
-1. Add stable catalogue metadata to `js/data/foundations/catalog.js`.
-2. Create a directory under `foundations/` containing an `index.html` route that follows the existing breadcrumb and shell pattern.
-3. Create a data file under `js/data/foundations/` with a stable activity ID, semantic version, sections and stable question IDs.
-4. Load shared marking and state modules, then the activity data, then `activity-engine.js`.
-5. Use a shared interaction type: `single`, `multiple`, `text`, `matching` or `order`.
-6. Provide concise explanatory feedback for both correct and incorrect responses.
-7. Extend `foundations-activities.test.js` with the expected activity scope and any new marking rule.
-8. Test empty submissions, correct and incorrect answers, section review, retry, saved progress, narrow layouts and keyboard focus.
-
-Question data owns prompts, options, answers, code samples, small tables and feedback. Rendering, DOM events, scoring and persistence belong in the shared activity modules. Do not embed large question banks in HTML or add activity-specific identity forms.
-
-### Programming Diagnostic questions
-
-The Programming Diagnostic route loads these modules between shared state and its question data:
-
-1. `programming-language.js`
-2. `programming-checker.js`
-3. `programming-feedback.js`
-4. `programming-editor.js`
-
-Its additional question types are `predict-output`, `code-gap`, `line-select`, `code-order` and `code-editor`. Each question should identify one of the result skills: `knowledge`, `code-reading` or `coding-debugging`.
-
-To add a language-aware exercise:
-
-1. Keep the concept, prompt, stable question ID, skill and general feedback on the question.
-2. Add one variant under each of `languages.python`, `languages.javascript` and `languages.csharp`.
-3. Put syntax-specific code, starter code, accepted responses, checking rules and feedback inside the variant.
-4. Keep the three variants equivalent in concept and difficulty.
-5. Use valid beginner-level syntax and the established naming and output conventions for each language.
-6. Add resolution and positive and negative marking cases to `foundations-activities.test.js`.
-
-Basic SQL questions stay outside `languages` and use the shared SQL label. A missing required language variant is a data error and prevents the activity from loading with a partially mixed question bank.
-
-Code-editor marking may normalise line endings and harmless whitespace, compare a small accepted-variant list, or apply explicit required and prohibited patterns. Do not create a loose rule that lets a known incorrect solution pass. If an answer cannot be checked reliably without running it, redesign it as a code gap, line selection, ordering or another constrained interaction.
-
-Learner code must never be passed to `eval`, `Function`, dynamic scripts, executable frames, browser runtimes or remote execution services. The editor, checker and feedback modules form an intentional boundary for a possible future reviewed runner, but no runner exists in this phase.
-
-Foundations drafts remain under `tlevel.softwareDevelopment.foundations.v1`, scoped to the current learner context or a guest key. Guest work is adopted when the learner signs in from an activity and no learner-scoped attempt already exists. A completed signed-in result is sent through `api.submit_attempt` with question-level JSON evidence; the server derives identity, assignment, attempt number, totals and timestamps. Failed requests retain the local result and provide a retry control. These records are formative and are not secure assessment evidence.
-
-## Manual checks
-
-Before merging:
-
-- follow every global navigation link;
-- confirm the active page is identified visually and with `aria-current`;
-- check the layout at narrow and wide viewport sizes;
-- navigate from the address bar using only Tab, Shift+Tab, Enter and Escape;
-- confirm the skip link appears on focus and moves focus to main content;
-- open and close the mobile menu, including with Escape;
-- check that headings remain in a sensible hierarchy;
-- inspect the browser console for errors;
-- confirm every stylesheet and script loads from both the home page and nested routes.
-- open Student sign in and submit empty email/password;
-- confirm invalid credentials, missing profile and unavailable-service errors use learner-friendly copy;
-- sign in with an authorised synthetic Auth account without changing real learner records;
-- reload a nested route and confirm the student's name is restored;
-- sign out and confirm the SDK session is cleared;
-- repeat the sign-in checks at a narrow mobile viewport.
-- open all five Foundations activities from the landing page;
-- submit an empty section and confirm the error summary receives focus;
-- complete and retry each supported interaction type;
-- select Python, JavaScript and C# in separate clean attempts and confirm the correct syntax appears;
-- change language after entering an answer and confirm the restart warning prevents mixed-language progress;
-- check predicted output, code gaps, clickable lines, keyboard ordering and code-editor reset;
-- use Ctrl or Command plus Enter in a code field and confirm feedback is announced and focused;
-- complete the Programming Diagnostic and verify topic scores, skill scores and selected language;
-- confirm feedback explains the reason and is not communicated by colour alone;
-- confirm section scores and the final total match the submitted responses;
-- review complex tables, code samples, ordering controls and the ERD at narrow widths;
-- confirm the landing page uses Supabase progress when authenticated and local state as draft fallback;
-- check the browser console throughout a full activity completion.
+This phase does not authorise deployment, commit, or push.
 
 ## Secrets and learner data
 
-Never commit:
-
-- API keys or access tokens;
-- credentials;
-- spreadsheet IDs;
-- real learner records or exported submissions.
-
-The public Apps Script `/exec` URL belongs only in `js/config/student-api-config.js` for rollback. Do not commit a `/dev` URL, spreadsheet ID or backend configuration details. The Supabase publishable key is allowed in `supabase-config.js`; never commit service-role/secret keys, Auth passwords, database passwords, CLI tokens or connection strings.
-
-Use example data only in future development. If a secret is committed accidentally, treat it as exposed: revoke it and follow the repository’s incident process rather than only deleting the file.
+Allowed client configuration is limited to the Supabase project URL and public
+publishable key. Never commit service-role/secret keys, access/refresh tokens,
+database credentials, CLI tokens, Auth passwords, private learner records, or
+exported submissions. If exposed, revoke/rotate the credential; deleting it from
+a later commit is not sufficient.

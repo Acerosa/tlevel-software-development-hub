@@ -4,200 +4,155 @@ const path = require("node:path");
 const test = require("node:test");
 const vm = require("node:vm");
 
-const projectRoot = path.resolve(__dirname, "..");
-const routeFiles = [
-  "index.html",
-  "course-guide/index.html",
-  "foundations/index.html",
-  "foundations/programming-diagnostic/index.html",
-  "foundations/requirements-classification/index.html",
-  "foundations/problem-decomposition/index.html",
-  "foundations/data-design/index.html",
-  "foundations/testing-methods/index.html",
-  "projects/index.html",
-  "task-1/index.html",
-  "task-2/index.html",
-  "task-3/index.html",
-  "assessment-practice/index.html",
-  "resources/index.html",
-  "help/index.html"
-];
+const root = path.resolve(__dirname, "..");
 
-function read(relativePath) {
-  return fs.readFileSync(path.join(projectRoot, relativePath), "utf8");
+function read(file) {
+  return fs.readFileSync(path.join(root, file), "utf8");
 }
 
-function createStorage(initialValue) {
-  var values = new Map();
-  if (initialValue !== undefined) {
-    values.set("tlevel.softwareDevelopment.theme.v1", initialValue);
-  }
+function core() {
+  const sandbox = { console, URL, Date, setTimeout, clearTimeout };
+  vm.createContext(sandbox);
+  vm.runInContext(read("vendor/learning-platform-core/0.1.0/learning-platform-core.iife.js"), sandbox);
+  return sandbox.LearningPlatformCore;
+}
+
+function storage(value) {
+  const values = new Map();
+  if (value !== undefined) values.set("learning-platform.theme.v1", value);
   return {
-    getItem: function (key) { return values.has(key) ? values.get(key) : null; },
-    setItem: function (key, value) { values.set(key, String(value)); },
-    valueFor: function (key) { return values.get(key); }
+    getItem(key) { return values.has(key) ? values.get(key) : null; },
+    setItem(key, next) { values.set(key, String(next)); },
+    removeItem(key) { values.delete(key); }
   };
 }
 
-function createMediaQuery(isDark) {
-  var listeners = [];
-  return {
-    matches: isDark,
-    addEventListener: function (eventName, listener) {
-      if (eventName === "change") listeners.push(listener);
-    },
-    change: function (nextIsDark) {
-      this.matches = nextIsDark;
-      listeners.forEach(function (listener) { listener({ matches: nextIsDark }); });
-    }
+function themeRuntime(stored, dark) {
+  let mediaListener;
+  const runtimeStorage = storage(stored);
+  const rootElement = { dataset: {}, style: { colorScheme: "", setProperty() {} } };
+  const document = { documentElement: rootElement, dispatchEvent() {} };
+  const media = {
+    matches: Boolean(dark),
+    addEventListener(event, listener) { if (event === "change") mediaListener = listener; },
+    removeEventListener() {}
   };
+  const window = {
+    matchMedia() { return media; },
+    CustomEvent: function CustomEvent(type, options) { this.type = type; this.detail = options.detail; }
+  };
+  const service = core().createThemeService({ document, window, storage: runtimeStorage });
+  return { service, rootElement, storage: runtimeStorage, media, change() { mediaListener(); } };
 }
 
-function createDocument() {
-  var attributes = {};
-  var controls = [];
-  var themeColor = {
-    attributes: {},
-    setAttribute: function (name, value) { this.attributes[name] = value; }
+test("the early bootstrap uses the Core theme storage key before deferred scripts", function () {
+  const attributes = {};
+  const window = {
+    localStorage: storage("dark"),
+    matchMedia() { return { matches: false }; }
   };
-  var documentElement = {
-    style: {},
-    setAttribute: function (name, value) { attributes[name] = value; },
-    getAttribute: function (name) { return attributes[name] || null; }
+  const document = {
+    documentElement: { setAttribute(name, value) { attributes[name] = value; } }
   };
-  return {
-    documentElement,
-    themeColor,
-    controls,
-    querySelector: function (selector) {
-      return selector === 'meta[name="theme-color"]' ? themeColor : null;
-    },
-    querySelectorAll: function (selector) {
-      return selector === "[data-theme-select]" ? controls : [];
-    },
-    dispatchEvent: function () {}
-  };
-}
-
-function loadTheme(storedPreference, systemDark) {
-  var document = createDocument();
-  var localStorage = createStorage(storedPreference);
-  var mediaQuery = createMediaQuery(systemDark);
-  var window = {
-    localStorage,
-    document,
-    matchMedia: function () { return mediaQuery; },
-    CustomEvent: function (name, options) { this.name = name; this.detail = options.detail; }
-  };
-  var context = vm.createContext({ window, document, console });
-  vm.runInContext(read("js/core/theme.js"), context, { filename: "js/core/theme.js" });
-  return { document, localStorage, mediaQuery, service: window.ThemeService };
-}
-
-function loadBootstrap(storedPreference, systemDark) {
-  var document = createDocument();
-  var localStorage = createStorage(storedPreference);
-  var mediaQuery = createMediaQuery(systemDark);
-  var window = {
-    localStorage,
-    matchMedia: function () { return mediaQuery; }
-  };
-  vm.runInContext(read("js/core/theme-bootstrap.js"), vm.createContext({ window, document }), {
-    filename: "js/core/theme-bootstrap.js"
-  });
-  return document;
-}
-
-test("the early bootstrap applies the stored or system theme before page rendering", function () {
-  var storedDark = loadBootstrap("dark", false);
-  assert.equal(storedDark.documentElement.getAttribute("data-theme"), "dark");
-  assert.equal(storedDark.documentElement.getAttribute("data-theme-preference"), "dark");
-
-  var systemDark = loadBootstrap(undefined, true);
-  assert.equal(systemDark.documentElement.getAttribute("data-theme"), "dark");
-  assert.equal(systemDark.documentElement.getAttribute("data-theme-preference"), "system");
+  vm.runInNewContext(read("js/core/theme-bootstrap.js"), { window, document });
+  assert.equal(attributes["data-theme"], "dark");
+  assert.equal(attributes["data-theme-preference"], "dark");
+  assert.match(read("js/core/theme-bootstrap.js"), /learning-platform\.theme\.v1/);
 });
 
-test("theme defaults to system and resolves the system preference", function () {
-  var light = loadTheme(undefined, false);
-  assert.equal(light.service.getThemePreference(), "system");
-  assert.equal(light.service.getResolvedTheme(), "light");
-  assert.equal(light.document.documentElement.getAttribute("data-theme"), "light");
-
-  var dark = loadTheme(undefined, true);
-  assert.equal(dark.service.getResolvedTheme(), "dark");
-  assert.equal(dark.document.documentElement.getAttribute("data-theme"), "dark");
+test("the early bootstrap migrates an existing hub theme preference", function () {
+  const values = new Map([["tlevel.softwareDevelopment.theme.v1", "dark"]]);
+  const attributes = {};
+  const window = {
+    localStorage: {
+      getItem(key) { return values.get(key) || null; },
+      setItem(key, value) { values.set(key, value); }
+    },
+    matchMedia() { return { matches: false }; }
+  };
+  const document = { documentElement: { setAttribute(name, value) { attributes[name] = value; } } };
+  vm.runInNewContext(read("js/core/theme-bootstrap.js"), { window, document });
+  assert.equal(attributes["data-theme"], "dark");
+  assert.equal(values.get("learning-platform.theme.v1"), "dark");
 });
 
-test("stored light and dark preferences are applied", function () {
-  var light = loadTheme("light", true);
-  assert.equal(light.service.getThemePreference(), "light");
-  assert.equal(light.document.documentElement.getAttribute("data-theme"), "light");
-
-  var dark = loadTheme("dark", false);
-  assert.equal(dark.service.getThemePreference(), "dark");
-  assert.equal(dark.document.documentElement.getAttribute("data-theme"), "dark");
-});
-
-test("stored system preference remains system while resolving to the current environment", function () {
-  var runtime = loadTheme("system", true);
-  assert.equal(runtime.service.getThemePreference(), "system");
+test("Core theme defaults to system and resolves the operating-system preference", function () {
+  const runtime = themeRuntime(undefined, true);
+  assert.equal(runtime.service.getPreference(), "system");
   assert.equal(runtime.service.getResolvedTheme(), "dark");
-  assert.equal(runtime.document.documentElement.getAttribute("data-theme-preference"), "system");
-  assert.equal(runtime.document.documentElement.getAttribute("data-theme"), "dark");
+  assert.equal(runtime.rootElement.dataset.theme, "dark");
 });
 
-test("invalid stored preference falls back to system", function () {
-  var runtime = loadTheme("neon", false);
-  assert.equal(runtime.service.getThemePreference(), "system");
-  assert.equal(runtime.document.documentElement.getAttribute("data-theme-preference"), "system");
+test("Core theme restores stored light and dark preferences", function () {
+  const light = themeRuntime("light", true);
+  const dark = themeRuntime("dark", false);
+  assert.equal(light.service.getResolvedTheme(), "light");
+  assert.equal(dark.service.getResolvedTheme(), "dark");
 });
 
-test("setting a preference applies and persists without a reload", function () {
-  var runtime = loadTheme("system", false);
-  assert.equal(runtime.service.setThemePreference("dark"), true);
-  assert.equal(runtime.service.getThemePreference(), "dark");
-  assert.equal(runtime.document.documentElement.getAttribute("data-theme"), "dark");
-  assert.equal(runtime.localStorage.valueFor("tlevel.softwareDevelopment.theme.v1"), "dark");
-  assert.equal(runtime.service.setThemePreference("invalid"), false);
-  assert.equal(runtime.service.getThemePreference(), "dark");
+test("Core theme rejects invalid stored preferences", function () {
+  const runtime = themeRuntime("sepia", false);
+  assert.equal(runtime.service.getPreference(), "system");
+  assert.equal(runtime.service.getResolvedTheme(), "light");
 });
 
-test("system changes update the rendered theme without replacing the system preference", function () {
-  var runtime = loadTheme("system", false);
-  runtime.mediaQuery.change(true);
-  assert.equal(runtime.document.documentElement.getAttribute("data-theme"), "dark");
-  assert.equal(runtime.service.getThemePreference(), "system");
-  assert.equal(runtime.localStorage.valueFor("tlevel.softwareDevelopment.theme.v1"), "system");
+test("Core theme persists explicit changes and follows system changes", function () {
+  const runtime = themeRuntime(undefined, false);
+  runtime.service.setPreference("dark");
+  assert.equal(runtime.storage.getItem("learning-platform.theme.v1"), "dark");
+  assert.equal(runtime.rootElement.dataset.theme, "dark");
+
+  runtime.service.setPreference("system");
+  runtime.media.matches = true;
+  runtime.change();
+  assert.equal(runtime.service.getPreference(), "system");
+  assert.equal(runtime.rootElement.dataset.theme, "dark");
 });
 
-test("theme controls are labelled, synchronised and keyboard/select accessible", function () {
-  var runtime = loadTheme("light", false);
-  var changes = [];
-  var control = {
-    value: "",
-    attributes: {},
-    setAttribute: function (name, value) { this.attributes[name] = value; },
-    addEventListener: function (name, listener) { changes.push(listener); }
+test("the hub ThemeService is a thin adapter over platform.theme", function () {
+  const controls = [];
+  const document = { querySelectorAll() { return controls; } };
+  const subscribers = [];
+  const theme = {
+    storageKey: "learning-platform.theme.v1",
+    modes: ["light", "dark", "system"],
+    getPreference() { return "system"; },
+    getResolvedTheme() { return "light"; },
+    apply() { return { resolvedTheme: "light" }; },
+    setPreference() {},
+    subscribe(listener) { subscribers.push(listener); return function () {}; }
   };
-  runtime.document.controls.push(control);
-  runtime.service.attachControls(runtime.document);
-  assert.equal(control.value, "light");
-  assert.equal(control.attributes["aria-label"], "Theme preference: light");
-  control.value = "dark";
-  changes[0]();
-  assert.equal(runtime.service.getThemePreference(), "dark");
-  assert.equal(runtime.document.documentElement.getAttribute("data-theme"), "dark");
+  const window = { LearningPlatform: { platform: { theme } } };
+  vm.runInNewContext(read("js/core/theme.js"), { window, document });
+  assert.equal(window.ThemeService.storageKey, "learning-platform.theme.v1");
+  assert.equal(window.ThemeService.getThemePreference(), "system");
+  assert.equal(subscribers.length, 1);
+  assert.doesNotMatch(read("js/core/theme.js"), /localStorage|matchMedia/);
 });
 
-test("every route includes the early bootstrap and shared theme service", function () {
-  routeFiles.forEach(function (route) {
-    var html = read(route);
-    assert.match(html, /theme-bootstrap\.js/, route);
-    assert.match(html, /theme\.js/, route);
-    assert.match(html, /data-site-header/, route);
-    assert.ok(html.indexOf("theme.js") < html.indexOf("navigation.js"), route + " must load the theme service before navigation");
+test("every route loads the no-flash bootstrap, Core CSS, and theme adapter", function () {
+  const routes = [
+    "index.html",
+    "course-guide/index.html",
+    "foundations/index.html",
+    "foundations/programming-diagnostic/index.html",
+    "foundations/requirements-classification/index.html",
+    "foundations/problem-decomposition/index.html",
+    "foundations/data-design/index.html",
+    "foundations/testing-methods/index.html",
+    "projects/index.html",
+    "task-1/index.html",
+    "task-2/index.html",
+    "task-3/index.html",
+    "assessment-practice/index.html",
+    "resources/index.html",
+    "help/index.html"
+  ];
+  routes.forEach(function (route) {
+    const html = read(route);
+    assert.match(html, /theme-bootstrap\.js\?v=2/);
+    assert.match(html, /vendor\/learning-platform-core\/0\.1\.0\/theme\.css/);
+    assert.ok(html.indexOf("theme-bootstrap.js") < html.indexOf("learning-platform-core.iife.js"));
+    assert.ok(html.indexOf("learning-platform-core.iife.js") < html.indexOf("js/core/theme.js?v=2"));
   });
-  assert.match(read("js/core/navigation.js"), /data-theme-select/);
-  assert.match(read("js/core/theme.js"), /tlevel\.softwareDevelopment\.theme\.v1/);
 });

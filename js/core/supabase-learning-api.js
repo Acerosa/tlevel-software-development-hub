@@ -2,8 +2,9 @@
   "use strict";
 
   var config = window.SUPABASE_CONFIG || {};
-  var client = window.SupabaseClient;
-  var auth = window.SupabaseAuth;
+  var platform = window.LearningPlatform && window.LearningPlatform.platform;
+  var client = platform && platform.client;
+  var auth = platform && platform.auth;
 
   function SupabaseLearningError(code, message) {
     this.name = "SupabaseLearningError";
@@ -46,10 +47,8 @@
   function canSubmit(result) {
     return Boolean(
       client &&
-      client.isConfigured() &&
-      (auth && auth.isAuthenticated
-        ? auth.isAuthenticated()
-        : client.hasSession && client.hasSession()) &&
+      typeof client.schema === "function" &&
+      auth && auth.isSignedIn() &&
       result &&
       isEnabledFor(result.activityId)
     );
@@ -143,12 +142,10 @@
       return Promise.reject(new SupabaseLearningError("AUTHENTICATION_REQUIRED"));
     }
 
-    return client.request("/rest/v1/rpc/submit_attempt", {
-      method: "POST",
-      schema: "api",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    }).then(safeSubmission).catch(function (error) {
+    return client.schema("api").rpc("submit_attempt", payload).then(function (result) {
+      if (result.error) throw result.error;
+      return safeSubmission(result.data);
+    }).catch(function (error) {
       if (error && error.name === "SupabaseLearningError") {
         throw error;
       }
@@ -156,34 +153,10 @@
     });
   }
 
-  function getMyActivityProgress() {
-    return client.request(
-      "/rest/v1/my_activity_progress?select=*",
-      { schema: "api" }
-    );
-  }
-
-  function getMyAttempts() {
-    return client.request(
-      "/rest/v1/my_attempts?select=*&order=received_at.asc",
-      { schema: "api" }
-    );
-  }
-
-  function getMyAssignments() {
-    return client.request(
-      "/rest/v1/my_assignments?select=*&order=activity_key.asc",
-      { schema: "api" }
-    );
-  }
-
   window.SupabaseLearningApi = Object.freeze({
     isEnabledFor: isEnabledFor,
     canSubmit: canSubmit,
     submitResult: submitResult,
-    getMyActivityProgress: getMyActivityProgress,
-    getMyAttempts: getMyAttempts,
-    getMyAssignments: getMyAssignments,
     Error: SupabaseLearningError
   });
 })();

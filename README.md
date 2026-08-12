@@ -1,75 +1,95 @@
 # T Level Digital Software Development Hub
 
-A GitHub Pages learning hub for the Pearson T Level Digital Software Development Occupational Specialism.
+The learner hub for the Pearson T Level Digital Software Development
+Occupational Specialism. It is a static GitHub Pages application and the first
+hub integration for the shared Learning Platform.
 
-## Purpose
+## Responsibilities
 
-The hub provides one accessible route through technical foundations, projects, Tasks 1 to 3, assessment practice and supporting resources. It includes the reusable application shell, a Supabase Auth session foundation, and a complete Software Development Foundations activity suite.
+This repository owns curriculum-specific routes, Foundations activity content,
+deterministic formative marking, programming exercise UI, and browser draft
+recovery. It does not own learner identity, enrolments, assignments, backend
+progress, or platform administration.
 
-Learners authenticate with a Supabase Auth session and resolve their safe profile through the exposed `api` views. Public study pages remain available without signing in. Signed-in learners can save completed Foundations scores and question-level evidence as formative learning records.
+Shared platform behaviour comes from:
 
-## Technologies
+- `learning-platform-core` 0.1.0 for Supabase Auth/session restoration, staged
+  learner onboarding, learner context, theme behaviour, shared account UI,
+  platform state, and learner API services;
+- `learning-platform-backend` learner API contract 0.1.0 for controlled
+  registration, profiles, enrolments, assignments, attempts, responses, and
+  progress.
 
-- semantic HTML5
-- modern CSS
-- vanilla JavaScript
-- GitHub Pages
+The reviewed repository metadata is declared in
+[`learning-platform-hub.json`](learning-platform-hub.json). The backend remains
+the authoritative runtime hub registry; GitHub is not a runtime dependency.
 
-The site uses no framework, package dependency, external font or build step.
+## Current learner functionality
 
-## Current status
+- Supabase registration, email-confirmation continuation, sign in/out, and
+  session restoration;
+- controlled onboarding through backend registration options;
+- backend-derived learner profile, enrolment, assignment, attempt, response,
+  and progress context;
+- five data-driven Foundations activities, including Python, JavaScript, and C#
+  programming diagnostics;
+- local draft recovery and retry-safe formative submissions;
+- responsive navigation and light/dark/system themes.
 
-**Phase 1: Technical Foundations**
+The curriculum routes remain public. A signed-in, onboarded learner can submit
+completed Foundations attempts through `api.submit_attempt`; the backend derives
+the authenticated learner and assignment.
 
-Available shell routes:
+## Static Core dependency
 
-- Course Guide
-- Foundations
-- Projects
-- Task 1
-- Task 2
-- Task 3
-- Assessment Practice
-- Resources
-- Help
+GitHub Pages has no package installation or build step, so the reviewed Core
+browser assets are vendored under
+`vendor/learning-platform-core/0.1.0/`. Their provenance and upstream commit are
+recorded beside the assets. Supabase JS is loaded at the exact browser version
+supported by the integration.
 
-Software Development Foundations includes:
+This keeps deployment self-contained and prevents GitHub, npm, or the Core
+repository from becoming runtime dependencies.
 
-- Programming Diagnostic covering seven topics with Python, JavaScript or C# code reading, completion, debugging and small coding exercises
-- Requirements Classification
-- Problem Decomposition
-- Data Design Knowledge Check
-- Testing Methods Classification
-
-The five data-driven activities provide immediate explanatory feedback, section results, review and retry controls, browser-local draft recovery and Supabase-backed progress. Completed attempts use one shared `api.submit_attempt` adapter and preserve heterogeneous question evidence. Failed submissions remain local and expose a retry control. They are formative learning activities rather than official Pearson assessment material. The other curriculum routes remain lightweight placeholders for later components.
-
-## Run locally
-
-From the project root:
+## Run and test
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000/`.
-
-Run the dependency-free checks with:
+Open `http://localhost:8000/`, then run:
 
 ```bash
-node --test test/student-foundation.test.js test/site-integrity.test.js test/foundations-activities.test.js
+node --test
 ```
 
-## Student API configuration
+The Node suite checks route integrity, Core loading order, authentication and
+learner-context adapters, onboarding composition, activity behaviour,
+submissions, progress, manifest consistency, and the static GitHub Pages build.
+Database tests under `supabase/tests/` are retained for local contract
+verification; production schema changes belong to `learning-platform-backend`.
 
-The browser-safe Supabase project URL and publishable key are configured in `js/config/supabase-config.js`. The legacy Google Apps Script `/exec` URL remains in `js/config/student-api-config.js` for the documented rollback path only.
+## Submission compatibility boundary
+
+The deployed submission contract 0.1.0 still requires the hub's formative
+`awarded_score` and `is_correct` fields. `js/core/supabase-learning-api.js` is a
+small, isolated compatibility adapter that uses the Core-owned Supabase client
+and calls only `api.submit_attempt`. It never sends learner, enrolment,
+assignment, attempt-number, or total-score identity fields.
+
+Core's evidence-only submission service cannot replace this adapter until a
+reviewed backend contract accepts neutral evidence and performs authoritative
+marking. Removing it earlier would break existing submissions.
 
 ## Documentation
 
 - [Application architecture](docs/ARCHITECTURE.md)
-- [Development guide](docs/DEVELOPMENT.md)
+- [Development and verification](docs/DEVELOPMENT.md)
 
 ## Security
 
-Do not commit credentials, spreadsheet IDs, learner data or exported submissions. The Supabase publishable key is browser-safe; service-role/secret keys, database passwords and CLI tokens are never client configuration. The Supabase SDK manages Auth persistence. Browser drafts remain local, while authoritative attempts, responses and progress are stored through the scoped `api` views/RPC.
-
-The current architecture, endpoint mapping, onboarding path, rollback procedure and limitations are documented in [docs/supabase-frontend-migration.md](docs/supabase-frontend-migration.md).
+Only the browser-safe Supabase project URL and publishable key are client
+configuration. Never commit service-role keys, access tokens, database
+passwords, Auth passwords, private learner records, or exported submissions.
+Supabase JS owns session persistence; learner identity is derived from the
+authenticated user by backend API/RLS policy.

@@ -1,4 +1,8 @@
-# Supabase/PostgreSQL architecture proposal
+# Supabase/PostgreSQL architecture proposal (historical)
+
+> This proposal predates the shared Core integration and backend-owned platform
+> contracts. See [ARCHITECTURE.md](ARCHITECTURE.md) for the current repository
+> boundary.
 
 **Status:** Design proposal only
 

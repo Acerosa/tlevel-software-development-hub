@@ -10,94 +10,71 @@ function read(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
 }
 
-function run(context, file) {
-  vm.runInContext(read(file), context, { filename: path.join(root, file) });
+function run(window, file) {
+  const context = vm.createContext({ window, console, Promise, Object, Array, JSON });
+  vm.runInContext(read(file), context, { filename: file });
+  return window;
 }
 
-function context(windowOverrides) {
-  const window = Object.assign({ setTimeout, clearTimeout }, windowOverrides || {});
-  return { window, context: vm.createContext({ window, console, setTimeout, clearTimeout }) };
-}
-
-test("all five Foundations routes use the Supabase boundary", function () {
-  const routes = [
+test("all Foundations routes load pinned Core before hub compatibility adapters", function () {
+  [
     "foundations/requirements-classification/index.html",
     "foundations/problem-decomposition/index.html",
     "foundations/data-design/index.html",
     "foundations/testing-methods/index.html",
     "foundations/programming-diagnostic/index.html"
-  ];
-  routes.forEach(function (route) {
+  ].forEach(function (route) {
     const html = read(route);
-    assert.match(html, /supabase-config\.js/);
-    assert.match(html, /supabase-client\.js/);
-    assert.match(html, /supabase-auth\.js/);
-    assert.match(html, /supabase-learning-api\.js/);
-    assert.match(html, /learning-api\.js/);
+    const indexes = [
+      html.indexOf("@supabase/supabase-js@2.112.3"),
+      html.indexOf("learning-platform-core.iife.js"),
+      html.indexOf("platform.js"),
+      html.indexOf("student-context.js"),
+      html.indexOf("supabase-learning-api.js"),
+      html.indexOf("learning-api.js"),
+      html.indexOf("activity-engine.js")
+    ];
+    assert.ok(indexes.every(function (index) { return index >= 0; }), route + " is missing an integration asset");
+    assert.deepEqual(indexes.slice().sort(function (a, b) { return a - b; }), indexes, route + " has an invalid load order");
   });
-  const config = read("js/config/supabase-config.js");
-  assert.match(config, /backend:\s*"supabase"/);
-  assert.match(config, /foundations-problem-decomposition/);
-  assert.match(config, /foundations-data-design/);
-  assert.match(config, /foundations-testing-methods/);
-  assert.match(config, /foundations-programming-diagnostic/);
-  assert.doesNotMatch(config, /sb_secret_|service_role|SUPABASE_DB_PASSWORD|postgresql:\/\//i);
 });
 
-test("LearningApi defaults to Supabase and only uses Apps Script in explicit rollback mode", function () {
-  const runtime = context({
-    SUPABASE_CONFIG: { backend: "supabase" },
-    SupabaseLearningApi: {
-      canSubmit: function () { return true; },
-      submitResult: function () { return Promise.resolve({}); }
-    },
-    STUDENT_API_CONFIG: { apiUrl: "https://legacy.example/exec" },
-    StudentContext: { getStudentId: function () { return "SYNTH-0001"; } }
-  });
-  run(runtime.context, "js/core/learning-api.js");
-  const result = { activityId: "foundations-data-design" };
-  assert.equal(runtime.window.LearningApi.modeFor(result), "supabase");
-
-  const rollback = context({
-    SUPABASE_CONFIG: { backend: "apps-script" },
-    SupabaseLearningApi: { canSubmit: function () { return true; } },
-    STUDENT_API_CONFIG: { apiUrl: "https://legacy.example/exec" },
-    StudentContext: { getStudentId: function () { return "SYNTH-0001"; } }
-  });
-  run(rollback.context, "js/core/learning-api.js");
-  assert.equal(rollback.window.LearningApi.modeFor(result), "legacy");
-});
-
-test("Supabase submission preserves heterogeneous evidence and programming language", async function () {
-  const requests = [];
-  const runtime = context({
+test("the submission bridge preserves required evidence and programming language", async function () {
+  const calls = [];
+  const client = {
+    schema(schema) {
+      assert.equal(schema, "api");
+      return {
+        rpc(name, payload) {
+          calls.push({ name, payload });
+          return Promise.resolve({
+            data: [{
+              client_attempt_id: "programming-synthetic-1",
+              activity_key: "foundations-programming-diagnostic",
+              attempt_number: 1,
+              score: 3,
+              max_score: 3,
+              received_at: "2026-08-09T12:00:00.000Z",
+              idempotent: false
+            }],
+            error: null
+          });
+        }
+      };
+    }
+  };
+  const window = {
     SUPABASE_CONFIG: {
-      backend: "supabase",
-      projectUrl: "https://hubwpkrqndorznwzvaer.supabase.co",
-      publishableKey: "sb_publishable_test",
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example",
       enabledActivities: ["foundations-programming-diagnostic"]
     },
-    SupabaseClient: {
-      isConfigured: function () { return true; },
-      hasSession: function () { return true; },
-      request: function (url, options) {
-        requests.push({ url, options });
-        return Promise.resolve([{
-          client_attempt_id: "programming-synthetic-1",
-          activity_key: "foundations-programming-diagnostic",
-          attempt_number: 1,
-          score: 3,
-          max_score: 3,
-          received_at: "2026-08-09T12:00:00.000Z",
-          idempotent: false
-        }]);
-      }
-    },
-    SupabaseAuth: { isAuthenticated: function () { return true; } },
+    LearningPlatform: { platform: { client, auth: { isSignedIn() { return true; } } } },
     location: { pathname: "/foundations/programming-diagnostic/" }
-  });
-  run(runtime.context, "js/core/supabase-learning-api.js");
-  await runtime.window.SupabaseLearningApi.submitResult({
+  };
+  run(window, "js/core/supabase-learning-api.js");
+
+  const response = await window.SupabaseLearningApi.submitResult({
     activityId: "foundations-programming-diagnostic",
     activityVersion: "2.0.0",
     attemptId: "programming-synthetic-1",
@@ -110,49 +87,86 @@ test("Supabase submission preserves heterogeneous evidence and programming langu
       { questionId: "FOUND-PROG-003", response: { source: "print(3)" }, correct: true, score: 1 }
     ]
   });
-  const body = JSON.parse(requests[0].options.body);
-  assert.equal(body.p_programming_language, "python");
-  assert.deepEqual(body.p_responses.map(function (item) { return item.response_payload; }), [
-    "3", ["a", "b"], { source: "print(3)" }
-  ]);
-  assert.doesNotMatch(JSON.stringify(body), /student_id|enrolment_id|assignment_id|attempt_number|service_role/i);
+
+  assert.equal(calls[0].name, "submit_attempt");
+  assert.equal(calls[0].payload.p_programming_language, "python");
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(calls[0].payload.p_responses.map(function (item) { return item.response_payload; }))),
+    ["3", ["a", "b"], { source: "print(3)" }]
+  );
+  assert.equal(response.attemptId, "programming-synthetic-1");
+  assert.doesNotMatch(JSON.stringify(calls[0].payload), /student_id|learner_id|enrolment_id|assignment_id|attempt_number|total_score|service_role/i);
 });
 
-test("analytics service exposes only API view calls", async function () {
+test("the submission bridge refuses anonymous and unsupported activity submissions", async function () {
+  const window = {
+    SUPABASE_CONFIG: { enabledActivities: ["foundations-data-design"] },
+    LearningPlatform: {
+      platform: {
+        client: { schema() { throw new Error("must not call backend"); } },
+        auth: { isSignedIn() { return false; } }
+      }
+    },
+    location: { pathname: "/foundations/data-design/" }
+  };
+  run(window, "js/core/supabase-learning-api.js");
+  await assert.rejects(
+    window.SupabaseLearningApi.submitResult({ activityId: "foundations-data-design" }),
+    function (error) { return error.code === "VALIDATION_FAILED" || error.code === "AUTHENTICATION_REQUIRED"; }
+  );
+  assert.equal(window.SupabaseLearningApi.canSubmit({ activityId: "not-enabled" }), false);
+});
+
+test("learner analytics delegates to Core progress and assignment services", async function () {
   const calls = [];
-  const runtime = context({
-    SupabaseClient: {
-      request: function (url, options) {
-        calls.push({ url, options });
-        return Promise.resolve([]);
+  const window = {
+    LearningPlatform: {
+      platform: {
+        progress: {
+          getProgress() { calls.push("progress"); return Promise.resolve([{ activity_key: "a" }]); },
+          getAttempts() { calls.push("attempts"); return Promise.resolve([{ activity_key: "a" }]); }
+        },
+        assignment: {
+          getAssignments() { calls.push("assignments"); return Promise.resolve([{ activity_key: "a" }]); }
+        }
       }
     }
-  });
-  run(runtime.context, "js/core/supabase-analytics.js");
-  await runtime.window.SupabaseAnalytics.studentProgress();
-  await runtime.window.SupabaseAnalytics.teacherAnalytics();
-  assert.equal(calls.length, 10);
-  assert.ok(calls.every(function (call) {
-    return call.url.indexOf("/rest/v1/") === 0 && call.options.schema === "api";
-  }));
-  assert.equal(calls.some(function (call) { return call.url.indexOf("/learning/") !== -1; }), false);
-  assert.equal(calls.some(function (call) { return call.url.indexOf("teacher_group_question_analytics") !== -1; }), true);
+  };
+  run(window, "js/core/supabase-analytics.js");
+  const result = await window.SupabaseAnalytics.studentProgress();
+  assert.deepEqual(calls, ["progress", "attempts", "assignments"]);
+  assert.equal(result.activities.length, 1);
+  assert.equal(result.attempts.length, 1);
+  assert.equal(result.assignments.length, 1);
+  assert.doesNotMatch(read("js/core/supabase-analytics.js"), /teacher_group|\.from\(|\/rest\/v1/);
 });
 
-test("Supabase Auth context does not promote a legacy student session", function () {
-  const legacy = JSON.stringify({ studentId: "LEGACY-001" });
-  const runtime = context({
-    SUPABASE_CONFIG: { backend: "supabase" },
-    SupabaseAuth: {
-      subscribe: function (listener) { listener({ profile: null }); return function () {}; },
-      getLearnerContext: function () { return null; }
-    },
-    StudentSession: {
-      getStudentSession: function () { return JSON.parse(legacy); },
-      saveStudentSession: function () { throw new Error("legacy session must not be used"); }
-    }
+test("the obsolete Apps Script and local learner-session compatibility is removed", function () {
+  const files = [
+    "js/config/student-api-config.js",
+    "js/core/student-api.js",
+    "js/core/student-session.js",
+    "js/core/supabase-client.js",
+    "js/core/supabase-auth.js"
+  ];
+  files.forEach(function (file) {
+    assert.equal(fs.existsSync(path.join(root, file)), false, file + " should be removed");
   });
-  run(runtime.context, "js/core/student-context.js");
-  assert.equal(runtime.window.StudentContext.getCurrentStudent(), null);
-  assert.equal(runtime.window.StudentContext.getStudentId(), null);
+  const activeSource = [
+    "js/core/platform.js",
+    "js/core/student-context.js",
+    "js/core/learning-api.js"
+  ].map(read).join("\n");
+  assert.doesNotMatch(activeSource, /script\.google\.com|apps-script|StudentSession|refreshToken|accessToken/i);
+});
+
+test("the canonical manifest contains only generic LHDS metadata", function () {
+  const manifest = JSON.parse(read("learning-platform-hub.json"));
+  assert.equal(manifest.manifestVersion, "1.0.0");
+  assert.equal(manifest.hubId, "tlevel-software-development");
+  assert.equal(manifest.repositoryUrl, "https://github.com/Acerosa/tlevel-software-development-hub");
+  assert.equal(manifest.deploymentUrl, "https://acerosa.github.io/tlevel-software-development-hub");
+  assert.deepEqual(manifest.courses, ["t-level-digital-software-development"]);
+  assert.equal(manifest.compatibility.required.coreVersion, "0.1.0");
+  assert.doesNotMatch(JSON.stringify(manifest), /questionBank|week|taskContent|supabaseUrl|publishableKey/i);
 });

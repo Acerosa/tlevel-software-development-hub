@@ -219,19 +219,18 @@ test("fixtures are synthetic and contain no reusable password or secret", functi
   assert.match(seed, /encrypted_password,[\s\S]*?null,/i);
 });
 
-test("the legacy fallback remains intact beside the explicit Supabase Auth boundary", function () {
+test("the Core integration removes the legacy identity and Apps Script fallback", function () {
   const productionBoundary = [
+    "js/core/platform.js",
     "js/core/learning-api.js",
-    "js/core/student-api.js",
-    "js/core/student-session.js",
-    "js/core/supabase-client.js",
+    "js/core/student-context.js",
     "js/core/supabase-learning-api.js"
   ].map(read).join("\n");
 
   assert.match(productionBoundary, /submitResult/);
-  assert.match(productionBoundary, /StudentSession/);
-  assert.match(productionBoundary, /SupabaseLearningApi/);
-  assert.match(productionBoundary, /auth\.uid\(\)|accessToken/);
+  assert.match(productionBoundary, /LearningPlatformCore/);
+  assert.match(productionBoundary, /auth\.isSignedIn\(\)/);
+  assert.doesNotMatch(productionBoundary, /StudentSession|Apps Script|script\.google\.com|accessToken/);
   assert.doesNotMatch(productionBoundary, /service_role|sb_secret_/i);
   assert.doesNotMatch(
     read("js/core/supabase-learning-api.js"),

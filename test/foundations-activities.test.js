@@ -488,13 +488,15 @@ test("each activity route loads shared behaviour before its own data and engine"
 test("activity results use the shared learning adapter with retry and identity rebinding", function () {
   const engine = read("js/activities/activity-engine.js");
   const learningApi = read("js/core/learning-api.js");
+  const submissionApi = read("js/core/supabase-learning-api.js");
 
   assert.match(engine, /learningApi\.submitResult\(attempt\.result\)/);
   assert.match(engine, /StudentContext\.subscribe\(rebindLearnerState\)/);
   assert.match(engine, /retry-submission/);
-  assert.match(learningApi, /action: "submitResult"/);
-  assert.match(learningApi, /studentContext\.getStudentId\(\)/);
-  assert.doesNotMatch(learningApi, /displayName/);
+  assert.match(learningApi, /submission\.submitResult\(result\)/);
+  assert.match(submissionApi, /client\.schema\("api"\)\.rpc\("submit_attempt", payload\)/);
+  assert.match(submissionApi, /auth\.isSignedIn\(\)/);
+  assert.doesNotMatch(submissionApi, /studentId|student_id|enrolment_id|assignment_id/);
 });
 
 test("Programming Diagnostic loads its editor, checker and feedback layers separately", function () {

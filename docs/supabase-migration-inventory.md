@@ -1,4 +1,8 @@
-# Supabase migration inventory
+# Supabase migration inventory (historical)
+
+> This inventory is retained as migration history. Production schema and learner
+> API ownership now live in `learning-platform-backend`; see
+> [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Purpose and inspected sources
 
