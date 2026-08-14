@@ -465,24 +465,29 @@ test("each activity route loads shared behaviour before its own data and engine"
     "data-design": "data-design.js",
     "testing-methods": "testing-methods.js"
   };
+  const bootstrap = read("src/activities/bootstrap.ts");
+  const page = read("src/pages/FoundationActivityPage.tsx");
+  const main = read("src/main.tsx");
 
   Object.entries(routeData).forEach(function ([route, dataFile]) {
     const html = read("foundations/" + route + "/index.html");
-    const markingIndex = html.indexOf("activity-marking.js");
-    const stateIndex = html.indexOf("activity-state.js");
-    const learningApiIndex = html.indexOf("learning-api.js");
-    const dataIndex = html.indexOf(dataFile);
-    const engineIndex = html.indexOf("activity-engine.js");
+    const markingIndex = bootstrap.indexOf("activity-marking.js");
+    const stateIndex = bootstrap.indexOf("activity-state.js");
+    const learningApiIndex = bootstrap.indexOf("learning-api.js");
+    const dataIndex = bootstrap.indexOf(dataFile);
+    const engineIndex = bootstrap.indexOf("activity-engine.js");
 
+    assert.match(html, /data-activity="/);
+    assert.match(html, new RegExp('data-activity="' + route + '"'));
     assert.ok(markingIndex > -1);
     assert.ok(stateIndex > markingIndex);
     assert.ok(learningApiIndex > -1);
     assert.ok(learningApiIndex < engineIndex);
     assert.ok(dataIndex > stateIndex);
     assert.ok(engineIndex > dataIndex);
-    assert.match(html, /data-foundation-activity/);
-    assert.match(html, /activities\.css/);
   });
+  assert.match(page, /data-foundation-activity/);
+  assert.match(main, /activities\.css/);
 });
 
 test("activity results use the shared learning adapter with retry and identity rebinding", function () {
@@ -500,12 +505,12 @@ test("activity results use the shared learning adapter with retry and identity r
 });
 
 test("Programming Diagnostic loads its editor, checker and feedback layers separately", function () {
-  const html = read("foundations/programming-diagnostic/index.html");
-  const checkerIndex = html.indexOf("programming-checker.js");
-  const feedbackIndex = html.indexOf("programming-feedback.js");
-  const editorIndex = html.indexOf("programming-editor.js");
-  const dataIndex = html.indexOf("programming-diagnostic.js");
-  const engineIndex = html.indexOf("activity-engine.js");
+  const bootstrap = read("src/activities/bootstrap.ts");
+  const checkerIndex = bootstrap.indexOf("programming-checker.js");
+  const feedbackIndex = bootstrap.indexOf("programming-feedback.js");
+  const editorIndex = bootstrap.indexOf("programming-editor.js");
+  const dataIndex = bootstrap.indexOf("programming-diagnostic.js");
+  const engineIndex = bootstrap.indexOf("activity-engine.js");
 
   assert.ok(checkerIndex > -1);
   assert.ok(feedbackIndex > checkerIndex);

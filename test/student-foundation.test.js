@@ -149,11 +149,14 @@ test("StudentContext clears display state on Core sign-out", async function () {
 
 test("shared account UI composes Core Auth, learner context, and onboarding", function () {
   const source = read("js/core/student-ui.js");
-  const styles = read("css/main.css");
+  const hook = read("src/hooks/useHubPlatform.ts");
+  const styles = read("css/main.css") + read("css/hub.css");
   assert.match(source, /core\.createAccountDialog/);
   assert.match(source, /authService:\s*platform\.auth/);
   assert.match(source, /learnerContext:\s*platform\.learner/);
   assert.match(source, /onboardingService:\s*platform\.onboarding/);
+  assert.match(hook, /createAccountDialog/);
+  assert.match(hook, /authService:\s*platform\.auth/);
   assert.doesNotMatch(source, /localStorage|accessToken|refreshToken|studentId\s*:/);
   assert.match(styles, /\.lp-form__field\[hidden\][\s\S]*display:\s*none\s*!important/);
 });

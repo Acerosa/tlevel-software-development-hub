@@ -130,7 +130,7 @@ test("the hub ThemeService is a thin adapter over platform.theme", function () {
   assert.doesNotMatch(read("js/core/theme.js"), /localStorage|matchMedia/);
 });
 
-test("every route loads the no-flash bootstrap, Core CSS, and theme adapter", function () {
+test("every route loads the no-flash bootstrap before the Vite module entry", function () {
   const routes = [
     "index.html",
     "course-guide/index.html",
@@ -151,8 +151,11 @@ test("every route loads the no-flash bootstrap, Core CSS, and theme adapter", fu
   routes.forEach(function (route) {
     const html = read(route);
     assert.match(html, /theme-bootstrap\.js\?v=2/);
-    assert.match(html, /vendor\/learning-platform-core\/0\.1\.0\/theme\.css/);
-    assert.ok(html.indexOf("theme-bootstrap.js") < html.indexOf("learning-platform-core.iife.js"));
-    assert.ok(html.indexOf("learning-platform-core.iife.js") < html.indexOf("js/core/theme.js?v=2"));
+    assert.match(html, /type="module"/);
+    assert.ok(html.indexOf("theme-bootstrap.js") < html.indexOf("src/main.tsx"));
   });
+  const main = read("src/main.tsx");
+  assert.match(main, /@learning-platform\/core\/theme\.css/);
+  assert.match(main, /\.\/theme-bootstrap/);
+  assert.match(read("js/core/theme.js"), /platform\.theme/);
 });

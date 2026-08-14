@@ -76,16 +76,34 @@ function loadWindowScript(filePath, seedWindow) {
   return context.window;
 }
 
-function lastCommitFor(filePath) {
-  try {
-    return execFileSync(
-      'git',
-      ['log', '-1', '--format=%H', '--', path.relative(projectRoot, filePath)],
-      { cwd: projectRoot, encoding: 'utf8' }
-    ).trim() || null;
-  } catch (error) {
-    return null;
+function sourceCommitSha(gitPath) {
+  const relativePath = String(gitPath || '').replaceAll('\\', '/');
+  if (!relativePath || relativePath.startsWith('/') || relativePath.includes('..')) {
+    throw new Error('FOUNDATIONS_MANIFEST_GIT_PATH_INVALID:' + relativePath);
   }
+
+  let sha = '';
+  try {
+    sha = execFileSync(
+      'git',
+      ['log', '-1', '--no-merges', '--format=%H', '--', relativePath],
+      { cwd: projectRoot, encoding: 'utf8' }
+    ).trim();
+  } catch (error) {
+    sha = '';
+  }
+
+  if (!/^[0-9a-f]{40}$/.test(sha)) {
+    throw new Error(
+      'FOUNDATIONS_MANIFEST_COMMIT_UNRESOLVED:' + relativePath +
+      '. gitCommitSha is the last non-merge commit that changed that source file, not checkout HEAD.'
+    );
+  }
+  return sha;
+}
+
+function lastCommitFor(filePath) {
+  return sourceCommitSha(path.relative(projectRoot, filePath));
 }
 
 function requirementsQuestionId(ordinal) {
@@ -474,5 +492,6 @@ if (require.main === module) {
 module.exports = Object.freeze({
   buildManifest,
   sqlMigration,
-  writeGeneratedFiles
+  writeGeneratedFiles,
+  sourceCommitSha
 });

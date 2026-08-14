@@ -139,11 +139,34 @@ test("the manifest uses only Git-grounded sections, skills and languages", funct
 });
 
 test("the committed manifest and SQL import are deterministic generator output", function () {
+  const { execFileSync } = require("node:child_process");
   const generator = require("../scripts/build-foundations-manifest.js");
   const generatedManifest = generator.buildManifest();
   const committedManifest = read("supabase/data/foundations-manifest.json");
   const committedMigration = read(
     "supabase/migrations/20260809000800_import_foundations_manifest.sql"
+  );
+  const checkoutHead = execFileSync("git", ["rev-parse", "HEAD"], {
+    cwd: projectRoot,
+    encoding: "utf8"
+  }).trim();
+
+  generatedManifest.activities.forEach(function (activity) {
+    const sourceSha = execFileSync(
+      "git",
+      ["log", "-1", "--no-merges", "--format=%H", "--", activity.gitPath],
+      { cwd: projectRoot, encoding: "utf8" }
+    ).trim();
+    assert.match(activity.gitPath, /^js\/data\/foundations\/[a-z0-9-]+\.js$/);
+    assert.equal(activity.version.gitCommitSha, sourceSha, activity.gitPath);
+    assert.equal(activity.version.gitCommitSha, generator.sourceCommitSha(activity.gitPath));
+  });
+  assert.equal(
+    generatedManifest.activities.every(function (activity) {
+      return activity.version.gitCommitSha === checkoutHead;
+    }),
+    false,
+    "gitCommitSha must not collapse to checkout HEAD for every activity"
   );
 
   assert.equal(

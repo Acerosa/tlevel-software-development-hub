@@ -16,7 +16,7 @@ function run(window, file) {
   return window;
 }
 
-test("all Foundations routes load pinned Core before hub compatibility adapters", function () {
+test("all Foundations routes are Vite shells that keep activity adapters in bootstrap order", function () {
   [
     "foundations/requirements-classification/index.html",
     "foundations/problem-decomposition/index.html",
@@ -25,18 +25,22 @@ test("all Foundations routes load pinned Core before hub compatibility adapters"
     "foundations/programming-diagnostic/index.html"
   ].forEach(function (route) {
     const html = read(route);
-    const indexes = [
-      html.indexOf("@supabase/supabase-js@2.112.3"),
-      html.indexOf("learning-platform-core.iife.js"),
-      html.indexOf("platform.js"),
-      html.indexOf("student-context.js"),
-      html.indexOf("supabase-learning-api.js"),
-      html.indexOf("learning-api.js"),
-      html.indexOf("activity-engine.js")
-    ];
-    assert.ok(indexes.every(function (index) { return index >= 0; }), route + " is missing an integration asset");
-    assert.deepEqual(indexes.slice().sort(function (a, b) { return a - b; }), indexes, route + " has an invalid load order");
+    assert.match(html, /type="module"/);
+    assert.match(html, /src\/main\.tsx/);
+    assert.match(html, /data-page="foundations"/);
+    assert.match(html, /data-activity="/);
   });
+  const adapters = read("src/adapters/load-hub-adapters.ts");
+  const bootstrap = read("src/activities/bootstrap.ts");
+  const source = adapters + "\n" + bootstrap;
+  const indexes = [
+    source.indexOf("student-context.js"),
+    source.indexOf("supabase-learning-api.js"),
+    source.indexOf("learning-api.js"),
+    source.indexOf("activity-engine.js")
+  ];
+  assert.ok(indexes.every(function (index) { return index >= 0; }), "activity bootstrap is missing an integration asset");
+  assert.deepEqual(indexes.slice().sort(function (a, b) { return a - b; }), indexes, "activity bootstrap has an invalid load order");
 });
 
 test("the submission bridge preserves required evidence and programming language", async function () {

@@ -1,0 +1,102 @@
+.lp-navigation {
+  border-top: 0.3rem solid var(--colour-header-top);
+  border-bottom: 0.2rem solid var(--colour-teal);
+  border-block-width: 0;
+  background: var(--colour-navy);
+  color: var(--colour-header-text);
+  box-shadow: none;
+}
+
+.lp-navigation__brand-title,
+.lp-navigation__link,
+.lp-theme-control,
+.student-account__name {
+  color: var(--colour-header-text);
+}
+
+.lp-navigation__brand-tagline {
+  color: var(--colour-header-muted);
+}
+
+.lp-navigation__link:hover {
+  background: var(--colour-header-hover);
+}
+
+.lp-navigation__link[aria-current="page"] {
+  box-shadow: inset 0 -0.2rem var(--colour-header-accent);
+}
+
+.lp-navigation .lp-button--secondary {
+  border-color: var(--colour-header-border);
+  color: var(--colour-header-text);
+}
+
+.lp-navigation .lp-button--secondary:hover:not(:disabled) {
+  background: var(--colour-header-hover);
+}
+
+.lp-theme-control select {
+  border-color: var(--colour-header-border);
+  background: var(--colour-header-surface);
+  color: var(--colour-header-text);
+}
+
+.lp-shell__main.site-main {
+  display: block;
+  max-width: none;
+  padding: 0;
+  min-width: 0;
+}
+
+.lp-page-header,
+.lp-breadcrumbs {
+  width: min(calc(100% - 2rem), var(--page-width));
+  margin-inline: auto;
+}
+
+.lp-learner-header {
+  width: min(calc(100% - 2rem), var(--page-width));
+  margin: var(--lp-space-3) auto 0;
+}
+
+.foundations-activity {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--colour-border);
+  border-radius: 0.3rem;
+  background: var(--colour-surface);
+}
+
+.foundations-activity .lp-activity-card {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.lp-form__field[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 24.375rem) {
+  .course-navigation,
+  .programming-editor,
+  .activity-actions,
+  table {
+    max-width: 100%;
+  }
+
+  .programming-editor,
+  .study-card,
+  .foundations-activity {
+    overflow-x: auto;
+  }
+}
