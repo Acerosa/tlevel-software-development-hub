@@ -1,0 +1,74 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out T Level hub
+        uses: actions/checkout@v4
+        with:
+          path: tlevel-software-development-hub
+
+      - name: Check out reviewed Core
+        uses: actions/checkout@v4
+        with:
+          repository: Acerosa/learning-platform-core
+          ref: v0.2.0
+          path: learning-platform-core
+
+      - name: Check out reviewed UI
+        uses: actions/checkout@v4
+        with:
+          repository: Acerosa/Acerosa-learning-platform-ui
+          ref: v0.1.0
+          path: learning-platform-ui
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tlevel-software-development-hub/package-lock.json
+
+      - name: Install, test and build
+        working-directory: tlevel-software-development-hub
+        run: |
+          npm ci
+          npm test
+
+      - name: Configure GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: tlevel-software-development-hub/dist
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
