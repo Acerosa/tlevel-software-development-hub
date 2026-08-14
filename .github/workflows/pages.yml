@@ -21,27 +21,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out T Level hub
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: tlevel-software-development-hub
           fetch-depth: 0
 
       - name: Check out reviewed Core
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: Acerosa/learning-platform-core
           ref: v0.2.0
           path: learning-platform-core
 
       - name: Check out reviewed UI
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: Acerosa/Acerosa-learning-platform-ui
           ref: v0.1.0
           path: learning-platform-ui
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "22"
           cache: npm
@@ -55,11 +55,11 @@ jobs:
 
       - name: Configure GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: tlevel-software-development-hub/dist
 
@@ -72,4 +72,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
