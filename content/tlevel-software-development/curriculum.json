@@ -1,0 +1,21 @@
+{
+  "schema": "lp.content.curriculum",
+  "schemaVersion": "0.1.0",
+  "id": "tlevel-software-development-curriculum",
+  "version": "0.1.0",
+  "metadata": {
+    "title": "T Level Digital Software Development",
+    "course": "t-level-digital-software-development"
+  },
+  "relationships": {
+    "learningOutcomes": [
+      "foundations-lo"
+    ],
+    "assignments": [
+      "foundations-practice"
+    ],
+    "weeks": [
+      "foundations"
+    ]
+  }
+}

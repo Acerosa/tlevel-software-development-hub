@@ -1,5 +1,8 @@
 (function () {
   "use strict";
+  if (typeof globalThis !== "undefined" && globalThis.__lpPublishedCurriculum) {
+    return;
+  }
 
   function options(items) {
     return items.map(function (item) { return { value: item[0], label: item[1] }; });

@@ -1,5 +1,8 @@
 (function () {
   "use strict";
+  if (typeof globalThis !== "undefined" && globalThis.__lpPublishedCurriculum) {
+    return;
+  }
 
   window.FoundationActivityCatalog = Object.freeze([
     {

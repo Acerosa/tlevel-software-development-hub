@@ -1,8 +1,13 @@
 # T Level Digital Software Development Hub
 
 The learner hub for the Pearson T Level Digital Software Development
-Occupational Specialism. It is a static GitHub Pages application and the first
-hub integration for the shared Learning Platform.
+Occupational Specialism. It is a **current-generation** hub in the
+Contract-First Modular Hub Architecture: Core `0.2.0` with a GitHub Pages
+Vite application and a React/`@learning-platform/ui` shell around classic
+Foundations engines.
+
+Platform-wide architecture is documented in `learning-platform-backend`
+`docs/architecture.md`.
 
 ## Responsibilities
 
@@ -13,7 +18,7 @@ progress, or platform administration.
 
 Shared platform behaviour comes from:
 
-- `learning-platform-core` 0.1.0 for Supabase Auth/session restoration, staged
+- `learning-platform-core` 0.2.0 for Supabase Auth/session restoration, staged
   learner onboarding, learner context, theme behaviour, shared account UI,
   platform state, and learner API services;
 - `learning-platform-backend` learner API contract 0.1.0 for controlled
@@ -42,14 +47,14 @@ the authenticated learner and assignment.
 
 ## Static Core dependency
 
-GitHub Pages has no package installation or build step, so the reviewed Core
-browser assets are vendored under
-`vendor/learning-platform-core/0.1.0/`. Their provenance and upstream commit are
-recorded beside the assets. Supabase JS is loaded at the exact browser version
-supported by the integration.
+GitHub Pages serves the Vite bundle. Reviewed Core 0.2.0 is consumed as
+`@learning-platform/core` at build time. Node tests also vendor the same
+browser assets under `vendor/learning-platform-core/0.2.0/`. Provenance is
+recorded beside those assets. Supabase JS is pinned at the exact browser
+version supported by the integration.
 
-This keeps deployment self-contained and prevents GitHub, npm, or the Core
-repository from becoming runtime dependencies.
+This keeps GitHub, npm, or the Core repository from becoming runtime
+dependencies of the deployed site.
 
 ## Run and test
 

@@ -1,0 +1,20 @@
+{
+  "schema": "lp.content.package",
+  "schemaVersion": "0.1.0",
+  "id": "tlevel-software-development-content",
+  "version": "0.2.0",
+  "metadata": {
+    "title": "T Level Digital Software Development"
+  },
+  "relationships": {
+    "hub": "hub.json",
+    "curriculum": "curriculum.json",
+    "learningOutcomes": "learning-outcomes.json",
+    "assignments": "assignments.json",
+    "weeks": "weeks.json",
+    "sessions": "sessions.json",
+    "activities": "activities.json",
+    "questions": [],
+    "assets": []
+  }
+}

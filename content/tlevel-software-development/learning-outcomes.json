@@ -1,0 +1,12 @@
+[
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-lo",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Prepare for occupational software development tasks"
+    },
+    "relationships": {}
+  }
+]

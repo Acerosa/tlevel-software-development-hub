@@ -13,7 +13,7 @@ function read(file) {
 function core() {
   const sandbox = { console, URL, Date, setTimeout, clearTimeout };
   vm.createContext(sandbox);
-  vm.runInContext(read("vendor/learning-platform-core/0.1.0/learning-platform-core.iife.js"), sandbox);
+  vm.runInContext(read("vendor/learning-platform-core/0.2.0/learning-platform-core.iife.js"), sandbox);
   return sandbox.LearningPlatformCore;
 }
 

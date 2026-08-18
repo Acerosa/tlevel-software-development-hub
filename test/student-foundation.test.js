@@ -66,7 +66,7 @@ test("the composition root creates and initialises exactly one Core platform", a
     APP_CONFIG: {
       hubId: "tlevel-software-development",
       siteName: "T Level Digital Software Development Hub",
-      coreVersion: "0.1.0",
+      coreVersion: "0.2.0",
       navigation: [{ id: "home", label: "Home", path: "" }],
       features: { authentication: true },
       theme: { primary: "#006477", accent: "#00839a" }

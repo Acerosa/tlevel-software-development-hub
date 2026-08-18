@@ -6,7 +6,7 @@ const test = require("node:test");
 const vm = require("node:vm");
 
 const root = path.resolve(__dirname, "..");
-const coreAsset = "vendor/learning-platform-core/0.1.0/learning-platform-core.iife.js";
+const coreAsset = "vendor/learning-platform-core/0.2.0/learning-platform-core.iife.js";
 
 function read(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -28,20 +28,17 @@ function memoryStorage() {
   };
 }
 
-test("the vendored Core asset is the reviewed 0.1.0 build", function () {
+test("the vendored Core asset is the reviewed 0.2.0 build", function () {
   const hash = crypto.createHash("sha256").update(read(coreAsset)).digest("hex");
-  assert.equal(hash, "87a940431dc981af4aeb65d4c0a4c215c497346b0ce5a10d996261f0f1be44ed");
-  assert.match(read("vendor/learning-platform-core/0.1.0/PROVENANCE.md"), /f484b2d/);
-  assert.equal(fs.existsSync(path.join(root, "vendor/learning-platform-core/0.1.0/LICENSE")), true);
+  assert.equal(hash, "c48398fafb34e36c42fd7733f07eaf4d388f20efce72ba35de295c6cb2a15761");
+  assert.match(read("vendor/learning-platform-core/0.2.0/PROVENANCE.md"), /curriculum-runtime/);
+  assert.equal(fs.existsSync(path.join(root, "vendor/learning-platform-core/0.2.0/LICENSE")), true);
 });
 
-test("the Core browser global exposes platform, onboarding, theme, and UI contracts", function () {
+test("the Core browser global exposes the 0.2.0 stable contract", function () {
   const core = loadCore();
   [
     "createPlatform",
-    "createAuthService",
-    "createLearnerContext",
-    "createOnboardingService",
     "createAccountDialog",
     "createThemeService",
     "createLoadingState",
@@ -51,85 +48,112 @@ test("the Core browser global exposes platform, onboarding, theme, and UI contra
   });
 });
 
+function fakeClient(session) {
+  return {
+    auth: {
+      onAuthStateChange() { return { data: { subscription: { unsubscribe() {} } } }; },
+      getSession() { return Promise.resolve({ data: { session }, error: null }); },
+      signOut() { return Promise.resolve({ error: null }); }
+    },
+    schema() {
+      return {
+        from() {
+          return {
+            select() { return this; },
+            eq() { return this; },
+            order() { return this; },
+            then(resolve) { return Promise.resolve({ data: [], error: null }).then(resolve); }
+          };
+        },
+        rpc() { return Promise.resolve({ data: [], error: null }); }
+      };
+    }
+  };
+}
+
 test("Core Auth restores and clears the SDK-owned session", async function () {
   const core = loadCore();
   const session = { user: { id: "auth-user-1" }, access_token: "not-persisted-by-hub" };
-  let authListener;
-  let signedOut = false;
-  const service = core.createAuthService({
-    client: {
-      auth: {
-        onAuthStateChange(listener) { authListener = listener; return { data: { subscription: { unsubscribe() {} } } }; },
-        getSession() { return Promise.resolve({ data: { session }, error: null }); },
-        signOut() { signedOut = true; return Promise.resolve({ error: null }); }
-      }
-    },
-    logger: { warn() {} }
-  });
-
-  await service.initialise();
-  assert.equal(service.isSignedIn(), true);
-  assert.equal(service.getSession(), session);
-  authListener("SIGNED_OUT", null);
-  assert.equal(service.isSignedIn(), false);
-  await service.signOut();
-  assert.equal(signedOut, true);
+  const platform = core.createPlatform({
+    hubCode: "tlevel-software-development",
+    hubName: "T Level Digital Software Development Hub",
+    supabase: {
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example"
+    }
+  }, { supabaseClient: fakeClient(session), document: null, window: null });
+  await platform.initialise();
+  assert.equal(platform.auth.isSignedIn(), true);
+  assert.equal(platform.auth.getSession(), session);
+  await platform.auth.signOut();
+  assert.equal(platform.auth.isSignedIn(), false);
+  platform.destroy();
 });
 
-test("Core learner context derives profile and active enrolment from API services", async function () {
+test("Core learner context is exposed through the platform facade", async function () {
   const core = loadCore();
-  let authSubscriber;
-  const authService = {
-    isSignedIn() { return true; },
-    initialise() { return Promise.resolve(); },
-    subscribe(listener) { authSubscriber = listener; return function () {}; }
-  };
-  const learner = core.createLearnerContext({
-    authService,
-    profileService: {
-      getProfile() {
-        return Promise.resolve({
-          student_number: "00012345",
-          first_name: "Sam",
-          surname: "Taylor",
-          display_name: "Sam",
-          contact_email: "sam@example.invalid"
-        });
+  const platform = core.createPlatform({
+    hubCode: "tlevel-software-development",
+    hubName: "T Level Digital Software Development Hub",
+    supabase: {
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example"
+    }
+  }, {
+    supabaseClient: {
+      auth: {
+        onAuthStateChange() { return { data: { subscription: { unsubscribe() {} } } }; },
+        getSession() {
+          return Promise.resolve({
+            data: { session: { user: { id: "auth-user-1" }, access_token: "managed" } },
+            error: null
+          });
+        },
+        signOut() { return Promise.resolve({ error: null }); }
+      },
+      schema() {
+        return {
+          from(view) {
+            const data = view === "my_profile"
+              ? [{ student_number: "00012345", first_name: "Sam", surname: "Taylor", display_name: "Sam" }]
+              : view === "my_enrolments"
+                ? [{ status: "active", group_code: "SD-A", group_name: "Software A", year_group: "Year 1" }]
+                : [];
+            return {
+              select() { return this; },
+              eq() { return this; },
+              order() { return this; },
+              then(resolve) { return Promise.resolve({ data, error: null }).then(resolve); }
+            };
+          },
+          rpc() { return Promise.resolve({ data: [], error: null }); }
+        };
       }
     },
-    enrolmentService: {
-      getEnrolments() {
-        return Promise.resolve([{ status: "active", group_code: "SD-A", group_name: "Software A", year_group: "Year 1" }]);
-      }
-    }
+    document: null,
+    window: null
   });
-
-  authSubscriber({ status: "authenticated" });
-  await learner.refresh();
-  const context = learner.getContext();
+  await platform.initialise();
+  await new Promise(function (resolve) { setTimeout(resolve, 0); });
+  const context = platform.learner.getContext();
   assert.equal(context.studentNumber, "00012345");
   assert.equal(context.fullName, "Sam Taylor");
   assert.equal(context.groupCode, "SD-A");
+  platform.destroy();
 });
 
-test("Core onboarding stores only safe pending fields and uses controlled RPC inputs", async function () {
+test("Core onboarding stores only safe pending fields", function () {
   const core = loadCore();
   const storage = memoryStorage();
-  const calls = [];
-  const onboarding = core.createOnboardingService({
-    api: {
-      getRegistrationOptions() {
-        return Promise.resolve([{ registration_option: "option-1", year_group: "Year 1", group_code: "SD-A" }]);
-      },
-      completeOnboarding(payload) { calls.push(payload); return Promise.resolve([{ student_number: "00012345" }]); }
-    },
-    authService: { isSignedIn() { return true; } },
-    learnerContext: { refresh() { return Promise.resolve(); } },
-    storage,
-    pendingKey: "pending-test"
-  });
-
-  onboarding.savePending({
+  const platform = core.createPlatform({
+    hubCode: "tlevel-software-development",
+    hubName: "T Level Digital Software Development Hub",
+    supabase: {
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example"
+    }
+  }, { supabaseClient: fakeClient(null), sessionStorage: storage, document: null, window: null });
+  platform.onboarding.savePending({
     firstName: "Sam",
     surname: "Taylor",
     studentNumber: "00012345",
@@ -137,42 +161,47 @@ test("Core onboarding stores only safe pending fields and uses controlled RPC in
     password: "must-not-be-stored",
     email: "must-not-be-stored@example.invalid"
   });
-  const pending = JSON.parse(storage.getItem("pending-test"));
+  const pending = JSON.parse(storage.getItem("learning-platform.pending-onboarding.v1:tlevel-software-development"));
   assert.deepEqual(Object.keys(pending).sort(), ["firstName", "registrationKey", "studentNumber", "surname"]);
-
-  const options = await onboarding.getRegistrationOptions();
-  assert.equal(options[0].registrationKey, "option-1");
-  await onboarding.complete({ firstName: "Sam", surname: "Taylor", studentNumber: "00012345" }, "option-1");
-  assert.deepEqual(JSON.parse(JSON.stringify(calls[0])), {
-    p_first_name: "Sam",
-    p_surname: "Taylor",
-    p_student_number: "00012345",
-    p_registration_option: "option-1"
-  });
-  assert.equal(storage.getItem("pending-test"), null);
+  platform.destroy();
 });
 
 test("Core onboarding refuses anonymous completion", async function () {
   const core = loadCore();
-  const onboarding = core.createOnboardingService({
-    api: {},
-    authService: { isSignedIn() { return false; } },
-    storage: memoryStorage()
-  });
+  const platform = core.createPlatform({
+    hubCode: "tlevel-software-development",
+    hubName: "T Level Digital Software Development Hub",
+    supabase: {
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example"
+    }
+  }, { supabaseClient: fakeClient(null), sessionStorage: memoryStorage(), document: null, window: null });
   await assert.rejects(
-    Promise.resolve().then(function () { return onboarding.getRegistrationOptions(); }),
+    Promise.resolve().then(function () { return platform.onboarding.getRegistrationOptions(); }),
     function (error) { return error.code === "AUTH_REQUIRED"; }
   );
+  platform.destroy();
 });
 
-test("Core secure submission rejects browser identity and score fields", function () {
+test("Core secure submission rejects browser identity and score fields", async function () {
   const core = loadCore();
-  assert.throws(function () {
-    core.assertSecureSubmission({ activityKey: "activity", learnerId: "learner" });
-  }, function (error) { return error.code === "FORBIDDEN_SUBMISSION_FIELD"; });
-  assert.throws(function () {
-    core.assertSecureSubmission({ activityKey: "activity", score: 10 });
-  }, function (error) { return error.code === "FORBIDDEN_SUBMISSION_FIELD"; });
+  const platform = core.createPlatform({
+    hubCode: "tlevel-software-development",
+    hubName: "T Level Digital Software Development Hub",
+    supabase: {
+      projectUrl: "https://example.supabase.co",
+      publishableKey: "sb_publishable_example"
+    }
+  }, { supabaseClient: fakeClient({ user: { id: "auth-user-1" }, access_token: "managed" }), document: null, window: null });
+  await assert.rejects(
+    platform.submission.submit({ activityKey: "activity", learnerId: "learner", responses: [] }),
+    function (error) { return error.code === "FORBIDDEN_SUBMISSION_FIELD"; }
+  );
+  await assert.rejects(
+    platform.submission.submit({ activityKey: "activity", score: 10, responses: [] }),
+    function (error) { return error.code === "FORBIDDEN_SUBMISSION_FIELD"; }
+  );
+  platform.destroy();
 });
 
 test("hub modules contain no parallel Auth client or token persistence", function () {

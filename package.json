@@ -16,6 +16,7 @@
     "check": "npm run typecheck && npm test"
   },
   "dependencies": {
+    "@learning-platform/content": "file:../learning-platform-content",
     "@learning-platform/core": "file:../learning-platform-core",
     "@learning-platform/ui": "file:../learning-platform-ui",
     "@supabase/supabase-js": "2.112.3",

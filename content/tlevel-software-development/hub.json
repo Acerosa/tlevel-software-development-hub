@@ -1,0 +1,13 @@
+{
+  "schema": "lp.content.hub",
+  "schemaVersion": "0.1.0",
+  "id": "tlevel-software-development",
+  "version": "0.1.0",
+  "metadata": {
+    "name": "T Level Digital Software Development Hub",
+    "description": "T Level Digital Software Development learner hub."
+  },
+  "relationships": {
+    "curriculum": "tlevel-software-development-curriculum"
+  }
+}

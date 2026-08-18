@@ -1,10 +1,11 @@
 export const APP_CONFIG = Object.freeze({
   hubId: "tlevel-software-development",
+  courseKey: "t-level-digital-software-development",
   hubVersion: "0.1.0",
   siteName: "T Level Digital Software Development Hub",
   shortName: "Software Development Hub",
   qualification: "T Level Digital",
-  coreVersion: "0.1.0",
+  coreVersion: "0.2.0",
   learnerApiContractVersion: "0.1.0",
   submissionContractVersion: "0.1.0",
   currentPhase: "Phase 1: Technical Foundations",
