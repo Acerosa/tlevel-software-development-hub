@@ -42,6 +42,15 @@ declare module "@learning-platform/core" {
     flags?: unknown;
     initialise: () => Promise<unknown>;
     destroy: () => void;
+    curriculum: {
+      loadLatest: () => Promise<{
+        source?: string;
+        package?: unknown;
+        state?: { state?: string };
+        publication?: unknown;
+      }>;
+      renderStatus?: (state: unknown) => string;
+    };
   }
 
   export function createPlatform(options: Record<string, unknown>, dependencies?: Record<string, unknown>): PlatformFacade;
@@ -53,3 +62,6 @@ declare module "@learning-platform/core" {
 }
 
 declare module "*.js";
+declare module "@learning-platform/content" {
+  export function validatePackage(pkg: unknown): { valid: boolean; issues?: unknown[] };
+}

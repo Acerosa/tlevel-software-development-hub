@@ -1,5 +1,6 @@
 import { createPlatform } from "@learning-platform/core";
 import { createClient } from "@supabase/supabase-js";
+import { validatePackage } from "@learning-platform/content";
 import { APP_CONFIG } from "./config";
 import { createSitePath } from "./paths";
 import { SUPABASE_CONFIG } from "./supabase-config";
@@ -14,6 +15,7 @@ export function createHubPlatform(root: string, createPlatformFn = createPlatfor
   });
   const platform = createPlatformFn({
     hubCode: APP_CONFIG.hubId,
+    courseKey: APP_CONFIG.courseKey,
     hubName: APP_CONFIG.siteName,
     platformVersion: APP_CONFIG.coreVersion,
     accountPath: createSitePath(root),
@@ -28,7 +30,12 @@ export function createHubPlatform(root: string, createPlatformFn = createPlatfor
     navigationMode: "as-supplied",
     features: APP_CONFIG.features,
     theme: APP_CONFIG.theme
-  }, { supabaseClient: client });
+  }, {
+    supabaseClient: client,
+    localStorage: typeof window !== "undefined" ? window.localStorage : undefined,
+    validatePackage,
+    loadBundled: () => import("../content/tlevel-software-development/package.json").then((mod) => mod.default)
+  });
 
   return Object.freeze({
     ...platform,

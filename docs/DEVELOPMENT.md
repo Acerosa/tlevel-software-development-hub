@@ -13,9 +13,9 @@ Then open `http://localhost:8000/`.
 
 ## Shared platform dependency
 
-The hub consumes the browser build of `@learning-platform/core` 0.1.0 from
-`vendor/learning-platform-core/0.1.0/`. Do not deep-import Core source modules or
-copy Core services into `js/core/`.
+The hub consumes `@learning-platform/core` 0.2.0 at build time. Node tests use
+the reviewed browser build from `vendor/learning-platform-core/0.2.0/`. Do not
+deep-import Core source modules or copy Core services into `js/core/`.
 
 To update Core:
 

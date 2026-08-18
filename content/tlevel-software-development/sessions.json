@@ -1,0 +1,87 @@
+[
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-programming-diagnostic-session",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Programming Diagnostic",
+      "kind": "session",
+      "sortOrder": 1
+    },
+    "relationships": {
+      "week": "foundations",
+      "activities": [
+        "foundations-programming-diagnostic"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-requirements-classification-session",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Requirements Classification",
+      "kind": "session",
+      "sortOrder": 2
+    },
+    "relationships": {
+      "week": "foundations",
+      "activities": [
+        "foundations-requirements-classification"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-problem-decomposition-session",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Problem Decomposition",
+      "kind": "session",
+      "sortOrder": 3
+    },
+    "relationships": {
+      "week": "foundations",
+      "activities": [
+        "foundations-problem-decomposition"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-data-design-session",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Data Design Knowledge Check",
+      "kind": "session",
+      "sortOrder": 4
+    },
+    "relationships": {
+      "week": "foundations",
+      "activities": [
+        "foundations-data-design"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-testing-methods-session",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Testing Methods Classification",
+      "kind": "session",
+      "sortOrder": 5
+    },
+    "relationships": {
+      "week": "foundations",
+      "activities": [
+        "foundations-testing-methods"
+      ]
+    }
+  }
+]

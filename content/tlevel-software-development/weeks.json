@@ -1,0 +1,27 @@
+[
+  {
+    "schema": "lp.content.week",
+    "schemaVersion": "0.1.0",
+    "id": "foundations",
+    "version": "0.1.0",
+    "metadata": {
+      "teachingWeek": 1,
+      "title": "Technical Foundations",
+      "status": "available"
+    },
+    "relationships": {
+      "curriculum": "tlevel-software-development-curriculum",
+      "learningOutcomes": [
+        "foundations-lo"
+      ],
+      "assignment": "foundations-practice",
+      "sessions": [
+        "foundations-programming-diagnostic-session",
+        "foundations-requirements-classification-session",
+        "foundations-problem-decomposition-session",
+        "foundations-data-design-session",
+        "foundations-testing-methods-session"
+      ]
+    }
+  }
+]

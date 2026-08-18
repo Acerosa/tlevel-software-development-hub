@@ -1,0 +1,13 @@
+[
+  {
+    "schema": "lp.content.assignment",
+    "schemaVersion": "0.1.0",
+    "id": "foundations-practice",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Formative Foundations practice",
+      "status": "available"
+    },
+    "relationships": {}
+  }
+]

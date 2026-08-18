@@ -5,8 +5,20 @@ declare global {
   interface Window {
     APP_CONFIG: typeof APP_CONFIG;
     SUPABASE_CONFIG: typeof SUPABASE_CONFIG;
-    LearningPlatform?: { platform: unknown; coreVersion: string };
+    LearningPlatform?: {
+      platform: {
+        curriculum?: {
+          loadLatest: () => Promise<unknown>;
+          renderStatus?: (state: unknown) => string;
+        };
+      };
+      coreVersion: string;
+      ready?: Promise<unknown>;
+    };
+    __lpPackage?: unknown;
+    __lpPublishedCurriculum?: boolean;
     FoundationActivityCatalog?: FoundationActivityRecord[];
+    FoundationActivityData?: Record<string, unknown>;
     FoundationActivityState?: {
       getSummary: (activityId: string, version?: string) => FoundationActivityProgress;
     };
