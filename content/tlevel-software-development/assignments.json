@@ -16,12 +16,12 @@
     "id": "os-formative",
     "version": "0.1.0",
     "metadata": {
-      "title": "Occupational Specialism formative practice",
+      "title": "Formative emerging technologies practice",
       "status": "available"
     },
     "relationships": {
       "learningOutcomes": [
-        "os-1-1"
+        "lo1"
       ],
       "weeks": [
         "week-1",

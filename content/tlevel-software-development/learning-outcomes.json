@@ -22,36 +22,6 @@
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w1-interpret-client-brief",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Interpret a client request and separate the problem, constraints, assumptions and possible solutions"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w1-define-project-context",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Define project context, including organisation, users, environment, stakeholders and constraints"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w1-research-market-environment",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Research the market environment, common problems, and existing hardware and software that shape a solution"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
     "id": "w2-evaluate-solutions",
     "version": "0.1.0",
     "metadata": {
@@ -106,6 +76,56 @@
     "version": "0.1.0",
     "metadata": {
       "title": "Use abstraction to decide which details belong in a first project proposal and which can wait"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "lo1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "LO1: Know about new and emerging digital technologies"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "lo2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "LO2: Understand how new and emerging digital technologies are used"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-define-current-emerging",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define current and emerging digital technology"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-identify-examples",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify examples of new and emerging technologies"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-outline-industry-uses",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline how emerging technologies are used in different industries"
     },
     "relationships": {}
   }

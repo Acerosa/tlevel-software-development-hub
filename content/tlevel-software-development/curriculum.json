@@ -11,15 +11,17 @@
     "learningOutcomes": [
       "foundations-lo",
       "os-1-1",
-      "w1-interpret-client-brief",
-      "w1-define-project-context",
-      "w1-research-market-environment",
       "w2-evaluate-solutions",
       "w2-emerging-technologies",
       "w2-regulations-and-gaps",
       "w3-business-scope-value",
       "w3-decomposition-patterns",
-      "w3-abstraction"
+      "w3-abstraction",
+      "lo1",
+      "lo2",
+      "w1-define-current-emerging",
+      "w1-identify-examples",
+      "w1-outline-industry-uses"
     ],
     "assignments": [
       "foundations-practice",

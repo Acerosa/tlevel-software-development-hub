@@ -27,11 +27,11 @@ test("the converted T Level package keeps Foundations identity and activity ids"
   assert.equal(pkg.activities[0].version, "2.0.0");
 });
 
-test("Week 1 follows the 22-week OS teaching sequence", () => {
+test("Week 1 follows the SoL teaching sequence", () => {
   const week = pkg.weeks.find((item) => item.id === "week-1");
   assert.ok(week);
   assert.equal(week.metadata.teachingWeek, 1);
-  assert.equal(week.metadata.title, "Client briefs and project context");
+  assert.equal(week.metadata.title, "Introduction to New and Emerging Digital Technologies");
   assert.deepEqual(week.relationships.sessions, [
     "week-1-lesson-1",
     "week-1-lesson-2",
@@ -43,8 +43,7 @@ test("Week 1 follows the 22-week OS teaching sequence", () => {
     return session && session.metadata.kind;
   });
   assert.deepEqual(lessonKinds, ["session", "session", "session", "homework"]);
-  assert.equal(pkg.weeks.filter((item) => item.metadata.teachingWeek > 3).length, 0);
-  assert.ok(pkg.learningOutcomes.some((item) => item.id === "os-1-1"));
+  assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo1"));
 });
 
 test("Week 2 follows the 22-week OS teaching sequence", () => {
@@ -59,7 +58,7 @@ test("Week 2 follows the 22-week OS teaching sequence", () => {
     "week-2-homework"
   ]);
   const week1 = pkg.weeks.find((item) => item.id === "week-1");
-  assert.equal(week1.metadata.title, "Client briefs and project context");
+  assert.equal(week1.metadata.title, "Introduction to New and Emerging Digital Technologies");
   assert.equal(pkg.weeks.length, 3);
 });
 

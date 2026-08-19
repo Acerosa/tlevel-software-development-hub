@@ -6,10 +6,10 @@
     "version": "0.1.0",
     "metadata": {
       "teachingWeek": 1,
-      "title": "Client briefs and project context",
+      "title": "Introduction to New and Emerging Digital Technologies",
       "status": "available",
-      "phase": "sdlc-research",
-      "professionalPractice": "OS 1.1 Research and familiarisation — client request, context, market environment, existing hardware and software",
+      "phase": "lo1-technologies",
+      "professionalPractice": "LO1 / AC 1.1 — define current and emerging digital technology; identify examples; outline uses in different industries",
       "route": "weeks/week-1/",
       "weekCommencing": null,
       "releaseDate": null,
@@ -18,10 +18,10 @@
     "relationships": {
       "curriculum": "tlevel-software-development-curriculum",
       "learningOutcomes": [
-        "os-1-1",
-        "w1-interpret-client-brief",
-        "w1-define-project-context",
-        "w1-research-market-environment"
+        "lo1",
+        "w1-define-current-emerging",
+        "w1-identify-examples",
+        "w1-outline-industry-uses"
       ],
       "assignment": "os-formative",
       "sessions": [

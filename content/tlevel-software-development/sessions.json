@@ -2,88 +2,6 @@
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "week-1-lesson-1",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Lesson 1: Interpreting a client request",
-      "kind": "session",
-      "summary": "Learn how to read a client brief as a software developer: extract the problem, users, constraints and unknowns before proposing a solution.",
-      "sortOrder": 1,
-      "defaultOpen": true
-    },
-    "relationships": {
-      "week": "week-1",
-      "activities": [
-        "week-1-lesson-1-retrieval",
-        "week-1-lesson-1-main",
-        "week-1-lesson-1-formative"
-      ]
-    }
-  },
-  {
-    "schema": "lp.content.session",
-    "schemaVersion": "0.1.0",
-    "id": "week-1-lesson-2",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Lesson 2: Defining project context",
-      "kind": "session",
-      "summary": "Turn the brief into a project context statement covering organisation, users, environment, stakeholders and constraints.",
-      "sortOrder": 2,
-      "defaultOpen": false
-    },
-    "relationships": {
-      "week": "week-1",
-      "activities": [
-        "week-1-lesson-2-retrieval",
-        "week-1-lesson-2-main",
-        "week-1-lesson-2-formative"
-      ]
-    }
-  },
-  {
-    "schema": "lp.content.session",
-    "schemaVersion": "0.1.0",
-    "id": "week-1-lesson-3",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Lesson 3: Market environment and existing systems",
-      "kind": "session",
-      "summary": "Research the market environment, common problems, and the hardware and software already in use before evaluating new ideas.",
-      "sortOrder": 3,
-      "defaultOpen": false
-    },
-    "relationships": {
-      "week": "week-1",
-      "activities": [
-        "week-1-lesson-3-retrieval",
-        "week-1-lesson-3-main",
-        "week-1-lesson-3-formative"
-      ]
-    }
-  },
-  {
-    "schema": "lp.content.session",
-    "schemaVersion": "0.1.0",
-    "id": "week-1-homework",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Homework: Independent research into similar products",
-      "kind": "homework",
-      "summary": "Find two existing products used in adult learning or community booking and evaluate how far they fit Oakridge Skills Hub.",
-      "sortOrder": 4,
-      "defaultOpen": false
-    },
-    "relationships": {
-      "week": "week-1",
-      "activities": [
-        "week-1-homework-research"
-      ]
-    }
-  },
-  {
-    "schema": "lp.content.session",
-    "schemaVersion": "0.1.0",
     "id": "week-2-lesson-1",
     "version": "0.1.0",
     "metadata": {
@@ -242,6 +160,88 @@
       "week": "week-3",
       "activities": [
         "week-3-homework-proposal"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-1-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Current and emerging digital technology",
+      "kind": "session",
+      "summary": "Baseline diagnostic, then define established, current and emerging digital technologies using contemporary examples.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-1",
+      "activities": [
+        "week-1-lesson-1-retrieval",
+        "week-1-lesson-1-main",
+        "week-1-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-1-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Classifying technologies across industries",
+      "kind": "session",
+      "summary": "Classify technology examples and discuss why adoption differs between individuals, organisations and sectors.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-1",
+      "activities": [
+        "week-1-lesson-2-retrieval",
+        "week-1-lesson-2-main",
+        "week-1-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-1-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Technology profile and exit check",
+      "kind": "session",
+      "summary": "Research one emerging technology and complete an exit knowledge check.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-1",
+      "activities": [
+        "week-1-lesson-3-retrieval",
+        "week-1-lesson-3-main",
+        "week-1-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-1-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: Emerging technologies in everyday life",
+      "kind": "homework",
+      "summary": "Identify three emerging technologies encountered in everyday life and briefly outline their uses.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-1",
+      "activities": [
+        "week-1-homework-everyday"
       ]
     }
   }
