@@ -5540,1577 +5540,6 @@
   {
     "schema": "lp.content.activity",
     "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-1-retrieval",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Retrieval: Oakridge context before evaluation",
-      "status": "available",
-      "summary": "Retrieve the Week 1 problem, constraints and current systems so evaluation stays grounded in the client.",
-      "href": null,
-      "difficulty": "foundation",
-      "familyId": "week-2-lesson-1-retrieval",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Retrieval quiz",
-      "topics": [
-        "Project context",
-        "Existing software",
-        "Constraints"
-      ],
-      "detail": "Retrieve the Week 1 problem, constraints and current systems so evaluation stays grounded in the client."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions",
-        "w2-emerging-technologies",
-        "w2-regulations-and-gaps"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-retrieval-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Starter retrieval",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-retrieval-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Week 2 evaluates solutions. That is unsafe if you cannot still state Oakridge's problem and constraints."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-retrieval-q1",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-retrieval:q1",
-          "sourceQuestionId": "q1",
-          "sourceType": "single",
-          "prompt": "Which statement is the strongest reason not to recommend a large college MIS to Oakridge yet?",
-          "options": [
-            {
-              "id": "a",
-              "label": "It was not invented in-house"
-            },
-            {
-              "id": "b",
-              "label": "Week 1 showed a small budget, no IT team, and a much narrower problem than a full college suite"
-            },
-            {
-              "id": "c",
-              "label": "Open source is always better"
-            },
-            {
-              "id": "d",
-              "label": "Adult learners never use software"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Evaluation starts from this client's problem and constraints, not from how complete a product looks on a brochure.",
-            "incorrect": "Use the Week 1 context: budget, staffing and a focused booking/register/reporting problem."
-          }
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-retrieval-q2",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-retrieval:q2",
-          "sourceQuestionId": "q2",
-          "sourceType": "single",
-          "prompt": "What current 'software' must any Oakridge evaluation take seriously?",
-          "options": [
-            {
-              "id": "a",
-              "label": "Only licensed enterprise systems"
-            },
-            {
-              "id": "b",
-              "label": "Paper registers, a shared spreadsheet and email, because they are the live workflow"
-            },
-            {
-              "id": "c",
-              "label": "Only mobile apps"
-            },
-            {
-              "id": "d",
-              "label": "Only cloud platforms"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Existing software includes unofficial tools. Replacing them means understanding what they already do.",
-            "incorrect": "Paper, spreadsheet and email are the current solution and must be part of evaluation."
-          }
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-retrieval-q3",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-retrieval:q3",
-          "sourceQuestionId": "q3",
-          "sourceType": "single",
-          "prompt": "A homework product looked useful for timetabling. What is the next professional step?",
-          "options": [
-            {
-              "id": "a",
-              "label": "Choose it as the Oakridge solution"
-            },
-            {
-              "id": "b",
-              "label": "Test it against users, constraints, existing kit and evidence from named sources"
-            },
-            {
-              "id": "c",
-              "label": "Ignore it because it is commercial"
-            },
-            {
-              "id": "d",
-              "label": "Rewrite it in Python immediately"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Week 2 turns research notes into a comparison. You are still not locking a solution.",
-            "incorrect": "Compare against the client context and evidence. Do not select a product yet."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-1-main",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Evaluate candidate solutions for Oakridge",
-      "status": "available",
-      "summary": "Use a consistent comparison method so existing and potential solutions are judged against the same client criteria.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-lesson-1-main",
-      "estimatedDurationMinutes": 35,
-      "activityType": "Guided practical",
-      "topics": [
-        "Evaluating solutions",
-        "User needs",
-        "Justification"
-      ],
-      "detail": "Use a consistent comparison method so existing and potential solutions are judged against the same client criteria."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Evaluation is comparison, not preference",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Specification 1.1 asks you to research existing or potential solutions and how they meet different user needs. A list of products is not evaluation. Evaluation is a justified comparison against this client's problem, users, constraints and environment."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-method-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "A method you can reuse in the Occupational Specialism",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-method",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "For each option record: what user need it might meet; what evidence you have; what it would demand in skills, cost and hardware; what it would fail to do; and how confident you are. Keep 'do nothing / improve the spreadsheet' as an option so you do not pretend a new system is inevitable."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-options",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "callout",
-        "content": {
-          "title": "Work with at least three options",
-          "text": "Use (1) improve the current spreadsheet and email process, (2) a specialist booking or attendance product from your homework, and (3) a custom-built system. You may add a fourth from your research.",
-          "tone": "info"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-practice-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Practical application",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-criteria",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-main:criteria",
-          "sourceQuestionId": "criteria",
-          "prompt": "Write four evaluation criteria derived from the Oakridge brief, not from a product you like.",
-          "placeholder": "1. ... 2. ...",
-          "guidance": "Strong criteria include: works on classroom PCs and phones; low training for sessional tutors; funder reporting; small budget; no dedicated IT team; hall Wi-Fi cannot be assumed."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-compare",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-main:compare",
-          "sourceQuestionId": "compare",
-          "prompt": "Compare two options against those criteria. Name a user group that would gain from each option and one risk for each.",
-          "placeholder": "Option A: ... Option B: ...",
-          "guidance": "Look for user-specific gains (learners seeing sessions; tutors taking registers; manager reporting) and risks tied to cost, skills or connectivity."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-recommend",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-main:recommend",
-          "sourceQuestionId": "recommend",
-          "prompt": "Do not choose a final solution. State which option looks strongest so far and what evidence you still need.",
-          "placeholder": "Strongest so far because... Still need...",
-          "guidance": "A professional answer stays provisional and names missing evidence such as price, accessibility, data protection or tutor trial."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-main-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "Retrieval is Week 1 context. Practical application is the comparison grid. Formative assessment follows. Previous learning: Oakridge brief and homework products. Future: Week 2 Lesson 2 tests whether emerging tech changes the comparison; Week 3 uses the surviving options when defining scope."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-1-formative",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Formative: sound and unsound evaluations",
-      "status": "available",
-      "summary": "Classify evaluation comments as evidence-based, preference, or missing the client context.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-lesson-1-formative",
-      "estimatedDurationMinutes": 10,
-      "activityType": "Classification",
-      "topics": [
-        "Evaluating solutions",
-        "Justification"
-      ],
-      "detail": "Classify evaluation comments as evidence-based, preference, or missing the client context."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-formative-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "What counts as evaluation?",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-1-formative-sort",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "classification",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-1-formative:sort",
-          "sourceQuestionId": "sort",
-          "prompt": "Classify each comment about an Oakridge option.",
-          "categories": [
-            {
-              "id": "evidence",
-              "label": "Evidence-based evaluation"
-            },
-            {
-              "id": "preference",
-              "label": "Personal or vendor preference"
-            },
-            {
-              "id": "context-miss",
-              "label": "Ignores this client's context"
-            }
-          ],
-          "items": [
-            {
-              "id": "item-1",
-              "label": "A booking product that only runs as a hall kiosk is a poor fit because hall Wi-Fi is unreliable",
-              "correctCategoryId": "evidence"
-            },
-            {
-              "id": "item-2",
-              "label": "I would use this stack because I already like it",
-              "correctCategoryId": "preference"
-            },
-            {
-              "id": "item-3",
-              "label": "A full university ERP is suitable because it can do everything",
-              "correctCategoryId": "context-miss"
-            },
-            {
-              "id": "item-4",
-              "label": "Improving the spreadsheet keeps tutor training low but still fails a single learner-facing timetable",
-              "correctCategoryId": "evidence"
-            },
-            {
-              "id": "item-5",
-              "label": "The vendor said it is the market leader",
-              "correctCategoryId": "preference"
-            },
-            {
-              "id": "item-6",
-              "label": "Custom build is best because every centre should have unique software",
-              "correctCategoryId": "context-miss"
-            },
-            {
-              "id": "item-7",
-              "label": "A phone-friendly booking flow matches learners who already bring phones",
-              "correctCategoryId": "evidence"
-            },
-            {
-              "id": "item-8",
-              "label": "Reject the spreadsheet option because real developers do not use spreadsheets",
-              "correctCategoryId": "preference"
-            }
-          ],
-          "feedback": {
-            "correct": "Evaluation cites this client's evidence. Preference cites taste or marketing. Context-miss ignores budget, staffing or the actual problem.",
-            "incorrect": "Tie comments back to Oakridge evidence. Marketing, taste and 'build everything' are not evaluation."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-2-retrieval",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Retrieval: evaluation criteria",
-      "status": "available",
-      "summary": "Retrieve the comparison method before investigating emerging technologies.",
-      "href": null,
-      "difficulty": "foundation",
-      "familyId": "week-2-lesson-2-retrieval",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Retrieval quiz",
-      "topics": [
-        "Evaluating solutions",
-        "Emerging technologies"
-      ],
-      "detail": "Retrieve the comparison method before investigating emerging technologies."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions",
-        "w2-emerging-technologies",
-        "w2-regulations-and-gaps"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-retrieval-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Starter retrieval",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-retrieval-q1",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-retrieval:q1",
-          "sourceQuestionId": "q1",
-          "sourceType": "single",
-          "prompt": "Why keep 'improve the spreadsheet' as a candidate even if you expect to recommend software later?",
-          "options": [
-            {
-              "id": "a",
-              "label": "Pearson forbids new software"
-            },
-            {
-              "id": "b",
-              "label": "It is the current solution and a baseline for cost, training and risk"
-            },
-            {
-              "id": "c",
-              "label": "Spreadsheets cannot store data"
-            },
-            {
-              "id": "d",
-              "label": "It proves you prefer low technology"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "A baseline option stops you treating a new system as automatic. Evaluation needs something to beat.",
-            "incorrect": "The current way of working is the baseline. New options have to beat it on the client's criteria."
-          }
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-retrieval-q2",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-retrieval:q2",
-          "sourceQuestionId": "q2",
-          "sourceType": "single",
-          "prompt": "When is an emerging technology relevant to Oakridge?",
-          "options": [
-            {
-              "id": "a",
-              "label": "Whenever it appears on a news site"
-            },
-            {
-              "id": "b",
-              "label": "When it could change user needs, constraints, risks or available solutions in this context"
-            },
-            {
-              "id": "c",
-              "label": "Only if it is generative AI"
-            },
-            {
-              "id": "d",
-              "label": "Only if a competitor college uses it"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Familiarisation research is contextual. A drone platform is emerging, but it does not help workshop booking at Oakridge.",
-            "incorrect": "Emerging technology only matters here if it changes this problem, users, constraints or options."
-          }
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-retrieval-q3",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-retrieval:q3",
-          "sourceQuestionId": "q3",
-          "sourceType": "single",
-          "prompt": "What is the professional risk of starting with a technology catalogue?",
-          "options": [
-            {
-              "id": "a",
-              "label": "You might discover a useful option"
-            },
-            {
-              "id": "b",
-              "label": "You can hide the client problem behind impressive tools the centre cannot support"
-            },
-            {
-              "id": "c",
-              "label": "Pearson forbids naming technologies"
-            },
-            {
-              "id": "d",
-              "label": "Research becomes faster"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "The Occupational Specialism rewards justified choices. Unsupported technology lists read as solutioneering.",
-            "incorrect": "Do not let a catalogue replace the client problem. Oakridge still has no IT team and a small budget."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-2-main",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Investigate emerging technologies for Oakridge",
-      "status": "available",
-      "summary": "Decide which emerging technologies are relevant to this brief and which should be parked until later in the course.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-lesson-2-main",
-      "estimatedDurationMinutes": 35,
-      "activityType": "Guided practical",
-      "topics": [
-        "Emerging technologies",
-        "AI",
-        "Cloud",
-        "IoT"
-      ],
-      "detail": "Decide which emerging technologies are relevant to this brief and which should be parked until later in the course."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-emerging-technologies"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Emerging technology as familiarisation, not a tour",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Specification 1.1 includes newly emerging technologies during research and familiarisation. Area 1.5 later asks for a wider investigation of AI, IoT, cloud, biometrics and related technologies. This week you only ask: could this change the Oakridge project?"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-lens-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "A context lens",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-lens",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "For each technology ask four questions: which user need might it affect; what hardware, skills and data would it demand; what risk or regulation would it introduce; and is it essential now, useful later, or a distraction?"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-examples",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Examples to test: generative AI for tutor emails or report wording; cloud hosting instead of a local PC install; QR codes or simple IoT check-in; biometric registers; a chatbot for workshop questions. Biometrics may be legally and ethically heavy for a community centre. A chatbot that needs constant supervision may not fit one part-time administrator."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-later",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "callout",
-        "content": {
-          "title": "Later learning",
-          "text": "Weeks 16–18 return to emerging technologies and professional development in more depth. Keep notes. Do not try to cover the whole 1.5 list today.",
-          "tone": "info"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-practice-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Practical application",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-relevant",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-main:relevant",
-          "sourceQuestionId": "relevant",
-          "prompt": "Choose one emerging technology that could be relevant to Oakridge. Explain the user need it might support and one demand it would place on skills, hardware or data.",
-          "placeholder": "Technology: ... User need: ... Demand: ...",
-          "guidance": "Cloud or generative AI can be relevant if tied to phones/PCs or report writing. The demand should mention skills, cost, connectivity or personal data."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-distraction",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-main:distraction",
-          "sourceQuestionId": "distraction",
-          "prompt": "Choose one emerging technology that is a distraction for this brief and justify why against Week 1 context.",
-          "placeholder": "Technology: ... Distraction because...",
-          "guidance": "Drones, 3D printing or robotics have no evidenced link to booking, registers or funder reports at Oakridge."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-evaluation-change",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-main:evaluation-change",
-          "sourceQuestionId": "evaluation-change",
-          "prompt": "Would this relevant technology change yesterday's solution comparison? Say how, or say why it would not.",
-          "placeholder": "It would / would not change the comparison because...",
-          "guidance": "A good answer refers back to criteria such as cost, IT support, phones, or tutor training rather than novelty."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-main-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "Live pitfall: students writing an AI essay. Keep them on Oakridge. Formative classification follows. Future: 1.5 deep dive in weeks 16–18; responsible GenAI use when the lifecycle reaches design/build."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-2-formative",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Formative: relevant, later, or distraction?",
-      "status": "available",
-      "summary": "Classify emerging technologies against the Oakridge brief.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-lesson-2-formative",
-      "estimatedDurationMinutes": 10,
-      "activityType": "Classification",
-      "topics": [
-        "Emerging technologies",
-        "Project context"
-      ],
-      "detail": "Classify emerging technologies against the Oakridge brief."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-emerging-technologies"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-formative-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Sort technologies by this project",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-formative-sort",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "classification",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-2-formative:sort",
-          "sourceQuestionId": "sort",
-          "prompt": "How should each technology be treated during Oakridge familiarisation?",
-          "categories": [
-            {
-              "id": "now",
-              "label": "Investigate now for this brief"
-            },
-            {
-              "id": "later",
-              "label": "Note for later / only if evidence appears"
-            },
-            {
-              "id": "distraction",
-              "label": "Distraction for this brief"
-            }
-          ],
-          "items": [
-            {
-              "id": "item-1",
-              "label": "Cloud hosting for a small booking service",
-              "correctCategoryId": "now"
-            },
-            {
-              "id": "item-2",
-              "label": "Delivery drones for workshop materials",
-              "correctCategoryId": "distraction"
-            },
-            {
-              "id": "item-3",
-              "label": "Generative AI to draft funder-report wording for staff review",
-              "correctCategoryId": "now"
-            },
-            {
-              "id": "item-4",
-              "label": "Computer vision on drones for site security",
-              "correctCategoryId": "distraction"
-            },
-            {
-              "id": "item-5",
-              "label": "5G as the only access method for classroom registers",
-              "correctCategoryId": "later"
-            },
-            {
-              "id": "item-6",
-              "label": "Simple QR check-in on learner phones",
-              "correctCategoryId": "now"
-            },
-            {
-              "id": "item-7",
-              "label": "3D printing learner ID cards",
-              "correctCategoryId": "distraction"
-            },
-            {
-              "id": "item-8",
-              "label": "Biometric facial registers for ESOL classes",
-              "correctCategoryId": "later"
-            }
-          ],
-          "feedback": {
-            "correct": "Now: cloud, carefully reviewed GenAI, QR on phones. Later: biometrics and 5G need more legal/technical evidence. Drones, CV-on-drones and 3D printing do not serve this brief.",
-            "incorrect": "Ask whether the technology helps booking, registers or reporting inside Oakridge's constraints. Novelty is not relevance."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-3-retrieval",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Retrieval: relevant technology versus regulation",
-      "status": "available",
-      "summary": "Retrieve the difference between a useful technology idea and a legally or ethically constrained one.",
-      "href": null,
-      "difficulty": "foundation",
-      "familyId": "week-2-lesson-3-retrieval",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Retrieval quiz",
-      "topics": [
-        "Emerging technologies",
-        "Regulations"
-      ],
-      "detail": "Retrieve the difference between a useful technology idea and a legally or ethically constrained one."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions",
-        "w2-emerging-technologies",
-        "w2-regulations-and-gaps"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-retrieval-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Starter retrieval",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-retrieval-q1",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-retrieval:q1",
-          "sourceQuestionId": "q1",
-          "sourceType": "single",
-          "prompt": "Why might biometric registers be a 'later' idea rather than a Week 2 recommendation?",
-          "options": [
-            {
-              "id": "a",
-              "label": "Biometrics cannot take a register"
-            },
-            {
-              "id": "b",
-              "label": "They raise data protection, consent and inclusion issues that this brief has not established"
-            },
-            {
-              "id": "c",
-              "label": "Pearson bans biometrics"
-            },
-            {
-              "id": "d",
-              "label": "Phones cannot capture images"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Familiarisation includes spotting regulations and risks. You have not yet evidenced that biometrics are necessary or lawful here.",
-            "incorrect": "Biometrics are high-risk personal data. Do not recommend them from novelty during familiarisation."
-          }
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-retrieval-q2",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-retrieval:q2",
-          "sourceQuestionId": "q2",
-          "sourceType": "single",
-          "prompt": "What is the purpose of identifying personal knowledge gaps at this stage?",
-          "options": [
-            {
-              "id": "a",
-              "label": "To prove you cannot do the project"
-            },
-            {
-              "id": "b",
-              "label": "To plan learning so later requirements, design and build are not based on guesswork"
-            },
-            {
-              "id": "c",
-              "label": "To avoid research"
-            },
-            {
-              "id": "d",
-              "label": "To choose a programming language"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Specification 1.1 asks you to identify shortfalls in skills and knowledge and plan learning. That is professional practice, not a weakness.",
-            "incorrect": "Gaps drive a training plan. They protect later work from unsupported claims."
-          }
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-retrieval-q3",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-retrieval:q3",
-          "sourceQuestionId": "q3",
-          "sourceType": "single",
-          "prompt": "Which regulation family is already implied by Oakridge holding learner characteristics for funders?",
-          "options": [
-            {
-              "id": "a",
-              "label": "Maritime law"
-            },
-            {
-              "id": "b",
-              "label": "UK data protection and privacy duties for personal data"
-            },
-            {
-              "id": "c",
-              "label": "Gambling legislation"
-            },
-            {
-              "id": "d",
-              "label": "Patent law for 3D printing"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Learner characteristics are personal data. Data protection is in scope now; a full legal week comes later in the course.",
-            "incorrect": "Funder reports about learners bring data protection into this project immediately."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-3-main",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Identify regulations, guidelines and personal gaps",
-      "status": "available",
-      "summary": "List situational regulations and your own knowledge, skill and capability gaps before defining requirements next week.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-lesson-3-main",
-      "estimatedDurationMinutes": 35,
-      "activityType": "Guided practical",
-      "topics": [
-        "Regulations",
-        "Guidelines",
-        "Knowledge gaps",
-        "Skills gaps"
-      ],
-      "detail": "List situational regulations and your own knowledge, skill and capability gaps before defining requirements next week."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-regulations-and-gaps"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Familiarisation includes rules and your own readiness",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Specification 1.1 includes industry or situation-specific guidelines and regulations, and identifying shortfalls in your own skills and knowledge. You are not writing the full legal analysis yet. That is Area 2 in weeks 19–20. Today you name what is in play and what you must learn."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-regs-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Regulations and guidelines in this situation",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-regs",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "For Oakridge, expect UK GDPR / data protection for learner records; safeguarding expectations if anyone 16–18 or vulnerable adults attend; funding-evidence rules; accessibility expectations so the service is usable; and possibly WCAG-oriented practice if the solution is a website. You still need to check which of these actually apply, with sources."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-gaps-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Knowledge, skills and capability",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-gaps",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "A knowledge gap is something you do not yet understand (for example what a lawful basis is). A skill gap is something you cannot yet do (for example query a database or run a user interview). A capability gap is whether you can complete the required solution in the time and with the tools you have. Be specific. 'I need to get better at IT' is not a plan."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-later-pd",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "callout",
-        "content": {
-          "title": "Later learning",
-          "text": "Weeks 16–18 build full training plans. Weeks 19–20 treat law, ethics and risk in depth. Capture gaps now so those weeks are not theoretical.",
-          "tone": "info"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-practice-h",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Practical application",
-          "level": 3
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-regulations",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-main:regulations",
-          "sourceQuestionId": "regulations",
-          "prompt": "Name two regulations or guidelines that appear relevant to Oakridge and one piece of evidence you would still need before treating them as confirmed requirements.",
-          "placeholder": "1. ... Evidence still needed: ...",
-          "guidance": "Data protection and accessibility or safeguarding are the likely pair. Evidence might be the age range of learners or the funder's data items."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-gaps",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-main:gaps",
-          "sourceQuestionId": "gaps",
-          "prompt": "Record one knowledge gap, one skill gap and one capability gap that would affect you if Oakridge were your Occupational Specialism brief.",
-          "placeholder": "Knowledge: ... Skill: ... Capability: ...",
-          "guidance": "Look for project-specific gaps such as accessibility testing, interview technique, or whether you can support a deployed system alone."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-learning",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-main:learning",
-          "sourceQuestionId": "learning",
-          "prompt": "For one gap, write a next learning step you can complete before Week 4.",
-          "placeholder": "I will... using...",
-          "guidance": "A good step names a source or practice task, not just 'revise'."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-main-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "Keep legal discussion at identification level. Do not deliver the weeks 19–20 content. Formative follows. Homework produces the evidence log Week 3 needs for business requirements and scope."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-lesson-3-formative",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Formative: regulation, gap, or design decision?",
-      "status": "available",
-      "summary": "Separate familiarisation findings from premature design and from gaps you still need to close.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-lesson-3-formative",
-      "estimatedDurationMinutes": 10,
-      "activityType": "Classification",
-      "topics": [
-        "Regulations",
-        "Knowledge gaps",
-        "Design decisions"
-      ],
-      "detail": "Separate familiarisation findings from premature design and from gaps you still need to close."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-regulations-and-gaps"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-formative-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Keep the categories clean",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-formative-sort",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "classification",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-lesson-3-formative:sort",
-          "sourceQuestionId": "sort",
-          "prompt": "Classify each statement about the Oakridge project.",
-          "categories": [
-            {
-              "id": "regulation",
-              "label": "Regulation or guideline to investigate"
-            },
-            {
-              "id": "gap",
-              "label": "Personal knowledge, skill or capability gap"
-            },
-            {
-              "id": "design",
-              "label": "Premature design decision"
-            }
-          ],
-          "items": [
-            {
-              "id": "item-1",
-              "label": "Learner characteristics used for funders are personal data",
-              "correctCategoryId": "regulation"
-            },
-            {
-              "id": "item-2",
-              "label": "I have not yet run a structured user interview",
-              "correctCategoryId": "gap"
-            },
-            {
-              "id": "item-3",
-              "label": "The register will use facial recognition",
-              "correctCategoryId": "design"
-            },
-            {
-              "id": "item-4",
-              "label": "A public website should be designed to be accessible",
-              "correctCategoryId": "regulation"
-            },
-            {
-              "id": "item-5",
-              "label": "I cannot yet explain lawful basis for storing attendance data",
-              "correctCategoryId": "gap"
-            },
-            {
-              "id": "item-6",
-              "label": "We will host everything on a named cloud vendor this week",
-              "correctCategoryId": "design"
-            },
-            {
-              "id": "item-7",
-              "label": "Safeguarding duties may apply if 16–18-year-olds attend",
-              "correctCategoryId": "regulation"
-            },
-            {
-              "id": "item-8",
-              "label": "I have never produced a funder-style report from a data set",
-              "correctCategoryId": "gap"
-            }
-          ],
-          "feedback": {
-            "correct": "Regulations are external duties to check. Gaps are about you. Vendor, biometrics and hosting choices are still design.",
-            "incorrect": "If it is a legal duty, it is regulation. If it is about your readiness, it is a gap. If it names a product or mechanism too early, it is design."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-2-homework-evidence",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Homework: solution and gap evidence log",
-      "status": "available",
-      "summary": "Bring Week 1 research and Week 2 evaluation together so Week 3 can define business requirements and scope from evidence.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-2-homework-evidence",
-      "estimatedDurationMinutes": 40,
-      "activityType": "Independent study",
-      "topics": [
-        "Evaluating solutions",
-        "Regulations",
-        "Knowledge gaps",
-        "Reliable sources"
-      ],
-      "detail": "Bring Week 1 research and Week 2 evaluation together so Week 3 can define business requirements and scope from evidence.",
-      "support": "independent"
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions",
-        "w2-emerging-technologies",
-        "w2-regulations-and-gaps"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Independent study",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Produce a one-page evidence log. Week 3 will use it when you identify business requirements, scope and business value. Do not write the requirements yet."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-options",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-homework-evidence:options",
-          "sourceQuestionId": "options",
-          "prompt": "Summarise two candidate options and the strongest evidence for and against each, with sources.",
-          "placeholder": "Option 1: ... For: ... Against: ... Source: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-tech",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-homework-evidence:tech",
-          "sourceQuestionId": "tech",
-          "prompt": "State one emerging technology you will keep in play and one you will park, with a one-sentence justification tied to Oakridge.",
-          "placeholder": "Keep: ... Park: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-rules",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-homework-evidence:rules",
-          "sourceQuestionId": "rules",
-          "prompt": "List two regulations or guidelines to carry into requirements work, and one official or reputable source you will use to check each.",
-          "placeholder": "1. ... Source: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-gap",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "reflection",
-        "content": {
-          "formative": true,
-          "questionId": "week-2-homework-evidence:gap",
-          "sourceQuestionId": "gap",
-          "prompt": "Which personal gap would most damage your Week 3 requirements work if you ignore it, and what will you do before then?"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-2-homework-evidence-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "Collect logs as Week 3 retrieval. Look for named sources and Oakridge-specific justifications. This is early Area 3 practice (reliable sources) without teaching the full 3.1–3.2 methods."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
     "id": "week-3-lesson-1-retrieval",
     "version": "0.1.0",
     "metadata": {
@@ -10098,6 +8527,1253 @@
         "type": "teacher-note",
         "content": {
           "text": "SoL homework. Collect as Week 2 retrieval. Do not require academic referencing yet; named sources are enough."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-1-retrieval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Retrieval: current, emerging and mobile developments",
+      "status": "available",
+      "summary": "Retrieve the distinction between current and emerging technologies and identify developments in mobile devices.",
+      "href": null,
+      "difficulty": "foundation",
+      "familyId": "week-2-lesson-1-retrieval",
+      "estimatedDurationMinutes": 8,
+      "activityType": "Retrieval quiz",
+      "topics": [
+        "Current technology",
+        "Mobile technology"
+      ],
+      "detail": "Retrieve the distinction between current and emerging technologies and identify developments in mobile devices."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-retrieval-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Starter retrieval",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-retrieval-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Week 1 defined current and emerging technology. Week 2 looks at mobile technology: smartphones, tablets and other devices that people carry."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-retrieval-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-1-retrieval:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "A smartphone is current for most people. Which feature might still be emerging?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Making a phone call"
+            },
+            {
+              "id": "b",
+              "label": "On-device AI that summarises photos without a clear user understanding of where data goes"
+            },
+            {
+              "id": "c",
+              "label": "Sending a text message"
+            },
+            {
+              "id": "d",
+              "label": "Using a torch"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "The device can be current while a new capability is still emerging.",
+            "incorrect": "Separate the established phone from newer capabilities that are not yet widely understood or adopted."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-retrieval-q2",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-1-retrieval:q2",
+          "sourceQuestionId": "q2",
+          "sourceType": "single",
+          "prompt": "Which list best describes what makes a device 'mobile technology'?",
+          "options": [
+            {
+              "id": "a",
+              "label": "It must run desktop Windows only"
+            },
+            {
+              "id": "b",
+              "label": "It combines portable computing, communication, sensors, apps and internet connectivity"
+            },
+            {
+              "id": "c",
+              "label": "It cannot connect to the internet"
+            },
+            {
+              "id": "d",
+              "label": "It is only used in factories"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Mobile technology is portable and typically combines those elements.",
+            "incorrect": "Think portable computing plus communication, sensors, apps and connectivity."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-retrieval-developments",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-1-retrieval:developments",
+          "sourceQuestionId": "developments",
+          "prompt": "Name two developments in mobile devices from the last few years (hardware, sensors, apps or connectivity).",
+          "placeholder": "1. ... 2. ..."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-1-main",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "How mobile technologies combine several capabilities",
+      "status": "available",
+      "summary": "See how mobile devices combine computing, communication, sensors, applications and internet connectivity.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-lesson-1-main",
+      "estimatedDurationMinutes": 35,
+      "activityType": "Guided learning",
+      "topics": [
+        "Mobile technology",
+        "Sensors",
+        "Connectivity"
+      ],
+      "detail": "See how mobile devices combine computing, communication, sensors, applications and internet connectivity."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "More than a phone",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Outline mobile technology by its parts, not just by brand. A typical smartphone is a computer, a communicator, a sensor pack, an app platform and an internet client."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-parts-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Five parts to look for",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-parts",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Computing: processor, storage, operating system. Communication: calls, messages, email. Sensors: GPS, camera, accelerometer, fingerprint or face unlock. Applications: banking, maps, health, work apps. Connectivity: Wi-Fi, mobile data, Bluetooth, NFC."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-devices",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "callout",
+        "content": {
+          "title": "Not only phones",
+          "text": "Tablets, handheld payment devices, delivery scanners and some wearables are also mobile technology. Week 6 looks at wearables in more depth; today stay on phones, tablets and similar handheld devices.",
+          "tone": "info"
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-outline",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-1-main:outline",
+          "sourceQuestionId": "outline",
+          "prompt": "Outline mobile technology in four to six sentences using the five parts above.",
+          "placeholder": "Mobile technology is... It includes... Sensors... Apps... Connectivity...",
+          "guidance": "A good outline names portable computing, communication, sensors, apps and connectivity without copying a vendor advert."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-sensor",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-1-main:sensor",
+          "sourceQuestionId": "sensor",
+          "prompt": "Choose one sensor on a smartphone and explain one personal use and one possible business use.",
+          "placeholder": "Sensor: ... Personal: ... Business: ...",
+          "guidance": "GPS for maps versus delivery tracking; camera for photos versus scanning parcels; NFC for tap-to-pay versus staff badges."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-main-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "SoL teacher demonstration: mobile technologies combine computing, communication, sensors, applications and internet connectivity. UDL: familiar devices and screenshots. Next lesson splits personal and organisational applications."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-1-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Progress check: characteristics of mobile technology",
+      "status": "available",
+      "summary": "Identify key characteristics of mobile technology.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-lesson-1-formative",
+      "estimatedDurationMinutes": 10,
+      "activityType": "Classification",
+      "topics": [
+        "Mobile technology"
+      ],
+      "detail": "Identify key characteristics of mobile technology."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-formative-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Is it a mobile-technology characteristic?",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-1-formative-sort",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-1-formative:sort",
+          "sourceQuestionId": "sort",
+          "prompt": "Classify each statement.",
+          "categories": [
+            {
+              "id": "characteristic",
+              "label": "Key characteristic of mobile technology"
+            },
+            {
+              "id": "not",
+              "label": "Not a defining characteristic"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "The device is designed to be carried and used in different locations",
+              "correctCategoryId": "characteristic"
+            },
+            {
+              "id": "item-2",
+              "label": "It can run applications",
+              "correctCategoryId": "characteristic"
+            },
+            {
+              "id": "item-3",
+              "label": "It must be a desktop tower under a desk",
+              "correctCategoryId": "not"
+            },
+            {
+              "id": "item-4",
+              "label": "It can connect to networks such as Wi-Fi or mobile data",
+              "correctCategoryId": "characteristic"
+            },
+            {
+              "id": "item-5",
+              "label": "It often includes sensors such as GPS or a camera",
+              "correctCategoryId": "characteristic"
+            },
+            {
+              "id": "item-6",
+              "label": "It can only be used by software developers",
+              "correctCategoryId": "not"
+            }
+          ],
+          "feedback": {
+            "correct": "Portability, apps, connectivity and sensors are core. Desktop towers and 'developers only' are not.",
+            "incorrect": "Ask whether the statement is true of phones and tablets that people carry."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-2-retrieval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Retrieval: mobile characteristics",
+      "status": "available",
+      "summary": "Retrieve key characteristics of mobile technology before comparing personal and business applications.",
+      "href": null,
+      "difficulty": "foundation",
+      "familyId": "week-2-lesson-2-retrieval",
+      "estimatedDurationMinutes": 8,
+      "activityType": "Retrieval quiz",
+      "topics": [
+        "Mobile technology"
+      ],
+      "detail": "Retrieve key characteristics of mobile technology before comparing personal and business applications."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-retrieval-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Starter retrieval",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-retrieval-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-2-retrieval:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "NFC on a phone is mainly an example of which mobile capability?",
+          "options": [
+            {
+              "id": "a",
+              "label": "A printed user manual"
+            },
+            {
+              "id": "b",
+              "label": "Short-range communication, for example contactless payments"
+            },
+            {
+              "id": "c",
+              "label": "A desktop graphics card"
+            },
+            {
+              "id": "d",
+              "label": "A landline replacement only"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "NFC is short-range communication used in payments and similar taps.",
+            "incorrect": "NFC is about tapping the phone near a reader, not about desktop hardware."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-retrieval-q2",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-2-retrieval:q2",
+          "sourceQuestionId": "q2",
+          "sourceType": "single",
+          "prompt": "Why do organisations care that staff have mobile devices?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Because phones cannot access the internet"
+            },
+            {
+              "id": "b",
+              "label": "Because work can continue away from a desk: communication, data capture and customer service"
+            },
+            {
+              "id": "c",
+              "label": "Because mobile devices cannot run apps"
+            },
+            {
+              "id": "d",
+              "label": "Because sensors never collect useful data"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Business value is access and action away from a fixed PC.",
+            "incorrect": "Think field work, customer apps and staff communication."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-2-main",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Personal and business applications of mobile devices",
+      "status": "available",
+      "summary": "Compare personal and organisational applications of smartphones, tablets and other mobile devices.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-lesson-2-main",
+      "estimatedDurationMinutes": 35,
+      "activityType": "Guided learning",
+      "topics": [
+        "Mobile technology",
+        "Personal uses",
+        "Business uses"
+      ],
+      "detail": "Compare personal and organisational applications of smartphones, tablets and other mobile devices."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Same device, different jobs",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Personal uses include messaging, maps, photos, entertainment, health tracking and mobile payments. Organisational uses include mobile banking, retail apps, field working, delivery scanning and healthcare records at the bedside. The hardware overlaps; the purpose changes."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-compare-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Compare requirements",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-compare",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "A learner using maps needs battery and GPS. A delivery driver also needs a rugged device, a work account, barcode scanning and a data connection that works on the road. Extension: different users need different security, durability and apps."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-personal",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-2-main:personal",
+          "sourceQuestionId": "personal",
+          "prompt": "Describe two personal applications of a mobile device and the capability each one uses (app, sensor, connectivity or communication).",
+          "placeholder": "1. ... uses ... 2. ..."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-business",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-2-main:business",
+          "sourceQuestionId": "business",
+          "prompt": "Describe two business applications, using different sectors if you can (for example banking, retail, delivery or healthcare).",
+          "placeholder": "1. ... 2. ..."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-difference",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-2-main:difference",
+          "sourceQuestionId": "difference",
+          "prompt": "Pick one personal use and one business use of the same capability (for example GPS or the camera). What extra requirement does the business use have?",
+          "placeholder": "Personal: ... Business: ... Extra requirement: ...",
+          "guidance": "Look for security, audit trails, shared accounts, durability or working hours."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-main-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "SoL guided learning: compare personal and organisational applications. Industry: mobile banking, retail, field working, delivery, healthcare. Scaffold: structured prompts. Challenge: compare requirements for different users."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-2-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Progress check: personal or business application?",
+      "status": "available",
+      "summary": "Questioning check of personal and business applications.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-lesson-2-formative",
+      "estimatedDurationMinutes": 10,
+      "activityType": "Classification",
+      "topics": [
+        "Personal uses",
+        "Business uses"
+      ],
+      "detail": "Questioning check of personal and business applications."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-formative-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Classify the application",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-2-formative-sort",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-2-formative:sort",
+          "sourceQuestionId": "sort",
+          "prompt": "Is the main purpose personal or organisational?",
+          "categories": [
+            {
+              "id": "personal",
+              "label": "Personal application"
+            },
+            {
+              "id": "business",
+              "label": "Business / organisational application"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "A customer checking a bank balance in an app",
+              "correctCategoryId": "business"
+            },
+            {
+              "id": "item-2",
+              "label": "A learner sending a message to a friend",
+              "correctCategoryId": "personal"
+            },
+            {
+              "id": "item-3",
+              "label": "A courier scanning a parcel with a handheld device",
+              "correctCategoryId": "business"
+            },
+            {
+              "id": "item-4",
+              "label": "Someone using a phone camera for holiday photos",
+              "correctCategoryId": "personal"
+            },
+            {
+              "id": "item-5",
+              "label": "A nurse recording observations on a ward tablet",
+              "correctCategoryId": "business"
+            },
+            {
+              "id": "item-6",
+              "label": "Streaming a film at home on a tablet",
+              "correctCategoryId": "personal"
+            }
+          ],
+          "feedback": {
+            "correct": "Banking apps, parcel scanning and ward tablets serve organisations and their customers or staff. Messaging friends, holiday photos and home streaming are personal.",
+            "incorrect": "Ask who the activity is for: the individual social life, or an organisation's service or operations."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-3-retrieval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Retrieval: one organisational benefit",
+      "status": "available",
+      "summary": "Explain one organisational benefit of mobile access before writing a case study.",
+      "href": null,
+      "difficulty": "foundation",
+      "familyId": "week-2-lesson-3-retrieval",
+      "estimatedDurationMinutes": 8,
+      "activityType": "Retrieval quiz",
+      "topics": [
+        "Business uses",
+        "Mobile technology"
+      ],
+      "detail": "Explain one organisational benefit of mobile access before writing a case study."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-retrieval-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Starter retrieval",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-retrieval-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-3-retrieval:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "Which is the clearest organisational benefit of mobile access?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Staff can only work at one desk"
+            },
+            {
+              "id": "b",
+              "label": "Customers or staff can complete a task away from a branch or office"
+            },
+            {
+              "id": "c",
+              "label": "The organisation must stop using any security"
+            },
+            {
+              "id": "d",
+              "label": "Mobile devices cannot connect to data"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "The benefit is access and action in more places, for customers or employees.",
+            "incorrect": "Think convenience, speed or field work — with security still required."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-retrieval-benefit",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-3-retrieval:benefit",
+          "sourceQuestionId": "benefit",
+          "prompt": "State one organisational benefit of mobile access and name the sector in your example.",
+          "placeholder": "In ... mobile access helps the organisation by..."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-3-main",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Produce a short organisational mobile case study",
+      "status": "available",
+      "summary": "Show how mobile technology supports a selected organisation.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-lesson-3-main",
+      "estimatedDurationMinutes": 35,
+      "activityType": "Independent application",
+      "topics": [
+        "Business uses",
+        "Mobile technology",
+        "Case study"
+      ],
+      "detail": "Show how mobile technology supports a selected organisation."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-main-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Case study, not a product advert",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-main-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Choose an organisation you know or can research: a bank, supermarket, delivery firm, GP practice, college or local shop. Explain how mobile technology supports that organisation. Include who uses the device, what they do, and one benefit."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-main-structure",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "callout",
+        "content": {
+          "title": "Use this structure",
+          "text": "Organisation and sector. Mobile technology used. Who uses it (customers, employees or both). What task it supports. One benefit. One possible limitation (battery, coverage, security or training).",
+          "tone": "info"
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-main-case",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-3-main:case",
+          "sourceQuestionId": "case",
+          "prompt": "Write the case study using the structure above (about 150–220 words).",
+          "placeholder": "Organisation: ...",
+          "guidance": "Check it is a real or realistic organisation, names a mobile use, and includes a benefit plus a limitation."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-main-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "SoL independent application. Homework extends this to customer or employee communication specifically. Review key terminology at the end of the lesson."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-3-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Review key mobile terminology",
+      "status": "available",
+      "summary": "Check that learners can still use accurate mobile-technology terms.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-lesson-3-formative",
+      "estimatedDurationMinutes": 10,
+      "activityType": "Knowledge check",
+      "topics": [
+        "Mobile technology"
+      ],
+      "detail": "Check that learners can still use accurate mobile-technology terms."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-formative-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Terminology check",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-formative-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-3-formative:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "GPS on a phone is best described as...",
+          "options": [
+            {
+              "id": "a",
+              "label": "A type of printer"
+            },
+            {
+              "id": "b",
+              "label": "A location sensor used by maps and many business tracking apps"
+            },
+            {
+              "id": "c",
+              "label": "A desktop operating system"
+            },
+            {
+              "id": "d",
+              "label": "A wired network cable"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "GPS is a location sensor with personal and business applications.",
+            "incorrect": "GPS is about location, not printing or desktop OS."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-formative-q2",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-3-formative:q2",
+          "sourceQuestionId": "q2",
+          "sourceType": "single",
+          "prompt": "A tablet used on a hospital ward is mainly an example of...",
+          "options": [
+            {
+              "id": "a",
+              "label": "A personal gaming hobby with no organisational purpose"
+            },
+            {
+              "id": "b",
+              "label": "An organisational mobile device supporting staff work"
+            },
+            {
+              "id": "c",
+              "label": "A 5G mast"
+            },
+            {
+              "id": "d",
+              "label": "A desktop-only system"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Ward tablets are organisational mobile technology.",
+            "incorrect": "The user is staff doing work, so it is a business application."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-lesson-3-formative-outline",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-lesson-3-formative:outline",
+          "sourceQuestionId": "outline",
+          "prompt": "In two sentences, outline mobile technology and give one business application.",
+          "placeholder": "Mobile technology is... One business application is..."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-homework-organisation",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: how an organisation uses mobile communication",
+      "status": "available",
+      "summary": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-2-homework-organisation",
+      "estimatedDurationMinutes": 30,
+      "activityType": "Independent study",
+      "topics": [
+        "Business uses",
+        "Mobile technology"
+      ],
+      "detail": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+      "support": "independent"
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-homework-organisation-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Independent study",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-homework-organisation-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Pick one organisation. Find out how it uses mobile technology to communicate with customers or employees: app notifications, SMS, staff handhelds, or a customer app. Bring this to Week 3, which starts consumer Internet of Things."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-homework-organisation-org",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-homework-organisation:org",
+          "sourceQuestionId": "org",
+          "prompt": "Organisation, sector, and who is being communicated with (customers, employees or both).",
+          "placeholder": "Write a short professional response."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-homework-organisation-how",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-homework-organisation:how",
+          "sourceQuestionId": "how",
+          "prompt": "How mobile technology is used for that communication, and one benefit.",
+          "placeholder": "Write a short professional response."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-homework-organisation-iot",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "reflection",
+        "content": {
+          "formative": true,
+          "questionId": "week-2-homework-organisation:iot",
+          "sourceQuestionId": "iot",
+          "prompt": "Does this organisation also use connected objects (not just phones), such as scanners, trackers or smart speakers? Week 3 introduces consumer IoT."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-2-homework-organisation-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "SoL homework. Use as Week 3 retrieval if learners spotted connected devices beyond phones."
         }
       }
     ]

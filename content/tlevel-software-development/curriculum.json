@@ -11,9 +11,6 @@
     "learningOutcomes": [
       "foundations-lo",
       "os-1-1",
-      "w2-evaluate-solutions",
-      "w2-emerging-technologies",
-      "w2-regulations-and-gaps",
       "w3-business-scope-value",
       "w3-decomposition-patterns",
       "w3-abstraction",
@@ -21,7 +18,10 @@
       "lo2",
       "w1-define-current-emerging",
       "w1-identify-examples",
-      "w1-outline-industry-uses"
+      "w1-outline-industry-uses",
+      "w2-outline-mobile",
+      "w2-personal-mobile",
+      "w2-business-mobile"
     ],
     "assignments": [
       "foundations-practice",

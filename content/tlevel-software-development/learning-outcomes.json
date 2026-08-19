@@ -22,36 +22,6 @@
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w2-evaluate-solutions",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Evaluate existing and potential solutions against client needs, constraints and evidence"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w2-emerging-technologies",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Investigate emerging technologies in a specific project context rather than as a technology catalogue"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w2-regulations-and-gaps",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Identify relevant regulations and personal knowledge, skill and capability gaps that affect the project"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
     "id": "w3-business-scope-value",
     "version": "0.1.0",
     "metadata": {
@@ -126,6 +96,36 @@
     "version": "0.1.0",
     "metadata": {
       "title": "Outline how emerging technologies are used in different industries"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-outline-mobile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline mobile technology"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-personal-mobile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Describe personal applications of mobile devices"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-business-mobile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Describe business applications of mobile devices"
     },
     "relationships": {}
   }

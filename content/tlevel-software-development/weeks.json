@@ -39,10 +39,10 @@
     "version": "0.1.0",
     "metadata": {
       "teachingWeek": 2,
-      "title": "Evaluating solutions, emerging technologies and professional gaps",
+      "title": "Mobile Technology",
       "status": "available",
-      "phase": "sdlc-research",
-      "professionalPractice": "OS 1.1 Research and familiarisation — existing and potential solutions, emerging technologies, regulations and personal knowledge gaps",
+      "phase": "lo1-technologies",
+      "professionalPractice": "LO1 — outline mobile technology; describe personal and business applications of mobile devices",
       "route": "weeks/week-2/",
       "weekCommencing": null,
       "releaseDate": null,
@@ -51,10 +51,10 @@
     "relationships": {
       "curriculum": "tlevel-software-development-curriculum",
       "learningOutcomes": [
-        "os-1-1",
-        "w2-evaluate-solutions",
-        "w2-emerging-technologies",
-        "w2-regulations-and-gaps"
+        "lo1",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile"
       ],
       "assignment": "os-formative",
       "sessions": [

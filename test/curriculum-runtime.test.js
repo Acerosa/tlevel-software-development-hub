@@ -46,11 +46,11 @@ test("Week 1 follows the SoL teaching sequence", () => {
   assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo1"));
 });
 
-test("Week 2 follows the 22-week OS teaching sequence", () => {
+test("Week 2 follows the SoL teaching sequence", () => {
   const week = pkg.weeks.find((item) => item.id === "week-2");
   assert.ok(week);
   assert.equal(week.metadata.teachingWeek, 2);
-  assert.match(week.metadata.title, /emerging technologies/i);
+  assert.equal(week.metadata.title, "Mobile Technology");
   assert.deepEqual(week.relationships.sessions, [
     "week-2-lesson-1",
     "week-2-lesson-2",
