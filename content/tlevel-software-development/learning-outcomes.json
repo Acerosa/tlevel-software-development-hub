@@ -8,5 +8,115 @@
       "title": "Prepare for occupational software development tasks"
     },
     "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "lo1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "LO1: Know about new and emerging digital technologies"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "lo2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "LO2: Understand how new and emerging digital technologies are used"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-define-current-emerging",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define current and emerging digital technology"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-identify-examples",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify examples of new and emerging technologies"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-outline-industry-uses",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline how emerging technologies are used in different industries"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-outline-mobile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline mobile technology"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-personal-mobile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Describe personal applications of mobile devices"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-business-mobile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Describe business applications of mobile devices"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-explain-iot",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain the basic concept of IoT"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-iot-components",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify components of an IoT system"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-consumer-iot",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline consumer applications of IoT"
+    },
+    "relationships": {}
   }
 ]

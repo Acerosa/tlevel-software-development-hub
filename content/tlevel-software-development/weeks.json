@@ -2,25 +2,99 @@
   {
     "schema": "lp.content.week",
     "schemaVersion": "0.1.0",
-    "id": "foundations",
+    "id": "week-1",
     "version": "0.1.0",
     "metadata": {
       "teachingWeek": 1,
-      "title": "Technical Foundations",
-      "status": "available"
+      "title": "Introduction to New and Emerging Digital Technologies",
+      "status": "available",
+      "phase": "lo1-technologies",
+      "professionalPractice": "LO1 / AC 1.1 — define current and emerging digital technology; identify examples; outline uses in different industries",
+      "route": "weeks/week-1/",
+      "weekCommencing": null,
+      "releaseDate": null,
+      "dueDate": null
     },
     "relationships": {
       "curriculum": "tlevel-software-development-curriculum",
       "learningOutcomes": [
-        "foundations-lo"
+        "lo1",
+        "w1-define-current-emerging",
+        "w1-identify-examples",
+        "w1-outline-industry-uses"
       ],
-      "assignment": "foundations-practice",
+      "assignment": "os-formative",
       "sessions": [
-        "foundations-programming-diagnostic-session",
-        "foundations-requirements-classification-session",
-        "foundations-problem-decomposition-session",
-        "foundations-data-design-session",
-        "foundations-testing-methods-session"
+        "week-1-lesson-1",
+        "week-1-lesson-2",
+        "week-1-lesson-3",
+        "week-1-homework"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.week",
+    "schemaVersion": "0.1.0",
+    "id": "week-2",
+    "version": "0.1.0",
+    "metadata": {
+      "teachingWeek": 2,
+      "title": "Mobile Technology",
+      "status": "available",
+      "phase": "lo1-technologies",
+      "professionalPractice": "LO1 — outline mobile technology; describe personal and business applications of mobile devices",
+      "route": "weeks/week-2/",
+      "weekCommencing": null,
+      "releaseDate": null,
+      "dueDate": null
+    },
+    "relationships": {
+      "curriculum": "tlevel-software-development-curriculum",
+      "learningOutcomes": [
+        "lo1",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile"
+      ],
+      "assignment": "os-formative",
+      "sessions": [
+        "week-2-lesson-1",
+        "week-2-lesson-2",
+        "week-2-lesson-3",
+        "week-2-homework"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.week",
+    "schemaVersion": "0.1.0",
+    "id": "week-3",
+    "version": "0.1.0",
+    "metadata": {
+      "teachingWeek": 3,
+      "title": "Internet of Things - Consumer Applications",
+      "status": "available",
+      "phase": "lo1-technologies",
+      "professionalPractice": "LO1 — explain the basic concept of IoT; identify system components; outline consumer applications",
+      "route": "weeks/week-3/",
+      "weekCommencing": null,
+      "releaseDate": null,
+      "dueDate": null
+    },
+    "relationships": {
+      "curriculum": "tlevel-software-development-curriculum",
+      "learningOutcomes": [
+        "lo1",
+        "w3-explain-iot",
+        "w3-iot-components",
+        "w3-consumer-iot"
+      ],
+      "assignment": "os-formative",
+      "sessions": [
+        "week-3-lesson-1",
+        "week-3-lesson-2",
+        "week-3-lesson-3",
+        "week-3-homework"
       ]
     }
   }

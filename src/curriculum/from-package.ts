@@ -122,7 +122,9 @@ export function activityFromPackage(pkg: ContentPackage, activityId: string): Re
 }
 
 export function catalogFromPackage(pkg: ContentPackage) {
-  return (pkg.activities || []).map((activity) => ({
+  return (pkg.activities || [])
+    .filter((activity) => activity.id.startsWith("foundations-"))
+    .map((activity) => ({
     id: activity.id,
     version: activity.version,
     title: activity.metadata?.title || activity.id,

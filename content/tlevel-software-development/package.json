@@ -2,7 +2,7 @@
   "schema": "lp.content.package",
   "schemaVersion": "0.1.0",
   "id": "tlevel-software-development-content",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "hub": {
     "schema": "lp.content.hub",
     "schemaVersion": "0.1.0",
@@ -27,13 +27,27 @@
     },
     "relationships": {
       "learningOutcomes": [
-        "foundations-lo"
+        "foundations-lo",
+        "lo1",
+        "lo2",
+        "w1-define-current-emerging",
+        "w1-identify-examples",
+        "w1-outline-industry-uses",
+        "w2-outline-mobile",
+        "w2-personal-mobile",
+        "w2-business-mobile",
+        "w3-explain-iot",
+        "w3-iot-components",
+        "w3-consumer-iot"
       ],
       "assignments": [
-        "foundations-practice"
+        "foundations-practice",
+        "os-formative"
       ],
       "weeks": [
-        "foundations"
+        "week-1",
+        "week-2",
+        "week-3"
       ]
     }
   },
@@ -45,6 +59,116 @@
       "version": "0.1.0",
       "metadata": {
         "title": "Prepare for occupational software development tasks"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "lo1",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "LO1: Know about new and emerging digital technologies"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "lo2",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "LO2: Understand how new and emerging digital technologies are used"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w1-define-current-emerging",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Define current and emerging digital technology"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w1-identify-examples",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Identify examples of new and emerging technologies"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w1-outline-industry-uses",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Outline how emerging technologies are used in different industries"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w2-outline-mobile",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Outline mobile technology"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w2-personal-mobile",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Describe personal applications of mobile devices"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w2-business-mobile",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Describe business applications of mobile devices"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w3-explain-iot",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Explain the basic concept of IoT"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w3-iot-components",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Identify components of an IoT system"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w3-consumer-iot",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Outline consumer applications of IoT"
       },
       "relationships": {}
     }
@@ -60,31 +184,125 @@
         "status": "available"
       },
       "relationships": {}
+    },
+    {
+      "schema": "lp.content.assignment",
+      "schemaVersion": "0.1.0",
+      "id": "os-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative emerging technologies practice",
+        "status": "available"
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1"
+        ],
+        "weeks": [
+          "week-1",
+          "week-2",
+          "week-3"
+        ]
+      }
     }
   ],
   "weeks": [
     {
       "schema": "lp.content.week",
       "schemaVersion": "0.1.0",
-      "id": "foundations",
+      "id": "week-1",
       "version": "0.1.0",
       "metadata": {
         "teachingWeek": 1,
-        "title": "Technical Foundations",
-        "status": "available"
+        "title": "Introduction to New and Emerging Digital Technologies",
+        "status": "available",
+        "phase": "lo1-technologies",
+        "professionalPractice": "LO1 / AC 1.1 — define current and emerging digital technology; identify examples; outline uses in different industries",
+        "route": "weeks/week-1/",
+        "weekCommencing": null,
+        "releaseDate": null,
+        "dueDate": null
       },
       "relationships": {
         "curriculum": "tlevel-software-development-curriculum",
         "learningOutcomes": [
-          "foundations-lo"
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
         ],
-        "assignment": "foundations-practice",
+        "assignment": "os-formative",
         "sessions": [
-          "foundations-programming-diagnostic-session",
-          "foundations-requirements-classification-session",
-          "foundations-problem-decomposition-session",
-          "foundations-data-design-session",
-          "foundations-testing-methods-session"
+          "week-1-lesson-1",
+          "week-1-lesson-2",
+          "week-1-lesson-3",
+          "week-1-homework"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.week",
+      "schemaVersion": "0.1.0",
+      "id": "week-2",
+      "version": "0.1.0",
+      "metadata": {
+        "teachingWeek": 2,
+        "title": "Mobile Technology",
+        "status": "available",
+        "phase": "lo1-technologies",
+        "professionalPractice": "LO1 — outline mobile technology; describe personal and business applications of mobile devices",
+        "route": "weeks/week-2/",
+        "weekCommencing": null,
+        "releaseDate": null,
+        "dueDate": null
+      },
+      "relationships": {
+        "curriculum": "tlevel-software-development-curriculum",
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "sessions": [
+          "week-2-lesson-1",
+          "week-2-lesson-2",
+          "week-2-lesson-3",
+          "week-2-homework"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.week",
+      "schemaVersion": "0.1.0",
+      "id": "week-3",
+      "version": "0.1.0",
+      "metadata": {
+        "teachingWeek": 3,
+        "title": "Internet of Things - Consumer Applications",
+        "status": "available",
+        "phase": "lo1-technologies",
+        "professionalPractice": "LO1 — explain the basic concept of IoT; identify system components; outline consumer applications",
+        "route": "weeks/week-3/",
+        "weekCommencing": null,
+        "releaseDate": null,
+        "dueDate": null
+      },
+      "relationships": {
+        "curriculum": "tlevel-software-development-curriculum",
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "sessions": [
+          "week-3-lesson-1",
+          "week-3-lesson-2",
+          "week-3-lesson-3",
+          "week-3-homework"
         ]
       }
     }
@@ -93,85 +311,246 @@
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-programming-diagnostic-session",
+      "id": "week-1-lesson-1",
       "version": "0.1.0",
       "metadata": {
-        "title": "Programming Diagnostic",
+        "title": "Lesson 1: Current and emerging digital technology",
         "kind": "session",
-        "sortOrder": 1
+        "summary": "Baseline diagnostic, then define established, current and emerging digital technologies using contemporary examples.",
+        "sortOrder": 1,
+        "defaultOpen": true
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-programming-diagnostic"
+          "week-1-lesson-1-retrieval",
+          "week-1-lesson-1-main",
+          "week-1-lesson-1-formative"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-requirements-classification-session",
+      "id": "week-1-lesson-2",
       "version": "0.1.0",
       "metadata": {
-        "title": "Requirements Classification",
+        "title": "Lesson 2: Classifying technologies across industries",
         "kind": "session",
-        "sortOrder": 2
+        "summary": "Classify technology examples and discuss why adoption differs between individuals, organisations and sectors.",
+        "sortOrder": 2,
+        "defaultOpen": false
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-requirements-classification"
+          "week-1-lesson-2-retrieval",
+          "week-1-lesson-2-main",
+          "week-1-lesson-2-formative"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-problem-decomposition-session",
+      "id": "week-1-lesson-3",
       "version": "0.1.0",
       "metadata": {
-        "title": "Problem Decomposition",
+        "title": "Lesson 3: Technology profile and exit check",
         "kind": "session",
-        "sortOrder": 3
+        "summary": "Research one emerging technology and complete an exit knowledge check.",
+        "sortOrder": 3,
+        "defaultOpen": false
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-problem-decomposition"
+          "week-1-lesson-3-retrieval",
+          "week-1-lesson-3-main",
+          "week-1-lesson-3-formative"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-data-design-session",
+      "id": "week-1-homework",
       "version": "0.1.0",
       "metadata": {
-        "title": "Data Design Knowledge Check",
-        "kind": "session",
-        "sortOrder": 4
+        "title": "Homework: Emerging technologies in everyday life",
+        "kind": "homework",
+        "summary": "Identify three emerging technologies encountered in everyday life and briefly outline their uses.",
+        "sortOrder": 4,
+        "defaultOpen": false
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-data-design"
+          "week-1-homework-everyday"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-testing-methods-session",
+      "id": "week-2-lesson-1",
       "version": "0.1.0",
       "metadata": {
-        "title": "Testing Methods Classification",
+        "title": "Lesson 1: What mobile technology is",
         "kind": "session",
-        "sortOrder": 5
+        "summary": "Retrieve current versus emerging, then see how mobile technologies combine computing, communication, sensors, applications and internet connectivity.",
+        "sortOrder": 1,
+        "defaultOpen": true
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-2",
         "activities": [
-          "foundations-testing-methods"
+          "week-2-lesson-1-retrieval",
+          "week-2-lesson-1-main",
+          "week-2-lesson-1-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 2: Personal and organisational uses",
+        "kind": "session",
+        "summary": "Compare personal and organisational applications of smartphones, tablets and other mobile devices.",
+        "sortOrder": 2,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-lesson-2-retrieval",
+          "week-2-lesson-2-main",
+          "week-2-lesson-2-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 3: Organisational mobile case study",
+        "kind": "session",
+        "summary": "Produce a short case study showing how mobile technology supports a selected organisation.",
+        "sortOrder": 3,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-lesson-3-retrieval",
+          "week-2-lesson-3-main",
+          "week-2-lesson-3-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-homework",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: Organisational mobile communication",
+        "kind": "homework",
+        "summary": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+        "sortOrder": 4,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-homework-organisation"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-1",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 1: What an IoT system is",
+        "kind": "session",
+        "summary": "Identify connected devices, then model a simple IoT system: device, sensor, connectivity, data and application.",
+        "sortOrder": 1,
+        "defaultOpen": true
+      },
+      "relationships": {
+        "week": "week-3",
+        "activities": [
+          "week-3-lesson-1-retrieval",
+          "week-3-lesson-1-main",
+          "week-3-lesson-1-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-2",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 2: Smart home, health, security and entertainment",
+        "kind": "session",
+        "summary": "Examine consumer IoT examples and the role of sensors and data.",
+        "sortOrder": 2,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-3",
+        "activities": [
+          "week-3-lesson-2-retrieval",
+          "week-3-lesson-2-main",
+          "week-3-lesson-2-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-3",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 3: Design a connected home scenario",
+        "kind": "session",
+        "summary": "Design a simple connected home and complete an IoT knowledge check.",
+        "sortOrder": 3,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-3",
+        "activities": [
+          "week-3-lesson-3-retrieval",
+          "week-3-lesson-3-main",
+          "week-3-lesson-3-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-homework",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: One consumer IoT device",
+        "kind": "homework",
+        "summary": "Investigate one consumer IoT device and record its purpose and the data it uses.",
+        "sortOrder": 4,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-3",
+        "activities": [
+          "week-3-homework-device"
         ]
       }
     }
@@ -5711,6 +6090,3975 @@
           "content": {
             "text": "```json\n{\n  \"resultIntro\": \"Use this summary to review when each testing method is useful and what a test record should communicate.\"\n}\n```",
             "format": "application/json"
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-1-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Baseline diagnostic: technologies you already use",
+        "status": "available",
+        "summary": "Identify digital technologies you already use and examples you believe are new or emerging.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-1-lesson-1-retrieval",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Diagnostic",
+        "topics": [
+          "Current technology",
+          "Emerging technology"
+        ],
+        "detail": "Identify digital technologies you already use and examples you believe are new or emerging."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Baseline diagnostic",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "This unit is Exploring New and Emerging Digital Technologies. Before new definitions, record what you already know. There are no marks for a 'right' baseline — it shows your starting point."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-use",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:use",
+            "sourceQuestionId": "use",
+            "prompt": "List five digital technologies you use in a normal week. Include devices, apps or services.",
+            "placeholder": "For example: smartphone, contactless payment, cloud storage..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-emerging",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:emerging",
+            "sourceQuestionId": "emerging",
+            "prompt": "Name two technologies you believe are new or emerging, and say why you think they are emerging rather than established.",
+            "placeholder": "Technology 1 is emerging because..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "A supermarket has used barcode scanners at checkouts for decades. How should you classify barcode scanning today?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Emerging, because shops still update the software"
+              },
+              {
+                "id": "b",
+                "label": "Established current technology that is widely adopted"
+              },
+              {
+                "id": "c",
+                "label": "Not a digital technology"
+              },
+              {
+                "id": "d",
+                "label": "Only a future idea"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Widespread, long-standing use makes this established current technology. Updates do not by themselves make it emerging.",
+              "incorrect": "Established tools can still be digital. Emerging means the technology is still developing or not yet widely adopted."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-1-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Define established, current and emerging technology",
+        "status": "available",
+        "summary": "Use contemporary examples to distinguish established, current and emerging digital technologies.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-1-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
+        "topics": [
+          "Current technology",
+          "Emerging technology",
+          "Industry examples"
+        ],
+        "detail": "Use contemporary examples to distinguish established, current and emerging digital technologies."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Current and emerging digital technology",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "LO1 asks you to know about new and emerging digital technologies. AC 1.1 later asks you to outline them. Start with clear definitions so later weeks on mobile, IoT, cloud and AI have a shared language."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-def-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Useful definitions",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-def",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Established technology is widely adopted and no longer changing the way a sector works by itself. Current technology is in common use now. Emerging technology is still developing, not yet adopted by most users or organisations, or is starting to change how people live or work. The same technology can be emerging in one sector and current in another."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-examples",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Contemporary examples",
+            "text": "Established: desktop PCs in offices, barcode checkout. Current: smartphones, contactless payments, cloud storage. Emerging (varies by sector): generative AI assistants, consumer 5G features, warehouse robotics, clinical VR training.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-adopt-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Why adoption differs",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-adopt",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Individuals may adopt a smart watch for fitness while a hospital waits for clinical evidence. A bank may trial AI fraud detection while a small retailer still uses a till. Cost, skills, regulation, customer trust and existing systems all affect adoption."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-define",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:define",
+            "sourceQuestionId": "define",
+            "prompt": "In your own words, define current digital technology and emerging digital technology. Give one example of each.",
+            "placeholder": "Current means... Example: ... Emerging means... Example: ...",
+            "guidance": "Current = in common use now. Emerging = still developing or not yet widely adopted. Examples should match the definition."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-sector",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:sector",
+            "sourceQuestionId": "sector",
+            "prompt": "Choose one technology that might be current in one industry and emerging in another. Explain the difference.",
+            "placeholder": "For example drones in film versus drones in NHS logistics...",
+            "guidance": "A strong answer names two sectors and an adoption reason such as regulation, cost or skills."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL Week 1: baseline diagnostic then tutor demonstration of established/current/emerging. UDL: visual examples, short definitions, discussion. Scaffold: start with familiar devices. Challenge: differences in adoption between industries. Industry examples: retail, banking, entertainment, healthcare, manufacturing, IT."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-1-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Progress check: current or emerging?",
+        "status": "available",
+        "summary": "Targeted check that learners can use the terms current and emerging correctly.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-1-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Current technology",
+          "Emerging technology"
+        ],
+        "detail": "Targeted check that learners can use the terms current and emerging correctly."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Classify the examples",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each example for a typical UK learner or organisation in 2026. If it depends on the sector, choose the best overall fit and be ready to justify.",
+            "categories": [
+              {
+                "id": "established",
+                "label": "Established / long-standing"
+              },
+              {
+                "id": "current",
+                "label": "Current and widely used"
+              },
+              {
+                "id": "emerging",
+                "label": "Emerging or not yet widely adopted"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Sending email from a laptop",
+                "correctCategoryId": "established"
+              },
+              {
+                "id": "item-2",
+                "label": "Paying with a contactless bank card",
+                "correctCategoryId": "current"
+              },
+              {
+                "id": "item-3",
+                "label": "A warehouse using autonomous picking robots",
+                "correctCategoryId": "emerging"
+              },
+              {
+                "id": "item-4",
+                "label": "Streaming television on a smart TV",
+                "correctCategoryId": "current"
+              },
+              {
+                "id": "item-5",
+                "label": "Using a landline as the only way to contact a business",
+                "correctCategoryId": "established"
+              },
+              {
+                "id": "item-6",
+                "label": "A GP surgery trialling VR for surgical training",
+                "correctCategoryId": "emerging"
+              },
+              {
+                "id": "item-7",
+                "label": "Storing schoolwork in cloud storage",
+                "correctCategoryId": "current"
+              },
+              {
+                "id": "item-8",
+                "label": "A high-street shop still using only a cash till and paper receipts",
+                "correctCategoryId": "established"
+              }
+            ],
+            "feedback": {
+              "correct": "Email and cash-only tills are long-standing. Smartphones, contactless and cloud are current for most people. Autonomous warehouses and clinical VR remain emerging for many organisations.",
+              "incorrect": "Ask whether most people or organisations already use it. Widespread use is current; limited or experimental use is emerging."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-2-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: current versus emerging",
+        "status": "available",
+        "summary": "Retrieve Week 1 Lesson 1 definitions before classifying technologies across industries.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-1-lesson-2-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Current technology",
+          "Emerging technology"
+        ],
+        "detail": "Retrieve Week 1 Lesson 1 definitions before classifying technologies across industries."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Which statement best describes an emerging digital technology?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Any technology that uses electricity"
+              },
+              {
+                "id": "b",
+                "label": "A technology that is still developing or is not yet widely adopted"
+              },
+              {
+                "id": "c",
+                "label": "A technology that has been in every home for twenty years"
+              },
+              {
+                "id": "d",
+                "label": "A technology that cannot be used by businesses"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Emerging refers to development and adoption, not to whether something is digital.",
+              "incorrect": "Focus on how new and how widely adopted the technology is."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Why might a hospital adopt a technology more slowly than a games company?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Hospitals never use digital technology"
+              },
+              {
+                "id": "b",
+                "label": "Safety, evidence and regulation often slow adoption in healthcare"
+              },
+              {
+                "id": "c",
+                "label": "Games companies are not allowed to use emerging technology"
+              },
+              {
+                "id": "d",
+                "label": "Hospitals have no customers"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Sector context changes adoption. Healthcare has higher safety and regulatory barriers than entertainment.",
+              "incorrect": "Think about risk, regulation and evidence, not whether the sector is 'modern'."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "Smartphones are current for most people. When might smartphone features still count as emerging?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Never, because phones are old"
+              },
+              {
+                "id": "b",
+                "label": "When a new capability, such as on-device AI, is not yet widely used"
+              },
+              {
+                "id": "c",
+                "label": "Whenever a phone can go online"
+              },
+              {
+                "id": "d",
+                "label": "Only if the phone is expensive"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A platform can be current while a new capability on that platform is still emerging.",
+              "incorrect": "Separate the device from new features that are not yet widely adopted."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-2-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Classify technologies and compare industry use",
+        "status": "available",
+        "summary": "Classify a range of technologies and discuss why adoption may differ between individuals, organisations and sectors.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-2-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
+        "topics": [
+          "Industry applications",
+          "Adoption",
+          "Emerging technology"
+        ],
+        "detail": "Classify a range of technologies and discuss why adoption may differ between individuals, organisations and sectors."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "The same technology, different adoption",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Work with structured technology cards across retail, banking, entertainment, healthcare, manufacturing and IT. For each example, decide whether it is mainly personal, organisational, or both, and whether it is current or emerging in that sector."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-cards-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Industry snapshots",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-cards",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Retail: self-checkout, mobile shopping apps, warehouse robots. Banking: contactless cards, mobile banking, AI fraud alerts. Entertainment: streaming, recommendation systems, VR. Healthcare: electronic records, remote appointments, surgical robots. Manufacturing: sensors on production lines, cobots. IT: cloud hosting, automated testing, generative AI coding assistants."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-retail",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:retail",
+            "sourceQuestionId": "retail",
+            "prompt": "Choose one retail technology. Is it mainly current or emerging, and who adopts it first — shoppers or the retailer?",
+            "placeholder": "Technology: ... Current/emerging because... First adopted by...",
+            "guidance": "Mobile apps are current for many shoppers. Warehouse robotics is still emerging for many retailers."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-health",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:health",
+            "sourceQuestionId": "health",
+            "prompt": "Explain why a healthcare example might be adopted more slowly than a similar entertainment example.",
+            "placeholder": "Healthcare is slower because...",
+            "guidance": "Look for safety, data protection, clinical evidence and staff training, not 'hospitals are old-fashioned'."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-individual",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:individual",
+            "sourceQuestionId": "individual",
+            "prompt": "Give one example of a technology an individual might use every day that a small organisation has not adopted yet. Explain the gap.",
+            "placeholder": "Individuals use... Small organisations may not because...",
+            "guidance": "Cost, skills, trust or 'good enough' existing processes are typical reasons."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL guided learning: classify technologies and discuss adoption differences. UDL: technology cards. Challenge: compare industries. Cultural capital: how technological change affects everyday life, employment and access to services."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-2-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Progress check: who uses it, and how new is it?",
+        "status": "available",
+        "summary": "Classify examples by user and by how established they are.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-2-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Industry applications",
+          "Adoption"
+        ],
+        "detail": "Classify examples by user and by how established they are."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "User and adoption",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each example.",
+            "categories": [
+              {
+                "id": "personal-current",
+                "label": "Personal and current"
+              },
+              {
+                "id": "org-current",
+                "label": "Organisational and current"
+              },
+              {
+                "id": "org-emerging",
+                "label": "Organisational and still emerging"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "A learner using a smartphone camera",
+                "correctCategoryId": "personal-current"
+              },
+              {
+                "id": "item-2",
+                "label": "A bank offering an app for checking a balance",
+                "correctCategoryId": "org-current"
+              },
+              {
+                "id": "item-3",
+                "label": "A factory trialling fully lights-out robotic production",
+                "correctCategoryId": "org-emerging"
+              },
+              {
+                "id": "item-4",
+                "label": "Streaming music on a phone",
+                "correctCategoryId": "personal-current"
+              },
+              {
+                "id": "item-5",
+                "label": "A supermarket using electronic point of sale",
+                "correctCategoryId": "org-current"
+              },
+              {
+                "id": "item-6",
+                "label": "A clinic piloting AI to draft patient letters for clinician review",
+                "correctCategoryId": "org-emerging"
+              }
+            ],
+            "feedback": {
+              "correct": "Phones and streaming are personal and current. Bank apps and EPOS are organisational and current. Lights-out factories and clinical AI remain emerging in many organisations.",
+              "incorrect": "Ask who the main user is, then how widely that group has already adopted it."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-3-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: industry examples",
+        "status": "available",
+        "summary": "Retrieve industry examples before researching one emerging technology in more depth.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-1-lesson-3-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Industry applications"
+        ],
+        "detail": "Retrieve industry examples before researching one emerging technology in more depth."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Which pair correctly matches a sector to a typical digital technology?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Agriculture: cinema streaming"
+              },
+              {
+                "id": "b",
+                "label": "Banking: mobile payments"
+              },
+              {
+                "id": "c",
+                "label": "Healthcare: warehouse picking robots as the main patient treatment"
+              },
+              {
+                "id": "d",
+                "label": "Entertainment: MRI scanners"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Mobile payments are a standard banking example. Keep sector and technology matched.",
+              "incorrect": "Match the technology to the sector where it is actually used."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "When you outline how an emerging technology is used, what should you include?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Only the brand name"
+              },
+              {
+                "id": "b",
+                "label": "What it does and who uses it, in a specific context"
+              },
+              {
+                "id": "c",
+                "label": "The full source code"
+              },
+              {
+                "id": "d",
+                "label": "A list of every technology in the unit"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "AC 1.1 later asks you to outline technologies. An outline names the technology, its use and context — not an implementation guide.",
+              "incorrect": "Outline means a clear, concise description of use, not a product advert or a program."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-3-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Produce a short emerging-technology profile",
+        "status": "available",
+        "summary": "Research one technology you consider emerging and produce a short profile ready for later LO1 work.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-3-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Independent application",
+        "topics": [
+          "Emerging technology",
+          "Research"
+        ],
+        "detail": "Research one technology you consider emerging and produce a short profile ready for later LO1 work."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "One technology, one clear outline",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Choose one emerging technology. Produce a short profile: name; whether it is emerging and why; who uses it; one personal or business use; and one industry where it matters. You will reuse this habit in later weeks and in Assignment 1 (AC 1.1)."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-choice",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Sensible choices this early",
+            "text": "Pick something you can explain: consumer IoT, mobile payments, cloud storage, wearables, a simple AI assistant, or contactless NFC. Avoid a topic you can only name from a headline.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-profile",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:profile",
+            "sourceQuestionId": "profile",
+            "prompt": "Write the profile: technology name; why it is emerging; who uses it; one use; one industry example.",
+            "placeholder": "Name: ... Emerging because: ... Users: ... Use: ... Industry: ...",
+            "guidance": "Check the 'why emerging' sentence is about adoption or development, not 'because it is cool'."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-source",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:source",
+            "sourceQuestionId": "source",
+            "prompt": "Name the source you used (site, video, article) and one reason it is good enough for class research.",
+            "placeholder": "Source: ... Good enough because...",
+            "guidance": "A named organisation, manufacturer, or reputable news/education source is stronger than an anonymous post."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL independent application: short technology profile. Extension: differences in adoption between industries. This profile is formative, not Assignment 1."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-3-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Exit knowledge check",
+        "status": "available",
+        "summary": "Check definitions, examples and industry uses from Week 1.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-3-formative",
+        "estimatedDurationMinutes": 12,
+        "activityType": "Knowledge check",
+        "topics": [
+          "Current technology",
+          "Emerging technology",
+          "Industry applications"
+        ],
+        "detail": "Check definitions, examples and industry uses from Week 1."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Exit check",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Current digital technology is best described as technology that is...",
+            "options": [
+              {
+                "id": "a",
+                "label": "Only used by researchers"
+              },
+              {
+                "id": "b",
+                "label": "In common use now"
+              },
+              {
+                "id": "c",
+                "label": "Illegal until 2030"
+              },
+              {
+                "id": "d",
+                "label": "Always the same as emerging technology"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Current means widely used now. Emerging is still developing or not yet widely adopted.",
+              "incorrect": "Current = common use now."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Which is the best emerging example for many organisations in 2026?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Email"
+              },
+              {
+                "id": "b",
+                "label": "A fully autonomous store with no staff, still being trialled"
+              },
+              {
+                "id": "c",
+                "label": "A desktop word processor"
+              },
+              {
+                "id": "d",
+                "label": "A wired computer mouse"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Trials of staff-free stores are not yet normal. Email and mice are established.",
+              "incorrect": "Pick the example that is not yet widely adopted."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "Why include different industries when outlining emerging technologies?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Because every technology is used in the same way everywhere"
+              },
+              {
+                "id": "b",
+                "label": "Because the same technology can be used differently in retail, healthcare, banking or manufacturing"
+              },
+              {
+                "id": "c",
+                "label": "Because industry names replace definitions"
+              },
+              {
+                "id": "d",
+                "label": "Because Pearson forbids personal examples"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "LO1 includes how technologies are used in different industries. Context changes the application.",
+              "incorrect": "Industry examples show different uses, not just a longer list of brand names."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-outline",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:outline",
+            "sourceQuestionId": "outline",
+            "prompt": "Outline one emerging technology and one way it is used in a named industry.",
+            "placeholder": "Technology: ... Industry: ... Used to..."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-homework-everyday",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: three emerging technologies in everyday life",
+        "status": "available",
+        "summary": "Identify three emerging technologies encountered in everyday life and briefly outline their uses.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-homework-everyday",
+        "estimatedDurationMinutes": 30,
+        "activityType": "Independent study",
+        "topics": [
+          "Emerging technology",
+          "Personal uses"
+        ],
+        "detail": "Identify three emerging technologies encountered in everyday life and briefly outline their uses.",
+        "support": "independent"
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w1-define-current-emerging",
+          "w1-identify-examples",
+          "w1-outline-industry-uses"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Independent study",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Find three technologies you meet in everyday life that you consider emerging. For each, outline what it is and how it is used. Bring the list to Week 2 (Mobile Technology)."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-t1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-everyday:t1",
+            "sourceQuestionId": "t1",
+            "prompt": "Technology 1: name, why it is emerging, and its everyday use.",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-t2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-everyday:t2",
+            "sourceQuestionId": "t2",
+            "prompt": "Technology 2: name, why it is emerging, and its everyday use.",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-t3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-everyday:t3",
+            "sourceQuestionId": "t3",
+            "prompt": "Technology 3: name, why it is emerging, and its everyday use.",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-mobile",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "reflection",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-everyday:mobile",
+            "sourceQuestionId": "mobile",
+            "prompt": "Which of your three examples, if any, depends on a smartphone? Week 2 looks at mobile technology in more depth."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-everyday-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL homework. Collect as Week 2 retrieval. Do not require academic referencing yet; named sources are enough."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: current, emerging and mobile developments",
+        "status": "available",
+        "summary": "Retrieve the distinction between current and emerging technologies and identify developments in mobile devices.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-2-lesson-1-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Current technology",
+          "Mobile technology"
+        ],
+        "detail": "Retrieve the distinction between current and emerging technologies and identify developments in mobile devices."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Week 1 defined current and emerging technology. Week 2 looks at mobile technology: smartphones, tablets and other devices that people carry."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "A smartphone is current for most people. Which feature might still be emerging?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Making a phone call"
+              },
+              {
+                "id": "b",
+                "label": "On-device AI that summarises photos without a clear user understanding of where data goes"
+              },
+              {
+                "id": "c",
+                "label": "Sending a text message"
+              },
+              {
+                "id": "d",
+                "label": "Using a torch"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The device can be current while a new capability is still emerging.",
+              "incorrect": "Separate the established phone from newer capabilities that are not yet widely understood or adopted."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Which list best describes what makes a device 'mobile technology'?",
+            "options": [
+              {
+                "id": "a",
+                "label": "It must run desktop Windows only"
+              },
+              {
+                "id": "b",
+                "label": "It combines portable computing, communication, sensors, apps and internet connectivity"
+              },
+              {
+                "id": "c",
+                "label": "It cannot connect to the internet"
+              },
+              {
+                "id": "d",
+                "label": "It is only used in factories"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Mobile technology is portable and typically combines those elements.",
+              "incorrect": "Think portable computing plus communication, sensors, apps and connectivity."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-developments",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-retrieval:developments",
+            "sourceQuestionId": "developments",
+            "prompt": "Name two developments in mobile devices from the last few years (hardware, sensors, apps or connectivity).",
+            "placeholder": "1. ... 2. ..."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "How mobile technologies combine several capabilities",
+        "status": "available",
+        "summary": "See how mobile devices combine computing, communication, sensors, applications and internet connectivity.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-1-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
+        "topics": [
+          "Mobile technology",
+          "Sensors",
+          "Connectivity"
+        ],
+        "detail": "See how mobile devices combine computing, communication, sensors, applications and internet connectivity."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "More than a phone",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Outline mobile technology by its parts, not just by brand. A typical smartphone is a computer, a communicator, a sensor pack, an app platform and an internet client."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-parts-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Five parts to look for",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-parts",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Computing: processor, storage, operating system. Communication: calls, messages, email. Sensors: GPS, camera, accelerometer, fingerprint or face unlock. Applications: banking, maps, health, work apps. Connectivity: Wi-Fi, mobile data, Bluetooth, NFC."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-devices",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Not only phones",
+            "text": "Tablets, handheld payment devices, delivery scanners and some wearables are also mobile technology. Week 6 looks at wearables in more depth; today stay on phones, tablets and similar handheld devices.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-outline",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-main:outline",
+            "sourceQuestionId": "outline",
+            "prompt": "Outline mobile technology in four to six sentences using the five parts above.",
+            "placeholder": "Mobile technology is... It includes... Sensors... Apps... Connectivity...",
+            "guidance": "A good outline names portable computing, communication, sensors, apps and connectivity without copying a vendor advert."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-sensor",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-main:sensor",
+            "sourceQuestionId": "sensor",
+            "prompt": "Choose one sensor on a smartphone and explain one personal use and one possible business use.",
+            "placeholder": "Sensor: ... Personal: ... Business: ...",
+            "guidance": "GPS for maps versus delivery tracking; camera for photos versus scanning parcels; NFC for tap-to-pay versus staff badges."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL teacher demonstration: mobile technologies combine computing, communication, sensors, applications and internet connectivity. UDL: familiar devices and screenshots. Next lesson splits personal and organisational applications."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Progress check: characteristics of mobile technology",
+        "status": "available",
+        "summary": "Identify key characteristics of mobile technology.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-1-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Mobile technology"
+        ],
+        "detail": "Identify key characteristics of mobile technology."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Is it a mobile-technology characteristic?",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each statement.",
+            "categories": [
+              {
+                "id": "characteristic",
+                "label": "Key characteristic of mobile technology"
+              },
+              {
+                "id": "not",
+                "label": "Not a defining characteristic"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "The device is designed to be carried and used in different locations",
+                "correctCategoryId": "characteristic"
+              },
+              {
+                "id": "item-2",
+                "label": "It can run applications",
+                "correctCategoryId": "characteristic"
+              },
+              {
+                "id": "item-3",
+                "label": "It must be a desktop tower under a desk",
+                "correctCategoryId": "not"
+              },
+              {
+                "id": "item-4",
+                "label": "It can connect to networks such as Wi-Fi or mobile data",
+                "correctCategoryId": "characteristic"
+              },
+              {
+                "id": "item-5",
+                "label": "It often includes sensors such as GPS or a camera",
+                "correctCategoryId": "characteristic"
+              },
+              {
+                "id": "item-6",
+                "label": "It can only be used by software developers",
+                "correctCategoryId": "not"
+              }
+            ],
+            "feedback": {
+              "correct": "Portability, apps, connectivity and sensors are core. Desktop towers and 'developers only' are not.",
+              "incorrect": "Ask whether the statement is true of phones and tablets that people carry."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: mobile characteristics",
+        "status": "available",
+        "summary": "Retrieve key characteristics of mobile technology before comparing personal and business applications.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-2-lesson-2-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Mobile technology"
+        ],
+        "detail": "Retrieve key characteristics of mobile technology before comparing personal and business applications."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "NFC on a phone is mainly an example of which mobile capability?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A printed user manual"
+              },
+              {
+                "id": "b",
+                "label": "Short-range communication, for example contactless payments"
+              },
+              {
+                "id": "c",
+                "label": "A desktop graphics card"
+              },
+              {
+                "id": "d",
+                "label": "A landline replacement only"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "NFC is short-range communication used in payments and similar taps.",
+              "incorrect": "NFC is about tapping the phone near a reader, not about desktop hardware."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Why do organisations care that staff have mobile devices?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Because phones cannot access the internet"
+              },
+              {
+                "id": "b",
+                "label": "Because work can continue away from a desk: communication, data capture and customer service"
+              },
+              {
+                "id": "c",
+                "label": "Because mobile devices cannot run apps"
+              },
+              {
+                "id": "d",
+                "label": "Because sensors never collect useful data"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Business value is access and action away from a fixed PC.",
+              "incorrect": "Think field work, customer apps and staff communication."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Personal and business applications of mobile devices",
+        "status": "available",
+        "summary": "Compare personal and organisational applications of smartphones, tablets and other mobile devices.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-2-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
+        "topics": [
+          "Mobile technology",
+          "Personal uses",
+          "Business uses"
+        ],
+        "detail": "Compare personal and organisational applications of smartphones, tablets and other mobile devices."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Same device, different jobs",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Personal uses include messaging, maps, photos, entertainment, health tracking and mobile payments. Organisational uses include mobile banking, retail apps, field working, delivery scanning and healthcare records at the bedside. The hardware overlaps; the purpose changes."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-compare-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Compare requirements",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-compare",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "A learner using maps needs battery and GPS. A delivery driver also needs a rugged device, a work account, barcode scanning and a data connection that works on the road. Extension: different users need different security, durability and apps."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-personal",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-main:personal",
+            "sourceQuestionId": "personal",
+            "prompt": "Describe two personal applications of a mobile device and the capability each one uses (app, sensor, connectivity or communication).",
+            "placeholder": "1. ... uses ... 2. ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-business",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-main:business",
+            "sourceQuestionId": "business",
+            "prompt": "Describe two business applications, using different sectors if you can (for example banking, retail, delivery or healthcare).",
+            "placeholder": "1. ... 2. ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-difference",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-main:difference",
+            "sourceQuestionId": "difference",
+            "prompt": "Pick one personal use and one business use of the same capability (for example GPS or the camera). What extra requirement does the business use have?",
+            "placeholder": "Personal: ... Business: ... Extra requirement: ...",
+            "guidance": "Look for security, audit trails, shared accounts, durability or working hours."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL guided learning: compare personal and organisational applications. Industry: mobile banking, retail, field working, delivery, healthcare. Scaffold: structured prompts. Challenge: compare requirements for different users."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Progress check: personal or business application?",
+        "status": "available",
+        "summary": "Questioning check of personal and business applications.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-2-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Personal uses",
+          "Business uses"
+        ],
+        "detail": "Questioning check of personal and business applications."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Classify the application",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Is the main purpose personal or organisational?",
+            "categories": [
+              {
+                "id": "personal",
+                "label": "Personal application"
+              },
+              {
+                "id": "business",
+                "label": "Business / organisational application"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "A customer checking a bank balance in an app",
+                "correctCategoryId": "business"
+              },
+              {
+                "id": "item-2",
+                "label": "A learner sending a message to a friend",
+                "correctCategoryId": "personal"
+              },
+              {
+                "id": "item-3",
+                "label": "A courier scanning a parcel with a handheld device",
+                "correctCategoryId": "business"
+              },
+              {
+                "id": "item-4",
+                "label": "Someone using a phone camera for holiday photos",
+                "correctCategoryId": "personal"
+              },
+              {
+                "id": "item-5",
+                "label": "A nurse recording observations on a ward tablet",
+                "correctCategoryId": "business"
+              },
+              {
+                "id": "item-6",
+                "label": "Streaming a film at home on a tablet",
+                "correctCategoryId": "personal"
+              }
+            ],
+            "feedback": {
+              "correct": "Banking apps, parcel scanning and ward tablets serve organisations and their customers or staff. Messaging friends, holiday photos and home streaming are personal.",
+              "incorrect": "Ask who the activity is for: the individual social life, or an organisation's service or operations."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: one organisational benefit",
+        "status": "available",
+        "summary": "Explain one organisational benefit of mobile access before writing a case study.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-2-lesson-3-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Business uses",
+          "Mobile technology"
+        ],
+        "detail": "Explain one organisational benefit of mobile access before writing a case study."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Which is the clearest organisational benefit of mobile access?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Staff can only work at one desk"
+              },
+              {
+                "id": "b",
+                "label": "Customers or staff can complete a task away from a branch or office"
+              },
+              {
+                "id": "c",
+                "label": "The organisation must stop using any security"
+              },
+              {
+                "id": "d",
+                "label": "Mobile devices cannot connect to data"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The benefit is access and action in more places, for customers or employees.",
+              "incorrect": "Think convenience, speed or field work — with security still required."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-benefit",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-retrieval:benefit",
+            "sourceQuestionId": "benefit",
+            "prompt": "State one organisational benefit of mobile access and name the sector in your example.",
+            "placeholder": "In ... mobile access helps the organisation by..."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Produce a short organisational mobile case study",
+        "status": "available",
+        "summary": "Show how mobile technology supports a selected organisation.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-3-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Independent application",
+        "topics": [
+          "Business uses",
+          "Mobile technology",
+          "Case study"
+        ],
+        "detail": "Show how mobile technology supports a selected organisation."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Case study, not a product advert",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Choose an organisation you know or can research: a bank, supermarket, delivery firm, GP practice, college or local shop. Explain how mobile technology supports that organisation. Include who uses the device, what they do, and one benefit."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-structure",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Use this structure",
+            "text": "Organisation and sector. Mobile technology used. Who uses it (customers, employees or both). What task it supports. One benefit. One possible limitation (battery, coverage, security or training).",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-case",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-main:case",
+            "sourceQuestionId": "case",
+            "prompt": "Write the case study using the structure above (about 150–220 words).",
+            "placeholder": "Organisation: ...",
+            "guidance": "Check it is a real or realistic organisation, names a mobile use, and includes a benefit plus a limitation."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL independent application. Homework extends this to customer or employee communication specifically. Review key terminology at the end of the lesson."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Review key mobile terminology",
+        "status": "available",
+        "summary": "Check that learners can still use accurate mobile-technology terms.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-3-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Knowledge check",
+        "topics": [
+          "Mobile technology"
+        ],
+        "detail": "Check that learners can still use accurate mobile-technology terms."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-outline-mobile",
+          "w2-personal-mobile",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Terminology check",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-formative-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-formative:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "GPS on a phone is best described as...",
+            "options": [
+              {
+                "id": "a",
+                "label": "A type of printer"
+              },
+              {
+                "id": "b",
+                "label": "A location sensor used by maps and many business tracking apps"
+              },
+              {
+                "id": "c",
+                "label": "A desktop operating system"
+              },
+              {
+                "id": "d",
+                "label": "A wired network cable"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "GPS is a location sensor with personal and business applications.",
+              "incorrect": "GPS is about location, not printing or desktop OS."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-formative-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-formative:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "A tablet used on a hospital ward is mainly an example of...",
+            "options": [
+              {
+                "id": "a",
+                "label": "A personal gaming hobby with no organisational purpose"
+              },
+              {
+                "id": "b",
+                "label": "An organisational mobile device supporting staff work"
+              },
+              {
+                "id": "c",
+                "label": "A 5G mast"
+              },
+              {
+                "id": "d",
+                "label": "A desktop-only system"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Ward tablets are organisational mobile technology.",
+              "incorrect": "The user is staff doing work, so it is a business application."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-formative-outline",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-formative:outline",
+            "sourceQuestionId": "outline",
+            "prompt": "In two sentences, outline mobile technology and give one business application.",
+            "placeholder": "Mobile technology is... One business application is..."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-homework-organisation",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: how an organisation uses mobile communication",
+        "status": "available",
+        "summary": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-homework-organisation",
+        "estimatedDurationMinutes": 30,
+        "activityType": "Independent study",
+        "topics": [
+          "Business uses",
+          "Mobile technology"
+        ],
+        "detail": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+        "support": "independent"
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w2-business-mobile"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-organisation-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Independent study",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-organisation-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Pick one organisation. Find out how it uses mobile technology to communicate with customers or employees: app notifications, SMS, staff handhelds, or a customer app. Bring this to Week 3, which starts consumer Internet of Things."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-organisation-org",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-organisation:org",
+            "sourceQuestionId": "org",
+            "prompt": "Organisation, sector, and who is being communicated with (customers, employees or both).",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-organisation-how",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-organisation:how",
+            "sourceQuestionId": "how",
+            "prompt": "How mobile technology is used for that communication, and one benefit.",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-organisation-iot",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "reflection",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-organisation:iot",
+            "sourceQuestionId": "iot",
+            "prompt": "Does this organisation also use connected objects (not just phones), such as scanners, trackers or smart speakers? Week 3 introduces consumer IoT."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-organisation-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL homework. Use as Week 3 retrieval if learners spotted connected devices beyond phones."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-1-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: devices that send or receive data",
+        "status": "available",
+        "summary": "Identify devices you use that send or receive data through the internet.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-3-lesson-1-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Internet of Things",
+          "Connectivity"
+        ],
+        "detail": "Identify devices you use that send or receive data through the internet."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-retrieval-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Week 2 focused on mobile devices people carry. IoT is about objects that connect to networks to send or receive data — bulbs, thermostats, doorbells, speakers, watches and more."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-retrieval-devices",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-1-retrieval:devices",
+            "sourceQuestionId": "devices",
+            "prompt": "List three devices in a home, school or pocket that send or receive data over the internet. Say what data you think they send.",
+            "placeholder": "1. ... sends ... 2. ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-1-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "A smart thermostat that adjusts heating from an app is mainly an example of...",
+            "options": [
+              {
+                "id": "a",
+                "label": "A device with no data"
+              },
+              {
+                "id": "b",
+                "label": "A connected object using sensors, connectivity and an application"
+              },
+              {
+                "id": "c",
+                "label": "A desktop-only spreadsheet"
+              },
+              {
+                "id": "d",
+                "label": "A 3D printer"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "That is a simple consumer IoT system: device, sensor, connection, data and app.",
+              "incorrect": "IoT is a connected object plus data and an application, not a PC spreadsheet."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-1-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Model a simple IoT system",
+        "status": "available",
+        "summary": "Explain IoT using device, sensor, connectivity, data and application.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-lesson-1-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
+        "topics": [
+          "Internet of Things",
+          "Sensors",
+          "Data"
+        ],
+        "detail": "Explain IoT using device, sensor, connectivity, data and application."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Five parts of a simple IoT system",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "The Internet of Things means physical objects with sensing or control, connected through a network, producing data that an application uses. You do not need industrial networking detail this week. Week 4 will contrast consumer IoT with enterprise IoT."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-model-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Worked model: smart doorbell",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-model",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Device: the doorbell camera. Sensor: motion and camera. Connectivity: home Wi-Fi, then the internet. Data: video clip and a timestamp. Application: a phone app that shows who is at the door. The same five-part model works for a smart plug, a fitness band or a voice speaker."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-not",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Not every connected thing is useful IoT",
+            "text": "A laptop is a general-purpose computer. IoT usually means a thing with a narrower job: sense, report or control. A phone is often the application that controls other IoT devices.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-explain",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-1-main:explain",
+            "sourceQuestionId": "explain",
+            "prompt": "Explain the basic concept of IoT in your own words, using the five parts.",
+            "placeholder": "IoT means... A system has a device, sensor, connectivity, data and an application...",
+            "guidance": "Look for objects plus data plus an app, not 'anything with Wi-Fi'."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-label",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-1-main:label",
+            "sourceQuestionId": "label",
+            "prompt": "Label the five parts for a smart bulb that you dim from a phone.",
+            "placeholder": "Device: ... Sensor or control: ... Connectivity: ... Data: ... Application: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL teacher demonstration: device, sensor, connectivity, data, application. UDL: diagrams and familiar devices. Scaffold: structured diagrams. Challenge: possible limitations (privacy, reliability, Wi-Fi)."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-1-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Progress check: IoT components",
+        "status": "available",
+        "summary": "Identify components of an IoT system.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-lesson-1-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Internet of Things"
+        ],
+        "detail": "Identify components of an IoT system."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-iot-components"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Name the component",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-1-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-1-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "A household uses a smart thermostat. Classify each item.",
+            "categories": [
+              {
+                "id": "device",
+                "label": "Device"
+              },
+              {
+                "id": "sensor",
+                "label": "Sensor"
+              },
+              {
+                "id": "connectivity",
+                "label": "Connectivity"
+              },
+              {
+                "id": "application",
+                "label": "Application"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "The thermostat on the wall",
+                "correctCategoryId": "device"
+              },
+              {
+                "id": "item-2",
+                "label": "The temperature probe inside it",
+                "correctCategoryId": "sensor"
+              },
+              {
+                "id": "item-3",
+                "label": "Home Wi-Fi",
+                "correctCategoryId": "connectivity"
+              },
+              {
+                "id": "item-4",
+                "label": "The heating app on a phone",
+                "correctCategoryId": "application"
+              },
+              {
+                "id": "item-5",
+                "label": "A motion detector in a smart camera",
+                "correctCategoryId": "sensor"
+              },
+              {
+                "id": "item-6",
+                "label": "A voice-assistant app that sets the temperature",
+                "correctCategoryId": "application"
+              }
+            ],
+            "feedback": {
+              "correct": "The wall unit is the device. Probes and cameras sense. Wi-Fi connects. Apps are the application layer.",
+              "incorrect": "Device = the object. Sensor = what it measures. Connectivity = the network. Application = the software people use."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-2-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: sensors and connectivity",
+        "status": "available",
+        "summary": "Check the role of sensors and connectivity before looking at consumer examples.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-3-lesson-2-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Sensors",
+          "Connectivity"
+        ],
+        "detail": "Check the role of sensors and connectivity before looking at consumer examples."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Why does a smart doorbell need connectivity as well as a camera?",
+            "options": [
+              {
+                "id": "a",
+                "label": "So the image can reach an app or cloud service the householder uses"
+              },
+              {
+                "id": "b",
+                "label": "Because cameras cannot store any data at all"
+              },
+              {
+                "id": "c",
+                "label": "Because Wi-Fi replaces the need for a sensor"
+              },
+              {
+                "id": "d",
+                "label": "Because doorbells cannot have a device"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The sensor captures; connectivity moves data to an application.",
+              "incorrect": "Without connectivity, the camera data stays local and the phone app cannot show a visitor."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "A fitness band counting steps is collecting data using mainly...",
+            "options": [
+              {
+                "id": "a",
+                "label": "A printer"
+              },
+              {
+                "id": "b",
+                "label": "A motion sensor"
+              },
+              {
+                "id": "c",
+                "label": "A desktop tower"
+              },
+              {
+                "id": "d",
+                "label": "A 5G mast on its own"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Step count comes from a motion sensor. The band then uses connectivity to sync with an app.",
+              "incorrect": "Think which component measures the physical world."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-2-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Consumer IoT: home, health, security and entertainment",
+        "status": "available",
+        "summary": "Examine smart home, health, security and entertainment examples.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-lesson-2-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
+        "topics": [
+          "Consumer IoT",
+          "Smart home",
+          "Health",
+          "Security"
+        ],
+        "detail": "Examine smart home, health, security and entertainment examples."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Four consumer settings",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Consumer IoT is sold to individuals and households. Typical groups: smart home (plugs, bulbs, thermostats, speakers); health and fitness (bands, scales); security (cameras, locks, alarms); entertainment (smart TVs, speakers, games peripherals). Week 4 will look at enterprise IoT in logistics and manufacturing."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-data-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Always ask what data is involved",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-data",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "A bulb might only send on/off and brightness. A camera sends video of a doorway. A health band may send heart-rate and location. More personal data means more privacy responsibility — you will return to this in later LO2 weeks."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-home",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-main:home",
+            "sourceQuestionId": "home",
+            "prompt": "Outline one smart-home application: device, what it senses or controls, and the benefit to the householder.",
+            "placeholder": "Device: ... Senses/controls: ... Benefit: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-health",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-main:health",
+            "sourceQuestionId": "health",
+            "prompt": "Outline one consumer health or fitness IoT example and the main data it uses.",
+            "placeholder": "Example: ... Data: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-limit",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-main:limit",
+            "sourceQuestionId": "limit",
+            "prompt": "Give one possible limitation of consumer IoT (privacy, reliability, cost or skills).",
+            "placeholder": "Limitation: ... because...",
+            "guidance": "Extension from the SoL: identify possible limitations."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL guided learning: smart home, health, security, entertainment. Cultural capital: how connected devices change homes and lifestyles. Industry link: consumer market for connected products."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-2-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Progress check: one consumer IoT application",
+        "status": "available",
+        "summary": "Explain one consumer IoT application using the five-part model.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-lesson-2-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Knowledge check",
+        "topics": [
+          "Consumer IoT"
+        ],
+        "detail": "Explain one consumer IoT application using the five-part model."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Explain one application",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-formative-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-formative:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Which is a consumer IoT application rather than a general-purpose computer task?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Writing an essay in a word processor"
+              },
+              {
+                "id": "b",
+                "label": "A smart lock that a householder opens from a phone app"
+              },
+              {
+                "id": "c",
+                "label": "Editing a spreadsheet on a desktop PC"
+              },
+              {
+                "id": "d",
+                "label": "Printing a school poster"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A smart lock is a connected object with a narrow job. Word processors are general computing.",
+              "incorrect": "Consumer IoT is a connected thing doing a specific home, health, security or entertainment job."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-2-formative-explain",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-2-formative:explain",
+            "sourceQuestionId": "explain",
+            "prompt": "Explain one consumer IoT application. Name the device, sensor, connectivity, data and application.",
+            "placeholder": "Device: ... Sensor: ... Connectivity: ... Data: ... App: ..."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-3-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: consumer examples",
+        "status": "available",
+        "summary": "Retrieve consumer IoT examples before designing a connected home.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-3-lesson-3-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Consumer IoT",
+          "Smart home"
+        ],
+        "detail": "Retrieve consumer IoT examples before designing a connected home."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "A smart speaker that plays music and sets a timer is mainly...",
+            "options": [
+              {
+                "id": "a",
+                "label": "Enterprise factory IoT"
+              },
+              {
+                "id": "b",
+                "label": "Consumer entertainment and home control IoT"
+              },
+              {
+                "id": "c",
+                "label": "A type of 3D printer"
+              },
+              {
+                "id": "d",
+                "label": "A desktop-only server"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Smart speakers are a consumer entertainment and home-control example.",
+              "incorrect": "Ask who buys it and where it is used: a household, not a factory line."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Why must a connected-home design show how devices communicate?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Because IoT never uses a network"
+              },
+              {
+                "id": "b",
+                "label": "Because the five-part model includes connectivity between device, data and application"
+              },
+              {
+                "id": "c",
+                "label": "Because communication is only for mobile phones from Week 2"
+              },
+              {
+                "id": "d",
+                "label": "Because sensors cannot exist"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The SoL independent task is to explain how devices communicate, not just to list gadgets.",
+              "incorrect": "Name the network path: device to hub/Wi-Fi to app or cloud."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-3-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Design a simple connected home scenario",
+        "status": "available",
+        "summary": "Design a connected home and explain how the devices communicate.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-lesson-3-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Independent application",
+        "topics": [
+          "Consumer IoT",
+          "Smart home"
+        ],
+        "detail": "Design a connected home and explain how the devices communicate."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "A home with a purpose, not a gadget pile",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Design a simple connected home for a named household need: for example a student flat that wants cheaper heating, a family that wants doorbell security, or someone who wants accessibility support. Include at least three devices. For each, use the five-part model. Then explain how they communicate (for example a shared hub, Wi-Fi and a phone app)."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-need",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-main:need",
+            "sourceQuestionId": "need",
+            "prompt": "Who lives in the home and what problem should the connected devices help with?",
+            "placeholder": "Household: ... Need: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-devices",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-main:devices",
+            "sourceQuestionId": "devices",
+            "prompt": "List at least three devices. For each, state sensor or control, data, and application.",
+            "placeholder": "1. Device... 2. ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-communicate",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-main:communicate",
+            "sourceQuestionId": "communicate",
+            "prompt": "Explain how the devices communicate with each other or with the householder. Mention connectivity.",
+            "placeholder": "The devices connect via... The householder uses... Data goes...",
+            "guidance": "Look for Wi-Fi/hub/app, not 'they just know'."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-limit",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-main:limit",
+            "sourceQuestionId": "limit",
+            "prompt": "State one limitation of your design (privacy, Wi-Fi failure, cost or skills).",
+            "placeholder": "If ... then ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL independent application plus IoT check. Week 4 retrieves consumer IoT and distinguishes enterprise applications."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-lesson-3-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "IoT knowledge check",
+        "status": "available",
+        "summary": "Complete an IoT check covering concept, components and consumer applications.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-lesson-3-formative",
+        "estimatedDurationMinutes": 12,
+        "activityType": "Knowledge check",
+        "topics": [
+          "Internet of Things",
+          "Consumer IoT"
+        ],
+        "detail": "Complete an IoT check covering concept, components and consumer applications."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-explain-iot",
+          "w3-iot-components",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Exit check",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-formative-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-formative:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "The basic concept of IoT is that...",
+            "options": [
+              {
+                "id": "a",
+                "label": "Only smartphones exist"
+              },
+              {
+                "id": "b",
+                "label": "Physical objects connect through a network so data can be used by an application"
+              },
+              {
+                "id": "c",
+                "label": "The internet cannot connect to objects"
+              },
+              {
+                "id": "d",
+                "label": "IoT is another name for a desktop PC"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "IoT is connected objects plus data plus an application.",
+              "incorrect": "Keep the five-part model in mind."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-formative-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-formative:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Which list is the five-part IoT model used this week?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Keyboard, mouse, monitor, tower, DVD"
+              },
+              {
+                "id": "b",
+                "label": "Device, sensor, connectivity, data, application"
+              },
+              {
+                "id": "c",
+                "label": "Sprint, epic, story, spike, increment"
+              },
+              {
+                "id": "d",
+                "label": "HTML, CSS, SQL only"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Device, sensor, connectivity, data, application is the class model.",
+              "incorrect": "Use the model from Lesson 1."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-formative-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-formative:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "Which is a consumer IoT application?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A householder using a smart thermostat app"
+              },
+              {
+                "id": "b",
+                "label": "A national rail network's signalling control room only"
+              },
+              {
+                "id": "c",
+                "label": "A nuclear power station turbine hall only"
+              },
+              {
+                "id": "d",
+                "label": "A paper diary with no electronics"
+              }
+            ],
+            "correctOptionId": "a",
+            "feedback": {
+              "correct": "Smart thermostats are a standard consumer / smart-home example. Heavy industry belongs in Week 4 enterprise IoT.",
+              "incorrect": "Consumer means household or individual products."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-lesson-3-formative-outline",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-lesson-3-formative:outline",
+            "sourceQuestionId": "outline",
+            "prompt": "Outline one consumer IoT application in three sentences.",
+            "placeholder": "The device... It collects... The householder..."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-3-homework-device",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: investigate one consumer IoT device",
+        "status": "available",
+        "summary": "Record the purpose of one consumer IoT device and the data it uses.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-3-homework-device",
+        "estimatedDurationMinutes": 30,
+        "activityType": "Independent study",
+        "topics": [
+          "Consumer IoT",
+          "Data"
+        ],
+        "detail": "Record the purpose of one consumer IoT device and the data it uses.",
+        "support": "independent"
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w3-consumer-iot"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-homework-device-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Independent study",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-homework-device-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Choose one real consumer IoT device (doorbell, plug, bulb, speaker, band, camera, thermostat). Record its purpose and the data it uses. Bring this to Week 4: Internet of Things — Enterprise Applications."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-homework-device-device",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-homework-device:device",
+            "sourceQuestionId": "device",
+            "prompt": "Device name and purpose.",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-homework-device-data",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-homework-device:data",
+            "sourceQuestionId": "data",
+            "prompt": "What data it collects or sends, and who can see that data (householder, manufacturer, or you are not sure).",
+            "placeholder": "Write a short professional response."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-homework-device-enterprise",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "reflection",
+          "content": {
+            "formative": true,
+            "questionId": "week-3-homework-device:enterprise",
+            "sourceQuestionId": "enterprise",
+            "prompt": "Could a similar sensor be useful in a business (warehouse, farm, hospital or shop)? Week 4 looks at enterprise IoT."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-3-homework-device-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "SoL homework. Use as Week 4 retrieval to distinguish consumer from enterprise."
           }
         }
       ]

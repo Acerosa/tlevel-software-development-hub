@@ -2,85 +2,246 @@
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-programming-diagnostic-session",
+    "id": "week-1-lesson-1",
     "version": "0.1.0",
     "metadata": {
-      "title": "Programming Diagnostic",
+      "title": "Lesson 1: Current and emerging digital technology",
       "kind": "session",
-      "sortOrder": 1
+      "summary": "Baseline diagnostic, then define established, current and emerging digital technologies using contemporary examples.",
+      "sortOrder": 1,
+      "defaultOpen": true
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-programming-diagnostic"
+        "week-1-lesson-1-retrieval",
+        "week-1-lesson-1-main",
+        "week-1-lesson-1-formative"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-requirements-classification-session",
+    "id": "week-1-lesson-2",
     "version": "0.1.0",
     "metadata": {
-      "title": "Requirements Classification",
+      "title": "Lesson 2: Classifying technologies across industries",
       "kind": "session",
-      "sortOrder": 2
+      "summary": "Classify technology examples and discuss why adoption differs between individuals, organisations and sectors.",
+      "sortOrder": 2,
+      "defaultOpen": false
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-requirements-classification"
+        "week-1-lesson-2-retrieval",
+        "week-1-lesson-2-main",
+        "week-1-lesson-2-formative"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-problem-decomposition-session",
+    "id": "week-1-lesson-3",
     "version": "0.1.0",
     "metadata": {
-      "title": "Problem Decomposition",
+      "title": "Lesson 3: Technology profile and exit check",
       "kind": "session",
-      "sortOrder": 3
+      "summary": "Research one emerging technology and complete an exit knowledge check.",
+      "sortOrder": 3,
+      "defaultOpen": false
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-problem-decomposition"
+        "week-1-lesson-3-retrieval",
+        "week-1-lesson-3-main",
+        "week-1-lesson-3-formative"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-data-design-session",
+    "id": "week-1-homework",
     "version": "0.1.0",
     "metadata": {
-      "title": "Data Design Knowledge Check",
-      "kind": "session",
-      "sortOrder": 4
+      "title": "Homework: Emerging technologies in everyday life",
+      "kind": "homework",
+      "summary": "Identify three emerging technologies encountered in everyday life and briefly outline their uses.",
+      "sortOrder": 4,
+      "defaultOpen": false
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-data-design"
+        "week-1-homework-everyday"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-testing-methods-session",
+    "id": "week-2-lesson-1",
     "version": "0.1.0",
     "metadata": {
-      "title": "Testing Methods Classification",
+      "title": "Lesson 1: What mobile technology is",
       "kind": "session",
-      "sortOrder": 5
+      "summary": "Retrieve current versus emerging, then see how mobile technologies combine computing, communication, sensors, applications and internet connectivity.",
+      "sortOrder": 1,
+      "defaultOpen": true
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-2",
       "activities": [
-        "foundations-testing-methods"
+        "week-2-lesson-1-retrieval",
+        "week-2-lesson-1-main",
+        "week-2-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Personal and organisational uses",
+      "kind": "session",
+      "summary": "Compare personal and organisational applications of smartphones, tablets and other mobile devices.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-lesson-2-retrieval",
+        "week-2-lesson-2-main",
+        "week-2-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Organisational mobile case study",
+      "kind": "session",
+      "summary": "Produce a short case study showing how mobile technology supports a selected organisation.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-lesson-3-retrieval",
+        "week-2-lesson-3-main",
+        "week-2-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: Organisational mobile communication",
+      "kind": "homework",
+      "summary": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-homework-organisation"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: What an IoT system is",
+      "kind": "session",
+      "summary": "Identify connected devices, then model a simple IoT system: device, sensor, connectivity, data and application.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-lesson-1-retrieval",
+        "week-3-lesson-1-main",
+        "week-3-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Smart home, health, security and entertainment",
+      "kind": "session",
+      "summary": "Examine consumer IoT examples and the role of sensors and data.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-lesson-2-retrieval",
+        "week-3-lesson-2-main",
+        "week-3-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Design a connected home scenario",
+      "kind": "session",
+      "summary": "Design a simple connected home and complete an IoT knowledge check.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-lesson-3-retrieval",
+        "week-3-lesson-3-main",
+        "week-3-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: One consumer IoT device",
+      "kind": "homework",
+      "summary": "Investigate one consumer IoT device and record its purpose and the data it uses.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-homework-device"
       ]
     }
   }

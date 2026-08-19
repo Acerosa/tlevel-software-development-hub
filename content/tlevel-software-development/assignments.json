@@ -9,5 +9,25 @@
       "status": "available"
     },
     "relationships": {}
+  },
+  {
+    "schema": "lp.content.assignment",
+    "schemaVersion": "0.1.0",
+    "id": "os-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Formative emerging technologies practice",
+      "status": "available"
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1"
+      ],
+      "weeks": [
+        "week-1",
+        "week-2",
+        "week-3"
+      ]
+    }
   }
 ]

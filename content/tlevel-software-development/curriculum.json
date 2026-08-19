@@ -9,13 +9,27 @@
   },
   "relationships": {
     "learningOutcomes": [
-      "foundations-lo"
+      "foundations-lo",
+      "lo1",
+      "lo2",
+      "w1-define-current-emerging",
+      "w1-identify-examples",
+      "w1-outline-industry-uses",
+      "w2-outline-mobile",
+      "w2-personal-mobile",
+      "w2-business-mobile",
+      "w3-explain-iot",
+      "w3-iot-components",
+      "w3-consumer-iot"
     ],
     "assignments": [
-      "foundations-practice"
+      "foundations-practice",
+      "os-formative"
     ],
     "weeks": [
-      "foundations"
+      "week-1",
+      "week-2",
+      "week-3"
     ]
   }
 }
