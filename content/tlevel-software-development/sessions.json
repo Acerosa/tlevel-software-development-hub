@@ -162,5 +162,87 @@
         "week-2-homework-evidence"
       ]
     }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Business requirements, scope and value",
+      "kind": "session",
+      "summary": "Turn familiarisation evidence into business requirements, a first scope boundary and a value statement for users and the organisation.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-lesson-1-retrieval",
+        "week-3-lesson-1-main",
+        "week-3-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Decomposition and pattern recognition",
+      "kind": "session",
+      "summary": "Split the Oakridge problem into discrete parts and recognise patterns from existing adult-learning systems without copying the wrong solution.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-lesson-2-retrieval",
+        "week-3-lesson-2-main",
+        "week-3-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Abstraction for a scoped proposal",
+      "kind": "session",
+      "summary": "Hide detail that does not matter yet so the project proposal stays focused on inputs, outputs, what varies and what stays constant.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-lesson-3-retrieval",
+        "week-3-lesson-3-main",
+        "week-3-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: Draft project proposal outline",
+      "kind": "homework",
+      "summary": "Produce a short proposal outline that Week 4 can turn into functional and non-functional requirements, KPIs and acceptance criteria.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-3",
+      "activities": [
+        "week-3-homework-proposal"
+      ]
+    }
   }
 ]

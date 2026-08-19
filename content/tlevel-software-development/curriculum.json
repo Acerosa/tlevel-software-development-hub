@@ -16,7 +16,10 @@
       "w1-research-market-environment",
       "w2-evaluate-solutions",
       "w2-emerging-technologies",
-      "w2-regulations-and-gaps"
+      "w2-regulations-and-gaps",
+      "w3-business-scope-value",
+      "w3-decomposition-patterns",
+      "w3-abstraction"
     ],
     "assignments": [
       "foundations-practice",
@@ -24,7 +27,8 @@
     ],
     "weeks": [
       "week-1",
-      "week-2"
+      "week-2",
+      "week-3"
     ]
   }
 }

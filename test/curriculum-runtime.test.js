@@ -60,7 +60,23 @@ test("Week 2 follows the 22-week OS teaching sequence", () => {
   ]);
   const week1 = pkg.weeks.find((item) => item.id === "week-1");
   assert.equal(week1.metadata.title, "Client briefs and project context");
-  assert.equal(pkg.weeks.length, 2);
+  assert.equal(pkg.weeks.length, 3);
+});
+
+test("Week 3 follows the 22-week OS teaching sequence", () => {
+  const week = pkg.weeks.find((item) => item.id === "week-3");
+  assert.ok(week);
+  assert.equal(week.metadata.teachingWeek, 3);
+  assert.match(week.metadata.title, /business requirements/i);
+  assert.deepEqual(week.relationships.sessions, [
+    "week-3-lesson-1",
+    "week-3-lesson-2",
+    "week-3-lesson-3",
+    "week-3-homework"
+  ]);
+  assert.equal(pkg.weeks.filter((item) => item.metadata.teachingWeek > 3).length, 0);
+  assert.ok(pkg.activities.some((item) => item.id === "week-1-lesson-1-main"));
+  assert.ok(pkg.activities.some((item) => item.id === "week-2-lesson-2-main"));
 });
 
 test("T Level runtime identity uses the registered T Level course", () => {

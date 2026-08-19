@@ -64,5 +64,38 @@
         "week-2-homework"
       ]
     }
+  },
+  {
+    "schema": "lp.content.week",
+    "schemaVersion": "0.1.0",
+    "id": "week-3",
+    "version": "0.1.0",
+    "metadata": {
+      "teachingWeek": 3,
+      "title": "Business requirements, scope and computational thinking",
+      "status": "available",
+      "phase": "sdlc-planning",
+      "professionalPractice": "OS 1.1 Planning and requirement analysis — business requirements, scope, business value, decomposition, pattern recognition and abstraction",
+      "route": "weeks/week-3/",
+      "weekCommencing": null,
+      "releaseDate": null,
+      "dueDate": null
+    },
+    "relationships": {
+      "curriculum": "tlevel-software-development-curriculum",
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value",
+        "w3-decomposition-patterns",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "sessions": [
+        "week-3-lesson-1",
+        "week-3-lesson-2",
+        "week-3-lesson-3",
+        "week-3-homework"
+      ]
+    }
   }
 ]

@@ -78,5 +78,35 @@
       "title": "Identify relevant regulations and personal knowledge, skill and capability gaps that affect the project"
     },
     "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-business-scope-value",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify business requirements, define project scope and assess value to users and the organisation"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-decomposition-patterns",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Decompose a client problem and use pattern recognition to compare it with existing solutions"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-abstraction",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Use abstraction to decide which details belong in a first project proposal and which can wait"
+    },
+    "relationships": {}
   }
 ]

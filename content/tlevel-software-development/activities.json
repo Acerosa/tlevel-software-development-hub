@@ -8824,5 +8824,1584 @@
         }
       }
     ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-1-retrieval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Retrieval: evidence before requirements",
+      "status": "available",
+      "summary": "Retrieve Week 1–2 findings so business requirements are based on Oakridge evidence, not a preferred product.",
+      "href": null,
+      "difficulty": "foundation",
+      "familyId": "week-3-lesson-1-retrieval",
+      "estimatedDurationMinutes": 8,
+      "activityType": "Retrieval quiz",
+      "topics": [
+        "Evaluating solutions",
+        "Project context",
+        "Business requirements"
+      ],
+      "detail": "Retrieve Week 1–2 findings so business requirements are based on Oakridge evidence, not a preferred product."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value",
+        "w3-decomposition-patterns",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-retrieval-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Starter retrieval",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-retrieval-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Planning starts this week. If you cannot still justify what you learned in familiarisation, you will invent requirements."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-retrieval-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-retrieval:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "Which statement is a business requirement rather than a design?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Use PostgreSQL"
+            },
+            {
+              "id": "b",
+              "label": "The centre needs reliable evidence of attendance for funders"
+            },
+            {
+              "id": "c",
+              "label": "Host on a named cloud vendor"
+            },
+            {
+              "id": "d",
+              "label": "Build the UI in C#"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "A business requirement describes what the organisation needs to achieve. Database and hosting choices come later.",
+            "incorrect": "Business requirements are organisational needs. Language and hosting are design choices."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-retrieval-q2",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-retrieval:q2",
+          "sourceQuestionId": "q2",
+          "sourceType": "single",
+          "prompt": "Why would 'the system must do everything a college MIS does' be a poor scope statement for Oakridge?",
+          "options": [
+            {
+              "id": "a",
+              "label": "College systems are never useful"
+            },
+            {
+              "id": "b",
+              "label": "It ignores the narrower problem, budget and staffing evidenced in Weeks 1–2"
+            },
+            {
+              "id": "c",
+              "label": "Scope should always be as large as possible"
+            },
+            {
+              "id": "d",
+              "label": "Funders forbid small systems"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Scope is a boundary. Oakridge's evidenced problem is booking, registers and reporting under tight constraints.",
+            "incorrect": "Scope must match the evidenced problem and constraints, not a maximum feature list."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-retrieval-q3",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-retrieval:q3",
+          "sourceQuestionId": "q3",
+          "sourceType": "single",
+          "prompt": "Value has to be stated for which parties in specification 1.1?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Only the developer"
+            },
+            {
+              "id": "b",
+              "label": "The user and the client or business"
+            },
+            {
+              "id": "c",
+              "label": "Only the funder"
+            },
+            {
+              "id": "d",
+              "label": "Only future employers"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Assess measurable value for users and for the client/business. Both belong in the proposal.",
+            "incorrect": "Specification 1.1 requires value to the user and to the client/business."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-1-main",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define Oakridge business requirements, scope and value",
+      "status": "available",
+      "summary": "Write first-pass business requirements, an in-scope / out-of-scope boundary, and value statements grounded in Weeks 1–2.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-lesson-1-main",
+      "estimatedDurationMinutes": 35,
+      "activityType": "Guided practical",
+      "topics": [
+        "Business requirements",
+        "Project scope",
+        "Business value"
+      ],
+      "detail": "Write first-pass business requirements, an in-scope / out-of-scope boundary, and value statements grounded in Weeks 1–2."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "From research notes to a project proposal",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Specification 1.1 moves from familiarisation into planning and requirement analysis. You explore the brief and define the scope of an intended solution as a project proposal. This week you start that proposal. You do not yet write full functional and non-functional requirements, KPIs or acceptance criteria — that is the next teaching week."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-biz-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Business requirements",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-biz",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Business requirements describe what the organisation needs the work to achieve: new software, an amendment to current practice, or better security and evidence. For Oakridge, examples include a single place to see workshops, digital registers that tutors will actually use, and reports the manager can give funders. They are not yet 'the system shall...' product requirements."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-scope-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Scope is a professional no",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-scope",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Scope says what this project will and will not attempt. Out of scope might include payroll, a full college finance suite, or biometric registers you could not justify in Week 2. A clear no protects the Occupational Specialism later: you can show you understood the brief without promising the world."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-value-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Value to users and to the organisation",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-value",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Value must be stated for learners and tutors as well as for the centre. Learner value might be fewer missed sessions. Organisational value might be fewer hours assembling funder evidence, or fewer room clashes. If you cannot say how you would notice the value, it is still a slogan."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-os",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "callout",
+        "content": {
+          "title": "Assessment habit",
+          "text": "Task 1 of the Occupational Specialism expects analysis that later design can be traced back to. Requirements that ignore your own research log will not survive that trace.",
+          "tone": "info"
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-practice-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Practical application",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-business",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-main:business",
+          "sourceQuestionId": "business",
+          "prompt": "Write three Oakridge business requirements. Each must be traceable to the brief or to your Week 2 evidence log.",
+          "placeholder": "BR1: ... Evidence: ...",
+          "guidance": "Look for single timetable, digital registers, funder evidence, phone-and-PC access, or low-training tutor use. Cite the brief or research."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-scope",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-main:scope",
+          "sourceQuestionId": "scope",
+          "prompt": "State what is in scope for a first release and two things that are out of scope, with a one-line justification for each exclusion.",
+          "placeholder": "In scope: ... Out of scope: ... because...",
+          "guidance": "Exclusions should cite budget, staffing, un-evidenced needs, or high-risk ideas parked in Week 2 such as biometrics or a full MIS."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-value",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-main:value",
+          "sourceQuestionId": "value",
+          "prompt": "Write one value statement for a user group and one for the organisation. Include how you would notice if the value appeared.",
+          "placeholder": "User value: ... We would notice by... Organisation: ...",
+          "guidance": "User value might be fewer missed sessions, noticed through attendance. Organisation value might be hours saved on reports."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-main-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "Previous: Week 2 evidence log. Do not let students write full NFRs today. Formative classification follows. Next lessons decompose and abstract this scope so Week 4 can add functional/NFR/KPI/acceptance detail."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-1-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Formative: requirement, scope or design?",
+      "status": "available",
+      "summary": "Classify statements so business requirements and scope stay separate from premature product design.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-lesson-1-formative",
+      "estimatedDurationMinutes": 10,
+      "activityType": "Classification",
+      "topics": [
+        "Business requirements",
+        "Project scope",
+        "Design decisions"
+      ],
+      "detail": "Classify statements so business requirements and scope stay separate from premature product design."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-formative-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Keep planning categories clean",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-1-formative-sort",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-1-formative:sort",
+          "sourceQuestionId": "sort",
+          "prompt": "Classify each statement about the Oakridge project.",
+          "categories": [
+            {
+              "id": "business",
+              "label": "Business requirement"
+            },
+            {
+              "id": "scope",
+              "label": "Scope decision"
+            },
+            {
+              "id": "design",
+              "label": "Premature design"
+            },
+            {
+              "id": "value",
+              "label": "Value statement"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "The centre needs attendance evidence that can be reported to funders",
+              "correctCategoryId": "business"
+            },
+            {
+              "id": "item-2",
+              "label": "Payroll and HR are out of scope for the first release",
+              "correctCategoryId": "scope"
+            },
+            {
+              "id": "item-3",
+              "label": "The database will be MongoDB",
+              "correctCategoryId": "design"
+            },
+            {
+              "id": "item-4",
+              "label": "Tutors should spend less time reconstructing registers from email",
+              "correctCategoryId": "value"
+            },
+            {
+              "id": "item-5",
+              "label": "Learners need one place to see upcoming workshops",
+              "correctCategoryId": "business"
+            },
+            {
+              "id": "item-6",
+              "label": "Biometric registers are out of scope until a lawful basis is evidenced",
+              "correctCategoryId": "scope"
+            },
+            {
+              "id": "item-7",
+              "label": "The front end will be written in C# this week",
+              "correctCategoryId": "design"
+            },
+            {
+              "id": "item-8",
+              "label": "Managers would notice value if quarterly reports took hours rather than days",
+              "correctCategoryId": "value"
+            }
+          ],
+          "feedback": {
+            "correct": "Business requirements are organisational needs. Scope is the boundary. Value is the benefit and how you would notice it. Language and database choices are still design.",
+            "incorrect": "Ask whether the sentence is a need, a boundary, a benefit, or a product choice."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-2-retrieval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Retrieval: scope before splitting the problem",
+      "status": "available",
+      "summary": "Retrieve the Oakridge scope so decomposition does not re-open out-of-scope work.",
+      "href": null,
+      "difficulty": "foundation",
+      "familyId": "week-3-lesson-2-retrieval",
+      "estimatedDurationMinutes": 8,
+      "activityType": "Retrieval quiz",
+      "topics": [
+        "Project scope",
+        "Decomposition"
+      ],
+      "detail": "Retrieve the Oakridge scope so decomposition does not re-open out-of-scope work."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value",
+        "w3-decomposition-patterns",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-retrieval-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Starter retrieval",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-retrieval-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-2-retrieval:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "You start decomposing 'all college operations'. What has gone wrong?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Decomposition always uses the largest possible problem"
+            },
+            {
+              "id": "b",
+              "label": "The problem being split is wider than the agreed Oakridge scope"
+            },
+            {
+              "id": "c",
+              "label": "Pattern recognition is forbidden"
+            },
+            {
+              "id": "d",
+              "label": "Business value cannot be measured"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Decompose the scoped problem, not the entire education sector. Otherwise you undo the scope decision.",
+            "incorrect": "Split the problem you have agreed to solve, not a full college MIS."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-retrieval-q2",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-2-retrieval:q2",
+          "sourceQuestionId": "q2",
+          "sourceType": "single",
+          "prompt": "What is decomposition for in specification 1.1?",
+          "options": [
+            {
+              "id": "a",
+              "label": "To choose a programming language"
+            },
+            {
+              "id": "b",
+              "label": "To split the problem into discrete objects that can be planned and later designed"
+            },
+            {
+              "id": "c",
+              "label": "To write marketing copy"
+            },
+            {
+              "id": "d",
+              "label": "To avoid talking to users"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Computational thinking here is practical: smaller parts you can analyse, compare with existing patterns, and eventually build.",
+            "incorrect": "Decomposition produces discrete parts of the problem, not a tech stack."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-retrieval-q3",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-2-retrieval:q3",
+          "sourceQuestionId": "q3",
+          "sourceType": "single",
+          "prompt": "A commercial product also has workshop booking. How should pattern recognition treat that?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Copy the product wholesale"
+            },
+            {
+              "id": "b",
+              "label": "Note the similar feature, then check whether Oakridge's constraints and users match"
+            },
+            {
+              "id": "c",
+              "label": "Ignore all existing products"
+            },
+            {
+              "id": "d",
+              "label": "Treat the product name as a requirement"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Pattern recognition finds similarities with existing solutions. You still have to test the pattern against this client.",
+            "incorrect": "Reuse the pattern only where Oakridge evidence supports it."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-2-main",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Decompose Oakridge and recognise patterns",
+      "status": "available",
+      "summary": "Break the scoped problem into parts and compare those parts with patterns from existing adult-learning or booking systems.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-lesson-2-main",
+      "estimatedDurationMinutes": 35,
+      "activityType": "Guided practical",
+      "topics": [
+        "Decomposition",
+        "Pattern recognition"
+      ],
+      "detail": "Break the scoped problem into parts and compare those parts with patterns from existing adult-learning or booking systems."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-decomposition-patterns"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Split the problem, then look for patterns",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Specification 1.1 asks you to apply decomposition, pattern recognition and abstraction to split the problem into discrete objects. Lesson 2 covers the first two. Lesson 3 covers abstraction. This is the same computational thinking you practised in Foundations, now applied to a live client after two weeks of research."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-decomp-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Decomposition that a third party can follow",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-decomp",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Name parts as problems or processes, not as screens. Useful Oakridge parts might include: publishing the workshop offer; learner booking; tutor register; room allocation; funder reporting; user accounts. If a part is still the whole system, split again. If a part is 'make it look nice', it is not yet a problem part."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-pattern-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Pattern recognition",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-pattern",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Look across your Week 1–2 research. Booking flows, attendance registers and report exports appear in many products. That pattern is useful. A parent portal or payroll module in a college suite is a pattern that probably does not apply. Pattern recognition also includes risks: many centres fail when sessional tutors will not change their register habit."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-practice-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Practical application",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-parts",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-2-main:parts",
+          "sourceQuestionId": "parts",
+          "prompt": "Decompose the in-scope Oakridge problem into 5–7 named parts. One sentence each on what that part is for.",
+          "placeholder": "1. Publishing the offer: ...",
+          "guidance": "Expect booking, registers, reporting, accounts, rooming, notifications. Reject payroll, HR or biometrics if they were out of scope."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-pattern",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-2-main:pattern",
+          "sourceQuestionId": "pattern",
+          "prompt": "Choose two parts. For each, name a pattern from an existing solution and say whether Oakridge should reuse, adapt or reject it.",
+          "placeholder": "Part: ... Pattern: ... Reuse/adapt/reject because...",
+          "guidance": "A strong answer cites a researched product or common workflow and Oakridge constraints such as phones, tutor training or funder reports."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-main-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "Foundations problem-decomposition remains available as extra practice; this lesson must stay on Oakridge. Formative follows. Next lesson abstracts these parts into a proposal that hides premature detail."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-2-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Formative: useful part or the wrong split?",
+      "status": "available",
+      "summary": "Classify decomposition statements as a useful problem part, a leftover out-of-scope item, or a solution disguised as a part.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-lesson-2-formative",
+      "estimatedDurationMinutes": 10,
+      "activityType": "Classification",
+      "topics": [
+        "Decomposition",
+        "Project scope"
+      ],
+      "detail": "Classify decomposition statements as a useful problem part, a leftover out-of-scope item, or a solution disguised as a part."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-decomposition-patterns"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-formative-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Judge the split",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-2-formative-sort",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-2-formative:sort",
+          "sourceQuestionId": "sort",
+          "prompt": "Classify each proposed part of the Oakridge solution.",
+          "categories": [
+            {
+              "id": "part",
+              "label": "Useful in-scope part"
+            },
+            {
+              "id": "out",
+              "label": "Out of scope"
+            },
+            {
+              "id": "solution",
+              "label": "Solution disguised as a part"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Learner workshop booking",
+              "correctCategoryId": "part"
+            },
+            {
+              "id": "item-2",
+              "label": "Staff payroll",
+              "correctCategoryId": "out"
+            },
+            {
+              "id": "item-3",
+              "label": "Write it in React Native",
+              "correctCategoryId": "solution"
+            },
+            {
+              "id": "item-4",
+              "label": "Tutor digital register",
+              "correctCategoryId": "part"
+            },
+            {
+              "id": "item-5",
+              "label": "Facial recognition on entry",
+              "correctCategoryId": "out"
+            },
+            {
+              "id": "item-6",
+              "label": "Funder attendance report",
+              "correctCategoryId": "part"
+            },
+            {
+              "id": "item-7",
+              "label": "Host on a specific vendor because it is popular",
+              "correctCategoryId": "solution"
+            },
+            {
+              "id": "item-8",
+              "label": "Notify learners of room changes",
+              "correctCategoryId": "part"
+            }
+          ],
+          "feedback": {
+            "correct": "Parts are processes that serve the scoped problem. Payroll and biometrics were excluded. Language and vendor choices are solutions.",
+            "incorrect": "A part names a problem process. Out of scope was already excluded. Product names are not parts."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-3-retrieval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Retrieval: parts before abstraction",
+      "status": "available",
+      "summary": "Retrieve the decomposed Oakridge parts so abstraction has something concrete to hide detail from.",
+      "href": null,
+      "difficulty": "foundation",
+      "familyId": "week-3-lesson-3-retrieval",
+      "estimatedDurationMinutes": 8,
+      "activityType": "Retrieval quiz",
+      "topics": [
+        "Decomposition",
+        "Abstraction"
+      ],
+      "detail": "Retrieve the decomposed Oakridge parts so abstraction has something concrete to hide detail from."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value",
+        "w3-decomposition-patterns",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-retrieval-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Starter retrieval",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-retrieval-q1",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-retrieval:q1",
+          "sourceQuestionId": "q1",
+          "sourceType": "single",
+          "prompt": "What does abstraction ask you to do in specification 1.1?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Add every implementation detail immediately"
+            },
+            {
+              "id": "b",
+              "label": "Keep the details that matter for this stage and hide those that do not"
+            },
+            {
+              "id": "c",
+              "label": "Delete the client brief"
+            },
+            {
+              "id": "d",
+              "label": "Choose two programming languages"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Abstraction filters. You still need inputs, outputs, what varies and what stays constant — not the full stack.",
+            "incorrect": "Abstraction hides detail that is not needed yet. It does not mean being vague about the problem."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-retrieval-q2",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-retrieval:q2",
+          "sourceQuestionId": "q2",
+          "sourceType": "single",
+          "prompt": "Which detail belongs in a Week 3 proposal, and which should wait?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Exact CSS colours belong now; whether learners book on a phone can wait"
+            },
+            {
+              "id": "b",
+              "label": "Whether learners book on phones belongs now; exact CSS colours can wait"
+            },
+            {
+              "id": "c",
+              "label": "Both must be fully specified now"
+            },
+            {
+              "id": "d",
+              "label": "Neither should be mentioned"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Phone access is an evidenced constraint. Visual styling is later design detail.",
+            "incorrect": "Keep constraints and outcomes that change the solution. Park presentation detail."
+          }
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-retrieval-q3",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-retrieval:q3",
+          "sourceQuestionId": "q3",
+          "sourceType": "single",
+          "prompt": "Why is abstraction useful before you write functional requirements next week?",
+          "options": [
+            {
+              "id": "a",
+              "label": "It lets you skip requirements"
+            },
+            {
+              "id": "b",
+              "label": "It stops the proposal drowning in detail so requirements can be written against a clear model"
+            },
+            {
+              "id": "c",
+              "label": "Pearson forbids diagrams"
+            },
+            {
+              "id": "d",
+              "label": "It replaces user analysis"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "A clear abstract model — parts, inputs, outputs, constants, variations — is what Week 4 requirements will hang on.",
+            "incorrect": "Abstraction prepares requirements work. It does not replace it."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-3-main",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Abstract the Oakridge proposal",
+      "status": "available",
+      "summary": "Decide what must remain visible in the project proposal and what can be hidden until design, data modelling or implementation.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-lesson-3-main",
+      "estimatedDurationMinutes": 35,
+      "activityType": "Guided practical",
+      "topics": [
+        "Abstraction",
+        "Project scope",
+        "Business requirements"
+      ],
+      "detail": "Decide what must remain visible in the project proposal and what can be hidden until design, data modelling or implementation."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Hide the right details",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Specification 1.1 abstraction includes knowing what information is needed, filtering out noise, and hiding internal workings. You should be able to say what inputs are needed, what outputs and outcomes are expected, what will vary, what stays constant, the key actions the solution must perform, and which processes repeat."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-model-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "A proposal-level model",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-model",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "For Oakridge, constants might include the existing classroom PCs, the need for funder reports, and the lack of an IT team. Variations might include workshop topics, tutor availability and whether a session is in a classroom or the hall. Repeated processes include booking, taking a register and issuing a reminder. Internal workings — tables, APIs, class names — can stay hidden this week."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-next",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "callout",
+        "content": {
+          "title": "Progression",
+          "text": "Week 4 will add functional and non-functional requirements, KPIs, constraints and acceptance criteria onto this abstract model. If the model is still a product name, Week 4 will collapse into solutioneering.",
+          "tone": "info"
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-practice-h",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Practical application",
+          "level": 3
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-io",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-main:io",
+          "sourceQuestionId": "io",
+          "prompt": "For the register part, list the inputs needed, the expected outputs or outcomes, one thing that varies and one thing that stays constant.",
+          "placeholder": "Inputs: ... Outputs: ... Varies: ... Constant: ...",
+          "guidance": "Inputs might include learner list and present/absent. Outputs include an attendance record. Variation: hall vs classroom. Constant: evidence for funders."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-hide",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-main:hide",
+          "sourceQuestionId": "hide",
+          "prompt": "Name two details you will hide from the Week 3 proposal and say when they should reappear.",
+          "placeholder": "Hide: ... Reappear at: ...",
+          "guidance": "Examples: CSS, exact schema, language choice, vendor. They reappear at design, data design or implementation."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-actions",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-main:actions",
+          "sourceQuestionId": "actions",
+          "prompt": "List the key actions the in-scope solution must perform, using the parts from Lesson 2. Mark any that repeat.",
+          "placeholder": "Publish offer (repeat each term); book place; ...",
+          "guidance": "Expect publish, book, register, report, notify. Repeats should be explicit."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-main-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "Formative follows. Homework is the proposal outline. Check that students can point to Weeks 1–2 evidence inside the proposal. If abstraction has become vagueness, send them back to named parts."
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-lesson-3-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Formative: keep, hide, or too vague?",
+      "status": "available",
+      "summary": "Classify proposal statements as detail to keep now, detail to hide until later, or abstraction that has become unhelpful vagueness.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-lesson-3-formative",
+      "estimatedDurationMinutes": 10,
+      "activityType": "Classification",
+      "topics": [
+        "Abstraction",
+        "Project proposal"
+      ],
+      "detail": "Classify proposal statements as detail to keep now, detail to hide until later, or abstraction that has become unhelpful vagueness."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-formative-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Abstraction is not vagueness",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-lesson-3-formative-sort",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-lesson-3-formative:sort",
+          "sourceQuestionId": "sort",
+          "prompt": "Classify each sentence for the Week 3 Oakridge proposal.",
+          "categories": [
+            {
+              "id": "keep",
+              "label": "Keep visible now"
+            },
+            {
+              "id": "hide",
+              "label": "Hide until later design or build"
+            },
+            {
+              "id": "vague",
+              "label": "Too vague to be useful"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Tutors record attendance for each workshop",
+              "correctCategoryId": "keep"
+            },
+            {
+              "id": "item-2",
+              "label": "The register table will use a UUID primary key",
+              "correctCategoryId": "hide"
+            },
+            {
+              "id": "item-3",
+              "label": "The system will be good and modern",
+              "correctCategoryId": "vague"
+            },
+            {
+              "id": "item-4",
+              "label": "Learners can book from a phone or a classroom PC",
+              "correctCategoryId": "keep"
+            },
+            {
+              "id": "item-5",
+              "label": "Button hover colour will be brand teal",
+              "correctCategoryId": "hide"
+            },
+            {
+              "id": "item-6",
+              "label": "Make it better for everyone",
+              "correctCategoryId": "vague"
+            },
+            {
+              "id": "item-7",
+              "label": "Funder reports need attendance and completion figures",
+              "correctCategoryId": "keep"
+            },
+            {
+              "id": "item-8",
+              "label": "Use a particular ORM because it is fashionable",
+              "correctCategoryId": "hide"
+            }
+          ],
+          "feedback": {
+            "correct": "Keep user-facing actions and evidenced constraints. Hide schema, styling and tooling. Reject slogans that could apply to any project.",
+            "incorrect": "If a third party could implement from the sentence, keep it. If it is internal plumbing, hide it. If it could fit any brief, it is too vague."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-3-homework-proposal",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: project proposal outline",
+      "status": "available",
+      "summary": "Assemble a short Oakridge proposal outline that Week 4 can expand into detailed requirements.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-3-homework-proposal",
+      "estimatedDurationMinutes": 45,
+      "activityType": "Independent study",
+      "topics": [
+        "Business requirements",
+        "Project scope",
+        "Decomposition",
+        "Abstraction"
+      ],
+      "detail": "Assemble a short Oakridge proposal outline that Week 4 can expand into detailed requirements.",
+      "support": "independent"
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1",
+        "w3-business-scope-value",
+        "w3-decomposition-patterns",
+        "w3-abstraction"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-title",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "heading",
+        "content": {
+          "text": "Independent study",
+          "level": 2
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Write a one-to-two page outline, not a full specification. Use your Oakridge brief notes, evaluation log and this week's planning work. Next week you will add functional requirements, non-functional requirements, KPIs and acceptance criteria to this outline."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-problem-scope",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-homework-proposal:problem-scope",
+          "sourceQuestionId": "problem-scope",
+          "prompt": "Problem, in-scope first release, and out of scope (with reasons).",
+          "placeholder": "Problem: ... In scope: ... Out of scope: ..."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-value-br",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-homework-proposal:value-br",
+          "sourceQuestionId": "value-br",
+          "prompt": "Value to one user group, value to the organisation, and three business requirements with evidence pointers.",
+          "placeholder": "User value: ... Organisation: ... BR1: ..."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-model",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-homework-proposal:model",
+          "sourceQuestionId": "model",
+          "prompt": "Decomposed parts, two patterns you will reuse or adapt, and two details you are abstracting away until later.",
+          "placeholder": "Parts: ... Patterns: ... Hidden for now: ..."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-next",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "reflection",
+        "content": {
+          "formative": true,
+          "questionId": "week-3-homework-proposal:next",
+          "sourceQuestionId": "next",
+          "prompt": "Which part of this proposal is weakest, and what question will you take into Week 4 requirements work?"
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-3-homework-proposal-teacher",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "teacher-note",
+        "content": {
+          "text": "Collect outlines as Week 4 retrieval. Do not award a finished spec. Look for traceability to Oakridge evidence and a real scope boundary. Foundations decomposition activity can be offered as stretch, not as a replacement for this client-specific outline."
+        }
+      }
+    ]
   }
 ]
