@@ -10,10 +10,6 @@
   "relationships": {
     "learningOutcomes": [
       "foundations-lo",
-      "os-1-1",
-      "w3-business-scope-value",
-      "w3-decomposition-patterns",
-      "w3-abstraction",
       "lo1",
       "lo2",
       "w1-define-current-emerging",
@@ -21,7 +17,10 @@
       "w1-outline-industry-uses",
       "w2-outline-mobile",
       "w2-personal-mobile",
-      "w2-business-mobile"
+      "w2-business-mobile",
+      "w3-explain-iot",
+      "w3-iot-components",
+      "w3-consumer-iot"
     ],
     "assignments": [
       "foundations-practice",

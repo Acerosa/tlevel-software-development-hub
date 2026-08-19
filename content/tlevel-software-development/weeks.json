@@ -72,10 +72,10 @@
     "version": "0.1.0",
     "metadata": {
       "teachingWeek": 3,
-      "title": "Business requirements, scope and computational thinking",
+      "title": "Internet of Things - Consumer Applications",
       "status": "available",
-      "phase": "sdlc-planning",
-      "professionalPractice": "OS 1.1 Planning and requirement analysis — business requirements, scope, business value, decomposition, pattern recognition and abstraction",
+      "phase": "lo1-technologies",
+      "professionalPractice": "LO1 — explain the basic concept of IoT; identify system components; outline consumer applications",
       "route": "weeks/week-3/",
       "weekCommencing": null,
       "releaseDate": null,
@@ -84,10 +84,10 @@
     "relationships": {
       "curriculum": "tlevel-software-development-curriculum",
       "learningOutcomes": [
-        "os-1-1",
-        "w3-business-scope-value",
-        "w3-decomposition-patterns",
-        "w3-abstraction"
+        "lo1",
+        "w3-explain-iot",
+        "w3-iot-components",
+        "w3-consumer-iot"
       ],
       "assignment": "os-formative",
       "sessions": [

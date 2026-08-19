@@ -12,46 +12,6 @@
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "os-1-1",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "1.1 Apply the software development lifecycle to a digital project, starting with research and familiarisation"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w3-business-scope-value",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Identify business requirements, define project scope and assess value to users and the organisation"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w3-decomposition-patterns",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Decompose a client problem and use pattern recognition to compare it with existing solutions"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
-    "id": "w3-abstraction",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Use abstraction to decide which details belong in a first project proposal and which can wait"
-    },
-    "relationships": {}
-  },
-  {
-    "schema": "lp.content.learning-outcome",
-    "schemaVersion": "0.1.0",
     "id": "lo1",
     "version": "0.1.0",
     "metadata": {
@@ -126,6 +86,36 @@
     "version": "0.1.0",
     "metadata": {
       "title": "Describe business applications of mobile devices"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-explain-iot",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain the basic concept of IoT"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-iot-components",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify components of an IoT system"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-consumer-iot",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline consumer applications of IoT"
     },
     "relationships": {}
   }
