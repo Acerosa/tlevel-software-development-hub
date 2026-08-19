@@ -2,7 +2,7 @@
   "schema": "lp.content.package",
   "schemaVersion": "0.1.0",
   "id": "tlevel-software-development-content",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "metadata": {
     "title": "T Level Digital Software Development"
   },

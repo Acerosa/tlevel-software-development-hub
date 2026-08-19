@@ -2,7 +2,7 @@
   "schema": "lp.content.package",
   "schemaVersion": "0.1.0",
   "id": "tlevel-software-development-content",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "hub": {
     "schema": "lp.content.hub",
     "schemaVersion": "0.1.0",
@@ -27,13 +27,18 @@
     },
     "relationships": {
       "learningOutcomes": [
-        "foundations-lo"
+        "foundations-lo",
+        "os-1-1",
+        "w1-interpret-client-brief",
+        "w1-define-project-context",
+        "w1-research-market-environment"
       ],
       "assignments": [
-        "foundations-practice"
+        "foundations-practice",
+        "os-formative"
       ],
       "weeks": [
-        "foundations"
+        "week-1"
       ]
     }
   },
@@ -45,6 +50,46 @@
       "version": "0.1.0",
       "metadata": {
         "title": "Prepare for occupational software development tasks"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "os-1-1",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "1.1 Apply the software development lifecycle to a digital project, starting with research and familiarisation"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w1-interpret-client-brief",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Interpret a client request and separate the problem, constraints, assumptions and possible solutions"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w1-define-project-context",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Define project context, including organisation, users, environment, stakeholders and constraints"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w1-research-market-environment",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Research the market environment, common problems, and existing hardware and software that shape a solution"
       },
       "relationships": {}
     }
@@ -60,31 +105,57 @@
         "status": "available"
       },
       "relationships": {}
+    },
+    {
+      "schema": "lp.content.assignment",
+      "schemaVersion": "0.1.0",
+      "id": "os-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Occupational Specialism formative practice",
+        "status": "available"
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1"
+        ],
+        "weeks": [
+          "week-1"
+        ]
+      }
     }
   ],
   "weeks": [
     {
       "schema": "lp.content.week",
       "schemaVersion": "0.1.0",
-      "id": "foundations",
+      "id": "week-1",
       "version": "0.1.0",
       "metadata": {
         "teachingWeek": 1,
-        "title": "Technical Foundations",
-        "status": "available"
+        "title": "Client briefs and project context",
+        "status": "available",
+        "phase": "sdlc-research",
+        "professionalPractice": "OS 1.1 Research and familiarisation — client request, context, market environment, existing hardware and software",
+        "route": "weeks/week-1/",
+        "weekCommencing": null,
+        "releaseDate": null,
+        "dueDate": null
       },
       "relationships": {
         "curriculum": "tlevel-software-development-curriculum",
         "learningOutcomes": [
-          "foundations-lo"
+          "os-1-1",
+          "w1-interpret-client-brief",
+          "w1-define-project-context",
+          "w1-research-market-environment"
         ],
-        "assignment": "foundations-practice",
+        "assignment": "os-formative",
         "sessions": [
-          "foundations-programming-diagnostic-session",
-          "foundations-requirements-classification-session",
-          "foundations-problem-decomposition-session",
-          "foundations-data-design-session",
-          "foundations-testing-methods-session"
+          "week-1-lesson-1",
+          "week-1-lesson-2",
+          "week-1-lesson-3",
+          "week-1-homework"
         ]
       }
     }
@@ -93,85 +164,82 @@
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-programming-diagnostic-session",
+      "id": "week-1-lesson-1",
       "version": "0.1.0",
       "metadata": {
-        "title": "Programming Diagnostic",
+        "title": "Lesson 1: Interpreting a client request",
         "kind": "session",
-        "sortOrder": 1
+        "summary": "Learn how to read a client brief as a software developer: extract the problem, users, constraints and unknowns before proposing a solution.",
+        "sortOrder": 1,
+        "defaultOpen": true
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-programming-diagnostic"
+          "week-1-lesson-1-retrieval",
+          "week-1-lesson-1-main",
+          "week-1-lesson-1-formative"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-requirements-classification-session",
+      "id": "week-1-lesson-2",
       "version": "0.1.0",
       "metadata": {
-        "title": "Requirements Classification",
+        "title": "Lesson 2: Defining project context",
         "kind": "session",
-        "sortOrder": 2
+        "summary": "Turn the brief into a project context statement covering organisation, users, environment, stakeholders and constraints.",
+        "sortOrder": 2,
+        "defaultOpen": false
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-requirements-classification"
+          "week-1-lesson-2-retrieval",
+          "week-1-lesson-2-main",
+          "week-1-lesson-2-formative"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-problem-decomposition-session",
+      "id": "week-1-lesson-3",
       "version": "0.1.0",
       "metadata": {
-        "title": "Problem Decomposition",
+        "title": "Lesson 3: Market environment and existing systems",
         "kind": "session",
-        "sortOrder": 3
+        "summary": "Research the market environment, common problems, and the hardware and software already in use before evaluating new ideas.",
+        "sortOrder": 3,
+        "defaultOpen": false
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-problem-decomposition"
+          "week-1-lesson-3-retrieval",
+          "week-1-lesson-3-main",
+          "week-1-lesson-3-formative"
         ]
       }
     },
     {
       "schema": "lp.content.session",
       "schemaVersion": "0.1.0",
-      "id": "foundations-data-design-session",
+      "id": "week-1-homework",
       "version": "0.1.0",
       "metadata": {
-        "title": "Data Design Knowledge Check",
-        "kind": "session",
-        "sortOrder": 4
+        "title": "Homework: Independent research into similar products",
+        "kind": "homework",
+        "summary": "Find two existing products used in adult learning or community booking and evaluate how far they fit Oakridge Skills Hub.",
+        "sortOrder": 4,
+        "defaultOpen": false
       },
       "relationships": {
-        "week": "foundations",
+        "week": "week-1",
         "activities": [
-          "foundations-data-design"
-        ]
-      }
-    },
-    {
-      "schema": "lp.content.session",
-      "schemaVersion": "0.1.0",
-      "id": "foundations-testing-methods-session",
-      "version": "0.1.0",
-      "metadata": {
-        "title": "Testing Methods Classification",
-        "kind": "session",
-        "sortOrder": 5
-      },
-      "relationships": {
-        "week": "foundations",
-        "activities": [
-          "foundations-testing-methods"
+          "week-1-homework-research"
         ]
       }
     }
@@ -5711,6 +5779,1723 @@
           "content": {
             "text": "```json\n{\n  \"resultIntro\": \"Use this summary to review when each testing method is useful and what a test record should communicate.\"\n}\n```",
             "format": "application/json"
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-1-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: briefs, problems and solutions",
+        "status": "available",
+        "summary": "Check that you can tell a client problem from a proposed solution and from an assumption.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-1-lesson-1-retrieval",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Client briefs",
+          "Problem analysis",
+          "Assumptions"
+        ],
+        "detail": "Check that you can tell a client problem from a proposed solution and from an assumption."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-interpret-client-brief",
+          "w1-define-project-context",
+          "w1-research-market-environment"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Before you open the Oakridge Skills Hub brief, check the habits you will need all year: read the problem, do not jump to a product."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "A client says: 'We need an app.' What should a developer treat this as first?",
+            "options": [
+              {
+                "id": "a",
+                "label": "The confirmed solution to implement"
+              },
+              {
+                "id": "b",
+                "label": "A request that still needs the underlying problem and users clarifying"
+              },
+              {
+                "id": "c",
+                "label": "Proof that a mobile app is the only viable option"
+              },
+              {
+                "id": "d",
+                "label": "A non-functional requirement for performance"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The client has described a possible solution. Your first job is to recover the problem, users and constraints behind that request.",
+              "incorrect": "Treat 'we need an app' as a request to investigate, not as the solution. Recover the problem, users and constraints first."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Which statement is a problem to be solved, rather than a solution?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Build a React native booking app"
+              },
+              {
+                "id": "b",
+                "label": "Learners miss workshops because they cannot see upcoming sessions in one place"
+              },
+              {
+                "id": "c",
+                "label": "Buy a commercial MIS"
+              },
+              {
+                "id": "d",
+                "label": "Use QR codes for registers"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "That sentence describes a difficulty the organisation and users currently face. The other options are candidate solutions.",
+              "incorrect": "Look for the difficulty people currently face. Product or technology choices are solutions, not the problem."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "Why do software teams separate constraints from requirements when they first read a brief?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Constraints can be ignored if the budget is small"
+              },
+              {
+                "id": "b",
+                "label": "Constraints limit what is realistic, while requirements describe what success looks like"
+              },
+              {
+                "id": "c",
+                "label": "Constraints replace acceptance criteria"
+              },
+              {
+                "id": "d",
+                "label": "Requirements only apply to hardware"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Constraints such as budget, skills and existing equipment bound the solution. Requirements describe what the solution must achieve within those bounds.",
+              "incorrect": "Constraints bound what is realistic. Requirements describe what success looks like inside those bounds."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-q4",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:q4",
+            "sourceQuestionId": "q4",
+            "sourceType": "single",
+            "prompt": "In Occupational Specialism Task 1, why does Pearson expect you to analyse the brief before designing?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Design marks are awarded only for diagrams"
+              },
+              {
+                "id": "b",
+                "label": "A justified design has to be grounded in the client problem, users and context"
+              },
+              {
+                "id": "c",
+                "label": "Analysis is optional if you already know a similar product"
+              },
+              {
+                "id": "d",
+                "label": "You are marked on how quickly you start coding"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The assessment rewards professional judgement: you must show that later design decisions come from the brief, not from a favourite technology.",
+              "incorrect": "Task 1 rewards analysis that later design can be justified against. Do not skip from brief to product."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-1-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Analyse the Oakridge Skills Hub client request",
+        "status": "available",
+        "summary": "Read a realistic client brief and extract the problem, users, constraints and unknowns before proposing any solution.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-1-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided practical",
+        "topics": [
+          "Client briefs",
+          "Project context",
+          "Unknowns"
+        ],
+        "detail": "Read a realistic client brief and extract the problem, users, constraints and unknowns before proposing any solution."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-interpret-client-brief"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Interpreting a client request",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Week 1 begins the software development lifecycle at research and familiarisation. You explore the initial client request before you research technologies or write requirements."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-spec",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Specification link",
+            "text": "Occupational Specialism 1.1 — lifecycle stage: research and familiarisation. Explore and understand the initial client request or project brief.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-how-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "How professionals read a brief",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-how",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Annotate four things: the problem the organisation is trying to solve; who is affected; what already limits the solution; and what the brief does not tell you. Do not start with a product name. A brief that says 'we need an app' is a request, not a design."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-brief",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Client brief: Oakridge Skills Hub",
+            "text": "Oakridge Skills Hub is a community adult-learning centre. It runs evening and weekend workshops in digital skills, ESOL and employability. Tutors currently book rooms and track attendance using paper registers, a shared spreadsheet and email. Funders require quarterly reports on attendance, completion and learner characteristics. Learners often miss sessions because they cannot see upcoming workshops in one place. The centre manager has asked for a digital system that lets learners browse and book workshops, lets tutors take registers digitally, produces funder reports, works on the centre's existing Windows PCs and on learners' phones, and keeps learner data secure. Constraints: a small budget, one part-time administrator, no dedicated IT team, eight Windows 10 classroom PCs, and Wi-Fi that is reliable in classrooms but poor in the hall.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-practice-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Practical application",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-problem",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:problem",
+            "sourceQuestionId": "problem",
+            "prompt": "In one or two sentences, state the core problem Oakridge is trying to solve. Do not name a product or programming language.",
+            "placeholder": "Oakridge cannot...",
+            "guidance": "A strong answer describes fragmented booking, registers and reporting, and learners missing sessions because information is not in one place."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-users",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:users",
+            "sourceQuestionId": "users",
+            "prompt": "List the user groups mentioned or clearly implied by the brief, and one thing each group currently struggles with.",
+            "placeholder": "Learners: ... Tutors: ...",
+            "guidance": "Expect learners, tutors, the administrator and the centre manager, with funders as a reporting audience even if they never use the system directly."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-unknowns",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:unknowns",
+            "sourceQuestionId": "unknowns",
+            "prompt": "Identify two important things the brief does not tell you, and write the question you would ask the client next.",
+            "placeholder": "Unknown 1: ... Question: ...",
+            "guidance": "Strong unknowns include learner numbers, whether bookings need payment, safeguarding or funding-data rules, and whether tutors work across sites."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Retrieval is the starter quiz. Practical application is the Oakridge annotation. Formative assessment is the following classification. This week introduces the live client scenario used across the 22-week sequence. Next lesson turns the brief into a project context statement. Homework is independent product research, not extra theory."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-1-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative: classify statements from the brief",
+        "status": "available",
+        "summary": "Classify statements as problem, solution idea, constraint or unknown so that later design work stays grounded in the brief.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-1-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Client briefs",
+          "Constraints",
+          "Assumptions"
+        ],
+        "detail": "Classify statements as problem, solution idea, constraint or unknown so that later design work stays grounded in the brief."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-interpret-client-brief"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Classify what the brief is actually saying",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-formative-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Occupational Specialism answers lose marks when students treat a client's preferred product as a requirement. Practise sorting the Oakridge material."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each statement from or about the Oakridge brief.",
+            "categories": [
+              {
+                "id": "problem",
+                "label": "Problem"
+              },
+              {
+                "id": "solution",
+                "label": "Solution idea"
+              },
+              {
+                "id": "constraint",
+                "label": "Constraint"
+              },
+              {
+                "id": "unknown",
+                "label": "Unknown / not in the brief"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Learners miss workshops because they cannot see upcoming sessions in one place",
+                "correctCategoryId": "problem"
+              },
+              {
+                "id": "item-2",
+                "label": "The centre has no dedicated IT team",
+                "correctCategoryId": "constraint"
+              },
+              {
+                "id": "item-3",
+                "label": "The solution must be a native iOS app",
+                "correctCategoryId": "unknown"
+              },
+              {
+                "id": "item-4",
+                "label": "Tutors currently use paper registers and a shared spreadsheet",
+                "correctCategoryId": "problem"
+              },
+              {
+                "id": "item-5",
+                "label": "Buy a commercial college MIS",
+                "correctCategoryId": "solution"
+              },
+              {
+                "id": "item-6",
+                "label": "Wi-Fi is poor in the hall",
+                "correctCategoryId": "constraint"
+              },
+              {
+                "id": "item-7",
+                "label": "The system must accept card payments for workshops",
+                "correctCategoryId": "unknown"
+              },
+              {
+                "id": "item-8",
+                "label": "Build a custom React web app",
+                "correctCategoryId": "solution"
+              }
+            ],
+            "feedback": {
+              "correct": "Problems describe current difficulties. Constraints bound the solution. Solution ideas are optional approaches. Payment and iOS were not specified.",
+              "incorrect": "Problems are current difficulties. Constraints (budget, staff, kit, Wi-Fi) bound the work. iOS and card payments are not in the brief. Product names are solution ideas."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-2-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: the Oakridge brief",
+        "status": "available",
+        "summary": "Retrieve the Oakridge problem, users and constraints before defining project context.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-1-lesson-2-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Client briefs",
+          "Project context"
+        ],
+        "detail": "Retrieve the Oakridge problem, users and constraints before defining project context."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-interpret-client-brief",
+          "w1-define-project-context",
+          "w1-research-market-environment"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Lesson 2 builds on Lesson 1. You cannot define project context if you cannot still state the client's problem."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Which Oakridge fact is a constraint rather than the core problem?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Learners miss sessions because workshop information is scattered"
+              },
+              {
+                "id": "b",
+                "label": "Registers and bookings live in paper, spreadsheet and email"
+              },
+              {
+                "id": "c",
+                "label": "There is one part-time administrator and no dedicated IT team"
+              },
+              {
+                "id": "d",
+                "label": "Funders require quarterly reports"
+              }
+            ],
+            "correctOptionId": "c",
+            "feedback": {
+              "correct": "Staffing limits what can be implemented and supported. Scattered information and missed sessions are the problem the solution must address.",
+              "incorrect": "The core problem is fragmented information and missed sessions. Staffing is a constraint on how you solve it."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Why should funders appear in your context notes even if they never log in?",
+            "options": [
+              {
+                "id": "a",
+                "label": "They will write the Python code"
+              },
+              {
+                "id": "b",
+                "label": "Reporting obligations shape data the system must capture and protect"
+              },
+              {
+                "id": "c",
+                "label": "They replace learner user needs"
+              },
+              {
+                "id": "d",
+                "label": "They are the only stakeholder who matters"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "External reporting audiences still drive data, privacy and output requirements. That is part of project context.",
+              "incorrect": "Funders create reporting and data obligations. They are part of context even when they are not interactive users."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "What is the professional purpose of a project context statement?",
+            "options": [
+              {
+                "id": "a",
+                "label": "To choose a programming language"
+              },
+              {
+                "id": "b",
+                "label": "To record the organisation, users, environment and constraints that later decisions must fit"
+              },
+              {
+                "id": "c",
+                "label": "To list every emerging technology"
+              },
+              {
+                "id": "d",
+                "label": "To write test cases"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Context is the frame for research, requirements and design. Language choice comes later, once you understand the problem.",
+              "incorrect": "Context captures organisation, users, environment and constraints. It is not yet a design or a language decision."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-2-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Define the Oakridge project context",
+        "status": "available",
+        "summary": "Write a project context statement that later research, requirements and design can be judged against.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-2-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided practical",
+        "topics": [
+          "Project context",
+          "Stakeholders",
+          "Constraints"
+        ],
+        "detail": "Write a project context statement that later research, requirements and design can be judged against."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-define-project-context"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Defining project context",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Project context is not a second copy of the brief. It is your professional summary of the world the solution must live in: organisation, users, physical and digital environment, stakeholders, and constraints."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-why-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Why context matters in the lifecycle",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-why",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Research and familiarisation only works if you know what 'this context' is. Existing hardware, software, regulations and emerging technologies are only relevant in relation to Oakridge, not in the abstract. A cloud platform that needs a full-time engineer is a poor fit before you have even compared products."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-model-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "A usable context model",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-model",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Capture five headings: organisation and purpose; users and other stakeholders; current way of working; environment (rooms, devices, network); constraints (budget, skills, time, kit). Keep each heading short enough that a third party could use it."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-os",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Assessment habit",
+            "text": "In the Occupational Specialism you will justify later choices against the client scenario. Start that habit now: every context sentence should help you accept or reject a later idea.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-practice-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Practical application",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-context",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:context",
+            "sourceQuestionId": "context",
+            "prompt": "Write an Oakridge project context statement using the five headings: organisation; users and stakeholders; current way of working; environment; constraints.",
+            "placeholder": "Organisation: ...",
+            "guidance": "Check that learners, tutors, admin, manager and funders appear, that paper/spreadsheet/email is named, and that PCs, phones, hall Wi-Fi, budget and no IT team are present."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-decision",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:decision",
+            "sourceQuestionId": "decision",
+            "prompt": "Choose one later decision (for example language, hosting or device support) and explain how this context would influence it. Do not make the final choice yet.",
+            "placeholder": "Device support would be influenced because...",
+            "guidance": "A strong answer links phones plus classroom PCs, or hall Wi-Fi, or no IT team, to a design implication without leaping to a product."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Previous learning: Lesson 1 brief annotation. This lesson produces the context statement used in Lesson 3 research and in Week 2 solution evaluation. Formative assessment follows. Live discussion: which stakeholder is most often forgotten (usually funders or the part-time administrator)."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-2-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative: what belongs in project context?",
+        "status": "available",
+        "summary": "Decide which facts belong in a context statement and which are premature design or missing information.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-2-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Project context",
+          "Design decisions"
+        ],
+        "detail": "Decide which facts belong in a context statement and which are premature design or missing information."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-define-project-context"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Keep context separate from design",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each statement about the Oakridge project.",
+            "categories": [
+              {
+                "id": "context",
+                "label": "Belongs in project context"
+              },
+              {
+                "id": "design",
+                "label": "Premature design decision"
+              },
+              {
+                "id": "missing",
+                "label": "Missing information to investigate"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Eight Windows 10 classroom PCs are already in use",
+                "correctCategoryId": "context"
+              },
+              {
+                "id": "item-2",
+                "label": "The back end will be written in C#",
+                "correctCategoryId": "design"
+              },
+              {
+                "id": "item-3",
+                "label": "Whether workshop bookings require payment",
+                "correctCategoryId": "missing"
+              },
+              {
+                "id": "item-4",
+                "label": "Tutors currently email room changes",
+                "correctCategoryId": "context"
+              },
+              {
+                "id": "item-5",
+                "label": "Host the database on a specific cloud vendor",
+                "correctCategoryId": "design"
+              },
+              {
+                "id": "item-6",
+                "label": "How many active learners need accounts in the first term",
+                "correctCategoryId": "missing"
+              },
+              {
+                "id": "item-7",
+                "label": "Wi-Fi is unreliable in the hall",
+                "correctCategoryId": "context"
+              },
+              {
+                "id": "item-8",
+                "label": "Use facial recognition for registers",
+                "correctCategoryId": "design"
+              }
+            ],
+            "feedback": {
+              "correct": "Context is the current world. Language, hosting and biometrics are design. Payment and learner numbers are still unknown.",
+              "incorrect": "Context records what is true now. Product, language and hosting choices are design. Payment and scale are not yet known."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-3-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: context before research",
+        "status": "available",
+        "summary": "Retrieve why research must be framed by the client context before you look at products or hardware catalogues.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-1-lesson-3-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Project context",
+          "Market research"
+        ],
+        "detail": "Retrieve why research must be framed by the client context before you look at products or hardware catalogues."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-interpret-client-brief",
+          "w1-define-project-context",
+          "w1-research-market-environment"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Oakridge has eight Windows PCs and learners bring phones. What research question does that create?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Which programming paradigm is most elegant?"
+              },
+              {
+                "id": "b",
+                "label": "What hardware and software the solution must work with in this environment?"
+              },
+              {
+                "id": "c",
+                "label": "Whether waterfall is faster than agile"
+              },
+              {
+                "id": "d",
+                "label": "How to write an ERD"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Existing devices are part of familiarisation. They shape compatibility research before you evaluate new products.",
+              "incorrect": "Research existing hardware and the environments users already have, not a favourite language or methodology."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Why research common problems in adult-learning centres before proposing a new system?",
+            "options": [
+              {
+                "id": "a",
+                "label": "To copy another centre's branding"
+              },
+              {
+                "id": "b",
+                "label": "To recognise patterns you can reuse and risks you should not repeat"
+              },
+              {
+                "id": "c",
+                "label": "To avoid talking to Oakridge users"
+              },
+              {
+                "id": "d",
+                "label": "To skip requirements later"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Pattern recognition starts here: similar organisations hit similar problems. That research still has to be checked against Oakridge.",
+              "incorrect": "Common problems help you anticipate risks and reuse patterns. They do not replace this client's context."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "A website advertises 'the complete college management suite'. What should you do first?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Recommend it because it sounds complete"
+              },
+              {
+                "id": "b",
+                "label": "Check it against Oakridge's problem, users, constraints and existing kit"
+              },
+              {
+                "id": "c",
+                "label": "Reject it because commercial software is never suitable"
+              },
+              {
+                "id": "d",
+                "label": "Implement it on the hall Wi-Fi immediately"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Existing software is only a candidate until it is evaluated against this context. Completeness claims are marketing, not analysis.",
+              "incorrect": "Always test a found product against the client problem, users, constraints and existing environment."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-3-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Research the market environment and existing systems",
+        "status": "available",
+        "summary": "Investigate common problems, existing hardware and existing software in the Oakridge context, ready for Week 2 evaluation.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-3-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided practical",
+        "topics": [
+          "Market research",
+          "Existing hardware",
+          "Existing software",
+          "Common problems"
+        ],
+        "detail": "Investigate common problems, existing hardware and existing software in the Oakridge context, ready for Week 2 evaluation."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-research-market-environment"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Researching the environment, not collecting brochures",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Specification 1.1 asks you to research the specific context and market environment, including common problems and risks, current uses of hardware and software, and existing or potential solutions. This lesson starts that research. Week 2 evaluates solutions and emerging technologies against it."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-common-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Common problems in this market",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-common",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Adult-learning and community centres often juggle room clashes, volunteer or sessional tutors, attendance evidence for funders, learners with mixed digital confidence, and systems that were never designed to work together. Those patterns are useful only if you then ask: which of these is actually Oakridge's problem?"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-hw-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Existing hardware",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-hw",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Hardware research is not a shopping list. Document what is already used, who uses it, and where it fails. Oakridge already has classroom PCs and learner phones; the hall Wi-Fi is a known weakness. A kiosk in the hall that depends on that Wi-Fi would be a risk, not a clever extra."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-sw-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Existing software",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-sw",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Existing software includes unofficial tools: email, paper, spreadsheets. They are the current solution. Replacing them means understanding what they already do well (flexibility, no training cost) and where they fail (version conflicts, no single timetable, weak evidence for funders)."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-next",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Progression",
+            "text": "Do not evaluate emerging technologies in depth today. Note any that appear in your research, then bring them to Week 2 with evidence.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-practice-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Practical application",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-problems",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:problems",
+            "sourceQuestionId": "problems",
+            "prompt": "Name two common problems you would expect in this market and say whether each is already evidenced in the Oakridge brief or still a hypothesis.",
+            "placeholder": "Common problem 1: ... Evidenced / hypothesis because...",
+            "guidance": "Room clashes, sessional tutors, funding evidence and mixed digital confidence are typical. Missed sessions and fragmented registers are evidenced."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-hardware",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:hardware",
+            "sourceQuestionId": "hardware",
+            "prompt": "Produce an existing-hardware note for Oakridge: devices, owners, locations, and one implication for a future solution.",
+            "placeholder": "Devices: ... Implication: ...",
+            "guidance": "Classroom Windows PCs, learner phones, poor hall Wi-Fi. Implication: any register or booking flow must work on both PC and phone and must not assume hall connectivity."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-software",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:software",
+            "sourceQuestionId": "software",
+            "prompt": "Describe the current software stack (including paper and email) and one capability a replacement must not lose.",
+            "placeholder": "Current stack: ... Must not lose: ...",
+            "guidance": "Paper registers, shared spreadsheet, email. Must not lose simple last-minute room changes or low-training tutor workflows."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Previous: context statement. This lesson produces research notes used in homework and Week 2. Formative assessment is the found-product evaluation. Live pitfall: students listing technologies they like instead of hardware/software already in the context."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-lesson-3-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative: judge a found product against context",
+        "status": "available",
+        "summary": "Practise evaluating an existing product against the Oakridge problem, users and constraints without leaping to a recommendation.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-lesson-3-formative",
+        "estimatedDurationMinutes": 12,
+        "activityType": "Scenario judgement",
+        "topics": [
+          "Existing software",
+          "Evaluating solutions",
+          "Justification"
+        ],
+        "detail": "Practise evaluating an existing product against the Oakridge problem, users and constraints without leaping to a recommendation."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-research-market-environment"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "A product is not a conclusion",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "A colleague finds CampusFlow, marketed as an 'all-in-one college operations platform' with timetabling, finance, HR and a parent portal. Annual licence starts well above a community centre budget and implementation assumes an IT team."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "What is the most professional first judgement?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Recommend CampusFlow because it covers timetabling"
+              },
+              {
+                "id": "b",
+                "label": "Record it as an existing-market option and test it against Oakridge's problem, users, budget and staffing"
+              },
+              {
+                "id": "c",
+                "label": "Reject every commercial product"
+              },
+              {
+                "id": "d",
+                "label": "Implement it on the eight Windows PCs this week"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Week 1 research inventories options. Evaluation against this context comes next and continues in Week 2. Do not treat marketing scope as fit.",
+              "incorrect": "Log it as a candidate and test it against Oakridge. Coverage of extra modules is not the same as fit."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "Which Oakridge constraint most immediately challenges CampusFlow?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Learners attend ESOL workshops"
+              },
+              {
+                "id": "b",
+                "label": "Small budget and no dedicated IT team"
+              },
+              {
+                "id": "c",
+                "label": "Workshops happen on weekends"
+              },
+              {
+                "id": "d",
+                "label": "The centre is in a coastal town"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Cost and implementation skills are explicit constraints. Geography and weekend delivery do not by themselves rule the product out.",
+              "incorrect": "Budget and staffing are the constraints that make a large college suite a poor default fit."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-formative-justify",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-formative:justify",
+            "sourceQuestionId": "justify",
+            "prompt": "Write two sentences you could put in a research log: one strength CampusFlow might have for Oakridge, and one reason it may not fit. Refer to the brief.",
+            "placeholder": "Possible strength: ... Fit risk: ...",
+            "guidance": "Strength might be reporting or timetabling. Fit risk should cite budget, no IT team, or modules Oakridge does not need."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-1-homework-research",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: research two similar products",
+        "status": "available",
+        "summary": "Independently find two existing products used for workshop booking or adult-learning administration and judge them against Oakridge.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-1-homework-research",
+        "estimatedDurationMinutes": 40,
+        "activityType": "Independent study",
+        "topics": [
+          "Market research",
+          "Existing software",
+          "Source reliability"
+        ],
+        "detail": "Independently find two existing products used for workshop booking or adult-learning administration and judge them against Oakridge."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w1-interpret-client-brief",
+          "w1-define-project-context",
+          "w1-research-market-environment"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Independent study",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Find two existing digital products that support workshop booking, attendance or community-learning administration. They can be commercial, open source or used by a local college. You are not choosing the Oakridge solution yet."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-research",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Research habit",
+            "text": "Record the source (organisation site, vendor page, review, academic or government guidance), the date you accessed it, and why you think it is usable evidence. Week 21–22 will formalise source evaluation; start the habit now.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-product-a",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-research:product-a",
+            "sourceQuestionId": "product-a",
+            "prompt": "Product A: name, what it does, source URL or publication, and one way it might help Oakridge.",
+            "placeholder": "Name: ... Source: ... Possible help: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-product-b",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-research:product-b",
+            "sourceQuestionId": "product-b",
+            "prompt": "Product B: name, what it does, source URL or publication, and one way it might not fit Oakridge's constraints.",
+            "placeholder": "Name: ... Source: ... Fit risk: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-hardware-note",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-research:hardware-note",
+            "sourceQuestionId": "hardware-note",
+            "prompt": "From your research or the brief, note one hardware or connectivity issue that any Oakridge solution would have to respect.",
+            "placeholder": "For example hall Wi-Fi, shared classroom PCs, learner phones..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-prep",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "reflection",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-research:prep",
+            "sourceQuestionId": "prep",
+            "prompt": "Bring one question to Week 2: what else do you need to know before you can fairly evaluate emerging technologies or alternative solutions for Oakridge?"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-research-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Collect two research logs next lesson as retrieval. Do not mark product choice. Look for context-aware comments (budget, phones, funder reports) and named sources. This homework feeds Week 2 solution evaluation and later Area 3 source evaluation."
           }
         }
       ]

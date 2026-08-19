@@ -9,13 +9,18 @@
   },
   "relationships": {
     "learningOutcomes": [
-      "foundations-lo"
+      "foundations-lo",
+      "os-1-1",
+      "w1-interpret-client-brief",
+      "w1-define-project-context",
+      "w1-research-market-environment"
     ],
     "assignments": [
-      "foundations-practice"
+      "foundations-practice",
+      "os-formative"
     ],
     "weeks": [
-      "foundations"
+      "week-1"
     ]
   }
 }

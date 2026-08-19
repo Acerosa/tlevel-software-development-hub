@@ -9,5 +9,23 @@
       "status": "available"
     },
     "relationships": {}
+  },
+  {
+    "schema": "lp.content.assignment",
+    "schemaVersion": "0.1.0",
+    "id": "os-formative",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Occupational Specialism formative practice",
+      "status": "available"
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "os-1-1"
+      ],
+      "weeks": [
+        "week-1"
+      ]
+    }
   }
 ]

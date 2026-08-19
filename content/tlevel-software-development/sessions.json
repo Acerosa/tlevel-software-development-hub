@@ -2,85 +2,82 @@
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-programming-diagnostic-session",
+    "id": "week-1-lesson-1",
     "version": "0.1.0",
     "metadata": {
-      "title": "Programming Diagnostic",
+      "title": "Lesson 1: Interpreting a client request",
       "kind": "session",
-      "sortOrder": 1
+      "summary": "Learn how to read a client brief as a software developer: extract the problem, users, constraints and unknowns before proposing a solution.",
+      "sortOrder": 1,
+      "defaultOpen": true
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-programming-diagnostic"
+        "week-1-lesson-1-retrieval",
+        "week-1-lesson-1-main",
+        "week-1-lesson-1-formative"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-requirements-classification-session",
+    "id": "week-1-lesson-2",
     "version": "0.1.0",
     "metadata": {
-      "title": "Requirements Classification",
+      "title": "Lesson 2: Defining project context",
       "kind": "session",
-      "sortOrder": 2
+      "summary": "Turn the brief into a project context statement covering organisation, users, environment, stakeholders and constraints.",
+      "sortOrder": 2,
+      "defaultOpen": false
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-requirements-classification"
+        "week-1-lesson-2-retrieval",
+        "week-1-lesson-2-main",
+        "week-1-lesson-2-formative"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-problem-decomposition-session",
+    "id": "week-1-lesson-3",
     "version": "0.1.0",
     "metadata": {
-      "title": "Problem Decomposition",
+      "title": "Lesson 3: Market environment and existing systems",
       "kind": "session",
-      "sortOrder": 3
+      "summary": "Research the market environment, common problems, and the hardware and software already in use before evaluating new ideas.",
+      "sortOrder": 3,
+      "defaultOpen": false
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-problem-decomposition"
+        "week-1-lesson-3-retrieval",
+        "week-1-lesson-3-main",
+        "week-1-lesson-3-formative"
       ]
     }
   },
   {
     "schema": "lp.content.session",
     "schemaVersion": "0.1.0",
-    "id": "foundations-data-design-session",
+    "id": "week-1-homework",
     "version": "0.1.0",
     "metadata": {
-      "title": "Data Design Knowledge Check",
-      "kind": "session",
-      "sortOrder": 4
+      "title": "Homework: Independent research into similar products",
+      "kind": "homework",
+      "summary": "Find two existing products used in adult learning or community booking and evaluate how far they fit Oakridge Skills Hub.",
+      "sortOrder": 4,
+      "defaultOpen": false
     },
     "relationships": {
-      "week": "foundations",
+      "week": "week-1",
       "activities": [
-        "foundations-data-design"
-      ]
-    }
-  },
-  {
-    "schema": "lp.content.session",
-    "schemaVersion": "0.1.0",
-    "id": "foundations-testing-methods-session",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Testing Methods Classification",
-      "kind": "session",
-      "sortOrder": 5
-    },
-    "relationships": {
-      "week": "foundations",
-      "activities": [
-        "foundations-testing-methods"
+        "week-1-homework-research"
       ]
     }
   }

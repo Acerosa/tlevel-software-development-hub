@@ -8,5 +8,45 @@
       "title": "Prepare for occupational software development tasks"
     },
     "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "os-1-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "1.1 Apply the software development lifecycle to a digital project, starting with research and familiarisation"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-interpret-client-brief",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Interpret a client request and separate the problem, constraints, assumptions and possible solutions"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-define-project-context",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define project context, including organisation, users, environment, stakeholders and constraints"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w1-research-market-environment",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Research the market environment, common problems, and existing hardware and software that shape a solution"
+    },
+    "relationships": {}
   }
 ]

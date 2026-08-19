@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { activityFromPackage } from "./from-package";
+import { activityFromPackage, catalogFromPackage } from "./from-package";
 import { applyTLevelCurriculum } from "./apply-runtime";
 import pkg from "../../content/tlevel-software-development/package.json";
 
@@ -31,5 +31,12 @@ describe("T Level package hydration", () => {
     expect(window.__lpPublishedCurriculum).toBe(true);
     expect(document.body.dataset.curriculumSource).toBe("published");
     expect(window.FoundationActivityCatalog?.[1]?.title).toBe("Admin edited requirements title");
+  });
+
+  it("keeps the Foundations catalogue limited to foundations activities", () => {
+    const catalog = catalogFromPackage(pkg);
+    expect(catalog.every((item) => item.id.startsWith("foundations-"))).toBe(true);
+    expect(catalog).toHaveLength(5);
+    expect(pkg.activities.some((item) => item.id === "week-1-lesson-1-main")).toBe(true);
   });
 });

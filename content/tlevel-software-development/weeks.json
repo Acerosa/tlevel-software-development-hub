@@ -2,25 +2,33 @@
   {
     "schema": "lp.content.week",
     "schemaVersion": "0.1.0",
-    "id": "foundations",
+    "id": "week-1",
     "version": "0.1.0",
     "metadata": {
       "teachingWeek": 1,
-      "title": "Technical Foundations",
-      "status": "available"
+      "title": "Client briefs and project context",
+      "status": "available",
+      "phase": "sdlc-research",
+      "professionalPractice": "OS 1.1 Research and familiarisation — client request, context, market environment, existing hardware and software",
+      "route": "weeks/week-1/",
+      "weekCommencing": null,
+      "releaseDate": null,
+      "dueDate": null
     },
     "relationships": {
       "curriculum": "tlevel-software-development-curriculum",
       "learningOutcomes": [
-        "foundations-lo"
+        "os-1-1",
+        "w1-interpret-client-brief",
+        "w1-define-project-context",
+        "w1-research-market-environment"
       ],
-      "assignment": "foundations-practice",
+      "assignment": "os-formative",
       "sessions": [
-        "foundations-programming-diagnostic-session",
-        "foundations-requirements-classification-session",
-        "foundations-problem-decomposition-session",
-        "foundations-data-design-session",
-        "foundations-testing-methods-session"
+        "week-1-lesson-1",
+        "week-1-lesson-2",
+        "week-1-lesson-3",
+        "week-1-homework"
       ]
     }
   }
