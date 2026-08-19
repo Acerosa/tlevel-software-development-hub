@@ -90,12 +90,12 @@
     var root = document.body.dataset.root || ".";
     var sectionIds = [
       "home",
-      "course-guide",
+      "week-1",
+      "week-2",
+      "week-3",
       "foundations",
+      "course-guide",
       "projects",
-      "task-1",
-      "task-2",
-      "task-3",
       "assessment-practice"
     ];
     var sections = config.navigation.filter(function (item) {

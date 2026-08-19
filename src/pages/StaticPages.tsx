@@ -14,34 +14,7 @@ export function ProjectsPage({ root }: { root: string }) {
       />
       <div className="related-links">
         <a href={createSitePath(root, "foundations/")}>Foundations</a>
-        <a href={createSitePath(root, "task-1/")}>Task 1</a>
-      </div>
-    </section>
-  );
-}
-
-export function TaskPage({
-  root,
-  task,
-  related
-}: {
-  root: string;
-  task: "1" | "2" | "3";
-  related: Array<{ label: string; path: string }>;
-}) {
-  const ordinal = task === "1" ? "first" : task === "2" ? "second" : "third";
-  return (
-    <section className="study-card" aria-labelledby="task-heading">
-      <h2 id="task-heading">Task materials</h2>
-      <p>{`Task ${task} materials will be added in a later component.`}</p>
-      <EmptyState
-        heading={`Task ${task} workspace`}
-        message={`Materials for the ${ordinal} occupational specialism task are not in this hub component yet.`}
-      />
-      <div className="related-links">
-        {related.map((item) => (
-          <a key={item.path} href={createSitePath(root, item.path)}>{item.label}</a>
-        ))}
+        <a href={createSitePath(root, "week-1/")}>Week 1</a>
       </div>
     </section>
   );

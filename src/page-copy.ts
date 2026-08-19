@@ -1,4 +1,6 @@
 import type { BreadcrumbItem } from "@learning-platform/ui";
+import pkg from "../content/tlevel-software-development/package.json";
+import { weekPageFromPackage } from "./curriculum/from-package";
 import type { PageContext } from "./page-context";
 
 const ACTIVITY_COPY: Record<string, { title: string; subtitle: string; note?: string }> = {
@@ -28,7 +30,7 @@ const ACTIVITY_COPY: Record<string, { title: string; subtitle: string; note?: st
 const PAGE_COPY: Record<string, { title: string; subtitle: string }> = {
   home: {
     title: "Course home",
-    subtitle: "Find course materials, project guidance and assessment preparation."
+    subtitle: "Find the weekly teaching sequence, Foundations practice and course guidance."
   },
   "course-guide": {
     title: "Course Guide",
@@ -41,18 +43,6 @@ const PAGE_COPY: Record<string, { title: string; subtitle: string }> = {
   projects: {
     title: "Projects",
     subtitle: "Guidance and tools for project work."
-  },
-  "task-1": {
-    title: "Task 1",
-    subtitle: "Materials for the first occupational specialism task."
-  },
-  "task-2": {
-    title: "Task 2",
-    subtitle: "Materials for the second occupational specialism task."
-  },
-  "task-3": {
-    title: "Task 3",
-    subtitle: "Materials for the third occupational specialism task."
   },
   "assessment-practice": {
     title: "Assessment Practice",
@@ -75,6 +65,15 @@ export function activityCopy(activityId?: string) {
 export function pageHeader(context: PageContext): { title: string; subtitle: string } {
   const activity = activityCopy(context.activity);
   if (activity) return { title: activity.title, subtitle: activity.subtitle };
+  if (/^week-\d+$/.test(context.page)) {
+    const model = weekPageFromPackage(pkg, context.page);
+    if (model) {
+      return {
+        title: `Week ${model.week.teachingWeek}: ${model.week.title}`,
+        subtitle: model.week.subtitle
+      };
+    }
+  }
   return PAGE_COPY[context.page] || PAGE_COPY.home;
 }
 

@@ -6,17 +6,21 @@ export function CourseGuidePage({ root }: { root: string }) {
     <div className="study-stack">
       <section className="study-card" aria-labelledby="structure-heading">
         <h2 id="structure-heading">Course structure</h2>
-        <p>Begin with Technical Foundations, then work through Tasks 1, 2 and 3. Projects and assessment practice support this work.</p>
+        <p>Follow the weekly teaching sequence. Each week contains three lessons and homework.</p>
         <ul>
-          <li>Technical Foundations</li>
-          <li>Task 1</li>
-          <li>Task 2</li>
-          <li>Task 3</li>
+          <li>Week 1: Introduction to New and Emerging Digital Technologies</li>
+          <li>Week 2: Mobile Technology</li>
+          <li>Week 3: Internet of Things — Consumer Applications</li>
         </ul>
       </section>
       <section className="study-card" aria-labelledby="start-heading">
         <h2 id="start-heading">Start the course</h2>
-        <p>Technical Foundations is the current phase.</p>
+        <p>Week 1 is the current teaching week.</p>
+        <a className="text-link" href={createSitePath(root, "week-1/")}>Open Week 1</a>
+      </section>
+      <section className="study-card" aria-labelledby="foundations-heading">
+        <h2 id="foundations-heading">Technical Foundations</h2>
+        <p>Use Foundations if you need extra practice with programming, requirements, decomposition, data or testing.</p>
         <a className="text-link" href={createSitePath(root, "foundations/")}>Open Foundations</a>
       </section>
       <Callout
