@@ -31,14 +31,18 @@
         "os-1-1",
         "w1-interpret-client-brief",
         "w1-define-project-context",
-        "w1-research-market-environment"
+        "w1-research-market-environment",
+        "w2-evaluate-solutions",
+        "w2-emerging-technologies",
+        "w2-regulations-and-gaps"
       ],
       "assignments": [
         "foundations-practice",
         "os-formative"
       ],
       "weeks": [
-        "week-1"
+        "week-1",
+        "week-2"
       ]
     }
   },
@@ -92,6 +96,36 @@
         "title": "Research the market environment, common problems, and existing hardware and software that shape a solution"
       },
       "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w2-evaluate-solutions",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Evaluate existing and potential solutions against client needs, constraints and evidence"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w2-emerging-technologies",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Investigate emerging technologies in a specific project context rather than as a technology catalogue"
+      },
+      "relationships": {}
+    },
+    {
+      "schema": "lp.content.learning-outcome",
+      "schemaVersion": "0.1.0",
+      "id": "w2-regulations-and-gaps",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Identify relevant regulations and personal knowledge, skill and capability gaps that affect the project"
+      },
+      "relationships": {}
     }
   ],
   "assignments": [
@@ -120,7 +154,8 @@
           "os-1-1"
         ],
         "weeks": [
-          "week-1"
+          "week-1",
+          "week-2"
         ]
       }
     }
@@ -156,6 +191,39 @@
           "week-1-lesson-2",
           "week-1-lesson-3",
           "week-1-homework"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.week",
+      "schemaVersion": "0.1.0",
+      "id": "week-2",
+      "version": "0.1.0",
+      "metadata": {
+        "teachingWeek": 2,
+        "title": "Evaluating solutions, emerging technologies and professional gaps",
+        "status": "available",
+        "phase": "sdlc-research",
+        "professionalPractice": "OS 1.1 Research and familiarisation — existing and potential solutions, emerging technologies, regulations and personal knowledge gaps",
+        "route": "weeks/week-2/",
+        "weekCommencing": null,
+        "releaseDate": null,
+        "dueDate": null
+      },
+      "relationships": {
+        "curriculum": "tlevel-software-development-curriculum",
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions",
+          "w2-emerging-technologies",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "sessions": [
+          "week-2-lesson-1",
+          "week-2-lesson-2",
+          "week-2-lesson-3",
+          "week-2-homework"
         ]
       }
     }
@@ -240,6 +308,88 @@
         "week": "week-1",
         "activities": [
           "week-1-homework-research"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 1: Evaluating existing and potential solutions",
+        "kind": "session",
+        "summary": "Judge candidate solutions against the Oakridge problem, users, constraints and existing systems from Week 1.",
+        "sortOrder": 1,
+        "defaultOpen": true
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-lesson-1-retrieval",
+          "week-2-lesson-1-main",
+          "week-2-lesson-1-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 2: Emerging technologies in this context",
+        "kind": "session",
+        "summary": "Investigate which emerging technologies could matter for Oakridge, and which are distractions at this stage.",
+        "sortOrder": 2,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-lesson-2-retrieval",
+          "week-2-lesson-2-main",
+          "week-2-lesson-2-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Lesson 3: Regulations, guidelines and knowledge gaps",
+        "kind": "session",
+        "summary": "Identify situational regulations and your own knowledge, skill and capability gaps before Week 3 requirements work.",
+        "sortOrder": 3,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-lesson-3-retrieval",
+          "week-2-lesson-3-main",
+          "week-2-lesson-3-formative"
+        ]
+      }
+    },
+    {
+      "schema": "lp.content.session",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-homework",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: Evidence log for solutions and gaps",
+        "kind": "homework",
+        "summary": "Complete a short evidence log that Week 3 can use when defining business requirements and scope.",
+        "sortOrder": 4,
+        "defaultOpen": false
+      },
+      "relationships": {
+        "week": "week-2",
+        "activities": [
+          "week-2-homework-evidence"
         ]
       }
     }
@@ -7496,6 +7646,1577 @@
           "type": "teacher-note",
           "content": {
             "text": "Collect two research logs next lesson as retrieval. Do not mark product choice. Look for context-aware comments (budget, phones, funder reports) and named sources. This homework feeds Week 2 solution evaluation and later Area 3 source evaluation."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: Oakridge context before evaluation",
+        "status": "available",
+        "summary": "Retrieve the Week 1 problem, constraints and current systems so evaluation stays grounded in the client.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-2-lesson-1-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Project context",
+          "Existing software",
+          "Constraints"
+        ],
+        "detail": "Retrieve the Week 1 problem, constraints and current systems so evaluation stays grounded in the client."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions",
+          "w2-emerging-technologies",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Week 2 evaluates solutions. That is unsafe if you cannot still state Oakridge's problem and constraints."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Which statement is the strongest reason not to recommend a large college MIS to Oakridge yet?",
+            "options": [
+              {
+                "id": "a",
+                "label": "It was not invented in-house"
+              },
+              {
+                "id": "b",
+                "label": "Week 1 showed a small budget, no IT team, and a much narrower problem than a full college suite"
+              },
+              {
+                "id": "c",
+                "label": "Open source is always better"
+              },
+              {
+                "id": "d",
+                "label": "Adult learners never use software"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Evaluation starts from this client's problem and constraints, not from how complete a product looks on a brochure.",
+              "incorrect": "Use the Week 1 context: budget, staffing and a focused booking/register/reporting problem."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "What current 'software' must any Oakridge evaluation take seriously?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Only licensed enterprise systems"
+              },
+              {
+                "id": "b",
+                "label": "Paper registers, a shared spreadsheet and email, because they are the live workflow"
+              },
+              {
+                "id": "c",
+                "label": "Only mobile apps"
+              },
+              {
+                "id": "d",
+                "label": "Only cloud platforms"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Existing software includes unofficial tools. Replacing them means understanding what they already do.",
+              "incorrect": "Paper, spreadsheet and email are the current solution and must be part of evaluation."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "A homework product looked useful for timetabling. What is the next professional step?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Choose it as the Oakridge solution"
+              },
+              {
+                "id": "b",
+                "label": "Test it against users, constraints, existing kit and evidence from named sources"
+              },
+              {
+                "id": "c",
+                "label": "Ignore it because it is commercial"
+              },
+              {
+                "id": "d",
+                "label": "Rewrite it in Python immediately"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Week 2 turns research notes into a comparison. You are still not locking a solution.",
+              "incorrect": "Compare against the client context and evidence. Do not select a product yet."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Evaluate candidate solutions for Oakridge",
+        "status": "available",
+        "summary": "Use a consistent comparison method so existing and potential solutions are judged against the same client criteria.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-1-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided practical",
+        "topics": [
+          "Evaluating solutions",
+          "User needs",
+          "Justification"
+        ],
+        "detail": "Use a consistent comparison method so existing and potential solutions are judged against the same client criteria."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Evaluation is comparison, not preference",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Specification 1.1 asks you to research existing or potential solutions and how they meet different user needs. A list of products is not evaluation. Evaluation is a justified comparison against this client's problem, users, constraints and environment."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-method-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "A method you can reuse in the Occupational Specialism",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-method",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "For each option record: what user need it might meet; what evidence you have; what it would demand in skills, cost and hardware; what it would fail to do; and how confident you are. Keep 'do nothing / improve the spreadsheet' as an option so you do not pretend a new system is inevitable."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-options",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Work with at least three options",
+            "text": "Use (1) improve the current spreadsheet and email process, (2) a specialist booking or attendance product from your homework, and (3) a custom-built system. You may add a fourth from your research.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-practice-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Practical application",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-criteria",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-main:criteria",
+            "sourceQuestionId": "criteria",
+            "prompt": "Write four evaluation criteria derived from the Oakridge brief, not from a product you like.",
+            "placeholder": "1. ... 2. ...",
+            "guidance": "Strong criteria include: works on classroom PCs and phones; low training for sessional tutors; funder reporting; small budget; no dedicated IT team; hall Wi-Fi cannot be assumed."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-compare",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-main:compare",
+            "sourceQuestionId": "compare",
+            "prompt": "Compare two options against those criteria. Name a user group that would gain from each option and one risk for each.",
+            "placeholder": "Option A: ... Option B: ...",
+            "guidance": "Look for user-specific gains (learners seeing sessions; tutors taking registers; manager reporting) and risks tied to cost, skills or connectivity."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-recommend",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-main:recommend",
+            "sourceQuestionId": "recommend",
+            "prompt": "Do not choose a final solution. State which option looks strongest so far and what evidence you still need.",
+            "placeholder": "Strongest so far because... Still need...",
+            "guidance": "A professional answer stays provisional and names missing evidence such as price, accessibility, data protection or tutor trial."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Retrieval is Week 1 context. Practical application is the comparison grid. Formative assessment follows. Previous learning: Oakridge brief and homework products. Future: Week 2 Lesson 2 tests whether emerging tech changes the comparison; Week 3 uses the surviving options when defining scope."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-1-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative: sound and unsound evaluations",
+        "status": "available",
+        "summary": "Classify evaluation comments as evidence-based, preference, or missing the client context.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-1-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Evaluating solutions",
+          "Justification"
+        ],
+        "detail": "Classify evaluation comments as evidence-based, preference, or missing the client context."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "What counts as evaluation?",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-1-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-1-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each comment about an Oakridge option.",
+            "categories": [
+              {
+                "id": "evidence",
+                "label": "Evidence-based evaluation"
+              },
+              {
+                "id": "preference",
+                "label": "Personal or vendor preference"
+              },
+              {
+                "id": "context-miss",
+                "label": "Ignores this client's context"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "A booking product that only runs as a hall kiosk is a poor fit because hall Wi-Fi is unreliable",
+                "correctCategoryId": "evidence"
+              },
+              {
+                "id": "item-2",
+                "label": "I would use this stack because I already like it",
+                "correctCategoryId": "preference"
+              },
+              {
+                "id": "item-3",
+                "label": "A full university ERP is suitable because it can do everything",
+                "correctCategoryId": "context-miss"
+              },
+              {
+                "id": "item-4",
+                "label": "Improving the spreadsheet keeps tutor training low but still fails a single learner-facing timetable",
+                "correctCategoryId": "evidence"
+              },
+              {
+                "id": "item-5",
+                "label": "The vendor said it is the market leader",
+                "correctCategoryId": "preference"
+              },
+              {
+                "id": "item-6",
+                "label": "Custom build is best because every centre should have unique software",
+                "correctCategoryId": "context-miss"
+              },
+              {
+                "id": "item-7",
+                "label": "A phone-friendly booking flow matches learners who already bring phones",
+                "correctCategoryId": "evidence"
+              },
+              {
+                "id": "item-8",
+                "label": "Reject the spreadsheet option because real developers do not use spreadsheets",
+                "correctCategoryId": "preference"
+              }
+            ],
+            "feedback": {
+              "correct": "Evaluation cites this client's evidence. Preference cites taste or marketing. Context-miss ignores budget, staffing or the actual problem.",
+              "incorrect": "Tie comments back to Oakridge evidence. Marketing, taste and 'build everything' are not evaluation."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: evaluation criteria",
+        "status": "available",
+        "summary": "Retrieve the comparison method before investigating emerging technologies.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-2-lesson-2-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Evaluating solutions",
+          "Emerging technologies"
+        ],
+        "detail": "Retrieve the comparison method before investigating emerging technologies."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions",
+          "w2-emerging-technologies",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Why keep 'improve the spreadsheet' as a candidate even if you expect to recommend software later?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Pearson forbids new software"
+              },
+              {
+                "id": "b",
+                "label": "It is the current solution and a baseline for cost, training and risk"
+              },
+              {
+                "id": "c",
+                "label": "Spreadsheets cannot store data"
+              },
+              {
+                "id": "d",
+                "label": "It proves you prefer low technology"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A baseline option stops you treating a new system as automatic. Evaluation needs something to beat.",
+              "incorrect": "The current way of working is the baseline. New options have to beat it on the client's criteria."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "When is an emerging technology relevant to Oakridge?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Whenever it appears on a news site"
+              },
+              {
+                "id": "b",
+                "label": "When it could change user needs, constraints, risks or available solutions in this context"
+              },
+              {
+                "id": "c",
+                "label": "Only if it is generative AI"
+              },
+              {
+                "id": "d",
+                "label": "Only if a competitor college uses it"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Familiarisation research is contextual. A drone platform is emerging, but it does not help workshop booking at Oakridge.",
+              "incorrect": "Emerging technology only matters here if it changes this problem, users, constraints or options."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "What is the professional risk of starting with a technology catalogue?",
+            "options": [
+              {
+                "id": "a",
+                "label": "You might discover a useful option"
+              },
+              {
+                "id": "b",
+                "label": "You can hide the client problem behind impressive tools the centre cannot support"
+              },
+              {
+                "id": "c",
+                "label": "Pearson forbids naming technologies"
+              },
+              {
+                "id": "d",
+                "label": "Research becomes faster"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The Occupational Specialism rewards justified choices. Unsupported technology lists read as solutioneering.",
+              "incorrect": "Do not let a catalogue replace the client problem. Oakridge still has no IT team and a small budget."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Investigate emerging technologies for Oakridge",
+        "status": "available",
+        "summary": "Decide which emerging technologies are relevant to this brief and which should be parked until later in the course.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-2-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided practical",
+        "topics": [
+          "Emerging technologies",
+          "AI",
+          "Cloud",
+          "IoT"
+        ],
+        "detail": "Decide which emerging technologies are relevant to this brief and which should be parked until later in the course."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-emerging-technologies"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Emerging technology as familiarisation, not a tour",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Specification 1.1 includes newly emerging technologies during research and familiarisation. Area 1.5 later asks for a wider investigation of AI, IoT, cloud, biometrics and related technologies. This week you only ask: could this change the Oakridge project?"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-lens-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "A context lens",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-lens",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "For each technology ask four questions: which user need might it affect; what hardware, skills and data would it demand; what risk or regulation would it introduce; and is it essential now, useful later, or a distraction?"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-examples",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Examples to test: generative AI for tutor emails or report wording; cloud hosting instead of a local PC install; QR codes or simple IoT check-in; biometric registers; a chatbot for workshop questions. Biometrics may be legally and ethically heavy for a community centre. A chatbot that needs constant supervision may not fit one part-time administrator."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-later",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Later learning",
+            "text": "Weeks 16–18 return to emerging technologies and professional development in more depth. Keep notes. Do not try to cover the whole 1.5 list today.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-practice-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Practical application",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-relevant",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-main:relevant",
+            "sourceQuestionId": "relevant",
+            "prompt": "Choose one emerging technology that could be relevant to Oakridge. Explain the user need it might support and one demand it would place on skills, hardware or data.",
+            "placeholder": "Technology: ... User need: ... Demand: ...",
+            "guidance": "Cloud or generative AI can be relevant if tied to phones/PCs or report writing. The demand should mention skills, cost, connectivity or personal data."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-distraction",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-main:distraction",
+            "sourceQuestionId": "distraction",
+            "prompt": "Choose one emerging technology that is a distraction for this brief and justify why against Week 1 context.",
+            "placeholder": "Technology: ... Distraction because...",
+            "guidance": "Drones, 3D printing or robotics have no evidenced link to booking, registers or funder reports at Oakridge."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-evaluation-change",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-main:evaluation-change",
+            "sourceQuestionId": "evaluation-change",
+            "prompt": "Would this relevant technology change yesterday's solution comparison? Say how, or say why it would not.",
+            "placeholder": "It would / would not change the comparison because...",
+            "guidance": "A good answer refers back to criteria such as cost, IT support, phones, or tutor training rather than novelty."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Live pitfall: students writing an AI essay. Keep them on Oakridge. Formative classification follows. Future: 1.5 deep dive in weeks 16–18; responsible GenAI use when the lifecycle reaches design/build."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-2-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative: relevant, later, or distraction?",
+        "status": "available",
+        "summary": "Classify emerging technologies against the Oakridge brief.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-2-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Emerging technologies",
+          "Project context"
+        ],
+        "detail": "Classify emerging technologies against the Oakridge brief."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-emerging-technologies"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Sort technologies by this project",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-2-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-2-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "How should each technology be treated during Oakridge familiarisation?",
+            "categories": [
+              {
+                "id": "now",
+                "label": "Investigate now for this brief"
+              },
+              {
+                "id": "later",
+                "label": "Note for later / only if evidence appears"
+              },
+              {
+                "id": "distraction",
+                "label": "Distraction for this brief"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Cloud hosting for a small booking service",
+                "correctCategoryId": "now"
+              },
+              {
+                "id": "item-2",
+                "label": "Delivery drones for workshop materials",
+                "correctCategoryId": "distraction"
+              },
+              {
+                "id": "item-3",
+                "label": "Generative AI to draft funder-report wording for staff review",
+                "correctCategoryId": "now"
+              },
+              {
+                "id": "item-4",
+                "label": "Computer vision on drones for site security",
+                "correctCategoryId": "distraction"
+              },
+              {
+                "id": "item-5",
+                "label": "5G as the only access method for classroom registers",
+                "correctCategoryId": "later"
+              },
+              {
+                "id": "item-6",
+                "label": "Simple QR check-in on learner phones",
+                "correctCategoryId": "now"
+              },
+              {
+                "id": "item-7",
+                "label": "3D printing learner ID cards",
+                "correctCategoryId": "distraction"
+              },
+              {
+                "id": "item-8",
+                "label": "Biometric facial registers for ESOL classes",
+                "correctCategoryId": "later"
+              }
+            ],
+            "feedback": {
+              "correct": "Now: cloud, carefully reviewed GenAI, QR on phones. Later: biometrics and 5G need more legal/technical evidence. Drones, CV-on-drones and 3D printing do not serve this brief.",
+              "incorrect": "Ask whether the technology helps booking, registers or reporting inside Oakridge's constraints. Novelty is not relevance."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3-retrieval",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Retrieval: relevant technology versus regulation",
+        "status": "available",
+        "summary": "Retrieve the difference between a useful technology idea and a legally or ethically constrained one.",
+        "href": null,
+        "difficulty": "foundation",
+        "familyId": "week-2-lesson-3-retrieval",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Retrieval quiz",
+        "topics": [
+          "Emerging technologies",
+          "Regulations"
+        ],
+        "detail": "Retrieve the difference between a useful technology idea and a legally or ethically constrained one."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions",
+          "w2-emerging-technologies",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Starter retrieval",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-q1",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-retrieval:q1",
+            "sourceQuestionId": "q1",
+            "sourceType": "single",
+            "prompt": "Why might biometric registers be a 'later' idea rather than a Week 2 recommendation?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Biometrics cannot take a register"
+              },
+              {
+                "id": "b",
+                "label": "They raise data protection, consent and inclusion issues that this brief has not established"
+              },
+              {
+                "id": "c",
+                "label": "Pearson bans biometrics"
+              },
+              {
+                "id": "d",
+                "label": "Phones cannot capture images"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Familiarisation includes spotting regulations and risks. You have not yet evidenced that biometrics are necessary or lawful here.",
+              "incorrect": "Biometrics are high-risk personal data. Do not recommend them from novelty during familiarisation."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-q2",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-retrieval:q2",
+            "sourceQuestionId": "q2",
+            "sourceType": "single",
+            "prompt": "What is the purpose of identifying personal knowledge gaps at this stage?",
+            "options": [
+              {
+                "id": "a",
+                "label": "To prove you cannot do the project"
+              },
+              {
+                "id": "b",
+                "label": "To plan learning so later requirements, design and build are not based on guesswork"
+              },
+              {
+                "id": "c",
+                "label": "To avoid research"
+              },
+              {
+                "id": "d",
+                "label": "To choose a programming language"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Specification 1.1 asks you to identify shortfalls in skills and knowledge and plan learning. That is professional practice, not a weakness.",
+              "incorrect": "Gaps drive a training plan. They protect later work from unsupported claims."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-retrieval-q3",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-retrieval:q3",
+            "sourceQuestionId": "q3",
+            "sourceType": "single",
+            "prompt": "Which regulation family is already implied by Oakridge holding learner characteristics for funders?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Maritime law"
+              },
+              {
+                "id": "b",
+                "label": "UK data protection and privacy duties for personal data"
+              },
+              {
+                "id": "c",
+                "label": "Gambling legislation"
+              },
+              {
+                "id": "d",
+                "label": "Patent law for 3D printing"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Learner characteristics are personal data. Data protection is in scope now; a full legal week comes later in the course.",
+              "incorrect": "Funder reports about learners bring data protection into this project immediately."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3-main",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Identify regulations, guidelines and personal gaps",
+        "status": "available",
+        "summary": "List situational regulations and your own knowledge, skill and capability gaps before defining requirements next week.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-3-main",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided practical",
+        "topics": [
+          "Regulations",
+          "Guidelines",
+          "Knowledge gaps",
+          "Skills gaps"
+        ],
+        "detail": "List situational regulations and your own knowledge, skill and capability gaps before defining requirements next week."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Familiarisation includes rules and your own readiness",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Specification 1.1 includes industry or situation-specific guidelines and regulations, and identifying shortfalls in your own skills and knowledge. You are not writing the full legal analysis yet. That is Area 2 in weeks 19–20. Today you name what is in play and what you must learn."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-regs-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Regulations and guidelines in this situation",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-regs",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "For Oakridge, expect UK GDPR / data protection for learner records; safeguarding expectations if anyone 16–18 or vulnerable adults attend; funding-evidence rules; accessibility expectations so the service is usable; and possibly WCAG-oriented practice if the solution is a website. You still need to check which of these actually apply, with sources."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-gaps-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Knowledge, skills and capability",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-gaps",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "A knowledge gap is something you do not yet understand (for example what a lawful basis is). A skill gap is something you cannot yet do (for example query a database or run a user interview). A capability gap is whether you can complete the required solution in the time and with the tools you have. Be specific. 'I need to get better at IT' is not a plan."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-later-pd",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "callout",
+          "content": {
+            "title": "Later learning",
+            "text": "Weeks 16–18 build full training plans. Weeks 19–20 treat law, ethics and risk in depth. Capture gaps now so those weeks are not theoretical.",
+            "tone": "info"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-practice-h",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Practical application",
+            "level": 3
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-regulations",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-main:regulations",
+            "sourceQuestionId": "regulations",
+            "prompt": "Name two regulations or guidelines that appear relevant to Oakridge and one piece of evidence you would still need before treating them as confirmed requirements.",
+            "placeholder": "1. ... Evidence still needed: ...",
+            "guidance": "Data protection and accessibility or safeguarding are the likely pair. Evidence might be the age range of learners or the funder's data items."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-gaps",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-main:gaps",
+            "sourceQuestionId": "gaps",
+            "prompt": "Record one knowledge gap, one skill gap and one capability gap that would affect you if Oakridge were your Occupational Specialism brief.",
+            "placeholder": "Knowledge: ... Skill: ... Capability: ...",
+            "guidance": "Look for project-specific gaps such as accessibility testing, interview technique, or whether you can support a deployed system alone."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-learning",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-main:learning",
+            "sourceQuestionId": "learning",
+            "prompt": "For one gap, write a next learning step you can complete before Week 4.",
+            "placeholder": "I will... using...",
+            "guidance": "A good step names a source or practice task, not just 'revise'."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-main-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Keep legal discussion at identification level. Do not deliver the weeks 19–20 content. Formative follows. Homework produces the evidence log Week 3 needs for business requirements and scope."
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-lesson-3-formative",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Formative: regulation, gap, or design decision?",
+        "status": "available",
+        "summary": "Separate familiarisation findings from premature design and from gaps you still need to close.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-lesson-3-formative",
+        "estimatedDurationMinutes": 10,
+        "activityType": "Classification",
+        "topics": [
+          "Regulations",
+          "Knowledge gaps",
+          "Design decisions"
+        ],
+        "detail": "Separate familiarisation findings from premature design and from gaps you still need to close."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-formative-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Keep the categories clean",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-lesson-3-formative-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-lesson-3-formative:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each statement about the Oakridge project.",
+            "categories": [
+              {
+                "id": "regulation",
+                "label": "Regulation or guideline to investigate"
+              },
+              {
+                "id": "gap",
+                "label": "Personal knowledge, skill or capability gap"
+              },
+              {
+                "id": "design",
+                "label": "Premature design decision"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Learner characteristics used for funders are personal data",
+                "correctCategoryId": "regulation"
+              },
+              {
+                "id": "item-2",
+                "label": "I have not yet run a structured user interview",
+                "correctCategoryId": "gap"
+              },
+              {
+                "id": "item-3",
+                "label": "The register will use facial recognition",
+                "correctCategoryId": "design"
+              },
+              {
+                "id": "item-4",
+                "label": "A public website should be designed to be accessible",
+                "correctCategoryId": "regulation"
+              },
+              {
+                "id": "item-5",
+                "label": "I cannot yet explain lawful basis for storing attendance data",
+                "correctCategoryId": "gap"
+              },
+              {
+                "id": "item-6",
+                "label": "We will host everything on a named cloud vendor this week",
+                "correctCategoryId": "design"
+              },
+              {
+                "id": "item-7",
+                "label": "Safeguarding duties may apply if 16–18-year-olds attend",
+                "correctCategoryId": "regulation"
+              },
+              {
+                "id": "item-8",
+                "label": "I have never produced a funder-style report from a data set",
+                "correctCategoryId": "gap"
+              }
+            ],
+            "feedback": {
+              "correct": "Regulations are external duties to check. Gaps are about you. Vendor, biometrics and hosting choices are still design.",
+              "incorrect": "If it is a legal duty, it is regulation. If it is about your readiness, it is a gap. If it names a product or mechanism too early, it is design."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-2-homework-evidence",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Homework: solution and gap evidence log",
+        "status": "available",
+        "summary": "Bring Week 1 research and Week 2 evaluation together so Week 3 can define business requirements and scope from evidence.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-2-homework-evidence",
+        "estimatedDurationMinutes": 40,
+        "activityType": "Independent study",
+        "topics": [
+          "Evaluating solutions",
+          "Regulations",
+          "Knowledge gaps",
+          "Reliable sources"
+        ],
+        "detail": "Bring Week 1 research and Week 2 evaluation together so Week 3 can define business requirements and scope from evidence.",
+        "support": "independent"
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "os-1-1",
+          "w2-evaluate-solutions",
+          "w2-emerging-technologies",
+          "w2-regulations-and-gaps"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-title",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "heading",
+          "content": {
+            "text": "Independent study",
+            "level": 2
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Produce a one-page evidence log. Week 3 will use it when you identify business requirements, scope and business value. Do not write the requirements yet."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-options",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-evidence:options",
+            "sourceQuestionId": "options",
+            "prompt": "Summarise two candidate options and the strongest evidence for and against each, with sources.",
+            "placeholder": "Option 1: ... For: ... Against: ... Source: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-tech",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-evidence:tech",
+            "sourceQuestionId": "tech",
+            "prompt": "State one emerging technology you will keep in play and one you will park, with a one-sentence justification tied to Oakridge.",
+            "placeholder": "Keep: ... Park: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-rules",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-evidence:rules",
+            "sourceQuestionId": "rules",
+            "prompt": "List two regulations or guidelines to carry into requirements work, and one official or reputable source you will use to check each.",
+            "placeholder": "1. ... Source: ..."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-gap",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "reflection",
+          "content": {
+            "formative": true,
+            "questionId": "week-2-homework-evidence:gap",
+            "sourceQuestionId": "gap",
+            "prompt": "Which personal gap would most damage your Week 3 requirements work if you ignore it, and what will you do before then?"
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-2-homework-evidence-teacher",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "teacher-note",
+          "content": {
+            "text": "Collect logs as Week 3 retrieval. Look for named sources and Oakridge-specific justifications. This is early Area 3 practice (reliable sources) without teaching the full 3.1–3.2 methods."
           }
         }
       ]

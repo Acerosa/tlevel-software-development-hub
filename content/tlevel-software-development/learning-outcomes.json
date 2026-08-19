@@ -48,5 +48,35 @@
       "title": "Research the market environment, common problems, and existing hardware and software that shape a solution"
     },
     "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-evaluate-solutions",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Evaluate existing and potential solutions against client needs, constraints and evidence"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-emerging-technologies",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Investigate emerging technologies in a specific project context rather than as a technology catalogue"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w2-regulations-and-gaps",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify relevant regulations and personal knowledge, skill and capability gaps that affect the project"
+    },
+    "relationships": {}
   }
 ]

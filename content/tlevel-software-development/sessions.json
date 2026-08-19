@@ -80,5 +80,87 @@
         "week-1-homework-research"
       ]
     }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Evaluating existing and potential solutions",
+      "kind": "session",
+      "summary": "Judge candidate solutions against the Oakridge problem, users, constraints and existing systems from Week 1.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-lesson-1-retrieval",
+        "week-2-lesson-1-main",
+        "week-2-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Emerging technologies in this context",
+      "kind": "session",
+      "summary": "Investigate which emerging technologies could matter for Oakridge, and which are distractions at this stage.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-lesson-2-retrieval",
+        "week-2-lesson-2-main",
+        "week-2-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Regulations, guidelines and knowledge gaps",
+      "kind": "session",
+      "summary": "Identify situational regulations and your own knowledge, skill and capability gaps before Week 3 requirements work.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-lesson-3-retrieval",
+        "week-2-lesson-3-main",
+        "week-2-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-2-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: Evidence log for solutions and gaps",
+      "kind": "homework",
+      "summary": "Complete a short evidence log that Week 3 can use when defining business requirements and scope.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-2",
+      "activities": [
+        "week-2-homework-evidence"
+      ]
+    }
   }
 ]

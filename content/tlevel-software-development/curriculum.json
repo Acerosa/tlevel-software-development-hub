@@ -13,14 +13,18 @@
       "os-1-1",
       "w1-interpret-client-brief",
       "w1-define-project-context",
-      "w1-research-market-environment"
+      "w1-research-market-environment",
+      "w2-evaluate-solutions",
+      "w2-emerging-technologies",
+      "w2-regulations-and-gaps"
     ],
     "assignments": [
       "foundations-practice",
       "os-formative"
     ],
     "weeks": [
-      "week-1"
+      "week-1",
+      "week-2"
     ]
   }
 }
