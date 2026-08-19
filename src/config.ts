@@ -8,15 +8,15 @@ export const APP_CONFIG = Object.freeze({
   coreVersion: "0.2.0",
   learnerApiContractVersion: "0.1.0",
   submissionContractVersion: "0.1.0",
-  currentPhase: "Phase 1: Technical Foundations",
+  currentPhase: "Week 1: Introduction to New and Emerging Digital Technologies",
   navigation: Object.freeze([
     Object.freeze({ id: "home", label: "Home", path: "" }),
-    Object.freeze({ id: "course-guide", label: "Course Guide", path: "course-guide/" }),
+    Object.freeze({ id: "week-1", label: "Week 1", path: "week-1/" }),
+    Object.freeze({ id: "week-2", label: "Week 2", path: "week-2/" }),
+    Object.freeze({ id: "week-3", label: "Week 3", path: "week-3/" }),
     Object.freeze({ id: "foundations", label: "Foundations", path: "foundations/" }),
+    Object.freeze({ id: "course-guide", label: "Course Guide", path: "course-guide/" }),
     Object.freeze({ id: "projects", label: "Projects", path: "projects/" }),
-    Object.freeze({ id: "task-1", label: "Task 1", path: "task-1/" }),
-    Object.freeze({ id: "task-2", label: "Task 2", path: "task-2/" }),
-    Object.freeze({ id: "task-3", label: "Task 3", path: "task-3/" }),
     Object.freeze({
       id: "assessment-practice",
       label: "Assessment Practice",
@@ -27,12 +27,12 @@ export const APP_CONFIG = Object.freeze({
   ]),
   courseSectionIds: Object.freeze([
     "home",
-    "course-guide",
+    "week-1",
+    "week-2",
+    "week-3",
     "foundations",
+    "course-guide",
     "projects",
-    "task-1",
-    "task-2",
-    "task-3",
     "assessment-practice"
   ]),
   features: Object.freeze({

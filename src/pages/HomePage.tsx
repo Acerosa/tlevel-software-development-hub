@@ -1,38 +1,64 @@
 import { Callout, StatusBadge } from "@learning-platform/ui";
+import pkg from "../../content/tlevel-software-development/package.json";
+import { homeWeeksFromPackage } from "../curriculum/from-package";
 import { createSitePath } from "../paths";
+
+const WEEKS = homeWeeksFromPackage(pkg);
 
 export function HomePage({ root }: { root: string }) {
   return (
     <div className="study-stack">
       <section className="study-card" aria-labelledby="welcome-heading">
         <h2 id="welcome-heading">Welcome</h2>
-        <p>Use the course sections to find an area and continue your work.</p>
+        <p>
+          This hub brings together weekly lesson resources and formative activities for
+          Exploring New and Emerging Digital Technologies.
+        </p>
+        <p>
+          Start with the current week’s overview. Lessons, retrieval, application tasks and
+          homework for that week are listed there so you can follow the teaching sequence
+          without hunting across the site.
+        </p>
       </section>
-      <section className="study-card" aria-labelledby="guide-heading">
-        <h2 id="guide-heading">Course Guide</h2>
-        <p>See how the course is organised and what each section is for.</p>
-        <a className="text-link" href={createSitePath(root, "course-guide/")}>Open Course Guide</a>
+
+      <section aria-labelledby="start-heading">
+        <h2 id="start-heading">Where to start</h2>
+        <div className="home-week-scroller" tabIndex={0} aria-label="Week cards">
+          <div className="card-grid">
+            {WEEKS.map((week) => (
+              <article className="hub-card" key={week.id}>
+                <StatusBadge
+                  status="available"
+                  label={week.current ? "Active" : "Available"}
+                />
+                <h3>{week.label}</h3>
+                <p>{`${week.title}. ${week.description}`}</p>
+                <a className="card-link" href={createSitePath(root, week.path)}>
+                  {`Open ${week.label}`}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
-      <section className="study-card study-card--current" aria-labelledby="foundations-heading">
-        <StatusBadge status="available" label="Current phase" />
-        <h2 id="foundations-heading">Technical Foundations</h2>
-        <p>Start with the technical knowledge and working practices used throughout the course.</p>
+
+      <section className="study-card" aria-labelledby="organisation-heading">
+        <h2 id="organisation-heading">How activities are organised</h2>
+        <p>
+          Learning activities sit inside each week’s area. Use the Week 1 to Week 3 pages to
+          find Lesson 1, Lesson 2, Lesson 3 and homework.
+        </p>
+        <p>
+          Technical Foundations remains available if you need extra practice with programming,
+          requirements, decomposition, data or testing before or alongside the weekly sequence.
+        </p>
         <a className="text-link" href={createSitePath(root, "foundations/")}>Open Foundations</a>
       </section>
-      <section className="study-card" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">Projects</h2>
-        <p>Find project guidance and evidence tools as they are added.</p>
-        <a className="text-link" href={createSitePath(root, "projects/")}>Open Projects</a>
-      </section>
-      <section className="study-card" aria-labelledby="practice-heading">
-        <h2 id="practice-heading">Assessment Practice</h2>
-        <p>Use practice materials to prepare for the occupational specialism tasks.</p>
-        <a className="text-link" href={createSitePath(root, "assessment-practice/")}>Open Assessment Practice</a>
-      </section>
+
       <Callout
         tone="info"
-        title="Occupational specialism"
-        message="Begin with Technical Foundations, then work through Tasks 1, 2 and 3. Projects and assessment practice support this work."
+        title="Formative learning"
+        message="These materials are for teaching and practice. They are not Pearson assessment tasks and do not produce a qualification grade."
       />
     </div>
   );

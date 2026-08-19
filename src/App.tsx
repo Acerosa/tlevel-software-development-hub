@@ -12,9 +12,9 @@ import {
   AssessmentPracticePage,
   HelpPage,
   ProjectsPage,
-  ResourcesPage,
-  TaskPage
+  ResourcesPage
 } from "./pages/StaticPages";
+import { WeekPage } from "./pages/WeekPage";
 import { createSitePath, navigationItems } from "./paths";
 
 function PageBody({ context, adaptersReady }: { context: PageContext; adaptersReady: boolean }) {
@@ -24,14 +24,8 @@ function PageBody({ context, adaptersReady }: { context: PageContext; adaptersRe
   if (context.page === "course-guide") return <CourseGuidePage root={context.root} />;
   if (context.page === "foundations") return <FoundationsPage root={context.root} adaptersReady={adaptersReady} />;
   if (context.page === "projects") return <ProjectsPage root={context.root} />;
-  if (context.page === "task-1") {
-    return <TaskPage root={context.root} task="1" related={[{ label: "Foundations", path: "foundations/" }, { label: "Task 2", path: "task-2/" }]} />;
-  }
-  if (context.page === "task-2") {
-    return <TaskPage root={context.root} task="2" related={[{ label: "Task 1", path: "task-1/" }, { label: "Task 3", path: "task-3/" }]} />;
-  }
-  if (context.page === "task-3") {
-    return <TaskPage root={context.root} task="3" related={[{ label: "Task 2", path: "task-2/" }, { label: "Assessment Practice", path: "assessment-practice/" }]} />;
+  if (/^week-\d+$/.test(context.page)) {
+    return <WeekPage weekId={context.page} root={context.root} />;
   }
   if (context.page === "assessment-practice") return <AssessmentPracticePage root={context.root} />;
   if (context.page === "resources") return <ResourcesPage root={context.root} />;
