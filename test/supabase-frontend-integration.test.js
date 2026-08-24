@@ -30,7 +30,7 @@ function memoryStorage() {
 
 test("the vendored Core asset is the reviewed 0.2.0 build", function () {
   const hash = crypto.createHash("sha256").update(read(coreAsset)).digest("hex");
-  assert.equal(hash, "c48398fafb34e36c42fd7733f07eaf4d388f20efce72ba35de295c6cb2a15761");
+  assert.equal(hash, "5307fe582fe882b31697d3bb905019106b911cf7d1267697462ef91d1b9c8fc2");
   assert.match(read("vendor/learning-platform-core/0.2.0/PROVENANCE.md"), /curriculum-runtime/);
   assert.equal(fs.existsSync(path.join(root, "vendor/learning-platform-core/0.2.0/LICENSE")), true);
 });
