@@ -15,7 +15,7 @@
     "id": "lo1",
     "version": "0.1.0",
     "metadata": {
-      "title": "LO1: Know about new and emerging digital technologies"
+      "title": "LO1: Analyse a problem to define requirements and acceptance criteria aligned to user needs (1.1 to 1.6)"
     },
     "relationships": {}
   },
@@ -25,97 +25,677 @@
     "id": "lo2",
     "version": "0.1.0",
     "metadata": {
-      "title": "LO2: Understand how new and emerging digital technologies are used"
+      "title": "LO2: Apply ethical principles and manage risks in line with legal and regulatory requirements (2.1 to 2.2)"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w1-define-current-emerging",
+    "id": "lo3",
     "version": "0.1.0",
     "metadata": {
-      "title": "Define current and emerging digital technology"
+      "title": "LO3: Discover, evaluate and apply reliable sources of knowledge (3.1 to 3.2)"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w1-identify-examples",
+    "id": "w1-interpret-brief",
     "version": "0.1.0",
     "metadata": {
-      "title": "Identify examples of new and emerging technologies"
+      "title": "Interpret a client request or project brief"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w1-outline-industry-uses",
+    "id": "w1-research-market",
     "version": "0.1.0",
     "metadata": {
-      "title": "Outline how emerging technologies are used in different industries"
+      "title": "Research the market environment, common problems and risks"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w2-outline-mobile",
+    "id": "w1-investigate-systems",
     "version": "0.1.0",
     "metadata": {
-      "title": "Outline mobile technology"
+      "title": "Investigate current hardware and software used in the context"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w2-personal-mobile",
+    "id": "w2-research-emerging",
     "version": "0.1.0",
     "metadata": {
-      "title": "Describe personal applications of mobile devices"
+      "title": "Research newly emerging technologies"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w2-business-mobile",
+    "id": "w2-evaluate-solutions",
     "version": "0.1.0",
     "metadata": {
-      "title": "Describe business applications of mobile devices"
+      "title": "Evaluate existing and potential solutions against user needs"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w3-explain-iot",
+    "id": "w2-identify-gaps",
     "version": "0.1.0",
     "metadata": {
-      "title": "Explain the basic concept of IoT"
+      "title": "Identify guidelines, regulations and personal knowledge gaps"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w3-iot-components",
+    "id": "w3-business-scope",
     "version": "0.1.0",
     "metadata": {
-      "title": "Identify components of an IoT system"
+      "title": "Identify business requirements and define project scope"
     },
     "relationships": {}
   },
   {
     "schema": "lp.content.learning-outcome",
     "schemaVersion": "0.1.0",
-    "id": "w3-consumer-iot",
+    "id": "w3-measurable-value",
     "version": "0.1.0",
     "metadata": {
-      "title": "Outline consumer applications of IoT"
+      "title": "Assess measurable value to the user and client"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w3-decomposition",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Apply decomposition, pattern recognition and abstraction"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w4-functional",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define functional requirements"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w4-nonfunctional",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define non-functional requirements"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w4-acceptance",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define KPIs, constraints and user acceptance criteria"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w5-schedule",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Schedule tasks, subtasks and milestones"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w5-resources-cost",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Allocate resources and estimate project costs"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w5-language",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Select a language using the taught criteria"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w6-risk",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify project risks and plan mitigation"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w6-stories",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Analyse users using stories and activity diagrams"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w6-roadmap",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Analyse users using mind maps and product road maps"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w7-process-erd",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Model processes and data using diagrams and ERDs"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w7-interface-algo",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Create interface designs and plan algorithms"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w7-data",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Create data-requirement designs"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w8-ai-use",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Use generative AI to produce code sections appropriately"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w8-ai-review",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Review AI-generated output against requirements"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w8-prototype",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Create and evaluate a prototype"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w9-module-integration",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Plan module and integration testing"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w9-automated-user",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Plan automated and user testing and gather feedback"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w9-deploy",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain deploy, install, configure and update steps"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w10-version-control",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Document changes and use suitable version control"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w10-maintenance",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline maintenance, support, bug fixing, training and updates"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w10-sdlc-value",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain organisational value and the role of the SDLC"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w11-po-sm-lead",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify product owner, Scrum master and technical lead roles"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w11-pm",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain the project manager role"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w11-analyst-ux",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain systems analyst and UX/UI designer responsibilities"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w12-dev-ops-sec",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify developer, operations and security roles"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w12-tester-qa",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain tester and quality-assurance responsibilities"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w12-agile-artefacts",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Use Agile sprints, epics, stories and spikes"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w13-agile",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain Agile incremental delivery, changing requirements and client feedback"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w13-scaled",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline Scaled Agile and product increments"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w13-waterfall",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain Waterfall structure, documentation, costs and client interaction"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w14-rad",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain RAD prototyping, reuse and suitability"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w14-lean",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain Lean waste reduction, late decisions and short iterations"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w14-select",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Compare methodologies and select one for a project"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w15-ucd-char",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain user-centred design considerations and characteristics"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w15-ucd-stages",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Apply UCD stages of context, requirements, design and assessment"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w15-secure",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Apply secure by design to functional requirements"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w16-nfr",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define non-functional requirements for security, accessibility and scalability"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w16-kpi-ac",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Define KPIs and acceptance criteria"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w16-spike",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Plan spike testing to establish requirements and scope"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w17-ai-iot",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline IoT, AI, generative AI and machine learning"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w17-vision-bio",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline object recognition, computer vision, biometrics and robotics"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w17-cloud-connect",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Outline cloud, data, drone, 3D printing and connectivity technologies"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w18-training",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Identify knowledge, skill and ability gaps and create a training plan"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w18-legal-ethics",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Investigate legal, regulatory, ethical and risk-management requirements"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w18-sources-eval",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Use reliable sources and qualitative and quantitative evaluation techniques"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w19-sdlc-early",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise SDLC research, planning, user analysis and design stages"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w19-sdlc-late",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise development, testing, deployment and maintenance stages"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w19-roles",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise digital-team roles and responsibilities"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w20-methods",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Compare Agile, Scaled Agile, Waterfall, RAD and Lean"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w20-ucd-req",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise UCD, secure-by-design and requirements"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w20-tech-train",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise emerging technologies and personal training needs"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w21-legal",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise legal, regulatory and ethical scenario questions"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w21-risk-cia",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise risk assessment, mitigation, CIA, continuity and recovery"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w21-sources",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Revise reliable sources and evaluation methods"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w22-case",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Complete a timed integrated requirements and risk case study"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w22-peer",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Peer-assess against acceptance criteria"
+    },
+    "relationships": {}
+  },
+  {
+    "schema": "lp.content.learning-outcome",
+    "schemaVersion": "0.1.0",
+    "id": "w22-readiness",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Complete a final assessment-readiness checklist"
     },
     "relationships": {}
   }

@@ -41,6 +41,14 @@ export function applyTLevelCurriculum(
   return runtime;
 }
 
+export function activeContentPackage(pkg?: ContentPackage | null): ContentPackage | null {
+  if (pkg) return pkg;
+  if (typeof window !== "undefined" && window.__lpPackage) {
+    return window.__lpPackage as ContentPackage;
+  }
+  return null;
+}
+
 export function foundationActivityFromPackage(pkg: ContentPackage | null | undefined, activitySlug: string) {
   if (!pkg) return null;
   const activityId = activitySlug.startsWith("foundations-")

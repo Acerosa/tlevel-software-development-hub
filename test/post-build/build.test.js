@@ -16,8 +16,7 @@ test("the Vite production build is a static GitHub Pages site", function () {
     "foundations/requirements-classification/index.html",
     "projects/index.html",
     "week-1/index.html",
-    "week-2/index.html",
-    "week-3/index.html",
+    "week-22/index.html",
     "task-1/index.html",
     "task-2/index.html",
     "task-3/index.html",
@@ -47,7 +46,9 @@ test("the Vite production build is a static GitHub Pages site", function () {
   const gzipTotal = jsFiles.reduce(function (sum, name) {
     return sum + zlib.gzipSync(fs.readFileSync(path.join(assets, name))).length;
   }, 0);
-  assert.ok(jsTotal < 900 * 1024, "learner JS should stay under 900KB uncompressed, got " + jsTotal);
+  // Week pages ship catalogue blocks in the bundled package (L2E-style inline
+  // InteractiveActivity). Gzip stays the tighter network budget.
+  assert.ok(jsTotal < 1500 * 1024, "learner JS should stay under 1500KB uncompressed, got " + jsTotal);
   assert.ok(cssTotal < 200 * 1024, "learner CSS should stay under 200KB, got " + cssTotal);
   assert.ok(gzipTotal < 300 * 1024, "learner JS gzip should stay under 300KB, got " + gzipTotal);
   assert.doesNotMatch(jsFiles.join("\n"), /xlsx/i);

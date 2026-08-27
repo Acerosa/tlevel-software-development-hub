@@ -11,12 +11,13 @@ export function HomePage({ root }: { root: string }) {
       <section className="study-card" aria-labelledby="welcome-heading">
         <h2 id="welcome-heading">Welcome</h2>
         <p>
-          This hub brings together weekly lesson resources and formative activities for
-          Exploring New and Emerging Digital Technologies.
+          This hub brings together the 22-week teaching sequence for Occupational
+          Specialism Areas 1 to 3, using the continuing Oakfield Adult Skills Hub
+          client scenario.
         </p>
         <p>
           Start with the current week’s overview. Lessons, retrieval, application tasks and
-          homework for that week are listed there so you can follow the teaching sequence
+          homework for that week are listed there so you can follow the Scheme of Learning
           without hunting across the site.
         </p>
       </section>
@@ -45,8 +46,8 @@ export function HomePage({ root }: { root: string }) {
       <section className="study-card" aria-labelledby="organisation-heading">
         <h2 id="organisation-heading">How activities are organised</h2>
         <p>
-          Learning activities sit inside each week’s area. Use the Week 1 to Week 3 pages to
-          find Lesson 1, Lesson 2, Lesson 3 and homework.
+          Learning activities sit inside each week’s area. Each taught week has three lessons
+          and homework. Weeks 19 to 22 are revision for Task 1, then industry placement.
         </p>
         <p>
           Technical Foundations remains available if you need extra practice with programming,
