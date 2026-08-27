@@ -118,6 +118,45 @@ export function isWeekAvailable(status?: string | null): boolean {
   return String(status || "").trim().toLowerCase() === "available";
 }
 
+/**
+ * Keep bundled week catalogue/structure; overlay live publication status
+ * (and week commencing) so a thin published package cannot blank Home/Week lists.
+ * Match live weeks by id first, then by `metadata.teachingWeek`.
+ */
+function teachingWeekNumber(week: ContentWeek): number | null {
+  const n = Number(week.metadata?.teachingWeek);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+export function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPackage | null | undefined): ContentPackage {
+  if (!live?.weeks?.length) return base;
+  const liveById = new Map<string, ContentWeek["metadata"]>();
+  const liveByTeachingWeek = new Map<number, ContentWeek["metadata"]>();
+  for (const week of live.weeks) {
+    if (week.id) liveById.set(week.id, week.metadata);
+    const n = teachingWeekNumber(week);
+    if (n != null && !liveByTeachingWeek.has(n)) liveByTeachingWeek.set(n, week.metadata);
+  }
+  return {
+    ...base,
+    weeks: (base.weeks || []).map((week) => {
+      const n = teachingWeekNumber(week);
+      const liveMeta = (week.id ? liveById.get(week.id) : undefined)
+        || (n != null ? liveByTeachingWeek.get(n) : undefined);
+      if (!liveMeta) return week;
+      const status = String(liveMeta.status || "").trim();
+      return {
+        ...week,
+        metadata: {
+          ...week.metadata,
+          status: status || week.metadata?.status,
+          weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
+        }
+      };
+    })
+  };
+}
+
 export function formatWeekCommencing(value?: string | null): string {
   const raw = String(value || "").trim();
   if (!raw) return "";

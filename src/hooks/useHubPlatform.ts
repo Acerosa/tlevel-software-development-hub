@@ -3,7 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { LearnerSummary, ThemeControl, ThemePreference } from "@learning-platform/ui";
 import { loadHubAdapters } from "../adapters/load-hub-adapters";
 import { APP_CONFIG } from "../config";
-import { loadTLevelCurriculum } from "../curriculum/apply-runtime";
+import { loadTLevelCurriculum, type CurriculumRuntime } from "../curriculum/apply-runtime";
+import type { ContentPackage } from "../curriculum/from-package";
 import { createHubPlatform, type HubPlatform } from "../platform";
 
 type AccountDialog = {
@@ -12,6 +13,13 @@ type AccountDialog = {
   destroy?: () => void;
 };
 
+export type LoadedCurriculum = {
+  source: string;
+  package: ContentPackage | null;
+};
+
+const EMPTY_CURRICULUM: LoadedCurriculum = { source: "none", package: null };
+
 export function useHubPlatform(root: string) {
   const platform = useMemo(() => createHubPlatform(root), [root]);
   const [learner, setLearner] = useState<LearnerSummary | null>(null);
@@ -19,6 +27,7 @@ export function useHubPlatform(root: string) {
   const [accountDialog, setAccountDialog] = useState<AccountDialog | null>(null);
   const [platformState, setPlatformState] = useState("loading");
   const [adaptersReady, setAdaptersReady] = useState(false);
+  const [curriculum, setCurriculum] = useState<LoadedCurriculum>(EMPTY_CURRICULUM);
 
   useEffect(() => {
     let dialog: AccountDialog | null = null;
@@ -54,7 +63,12 @@ export function useHubPlatform(root: string) {
 
     void (async () => {
       await loadHubAdapters();
-      await loadTLevelCurriculum(platform);
+      const runtime = await loadTLevelCurriculum(platform) as CurriculumRuntime;
+      if (cancelled) return;
+      setCurriculum({
+        source: runtime.source || "none",
+        package: runtime.package || null
+      });
       await platform.initialise();
       if (!cancelled) setAdaptersReady(true);
     })();
@@ -68,7 +82,7 @@ export function useHubPlatform(root: string) {
     };
   }, [platform]);
 
-  return { platform, learner, theme, accountDialog, platformState, adaptersReady };
+  return { platform, learner, theme, accountDialog, platformState, adaptersReady, curriculum };
 }
 
 export type { HubPlatform };
