@@ -926,7 +926,7 @@
       "metadata": {
         "teachingWeek": 2,
         "title": "Emerging Technologies, Solutions and Knowledge Gaps",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — research emerging technologies; evaluate existing and potential solutions; identify regulations and personal knowledge gaps",
         "route": "weeks/week-2/",
@@ -959,7 +959,7 @@
       "metadata": {
         "teachingWeek": 3,
         "title": "Business Requirements, Scope and Decomposition",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — identify business requirements and scope; assess measurable value; apply decomposition, pattern recognition and abstraction",
         "route": "weeks/week-3/",
@@ -992,7 +992,7 @@
       "metadata": {
         "teachingWeek": 4,
         "title": "Functional Requirements, Non-functional Requirements and Acceptance",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — define functional and non-functional requirements, KPIs, constraints and user acceptance criteria",
         "route": "weeks/week-4/",
@@ -1025,7 +1025,7 @@
       "metadata": {
         "teachingWeek": 5,
         "title": "Scheduling, Resources, Cost and Language Choice",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — schedule tasks and milestones; allocate resources and estimate costs; select a language using taught criteria",
         "route": "weeks/week-5/",
@@ -1058,7 +1058,7 @@
       "metadata": {
         "teachingWeek": 6,
         "title": "Project Risk and User Analysis",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 and LO2 / 2.1 — identify project risks and mitigation; analyse users with stories, activity diagrams, mind maps and road maps",
         "route": "weeks/week-6/",
@@ -1092,7 +1092,7 @@
       "metadata": {
         "teachingWeek": 7,
         "title": "Process Diagrams, ERDs, Interface, Algorithms and Data Design",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — model processes and data; create interface designs and plan algorithms; create data-requirement designs",
         "route": "weeks/week-7/",
@@ -1125,7 +1125,7 @@
       "metadata": {
         "teachingWeek": 8,
         "title": "Generative AI and Prototyping",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — use generative AI appropriately; review AI output against requirements; create and evaluate a prototype",
         "route": "weeks/week-8/",
@@ -1158,7 +1158,7 @@
       "metadata": {
         "teachingWeek": 9,
         "title": "Testing Plans and Deployment",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — plan module, integration, automated and user testing; explain deploy, install, configure and update steps",
         "route": "weeks/week-9/",
@@ -1191,7 +1191,7 @@
       "metadata": {
         "teachingWeek": 10,
         "title": "Version Control, Maintenance and the Value of the SDLC",
-        "status": "available",
+        "status": "planned",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — document changes and use version control; outline maintenance and support; explain organisational value of the SDLC",
         "route": "weeks/week-10/",
@@ -1224,7 +1224,7 @@
       "metadata": {
         "teachingWeek": 11,
         "title": "Digital Team Roles, Product Owner to Designer",
-        "status": "available",
+        "status": "planned",
         "phase": "digital-team",
         "professionalPractice": "LO1 / 1.2 — identify product owner, Scrum master and technical lead; explain project manager, systems analyst and UX/UI designer roles",
         "route": "weeks/week-11/",
@@ -1257,7 +1257,7 @@
       "metadata": {
         "teachingWeek": 12,
         "title": "Remaining Team Roles and Agile Artefacts",
-        "status": "available",
+        "status": "planned",
         "phase": "digital-team",
         "professionalPractice": "LO1 / 1.2 — identify developer, operations and security roles; explain tester and QA; use Agile sprints, epics, stories and spikes",
         "route": "weeks/week-12/",
@@ -1290,7 +1290,7 @@
       "metadata": {
         "teachingWeek": 13,
         "title": "Agile Delivery, Scaled Agile and Waterfall",
-        "status": "available",
+        "status": "planned",
         "phase": "methodologies",
         "professionalPractice": "LO1 / 1.3 — explain Agile incremental delivery; outline Scaled Agile; explain Waterfall structure, documentation, costs and client interaction",
         "route": "weeks/week-13/",
@@ -1323,7 +1323,7 @@
       "metadata": {
         "teachingWeek": 14,
         "title": "RAD, Lean and Methodology Selection",
-        "status": "available",
+        "status": "planned",
         "phase": "methodologies",
         "professionalPractice": "LO1 / 1.3 — explain RAD and Lean; compare methodologies and select one for a project",
         "route": "weeks/week-14/",
@@ -1356,7 +1356,7 @@
       "metadata": {
         "teachingWeek": 15,
         "title": "User-Centred Design and Secure by Design",
-        "status": "available",
+        "status": "planned",
         "phase": "ucd-security",
         "professionalPractice": "LO1 / 1.4 — explain UCD considerations and characteristics; apply UCD stages; apply secure by design to functional requirements",
         "route": "weeks/week-15/",
@@ -1389,7 +1389,7 @@
       "metadata": {
         "teachingWeek": 16,
         "title": "Non-functional Requirements, KPIs, Acceptance and Spike Testing",
-        "status": "available",
+        "status": "planned",
         "phase": "requirements-quality",
         "professionalPractice": "LO1 / 1.5 — define NFR for security, accessibility and scalability; define KPIs and acceptance; plan spike testing",
         "route": "weeks/week-16/",
@@ -1422,7 +1422,7 @@
       "metadata": {
         "teachingWeek": 17,
         "title": "Emerging Technologies in Depth",
-        "status": "available",
+        "status": "planned",
         "phase": "emerging-tech",
         "professionalPractice": "LO1 / 1.6 — outline IoT, AI, generative AI, ML, computer vision, biometrics, robotics, cloud, data, drones, 3D printing and connectivity",
         "route": "weeks/week-17/",
@@ -1455,7 +1455,7 @@
       "metadata": {
         "teachingWeek": 18,
         "title": "Training Needs, Legal and Ethical Requirements, Sources and Evaluation",
-        "status": "available",
+        "status": "planned",
         "phase": "legal-sources",
         "professionalPractice": "LO1 / 1.6, LO2 / 2.1–2.2 and LO3 / 3.1–3.2 — training plan; legal, regulatory, ethical and risk requirements; reliable sources and evaluation techniques",
         "route": "weeks/week-18/",
@@ -1490,7 +1490,7 @@
       "metadata": {
         "teachingWeek": 19,
         "title": "Revision 1 - SDLC and Digital Team Roles",
-        "status": "available",
+        "status": "planned",
         "phase": "revision",
         "professionalPractice": "LO1 revision — SDLC research through maintenance; digital-team roles and responsibilities",
         "route": "weeks/week-19/",
@@ -1523,7 +1523,7 @@
       "metadata": {
         "teachingWeek": 20,
         "title": "Revision 2 - Methodologies, Requirements, Emerging Technology and Training",
-        "status": "available",
+        "status": "planned",
         "phase": "revision",
         "professionalPractice": "LO1 revision — compare methodologies; revise UCD, secure-by-design and requirements; revise emerging technologies and training needs",
         "route": "weeks/week-20/",
@@ -1556,7 +1556,7 @@
       "metadata": {
         "teachingWeek": 21,
         "title": "Revision 3 - Legal, Risk, Sources and Evaluation",
-        "status": "available",
+        "status": "planned",
         "phase": "revision",
         "professionalPractice": "LO2 and LO3 revision — legal and ethical scenarios; risk, CIA, continuity; reliable sources and evaluation methods",
         "route": "weeks/week-21/",
@@ -1590,7 +1590,7 @@
       "metadata": {
         "teachingWeek": 22,
         "title": "Revision 4 - Integrated Case Study, Readiness and Placement",
-        "status": "available",
+        "status": "planned",
         "phase": "revision",
         "professionalPractice": "LO1–LO3 revision — timed integrated requirements and risk case study; peer-assess; assessment-readiness checklist",
         "route": "weeks/week-22/",

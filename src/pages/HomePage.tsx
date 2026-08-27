@@ -1,11 +1,24 @@
 import { Callout, StatusBadge } from "@learning-platform/ui";
-import pkg from "../../content/tlevel-software-development/package.json";
-import { homeWeeksFromPackage } from "../curriculum/from-package";
+import bundledPackage from "../../content/tlevel-software-development/package.json";
+import { activeContentPackage } from "../curriculum/apply-runtime";
+import { homeWeeksFromPackage, type ContentPackage } from "../curriculum/from-package";
 import { createSitePath } from "../paths";
 
-const WEEKS = homeWeeksFromPackage(pkg);
+function homeBadgeLabel(week: { openable: boolean; current: boolean; status: string }) {
+  if (week.openable) return week.current ? "Active" : "Available";
+  return week.status === "archived" ? "Archived" : "Coming soon";
+}
 
-export function HomePage({ root }: { root: string }) {
+function lockedWeekLabel(week: { status: string; weekCommencingLabel: string }) {
+  if (week.status === "archived") return "This week is archived";
+  if (week.weekCommencingLabel) return `Coming soon · week commencing ${week.weekCommencingLabel}`;
+  return "Coming soon";
+}
+
+export function HomePage({ root, pkg }: { root: string; pkg?: ContentPackage | null }) {
+  const content = activeContentPackage(pkg) || (bundledPackage as ContentPackage);
+  const weeks = homeWeeksFromPackage(content);
+
   return (
     <div className="study-stack">
       <section className="study-card" aria-labelledby="welcome-heading">
@@ -26,17 +39,21 @@ export function HomePage({ root }: { root: string }) {
         <h2 id="start-heading">Where to start</h2>
         <div className="home-week-scroller" tabIndex={0} aria-label="Week cards">
           <div className="card-grid">
-            {WEEKS.map((week) => (
+            {weeks.map((week) => (
               <article className="hub-card" key={week.id}>
                 <StatusBadge
-                  status="available"
-                  label={week.current ? "Active" : "Available"}
+                  status={week.openable ? "available" : (week.status || "planned")}
+                  label={homeBadgeLabel(week)}
                 />
                 <h3>{week.label}</h3>
                 <p>{`${week.title}. ${week.description}`}</p>
-                <a className="card-link" href={createSitePath(root, week.path)}>
-                  {`Open ${week.label}`}
-                </a>
+                {week.openable ? (
+                  <a className="card-link" href={createSitePath(root, week.path)}>
+                    {`Open ${week.label}`}
+                  </a>
+                ) : (
+                  <p>{lockedWeekLabel(week)}</p>
+                )}
               </article>
             ))}
           </div>

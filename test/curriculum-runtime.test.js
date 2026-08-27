@@ -73,6 +73,16 @@ test("Week 2 follows the SoL teaching sequence", () => {
   assert.equal(pkg.weeks.length, 22);
 });
 
+test("bundled week status is available only for Week 1", () => {
+  const statuses = pkg.weeks.map((week) => [week.id, week.metadata.status, week.metadata.teachingWeek]);
+  assert.equal(pkg.weeks[0].metadata.status, "available");
+  assert.equal(pkg.weeks[0].id, "week-1");
+  for (const week of pkg.weeks.slice(1)) {
+    assert.equal(week.metadata.status, "planned", week.id + " should be planned until posted");
+  }
+  assert.equal(statuses.length, 22);
+});
+
 test("the 22-week SoL covers Areas 1 to 3 through revision", () => {
   const week = pkg.weeks.find((item) => item.id === "week-3");
   assert.ok(week);

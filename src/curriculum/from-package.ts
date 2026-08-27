@@ -27,6 +27,7 @@ type ContentWeek = {
     title?: string;
     status?: string;
     professionalPractice?: string;
+    weekCommencing?: string;
   };
   relationships?: {
     sessions?: string[];
@@ -70,6 +71,10 @@ export type HomeWeekCard = {
   title: string;
   description: string;
   path: string;
+  status: string;
+  weekCommencing: string;
+  weekCommencingLabel: string;
+  openable: boolean;
   current: boolean;
 };
 
@@ -80,6 +85,7 @@ export type WeekPageModel = {
     title: string;
     subtitle: string;
     status: string;
+    weekCommencing: string;
   };
   learningOutcomes: Array<{ id: string; title: string }>;
   sessions: Array<{
@@ -107,10 +113,32 @@ function learnerWeekDescription(practice?: string) {
   return trimmed ? trimmed.charAt(0).toUpperCase() + trimmed.slice(1) : "";
 }
 
+/** Learners may open a week only when Content `STATUSES` is `available`. */
+export function isWeekAvailable(status?: string | null): boolean {
+  return String(status || "").trim().toLowerCase() === "available";
+}
+
+export function formatWeekCommencing(value?: string | null): string {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return raw;
+  const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+  if (Number.isNaN(date.getTime())) return raw;
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC"
+  });
+}
+
 export function homeWeeksFromPackage(pkg: ContentPackage): HomeWeekCard[] {
-  return [...(pkg.weeks || [])]
+  const weeks = [...(pkg.weeks || [])]
     .map((week) => {
       const teachingWeek = Number(week.metadata?.teachingWeek || 0);
+      const status = String(week.metadata?.status || "");
+      const weekCommencing = String(week.metadata?.weekCommencing || "");
       return {
         id: week.id,
         teachingWeek,
@@ -118,10 +146,19 @@ export function homeWeeksFromPackage(pkg: ContentPackage): HomeWeekCard[] {
         title: week.metadata?.title || `Week ${teachingWeek}`,
         description: learnerWeekDescription(week.metadata?.professionalPractice),
         path: `week-${teachingWeek}/`,
-        current: teachingWeek === 1
+        status,
+        weekCommencing,
+        weekCommencingLabel: formatWeekCommencing(weekCommencing),
+        openable: isWeekAvailable(status),
+        current: false
       };
     })
     .sort((left, right) => left.teachingWeek - right.teachingWeek);
+  const currentWeek = weeks.find((week) => week.openable)?.teachingWeek;
+  return weeks.map((week) => ({
+    ...week,
+    current: currentWeek != null && week.teachingWeek === currentWeek
+  }));
 }
 
 export function weekPageFromPackage(pkg: ContentPackage, weekId: string): WeekPageModel | null {
@@ -163,7 +200,8 @@ export function weekPageFromPackage(pkg: ContentPackage, weekId: string): WeekPa
       teachingWeek,
       title: week.metadata?.title || `Week ${teachingWeek}`,
       subtitle: learnerWeekDescription(week.metadata?.professionalPractice),
-      status: week.metadata?.status || "available"
+      status: week.metadata?.status || "",
+      weekCommencing: week.metadata?.weekCommencing || ""
     },
     learningOutcomes,
     sessions
