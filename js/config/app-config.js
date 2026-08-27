@@ -10,12 +10,9 @@
     coreVersion: "0.2.0",
     learnerApiContractVersion: "0.1.0",
     submissionContractVersion: "0.1.0",
-    currentPhase: "Week 1: Introduction to New and Emerging Digital Technologies",
+    currentPhase: "Week 1: Client Brief, Context and Initial Research",
     navigation: Object.freeze([
       { id: "home", label: "Home", path: "" },
-      { id: "week-1", label: "Week 1", path: "week-1/" },
-      { id: "week-2", label: "Week 2", path: "week-2/" },
-      { id: "week-3", label: "Week 3", path: "week-3/" },
       { id: "foundations", label: "Foundations", path: "foundations/" },
       { id: "course-guide", label: "Course Guide", path: "course-guide/" },
       { id: "projects", label: "Projects", path: "projects/" },

@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import pkg from "../../content/tlevel-software-development/package.json";
 import { APP_CONFIG } from "../config";
+import { homeWeeksFromPackage } from "../curriculum/from-package";
 import { navigationItems } from "../paths";
 
 type CourseSidebarProps = {
@@ -8,12 +10,17 @@ type CourseSidebarProps = {
 };
 
 const COURSE_SECTION_IDS = APP_CONFIG.courseSectionIds as readonly string[];
+const WEEK_ITEMS = homeWeeksFromPackage(pkg).map((week) => ({
+  id: week.id,
+  label: week.label,
+  path: week.path
+}));
 
 export function CourseSidebar({ currentPage, root }: CourseSidebarProps) {
-  const sections = navigationItems(
-    APP_CONFIG.navigation.filter((item) => COURSE_SECTION_IDS.includes(item.id)),
-    root
-  );
+  const staticSections = APP_CONFIG.navigation.filter((item) => COURSE_SECTION_IDS.includes(item.id));
+  const home = staticSections.filter((item) => item.id === "home");
+  const rest = staticSections.filter((item) => item.id !== "home");
+  const sections = navigationItems([...home, ...WEEK_ITEMS, ...rest], root);
 
   return (
     <aside className="course-navigation" aria-labelledby="course-navigation-title">

@@ -38,21 +38,27 @@ describe("T Level package hydration", () => {
     expect(catalog.every((item) => item.id.startsWith("foundations-"))).toBe(true);
     expect(catalog).toHaveLength(5);
     expect(pkg.activities.some((item) => item.id === "week-1-lesson-1-main")).toBe(true);
+    const retrieval = pkg.activities.find((item) => item.id === "week-1-lesson-1-retrieval");
+    expect((retrieval?.blocks || []).some((block) => block.type === "single-choice")).toBe(true);
   });
 
-  it("exposes Weeks 1 to 3 for the learner home and week pages", () => {
+  it("exposes Weeks 1 to 22 for the learner home and week pages", () => {
     const weeks = homeWeeksFromPackage(pkg);
-    expect(weeks.map((item) => item.label)).toEqual(["Week 1", "Week 2", "Week 3"]);
+    expect(weeks).toHaveLength(22);
+    expect(weeks.map((item) => item.label)).toEqual(
+      Array.from({ length: 22 }, (_, index) => `Week ${index + 1}`)
+    );
     expect(weeks[0].path).toBe("week-1/");
     expect(weeks[0].current).toBe(true);
     const week1 = weekPageFromPackage(pkg, "week-1");
-    expect(week1?.week.title).toBe("Introduction to New and Emerging Digital Technologies");
+    expect(week1?.week.title).toBe("Client Brief, Context and Initial Research");
     expect(week1?.sessions.map((item) => item.id)).toEqual([
       "week-1-lesson-1",
       "week-1-lesson-2",
       "week-1-lesson-3",
       "week-1-homework"
     ]);
+    expect(week1?.sessions[0].activities[0].id).toBe("week-1-lesson-1-retrieval");
     expect(week1?.sessions[0].activities[0].title).toMatch(/Baseline diagnostic/i);
   });
 });

@@ -4,6 +4,7 @@ const path = require("node:path");
 const test = require("node:test");
 
 const projectRoot = path.resolve(__dirname, "..");
+const weekRoutes = Array.from({ length: 22 }, (_, index) => `week-${index + 1}/index.html`);
 const routeFiles = [
   "index.html",
   "course-guide/index.html",
@@ -14,9 +15,7 @@ const routeFiles = [
   "foundations/data-design/index.html",
   "foundations/testing-methods/index.html",
   "projects/index.html",
-  "week-1/index.html",
-  "week-2/index.html",
-  "week-3/index.html",
+  ...weekRoutes,
   "task-1/index.html",
   "task-2/index.html",
   "task-3/index.html",
@@ -49,7 +48,7 @@ function assertLocalReferenceExists(route, reference) {
 }
 
 test("all GitHub Pages routes are Vite shells that mount the React hub", function () {
-  assert.equal(routeFiles.length, 18);
+  assert.equal(routeFiles.length, 37);
   routeFiles.forEach(function (route) {
     const html = read(route);
     assert.match(html, /id="root"/);

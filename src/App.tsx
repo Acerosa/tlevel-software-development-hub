@@ -17,7 +17,15 @@ import {
 import { WeekPage } from "./pages/WeekPage";
 import { createSitePath, navigationItems } from "./paths";
 
-function PageBody({ context, adaptersReady }: { context: PageContext; adaptersReady: boolean }) {
+function PageBody({
+  context,
+  adaptersReady,
+  platform
+}: {
+  context: PageContext;
+  adaptersReady: boolean;
+  platform?: unknown;
+}) {
   if (context.activity) {
     return <FoundationActivityPage activityId={context.activity} adaptersReady={adaptersReady} />;
   }
@@ -25,7 +33,7 @@ function PageBody({ context, adaptersReady }: { context: PageContext; adaptersRe
   if (context.page === "foundations") return <FoundationsPage root={context.root} adaptersReady={adaptersReady} />;
   if (context.page === "projects") return <ProjectsPage root={context.root} />;
   if (/^week-\d+$/.test(context.page)) {
-    return <WeekPage weekId={context.page} root={context.root} />;
+    return <WeekPage weekId={context.page} root={context.root} platform={platform} />;
   }
   if (context.page === "assessment-practice") return <AssessmentPracticePage root={context.root} />;
   if (context.page === "resources") return <ResourcesPage root={context.root} />;
@@ -90,7 +98,7 @@ export function App({ context }: { context: PageContext }) {
       }}
     >
       <CourseLayout currentPage={context.section} root={context.root}>
-        <PageBody context={context} adaptersReady={adaptersReady} />
+        <PageBody context={context} adaptersReady={adaptersReady} platform={platform} />
       </CourseLayout>
     </HubShell>
   );

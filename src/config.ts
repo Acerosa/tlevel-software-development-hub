@@ -8,12 +8,9 @@ export const APP_CONFIG = Object.freeze({
   coreVersion: "0.2.0",
   learnerApiContractVersion: "0.1.0",
   submissionContractVersion: "0.1.0",
-  currentPhase: "Week 1: Introduction to New and Emerging Digital Technologies",
+  currentPhase: "Week 1: Client Brief, Context and Initial Research",
   navigation: Object.freeze([
     Object.freeze({ id: "home", label: "Home", path: "" }),
-    Object.freeze({ id: "week-1", label: "Week 1", path: "week-1/" }),
-    Object.freeze({ id: "week-2", label: "Week 2", path: "week-2/" }),
-    Object.freeze({ id: "week-3", label: "Week 3", path: "week-3/" }),
     Object.freeze({ id: "foundations", label: "Foundations", path: "foundations/" }),
     Object.freeze({ id: "course-guide", label: "Course Guide", path: "course-guide/" }),
     Object.freeze({ id: "projects", label: "Projects", path: "projects/" }),
@@ -27,9 +24,6 @@ export const APP_CONFIG = Object.freeze({
   ]),
   courseSectionIds: Object.freeze([
     "home",
-    "week-1",
-    "week-2",
-    "week-3",
     "foundations",
     "course-guide",
     "projects",
@@ -44,7 +38,8 @@ export const APP_CONFIG = Object.freeze({
   theme: Object.freeze({
     primary: "#006477",
     accent: "#00839a"
-  })
+  }),
+  curriculumPackage: "content/tlevel-software-development"
 });
 
 export type AppConfig = typeof APP_CONFIG;

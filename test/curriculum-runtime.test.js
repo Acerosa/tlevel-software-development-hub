@@ -10,10 +10,19 @@ function read(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
 }
 
+test("week catalogue activities keep interactive blocks in the bundled package", () => {
+  const retrieval = pkg.activities.find((item) => item.id === "week-1-lesson-1-retrieval");
+  assert.ok(retrieval && Array.isArray(retrieval.blocks) && retrieval.blocks.length > 0);
+  assert.ok(retrieval.blocks.some((block) => block.type === "single-choice"));
+  assert.ok(retrieval.blocks.some((block) => block.type === "short-response"));
+  const classify = pkg.activities.find((item) => item.id === "week-1-lesson-1-formative");
+  assert.ok(classify.blocks.some((block) => block.type === "classification"));
+});
+
 test("the converted T Level package keeps Foundations identity and activity ids", () => {
   assert.equal(pkg.hub.id, "tlevel-software-development");
   assert.equal(pkg.curriculum.metadata.course, "t-level-digital-software-development");
-  assert.equal(pkg.version, "0.3.0");
+  assert.equal(pkg.version, "0.4.0");
   const foundationIds = pkg.activities
     .filter((item) => String(item.id).startsWith("foundations-"))
     .map((item) => item.id);
@@ -31,7 +40,7 @@ test("Week 1 follows the SoL teaching sequence", () => {
   const week = pkg.weeks.find((item) => item.id === "week-1");
   assert.ok(week);
   assert.equal(week.metadata.teachingWeek, 1);
-  assert.equal(week.metadata.title, "Introduction to New and Emerging Digital Technologies");
+  assert.equal(week.metadata.title, "Client Brief, Context and Initial Research");
   assert.deepEqual(week.relationships.sessions, [
     "week-1-lesson-1",
     "week-1-lesson-2",
@@ -44,13 +53,15 @@ test("Week 1 follows the SoL teaching sequence", () => {
   });
   assert.deepEqual(lessonKinds, ["session", "session", "session", "homework"]);
   assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo1"));
+  assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo2"));
+  assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo3"));
 });
 
 test("Week 2 follows the SoL teaching sequence", () => {
   const week = pkg.weeks.find((item) => item.id === "week-2");
   assert.ok(week);
   assert.equal(week.metadata.teachingWeek, 2);
-  assert.equal(week.metadata.title, "Mobile Technology");
+  assert.equal(week.metadata.title, "Emerging Technologies, Solutions and Knowledge Gaps");
   assert.deepEqual(week.relationships.sessions, [
     "week-2-lesson-1",
     "week-2-lesson-2",
@@ -58,26 +69,26 @@ test("Week 2 follows the SoL teaching sequence", () => {
     "week-2-homework"
   ]);
   const week1 = pkg.weeks.find((item) => item.id === "week-1");
-  assert.equal(week1.metadata.title, "Introduction to New and Emerging Digital Technologies");
-  assert.equal(pkg.weeks.length, 3);
+  assert.equal(week1.metadata.title, "Client Brief, Context and Initial Research");
+  assert.equal(pkg.weeks.length, 22);
 });
 
-test("Week 3 follows the SoL teaching sequence", () => {
+test("the 22-week SoL covers Areas 1 to 3 through revision", () => {
   const week = pkg.weeks.find((item) => item.id === "week-3");
   assert.ok(week);
   assert.equal(week.metadata.teachingWeek, 3);
-  assert.equal(week.metadata.title, "Internet of Things - Consumer Applications");
+  assert.equal(week.metadata.title, "Business Requirements, Scope and Decomposition");
   assert.deepEqual(week.relationships.sessions, [
     "week-3-lesson-1",
     "week-3-lesson-2",
     "week-3-lesson-3",
     "week-3-homework"
   ]);
-  assert.equal(pkg.weeks.filter((item) => item.metadata.teachingWeek > 3).length, 0);
-  assert.equal(pkg.weeks[0].metadata.title, "Introduction to New and Emerging Digital Technologies");
-  assert.equal(pkg.weeks[1].metadata.title, "Mobile Technology");
+  assert.equal(pkg.weeks[0].metadata.title, "Client Brief, Context and Initial Research");
+  assert.equal(pkg.weeks[21].metadata.title, "Revision 4 - Integrated Case Study, Readiness and Placement");
   assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo1"));
   assert.ok(!pkg.learningOutcomes.some((item) => item.id === "os-1-1"));
+  assert.equal(pkg.assignments.find((item) => item.id === "os-formative").relationships.weeks.length, 22);
 });
 
 test("T Level runtime identity uses the registered T Level course", () => {

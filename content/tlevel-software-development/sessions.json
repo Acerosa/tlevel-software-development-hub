@@ -5,9 +5,9 @@
     "id": "week-1-lesson-1",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 1: Current and emerging digital technology",
+      "title": "Lesson 1: Annotating the client brief",
       "kind": "session",
-      "summary": "Baseline diagnostic, then define established, current and emerging digital technologies using contemporary examples.",
+      "summary": "Baseline diagnostic, then extract organisation, users, constraints, success measures and missing information from the Oakfield brief.",
       "sortOrder": 1,
       "defaultOpen": true
     },
@@ -26,9 +26,9 @@
     "id": "week-1-lesson-2",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 2: Classifying technologies across industries",
+      "title": "Lesson 2: Market, problems and risks",
       "kind": "session",
-      "summary": "Classify technology examples and discuss why adoption differs between individuals, organisations and sectors.",
+      "summary": "Research the market environment, typical problems and risks for adult-learning digital services.",
       "sortOrder": 2,
       "defaultOpen": false
     },
@@ -47,9 +47,9 @@
     "id": "week-1-lesson-3",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 3: Technology profile and exit check",
+      "title": "Lesson 3: Current systems and exit check",
       "kind": "session",
-      "summary": "Research one emerging technology and complete an exit knowledge check.",
+      "summary": "Investigate hardware and software already in use, then list remaining research questions.",
       "sortOrder": 3,
       "defaultOpen": false
     },
@@ -68,16 +68,16 @@
     "id": "week-1-homework",
     "version": "0.1.0",
     "metadata": {
-      "title": "Homework: Emerging technologies in everyday life",
+      "title": "Homework: one real digital product",
       "kind": "homework",
-      "summary": "Identify three emerging technologies encountered in everyday life and briefly outline their uses.",
+      "summary": "Find one real digital product and describe the problem it addresses, the likely client and the users it serves.",
       "sortOrder": 4,
       "defaultOpen": false
     },
     "relationships": {
       "week": "week-1",
       "activities": [
-        "week-1-homework-everyday"
+        "week-1-homework-product"
       ]
     }
   },
@@ -87,9 +87,9 @@
     "id": "week-2-lesson-1",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 1: What mobile technology is",
+      "title": "Lesson 1: Existing versus emerging options",
       "kind": "session",
-      "summary": "Retrieve current versus emerging, then see how mobile technologies combine computing, communication, sensors, applications and internet connectivity.",
+      "summary": "Retrieve Week 1 findings, then compare an existing approach with an emerging alternative.",
       "sortOrder": 1,
       "defaultOpen": true
     },
@@ -108,9 +108,9 @@
     "id": "week-2-lesson-2",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 2: Personal and organisational uses",
+      "title": "Lesson 2: Evaluate candidate solutions",
       "kind": "session",
-      "summary": "Compare personal and organisational applications of smartphones, tablets and other mobile devices.",
+      "summary": "Evaluate two or three candidates for Oakfield, including at least one emerging technology.",
       "sortOrder": 2,
       "defaultOpen": false
     },
@@ -129,9 +129,9 @@
     "id": "week-2-lesson-3",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 3: Organisational mobile case study",
+      "title": "Lesson 3: Regulation and knowledge gaps",
       "kind": "session",
-      "summary": "Produce a short case study showing how mobile technology supports a selected organisation.",
+      "summary": "Identify guidelines or regulations that may apply, and list personal knowledge, skill or information gaps.",
       "sortOrder": 3,
       "defaultOpen": false
     },
@@ -150,16 +150,16 @@
     "id": "week-2-homework",
     "version": "0.1.0",
     "metadata": {
-      "title": "Homework: Organisational mobile communication",
+      "title": "Homework: one emerging technology with a source",
       "kind": "homework",
-      "summary": "Investigate how one organisation uses mobile technology to communicate with customers or employees.",
+      "summary": "Research one emerging technology relevant to Oakfield. Note one benefit, one risk and one source.",
       "sortOrder": 4,
       "defaultOpen": false
     },
     "relationships": {
       "week": "week-2",
       "activities": [
-        "week-2-homework-organisation"
+        "week-2-homework-emerging"
       ]
     }
   },
@@ -169,9 +169,9 @@
     "id": "week-3-lesson-1",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 1: What an IoT system is",
+      "title": "Lesson 1: From research to scoped requirements",
       "kind": "session",
-      "summary": "Identify connected devices, then model a simple IoT system: device, sensor, connectivity, data and application.",
+      "summary": "Turn a vague client statement into a scoped requirement, with in-scope, out-of-scope and unknown.",
       "sortOrder": 1,
       "defaultOpen": true
     },
@@ -190,9 +190,9 @@
     "id": "week-3-lesson-2",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 2: Smart home, health, security and entertainment",
+      "title": "Lesson 2: Decomposition, patterns and abstraction",
       "kind": "session",
-      "summary": "Examine consumer IoT examples and the role of sensors and data.",
+      "summary": "Break the Oakfield problem into parts, group similar needs and drop unnecessary detail.",
       "sortOrder": 2,
       "defaultOpen": false
     },
@@ -211,9 +211,9 @@
     "id": "week-3-lesson-3",
     "version": "0.1.0",
     "metadata": {
-      "title": "Lesson 3: Design a connected home scenario",
+      "title": "Lesson 3: First-cut scope statement",
       "kind": "session",
-      "summary": "Design a simple connected home and complete an IoT knowledge check.",
+      "summary": "Produce a first-cut scope statement and a simple decomposition for the continuing scenario.",
       "sortOrder": 3,
       "defaultOpen": false
     },
@@ -232,16 +232,1574 @@
     "id": "week-3-homework",
     "version": "0.1.0",
     "metadata": {
-      "title": "Homework: One consumer IoT device",
+      "title": "Homework: rewrite two vague statements",
       "kind": "homework",
-      "summary": "Investigate one consumer IoT device and record its purpose and the data it uses.",
+      "summary": "Rewrite two vague client statements as clearer business requirements and mark whether each is in scope.",
       "sortOrder": 4,
       "defaultOpen": false
     },
     "relationships": {
       "week": "week-3",
       "activities": [
-        "week-3-homework-device"
+        "week-3-homework-rewrite"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-4-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Need, feature, constraint or unknown",
+      "kind": "session",
+      "summary": "Retrieve the Week 3 scope and classify sample statements.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-4",
+      "activities": [
+        "week-4-lesson-1-retrieval",
+        "week-4-lesson-1-main",
+        "week-4-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-4-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Testable wording",
+      "kind": "session",
+      "summary": "Classify realistic statements and rewrite weak examples so they are testable.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-4",
+      "activities": [
+        "week-4-lesson-2-retrieval",
+        "week-4-lesson-2-main",
+        "week-4-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-4-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Labelled requirements list",
+      "kind": "session",
+      "summary": "Produce a short requirements list labelled functional, non-functional, constraint, KPI or acceptance.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-4",
+      "activities": [
+        "week-4-lesson-3-retrieval",
+        "week-4-lesson-3-main",
+        "week-4-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-4-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: acceptance for everyday actions",
+      "kind": "homework",
+      "summary": "Write acceptance criteria for two everyday digital actions, such as logging in or making a payment.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-4",
+      "activities": [
+        "week-4-homework-accept"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Milestone plan",
+      "kind": "session",
+      "summary": "Retrieve scoped requirements and draft a milestone schedule that includes testing and client review.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-5",
+      "activities": [
+        "week-5-lesson-1-retrieval",
+        "week-5-lesson-1-main",
+        "week-5-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Resources and a costed outline",
+      "kind": "session",
+      "summary": "Allocate people, time and other resources; produce a simple costed outline for an early increment.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-5",
+      "activities": [
+        "week-5-lesson-2-retrieval",
+        "week-5-lesson-2-main",
+        "week-5-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Language and stack choice",
+      "kind": "session",
+      "summary": "Recommend a language or stack against suitability, policy, scalability, security, staffing, cost and reliability.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-5",
+      "activities": [
+        "week-5-lesson-3-retrieval",
+        "week-5-lesson-3-main",
+        "week-5-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: public project overruns",
+      "kind": "homework",
+      "summary": "Compare two public project overruns in the news and identify whether the issue looks like scope, schedule, resource or cost.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-5",
+      "activities": [
+        "week-5-homework-overruns"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-6-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Risk records",
+      "kind": "session",
+      "summary": "Identify people, technology, schedule, data, supplier and user risks; distinguish mitigation from contingency.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-6",
+      "activities": [
+        "week-6-lesson-1-retrieval",
+        "week-6-lesson-1-main",
+        "week-6-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-6-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: User stories and activity diagrams",
+      "kind": "session",
+      "summary": "Produce stories and an activity diagram for at least two user groups.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-6",
+      "activities": [
+        "week-6-lesson-2-retrieval",
+        "week-6-lesson-2-main",
+        "week-6-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-6-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Mind map and now/next/later road map",
+      "kind": "session",
+      "summary": "Draft a mind map of the problem space and a product road map that respects scope and highest-value stories.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-6",
+      "activities": [
+        "week-6-lesson-3-retrieval",
+        "week-6-lesson-3-main",
+        "week-6-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-6-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: stories for a familiar service",
+      "kind": "homework",
+      "summary": "Write two user stories for a familiar college or public service and note who is not represented.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-6",
+      "activities": [
+        "week-6-homework-stories"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-7-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Process diagram and first-cut ERD",
+      "kind": "session",
+      "summary": "Retrieve the priority user journey and model process plus data.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-7",
+      "activities": [
+        "week-7-lesson-1-retrieval",
+        "week-7-lesson-1-main",
+        "week-7-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-7-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Interface sketch and algorithm",
+      "kind": "session",
+      "summary": "Create a low-fidelity interface for a priority task and plan the algorithm behind it.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-7",
+      "activities": [
+        "week-7-lesson-2-retrieval",
+        "week-7-lesson-2-main",
+        "week-7-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-7-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Data-requirement design versus acceptance",
+      "kind": "session",
+      "summary": "Plan data fields and check the design against acceptance criteria.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-7",
+      "activities": [
+        "week-7-lesson-3-retrieval",
+        "week-7-lesson-3-main",
+        "week-7-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-7-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: critique a public screen",
+      "kind": "homework",
+      "summary": "Critique one public website or app screen against a user need and suggest one interface improvement.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-7",
+      "activities": [
+        "week-7-homework-critique"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-8-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: What a prototype must prove",
+      "kind": "session",
+      "summary": "Retrieve a Week 7 design decision and identify what a prototype would need to prove to the client.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-8",
+      "activities": [
+        "week-8-lesson-1-retrieval",
+        "week-8-lesson-1-main",
+        "week-8-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-8-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Reviewing AI-generated output",
+      "kind": "session",
+      "summary": "Review a supplied AI fragment for correctness, security, bias, licensing and fit to requirements.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-8",
+      "activities": [
+        "week-8-lesson-2-retrieval",
+        "week-8-lesson-2-main",
+        "week-8-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-8-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Evaluate the prototype plan",
+      "kind": "session",
+      "summary": "Record what you would keep, change or reject and state one prototype question the client could answer.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-8",
+      "activities": [
+        "week-8-lesson-3-retrieval",
+        "week-8-lesson-3-main",
+        "week-8-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-8-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: AI policy or AI error",
+      "kind": "homework",
+      "summary": "Find an organisation's public statement on acceptable AI use, or a news example of AI error, and note one implication for software teams.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-8",
+      "activities": [
+        "week-8-homework-ai-policy"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-9-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Test levels",
+      "kind": "session",
+      "summary": "Map module, integration, automated and user testing onto the lifecycle.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-9",
+      "activities": [
+        "week-9-lesson-1-retrieval",
+        "week-9-lesson-1-main",
+        "week-9-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-9-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Automated tests, user tests and feedback",
+      "kind": "session",
+      "summary": "Plan automated and user testing and how feedback would be gathered.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-9",
+      "activities": [
+        "week-9-lesson-2-retrieval",
+        "week-9-lesson-2-main",
+        "week-9-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-9-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Deploy, install, configure, update",
+      "kind": "session",
+      "summary": "Outline go-live steps including who does what.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-9",
+      "activities": [
+        "week-9-lesson-3-retrieval",
+        "week-9-lesson-3-main",
+        "week-9-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-9-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: how a familiar app updates",
+      "kind": "homework",
+      "summary": "Describe how a familiar app updates and what users are asked to do, then note one support or training implication.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-9",
+      "activities": [
+        "week-9-homework-updates"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-10-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Version control as a professional story",
+      "kind": "session",
+      "summary": "A change, a commit message, why history matters, and a live bug.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-10",
+      "activities": [
+        "week-10-lesson-1-retrieval",
+        "week-10-lesson-1-main",
+        "week-10-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-10-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Maintenance, support, training, updates",
+      "kind": "session",
+      "summary": "Map maintenance activities onto the client scenario.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-10",
+      "activities": [
+        "week-10-lesson-2-retrieval",
+        "week-10-lesson-2-main",
+        "week-10-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-10-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Why the SDLC adds organisational value",
+      "kind": "session",
+      "summary": "Explain SDLC value using the continuing project.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-10",
+      "activities": [
+        "week-10-lesson-3-retrieval",
+        "week-10-lesson-3-main",
+        "week-10-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-10-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: the last update you noticed",
+      "kind": "homework",
+      "summary": "Describe the last update you noticed on a familiar service and who had to be informed or trained.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-10",
+      "activities": [
+        "week-10-homework-last-update"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-11-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Who owns each SDLC stage",
+      "kind": "session",
+      "summary": "Retrieve SDLC stages and meet the first official role set.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-11",
+      "activities": [
+        "week-11-lesson-1-retrieval",
+        "week-11-lesson-1-main",
+        "week-11-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-11-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Project manager responsibilities",
+      "kind": "session",
+      "summary": "Budget, scope, schedule, risk and quality.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-11",
+      "activities": [
+        "week-11-lesson-2-retrieval",
+        "week-11-lesson-2-main",
+        "week-11-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-11-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Analyst, designer, and assigning the increment",
+      "kind": "session",
+      "summary": "Assign the first role set to one Oakfield increment.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-11",
+      "activities": [
+        "week-11-lesson-3-retrieval",
+        "week-11-lesson-3-main",
+        "week-11-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-11-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: job advertisement",
+      "kind": "homework",
+      "summary": "Research one job advertisement for a digital role from this week's set and list the responsibilities that match the specification.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-11",
+      "activities": [
+        "week-11-homework-job-ad"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-12-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Developer, operations and security",
+      "kind": "session",
+      "summary": "Who writes code, who keeps a service running, who owns security.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-12",
+      "activities": [
+        "week-12-lesson-1-retrieval",
+        "week-12-lesson-1-main",
+        "week-12-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-12-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Tester and quality assurance",
+      "kind": "session",
+      "summary": "Software tester and QA responsibilities.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-12",
+      "activities": [
+        "week-12-lesson-2-retrieval",
+        "week-12-lesson-2-main",
+        "week-12-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-12-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Sprint, epic, story, spike",
+      "kind": "session",
+      "summary": "Write one epic, one user story and one spike for an uncertainty.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-12",
+      "activities": [
+        "week-12-lesson-3-retrieval",
+        "week-12-lesson-3-main",
+        "week-12-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-12-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: sprint review or stand-up",
+      "kind": "homework",
+      "summary": "Find one public description of a sprint review or stand-up and note what artefact was being discussed.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-12",
+      "activities": [
+        "week-12-homework-sprint"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-13-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Agile incremental delivery",
+      "kind": "session",
+      "summary": "Map changing requirements and client feedback onto an incremental plan.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-13",
+      "activities": [
+        "week-13-lesson-1-retrieval",
+        "week-13-lesson-1-main",
+        "week-13-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-13-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Scaled Agile and product increments",
+      "kind": "session",
+      "summary": "When more than one team must align.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-13",
+      "activities": [
+        "week-13-lesson-2-retrieval",
+        "week-13-lesson-2-main",
+        "week-13-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-13-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Waterfall and a justified choice",
+      "kind": "session",
+      "summary": "When Waterfall documentation and staged client interaction might still be justified.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-13",
+      "activities": [
+        "week-13-lesson-3-retrieval",
+        "week-13-lesson-3-main",
+        "week-13-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-13-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: a delayed digital project",
+      "kind": "homework",
+      "summary": "Find a public case of a delayed digital project and suggest whether a fixed plan or changing requirements contributed.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-13",
+      "activities": [
+        "week-13-homework-delay"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-14-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: RAD",
+      "kind": "session",
+      "summary": "Prototyping, reuse and when RAD is suitable.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-14",
+      "activities": [
+        "week-14-lesson-1-retrieval",
+        "week-14-lesson-1-main",
+        "week-14-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-14-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Lean",
+      "kind": "session",
+      "summary": "Waste reduction, late decisions and short iterations.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-14",
+      "activities": [
+        "week-14-lesson-2-retrieval",
+        "week-14-lesson-2-main",
+        "week-14-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-14-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Compare and select",
+      "kind": "session",
+      "summary": "Compare Agile, Scaled Agile, Waterfall, RAD and Lean; write a client-readable justification.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-14",
+      "activities": [
+        "week-14-lesson-3-retrieval",
+        "week-14-lesson-3-main",
+        "week-14-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-14-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: waste in a familiar process",
+      "kind": "homework",
+      "summary": "Identify one waste in a familiar process, such as repeated data entry, and suggest a shorter iteration that would reduce it.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-14",
+      "activities": [
+        "week-14-homework-waste"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-15-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: UCD characteristics",
+      "kind": "session",
+      "summary": "Retrieve methodology and mark which requirements protect users or data.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-15",
+      "activities": [
+        "week-15-lesson-1-retrieval",
+        "week-15-lesson-1-main",
+        "week-15-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-15-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: UCD stages on Oakfield",
+      "kind": "session",
+      "summary": "Apply context, requirements, design and assessment.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-15",
+      "activities": [
+        "week-15-lesson-2-retrieval",
+        "week-15-lesson-2-main",
+        "week-15-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-15-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Secure by design in functional requirements",
+      "kind": "session",
+      "summary": "Write or improve one FR and one acceptance check so security is designed in.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-15",
+      "activities": [
+        "week-15-lesson-3-retrieval",
+        "week-15-lesson-3-main",
+        "week-15-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-15-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: public login or form",
+      "kind": "homework",
+      "summary": "Review one public login or form against UCD and note one security or accessibility gap.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-15",
+      "activities": [
+        "week-15-homework-login-review"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-16-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Security, accessibility, scalability NFR",
+      "kind": "session",
+      "summary": "Retrieve missing quality requirements and write NFR with matching acceptance.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-16",
+      "activities": [
+        "week-16-lesson-1-retrieval",
+        "week-16-lesson-1-main",
+        "week-16-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-16-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: KPIs versus acceptance criteria",
+      "kind": "session",
+      "summary": "KPIs for responsiveness, load handling and reliability.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-16",
+      "activities": [
+        "week-16-lesson-2-retrieval",
+        "week-16-lesson-2-main",
+        "week-16-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-16-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Plan a spike",
+      "kind": "session",
+      "summary": "Time-boxed investigation to reduce a technical unknown.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-16",
+      "activities": [
+        "week-16-lesson-3-retrieval",
+        "week-16-lesson-3-main",
+        "week-16-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-16-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: rewrite vague quality statements",
+      "kind": "homework",
+      "summary": "Rewrite two vague quality statements, such as fast or user-friendly, so they can be checked.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-16",
+      "activities": [
+        "week-16-homework-quality"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-17-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: IoT, AI, generative AI, ML",
+      "kind": "session",
+      "summary": "Structured technology profiles; AI is not a single technology.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-17",
+      "activities": [
+        "week-17-lesson-1-retrieval",
+        "week-17-lesson-1-main",
+        "week-17-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-17-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Vision, biometrics, robotics",
+      "kind": "session",
+      "summary": "Object recognition, computer vision, biometrics, robotics — data, risk, user impact.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-17",
+      "activities": [
+        "week-17-lesson-2-retrieval",
+        "week-17-lesson-2-main",
+        "week-17-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-17-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Cloud, data, drones, 3D, 5G — scoped recommendations",
+      "kind": "session",
+      "summary": "Recommend now, later or reject for each profiled technology.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-17",
+      "activities": [
+        "week-17-lesson-3-retrieval",
+        "week-17-lesson-3-main",
+        "week-17-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-17-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: sources on one profile",
+      "kind": "homework",
+      "summary": "Add sources to one technology profile and note how recent and independent those sources are.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-17",
+      "activities": [
+        "week-17-homework-sources"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-18-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Personal training plan",
+      "kind": "session",
+      "summary": "Identify knowledge, skill and ability gaps.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-18",
+      "activities": [
+        "week-18-lesson-1-retrieval",
+        "week-18-lesson-1-main",
+        "week-18-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-18-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Legal, regulatory, ethical, risk",
+      "kind": "session",
+      "summary": "Investigate one requirement that applies to the client.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-18",
+      "activities": [
+        "week-18-lesson-2-retrieval",
+        "week-18-lesson-2-main",
+        "week-18-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-18-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Sources and qualitative / quantitative evaluation",
+      "kind": "session",
+      "summary": "Rate sources; choose one qualitative and one quantitative method.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-18",
+      "activities": [
+        "week-18-lesson-3-retrieval",
+        "week-18-lesson-3-main",
+        "week-18-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-18-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: two sources on the same topic",
+      "kind": "homework",
+      "summary": "Evaluate two sources on the same legal or technology topic and write which you would trust more in a proposal, and why.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-18",
+      "activities": [
+        "week-18-homework-two-sources"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-19-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: SDLC retrieval and common errors",
+      "kind": "session",
+      "summary": "Repair common errors in SDLC sequence and role responsibilities.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-19",
+      "activities": [
+        "week-19-lesson-1-retrieval",
+        "week-19-lesson-1-main",
+        "week-19-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-19-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Roles recap on the scenario",
+      "kind": "session",
+      "summary": "Match roles to a project scenario.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-19",
+      "activities": [
+        "week-19-lesson-2-retrieval",
+        "week-19-lesson-2-main",
+        "week-19-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-19-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: One-page recap",
+      "kind": "session",
+      "summary": "Produce a one-page SDLC and roles recap for the continuing client project.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-19",
+      "activities": [
+        "week-19-lesson-3-retrieval",
+        "week-19-lesson-3-main",
+        "week-19-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-19-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: revise one weak artefact",
+      "kind": "homework",
+      "summary": "Revise one weak piece of earlier project evidence, such as a brief annotation or role assignment.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-19",
+      "activities": [
+        "week-19-homework-revise-artefact"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-20-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Methodology comparison task",
+      "kind": "session",
+      "summary": "Justify a methodology with context, not a label.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-20",
+      "activities": [
+        "week-20-lesson-1-retrieval",
+        "week-20-lesson-1-main",
+        "week-20-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-20-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Rewrite a weak requirement and a weak technology recommendation",
+      "kind": "session",
+      "summary": "UCD, secure-by-design, reject fashionable tech that does not fit.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-20",
+      "activities": [
+        "week-20-lesson-2-retrieval",
+        "week-20-lesson-2-main",
+        "week-20-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-20-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Update the training plan",
+      "kind": "session",
+      "summary": "Update against gaps still showing in revision.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-20",
+      "activities": [
+        "week-20-lesson-3-retrieval",
+        "week-20-lesson-3-main",
+        "week-20-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-20-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: one recent source on a technology profile",
+      "kind": "homework",
+      "summary": "Add one recent source to an emerging-technology profile.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-20",
+      "activities": [
+        "week-20-homework-recent-source"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-21-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Legal and ethical scenarios",
+      "kind": "session",
+      "summary": "Distinguish law, regulation, ethics and software standards.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-21",
+      "activities": [
+        "week-21-lesson-1-retrieval",
+        "week-21-lesson-1-main",
+        "week-21-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-21-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Risk register, CIA, continuity",
+      "kind": "session",
+      "summary": "Owners and monitoring, not just a risk name.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-21",
+      "activities": [
+        "week-21-lesson-2-retrieval",
+        "week-21-lesson-2-main",
+        "week-21-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-21-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Source grid and evaluation methods",
+      "kind": "session",
+      "summary": "More than a single blog post; qualitative and quantitative.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-21",
+      "activities": [
+        "week-21-lesson-3-retrieval",
+        "week-21-lesson-3-main",
+        "week-21-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-21-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: two sources on a legal topic",
+      "kind": "homework",
+      "summary": "Evaluate two sources on the same legal topic and write which you would trust in a proposal, and why.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-21",
+      "activities": [
+        "week-21-homework-legal-sources"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-22-lesson-1",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 1: Cumulative retrieval and Task 1 structure",
+      "kind": "session",
+      "summary": "How Task 1 draws on Areas 1 to 3 together, without providing assessed responses.",
+      "sortOrder": 1,
+      "defaultOpen": true
+    },
+    "relationships": {
+      "week": "week-22",
+      "activities": [
+        "week-22-lesson-1-retrieval",
+        "week-22-lesson-1-main",
+        "week-22-lesson-1-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-22-lesson-2",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 2: Timed integrated case study",
+      "kind": "session",
+      "summary": "Requirements and risk together, then peer-assess against acceptance criteria.",
+      "sortOrder": 2,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-22",
+      "activities": [
+        "week-22-lesson-2-retrieval",
+        "week-22-lesson-2-main",
+        "week-22-lesson-2-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-22-lesson-3",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Lesson 3: Readiness checklist and placement",
+      "kind": "session",
+      "summary": "Final assessment-readiness checklist and one remaining personal training need.",
+      "sortOrder": 3,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-22",
+      "activities": [
+        "week-22-lesson-3-retrieval",
+        "week-22-lesson-3-main",
+        "week-22-lesson-3-formative"
+      ]
+    }
+  },
+  {
+    "schema": "lp.content.session",
+    "schemaVersion": "0.1.0",
+    "id": "week-22-homework",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Homework: organise the evidence pack",
+      "kind": "homework",
+      "summary": "Organise your research log, requirements list, models and source list so they can be reused under assessment conditions according to centre rules.",
+      "sortOrder": 4,
+      "defaultOpen": false
+    },
+    "relationships": {
+      "week": "week-22",
+      "activities": [
+        "week-22-homework-evidence-pack"
       ]
     }
   }

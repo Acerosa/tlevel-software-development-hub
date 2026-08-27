@@ -6,11 +6,16 @@ export function CourseGuidePage({ root }: { root: string }) {
     <div className="study-stack">
       <section className="study-card" aria-labelledby="structure-heading">
         <h2 id="structure-heading">Course structure</h2>
-        <p>Follow the weekly teaching sequence. Each week contains three lessons and homework.</p>
+        <p>
+          Follow the 22-week Scheme of Learning for Occupational Specialism Areas 1 to 3.
+          Each taught week contains three lessons and homework. Work stays with the Oakfield
+          Adult Skills Hub client scenario.
+        </p>
         <ul>
-          <li>Week 1: Introduction to New and Emerging Digital Technologies</li>
-          <li>Week 2: Mobile Technology</li>
-          <li>Week 3: Internet of Things — Consumer Applications</li>
+          <li>Weeks 1 to 10: analyse the problem, requirements, design, testing and the SDLC</li>
+          <li>Weeks 11 to 16: digital team roles, methodologies, UCD and quality requirements</li>
+          <li>Weeks 17 to 18: emerging technologies, training, legal duties and sources</li>
+          <li>Weeks 19 to 22: revision, a timed case study, and assessment readiness</li>
         </ul>
       </section>
       <section className="study-card" aria-labelledby="start-heading">
