@@ -10,7 +10,19 @@ import { breadcrumbs } from "./page-copy";
 
 const content = pkg as ContentPackage;
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  delete window.__lpPackage;
+  delete window.__lpPublishedCurriculum;
+});
+
+function withWeekStatus(source: ContentPackage, updates: Record<string, string>): ContentPackage {
+  const clone = structuredClone(source);
+  for (const week of clone.weeks || []) {
+    if (updates[week.id] && week.metadata) week.metadata.status = updates[week.id];
+  }
+  return clone;
+}
 
 function expectReactTextBlock(root: HTMLElement, blockType: "short-response" | "reflection") {
   const block = root.querySelector(`[data-lp-block='${blockType}']`) as HTMLElement | null;
@@ -30,13 +42,22 @@ describe("T Level presentation", () => {
     expect(CompletionModal).toBeTypeOf("function");
   });
 
-  it("puts the SoL weeks on the home page as the teaching starting points", () => {
+  it("puts the SoL weeks on the home page and only opens available weeks", () => {
     render(<HomePage root="." />);
     expect(screen.getByRole("link", { name: "Open Week 1" }).getAttribute("href")).toBe("./week-1/");
-    expect(screen.getByRole("link", { name: "Open Week 2" }).getAttribute("href")).toBe("./week-2/");
-    expect(screen.getByRole("link", { name: "Open Week 22" }).getAttribute("href")).toBe("./week-22/");
+    expect(screen.queryByRole("link", { name: "Open Week 2" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Open Week 22" })).toBeNull();
+    expect(screen.getByText("Coming soon · week commencing 7 September 2026")).toBeTruthy();
+    expect(screen.getAllByText(/Coming soon/).length).toBeGreaterThan(1);
     expect(screen.getByRole("link", { name: "Open Foundations" }).getAttribute("href")).toBe("./foundations/");
     expect(screen.queryByRole("link", { name: /Task 1/i })).toBeNull();
+  });
+
+  it("opens Week 2 on home when the published package marks it available", () => {
+    render(<HomePage root="." pkg={withWeekStatus(content, { "week-2": "available" })} />);
+    expect(screen.getByRole("link", { name: "Open Week 1" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Open Week 2" }).getAttribute("href")).toBe("./week-2/");
+    expect(screen.queryByRole("link", { name: "Open Week 22" })).toBeNull();
   });
 
   it("marks the current course section instead of hard-coding Foundations", () => {
@@ -99,8 +120,20 @@ describe("T Level presentation", () => {
     expectReactTextBlock(written, "short-response");
   });
 
-  it("renders Week 2 single-choice, classification and short-response inline", () => {
+  it("blocks a direct week URL when the package status is not available", () => {
     const { container } = render(<WeekPage weekId="week-2" root=".." pkg={content} />);
+    expect(screen.getByRole("heading", { name: "Coming soon" })).toBeTruthy();
+    expect(screen.getByText(/planned to commence 7 September 2026/i)).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Back to course home" })).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity]")).toBeNull();
+    expect(container.querySelector("[data-lp-week-locked]")).toBeTruthy();
+    expect(screen.queryByRole("complementary", { name: "Practice progress" })).toBeNull();
+  });
+
+  it("renders Week 2 inline exercises when the published package marks it available", () => {
+    const { container } = render(
+      <WeekPage weekId="week-2" root=".." pkg={withWeekStatus(content, { "week-2": "available" })} />
+    );
     const retrieval = container.querySelector('[data-lp-activity="week-2-lesson-1-retrieval"]') as HTMLElement;
     const classify = container.querySelector('[data-lp-activity="week-2-lesson-1-formative"]') as HTMLElement;
     const written = container.querySelector('[data-lp-activity="week-2-lesson-1-main"]') as HTMLElement;
@@ -113,7 +146,9 @@ describe("T Level presentation", () => {
   });
 
   it("renders Week 3 single-choice, classification and short-response inline", () => {
-    const { container } = render(<WeekPage weekId="week-3" root=".." pkg={content} />);
+    const { container } = render(
+      <WeekPage weekId="week-3" root=".." pkg={withWeekStatus(content, { "week-3": "available" })} />
+    );
     const retrieval = container.querySelector('[data-lp-activity="week-3-lesson-1-retrieval"]') as HTMLElement;
     const classify = container.querySelector('[data-lp-activity="week-3-lesson-1-formative"]') as HTMLElement;
     const written = container.querySelector('[data-lp-activity="week-3-lesson-1-main"]') as HTMLElement;

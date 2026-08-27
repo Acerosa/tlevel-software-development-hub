@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { activityFromPackage, catalogFromPackage, homeWeeksFromPackage, weekPageFromPackage } from "./from-package";
+import { activityFromPackage, catalogFromPackage, homeWeeksFromPackage, isWeekAvailable, weekPageFromPackage } from "./from-package";
 import { applyTLevelCurriculum } from "./apply-runtime";
 import pkg from "../../content/tlevel-software-development/package.json";
 
@@ -49,7 +49,18 @@ describe("T Level package hydration", () => {
       Array.from({ length: 22 }, (_, index) => `Week ${index + 1}`)
     );
     expect(weeks[0].path).toBe("week-1/");
+    expect(weeks[0].openable).toBe(true);
+    expect(weeks[0].status).toBe("available");
     expect(weeks[0].current).toBe(true);
+    expect(weeks[1].openable).toBe(false);
+    expect(weeks[1].status).toBe("planned");
+    expect(weeks[1].weekCommencing).toBe("2026-09-07");
+    expect(weeks[21].openable).toBe(false);
+    expect(weeks[21].status).toBe("planned");
+    expect(weeks.filter((week) => week.openable)).toHaveLength(1);
+    expect(isWeekAvailable("available")).toBe(true);
+    expect(isWeekAvailable("planned")).toBe(false);
+    expect(isWeekAvailable("archived")).toBe(false);
     const week1 = weekPageFromPackage(pkg, "week-1");
     expect(week1?.week.title).toBe("Client Brief, Context and Initial Research");
     expect(week1?.sessions.map((item) => item.id)).toEqual([
@@ -59,6 +70,7 @@ describe("T Level package hydration", () => {
       "week-1-homework"
     ]);
     expect(week1?.sessions[0].activities[0].id).toBe("week-1-lesson-1-retrieval");
-    expect(week1?.sessions[0].activities[0].title).toMatch(/Baseline diagnostic/i);
+    expect(week1?.week.status).toBe("available");
+    expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("planned");
   });
 });

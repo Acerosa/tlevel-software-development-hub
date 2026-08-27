@@ -1,5 +1,6 @@
 import {
   CompletionModal,
+  EmptyState,
   InteractiveActivity,
   LoadingState,
   PracticeProgressPanel,
@@ -14,7 +15,12 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import bundledPackage from "../../content/tlevel-software-development/package.json";
 import { getContentEngine } from "../content/engine";
 import { activeContentPackage } from "../curriculum/apply-runtime";
-import { weekPageFromPackage, type ContentPackage } from "../curriculum/from-package";
+import {
+  formatWeekCommencing,
+  isWeekAvailable,
+  weekPageFromPackage,
+  type ContentPackage
+} from "../curriculum/from-package";
 import { createSitePath } from "../paths";
 
 function normaliseBlockType(value: string | undefined): string {
@@ -90,11 +96,52 @@ function draftResponsesFor(activity: ActivityDocument): Record<string, unknown> 
   }
 }
 
+function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPackage | null): ContentPackage {
+  if (!live?.weeks?.length) return base;
+  const liveById = new Map(live.weeks.map((week) => [week.id, week.metadata]));
+  return {
+    ...base,
+    weeks: (base.weeks || []).map((week) => {
+      const liveMeta = liveById.get(week.id);
+      if (!liveMeta) return week;
+      return {
+        ...week,
+        metadata: {
+          ...week.metadata,
+          status: liveMeta.status,
+          weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
+        }
+      };
+    })
+  };
+}
+
 function packageForWeek(pkg: ContentPackage | null | undefined, weekId: string): ContentPackage {
   const bundled = bundledPackage as ContentPackage;
   const live = activeContentPackage(pkg);
   if (live && weekHasCatalogueBlocks(live, weekId)) return live;
-  return bundled;
+  return overlayLiveWeekMetadata(bundled, live);
+}
+
+function weekOpenable(content: ContentPackage, teachingWeek: number): boolean {
+  const week = content.weeks?.find((item) => Number(item.metadata?.teachingWeek) === teachingWeek);
+  return isWeekAvailable(week?.metadata?.status);
+}
+
+function notReleasedCopy(status: string, weekCommencing: string) {
+  if (status === "archived") {
+    return {
+      heading: "This week is archived",
+      message: "This week is no longer available. Check course home for weeks you can open."
+    };
+  }
+  const when = formatWeekCommencing(weekCommencing);
+  return {
+    heading: "Coming soon",
+    message: when
+      ? `This week is not available yet. Teaching is planned to commence ${when}.`
+      : "This week is not available yet. Check back when your tutor posts it."
+  };
 }
 
 function weekHasCatalogueBlocks(content: ContentPackage, weekId: string): boolean {
@@ -164,8 +211,10 @@ export function WeekPage({
     }
   }, []);
 
+  const released = isWeekAvailable(model?.week.status);
+
   const sessions = useMemo(() => {
-    if (!model) return [];
+    if (!model || !isWeekAvailable(model.week.status)) return [];
     const engine = getContentEngine();
     return model.sessions.map((session) => ({
       ...session,
@@ -215,6 +264,19 @@ export function WeekPage({
     return <LoadingState message="This week has not been published yet." />;
   }
 
+  if (!released) {
+    const copy = notReleasedCopy(model.week.status, model.week.weekCommencing);
+    return (
+      <div data-lp-week-page="" data-lp-week-locked={model.week.status || "planned"}>
+        <EmptyState
+          heading={copy.heading}
+          message={copy.message}
+          action={{ label: "Back to course home", href: createSitePath(root) }}
+        />
+      </div>
+    );
+  }
+
   const weekNumber = model.week.teachingWeek;
   const weekBadge = `Week ${weekNumber}: ${model.week.title}`;
   const summaryScore = {
@@ -257,10 +319,10 @@ export function WeekPage({
           showProjectContext: false,
           showExamContext: false
         }}
-        previousWeek={weekNumber > 1
+        previousWeek={weekNumber > 1 && weekOpenable(content, weekNumber - 1)
           ? { label: `Week ${weekNumber - 1}`, href: createSitePath(root, `week-${weekNumber - 1}/`) }
           : null}
-        nextWeek={weekNumber < (content.weeks?.length || 0)
+        nextWeek={weekOpenable(content, weekNumber + 1)
           ? { label: `Week ${weekNumber + 1}`, href: createSitePath(root, `week-${weekNumber + 1}/`) }
           : null}
         sessions={sessions}

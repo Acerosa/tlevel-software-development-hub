@@ -737,7 +737,7 @@ def week_meta(spec):
         {
             "teachingWeek": n,
             "title": spec["title"],
-            "status": "available",
+            "status": "available" if n == 1 else "planned",
             "phase": spec["phase"],
             "professionalPractice": spec["practice"],
             "route": f"weeks/week-{n}/",
