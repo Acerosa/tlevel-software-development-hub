@@ -97,6 +97,12 @@ test("T Level runtime identity uses the registered T Level course", () => {
   assert.doesNotMatch(read("src/config.ts"), /ocr-level-3-it/);
 });
 
+test("CI pins the reviewed UI catalogue used by week pages", () => {
+  const workflow = read(".github/workflows/pages.yml");
+  assert.match(workflow, /Acerosa-learning-platform-ui[\s\S]*ref: v0\.1\.4/);
+  assert.doesNotMatch(workflow, /Acerosa-learning-platform-ui[\s\S]*ref: v0\.1\.0/);
+});
+
 test("the live hub loads teaching content through platform.curriculum.loadLatest", () => {
   assert.match(read("src/hooks/useHubPlatform.ts"), /loadTLevelCurriculum\(platform\)/);
   assert.match(read("src/platform.ts"), /validatePackage/);

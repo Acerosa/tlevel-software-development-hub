@@ -1,3 +1,4 @@
+import { CompletionModal, InteractiveActivity, PracticeProgressPanel } from "@learning-platform/ui";
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import pkg from "../content/tlevel-software-development/package.json";
@@ -23,6 +24,12 @@ function expectReactTextBlock(root: HTMLElement, blockType: "short-response" | "
 }
 
 describe("T Level presentation", () => {
+  it("uses the UI catalogue required for inline week activities", () => {
+    expect(InteractiveActivity).toBeTypeOf("function");
+    expect(PracticeProgressPanel).toBeTypeOf("function");
+    expect(CompletionModal).toBeTypeOf("function");
+  });
+
   it("puts the SoL weeks on the home page as the teaching starting points", () => {
     render(<HomePage root="." />);
     expect(screen.getByRole("link", { name: "Open Week 1" }).getAttribute("href")).toBe("./week-1/");
