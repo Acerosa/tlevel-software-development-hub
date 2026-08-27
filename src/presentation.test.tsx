@@ -60,6 +60,22 @@ describe("T Level presentation", () => {
     expect(screen.queryByRole("link", { name: "Open Week 22" })).toBeNull();
   });
 
+  it("keeps bundled home weeks when a thin live package only overlays status", () => {
+    const thin = {
+      ...withWeekStatus(content, { "week-2": "available" }),
+      sessions: [],
+      activities: [],
+      weeks: withWeekStatus(content, { "week-2": "available" }).weeks?.map((week) => ({
+        ...week,
+        relationships: { ...(week.relationships || {}), sessions: [] }
+      }))
+    } as ContentPackage;
+    render(<HomePage root="." pkg={thin} />);
+    expect(screen.getByRole("link", { name: "Open Week 1" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Open Week 2" })).toBeTruthy();
+    expect(screen.getAllByText(/Week \d+/).length).toBeGreaterThan(2);
+  });
+
   it("marks the current course section instead of hard-coding Foundations", () => {
     const { rerender } = render(<CourseSidebar currentPage="week-2" root=".." />);
     const nav = () => screen.getByRole("navigation", { name: "Course sections" });

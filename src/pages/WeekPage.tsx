@@ -18,6 +18,7 @@ import { activeContentPackage } from "../curriculum/apply-runtime";
 import {
   formatWeekCommencing,
   isWeekAvailable,
+  overlayLiveWeekMetadata,
   weekPageFromPackage,
   type ContentPackage
 } from "../curriculum/from-package";
@@ -94,26 +95,6 @@ function draftResponsesFor(activity: ActivityDocument): Record<string, unknown> 
   } catch {
     return {};
   }
-}
-
-function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPackage | null): ContentPackage {
-  if (!live?.weeks?.length) return base;
-  const liveById = new Map(live.weeks.map((week) => [week.id, week.metadata]));
-  return {
-    ...base,
-    weeks: (base.weeks || []).map((week) => {
-      const liveMeta = liveById.get(week.id);
-      if (!liveMeta) return week;
-      return {
-        ...week,
-        metadata: {
-          ...week.metadata,
-          status: liveMeta.status,
-          weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
-        }
-      };
-    })
-  };
 }
 
 function packageForWeek(pkg: ContentPackage | null | undefined, weekId: string): ContentPackage {

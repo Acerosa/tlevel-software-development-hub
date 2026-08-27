@@ -118,6 +118,30 @@ export function isWeekAvailable(status?: string | null): boolean {
   return String(status || "").trim().toLowerCase() === "available";
 }
 
+/**
+ * Keep bundled week catalogue/structure; overlay live publication status
+ * (and week commencing) so a thin published package cannot blank Home/Week lists.
+ */
+export function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPackage | null | undefined): ContentPackage {
+  if (!live?.weeks?.length) return base;
+  const liveById = new Map(live.weeks.map((week) => [week.id, week.metadata]));
+  return {
+    ...base,
+    weeks: (base.weeks || []).map((week) => {
+      const liveMeta = liveById.get(week.id);
+      if (!liveMeta) return week;
+      return {
+        ...week,
+        metadata: {
+          ...week.metadata,
+          status: liveMeta.status,
+          weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
+        }
+      };
+    })
+  };
+}
+
 export function formatWeekCommencing(value?: string | null): string {
   const raw = String(value || "").trim();
   if (!raw) return "";
