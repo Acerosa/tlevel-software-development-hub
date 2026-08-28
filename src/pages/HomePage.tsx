@@ -1,7 +1,9 @@
 import { Callout, StatusBadge } from "@learning-platform/ui";
 import bundledPackage from "../../content/tlevel-software-development/package.json";
-import { activeContentPackage } from "../curriculum/apply-runtime";
-import { homeWeeksFromPackage, type ContentPackage } from "../curriculum/from-package";
+import {
+  weeksFromPublication,
+  type ContentPackage
+} from "../curriculum/from-package";
 import { createSitePath } from "../paths";
 
 function homeBadgeLabel(week: { openable: boolean; current: boolean; status: string }) {
@@ -16,8 +18,7 @@ function lockedWeekLabel(week: { status: string; weekCommencingLabel: string }) 
 }
 
 export function HomePage({ root, pkg }: { root: string; pkg?: ContentPackage | null }) {
-  const content = activeContentPackage(pkg) || (bundledPackage as ContentPackage);
-  const weeks = homeWeeksFromPackage(content);
+  const weeks = weeksFromPublication(bundledPackage as ContentPackage, pkg);
 
   return (
     <div className="study-stack">

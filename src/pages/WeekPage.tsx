@@ -14,10 +14,10 @@ import {
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import bundledPackage from "../../content/tlevel-software-development/package.json";
 import { getContentEngine } from "../content/engine";
-import { activeContentPackage } from "../curriculum/apply-runtime";
 import {
   formatWeekCommencing,
   isWeekAvailable,
+  overlayLiveWeekMetadata,
   weekPageFromPackage,
   type ContentPackage
 } from "../curriculum/from-package";
@@ -96,31 +96,17 @@ function draftResponsesFor(activity: ActivityDocument): Record<string, unknown> 
   }
 }
 
-function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPackage | null): ContentPackage {
-  if (!live?.weeks?.length) return base;
-  const liveById = new Map(live.weeks.map((week) => [week.id, week.metadata]));
-  return {
-    ...base,
-    weeks: (base.weeks || []).map((week) => {
-      const liveMeta = liveById.get(week.id);
-      if (!liveMeta) return week;
-      return {
-        ...week,
-        metadata: {
-          ...week.metadata,
-          status: liveMeta.status,
-          weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
-        }
-      };
-    })
-  };
-}
-
-function packageForWeek(pkg: ContentPackage | null | undefined, weekId: string): ContentPackage {
+function packageForWeek(live: ContentPackage | null | undefined, weekId: string): ContentPackage {
   const bundled = bundledPackage as ContentPackage;
-  const live = activeContentPackage(pkg);
-  if (live && weekHasCatalogueBlocks(live, weekId)) return live;
-  return overlayLiveWeekMetadata(bundled, live);
+  const useLiveActivities = Boolean(live && weekHasCatalogueBlocks(live, weekId));
+  const teaching = useLiveActivities
+    ? {
+        ...bundled,
+        activities: live?.activities?.length ? live.activities : bundled.activities,
+        sessions: live?.sessions?.length ? live.sessions : bundled.sessions
+      }
+    : bundled;
+  return overlayLiveWeekMetadata(teaching, live);
 }
 
 function weekOpenable(content: ContentPackage, teachingWeek: number): boolean {

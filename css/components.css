@@ -220,6 +220,17 @@
   background: var(--colour-teal-pale);
 }
 
+.course-navigation__link--locked {
+  color: var(--colour-ink-muted, #4d5560);
+  font-weight: 600;
+  cursor: default;
+}
+
+.course-navigation__link--locked:hover {
+  background: transparent;
+  text-decoration: none;
+}
+
 .phase-badge {
   flex: 0 0 auto;
   padding: 0.1rem 0.45rem;

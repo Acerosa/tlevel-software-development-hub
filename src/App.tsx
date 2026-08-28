@@ -1,6 +1,7 @@
 import { HubShell, LearnerHeader } from "@learning-platform/ui";
 import { CourseLayout } from "./components/CourseSidebar";
 import { APP_CONFIG } from "./config";
+import type { ContentPackage } from "./curriculum/from-package";
 import { useHubPlatform } from "./hooks/useHubPlatform";
 import { currentIds, type PageContext } from "./page-context";
 import { breadcrumbs, pageHeader } from "./page-copy";
@@ -20,11 +21,13 @@ import { createSitePath, navigationItems } from "./paths";
 function PageBody({
   context,
   adaptersReady,
-  platform
+  platform,
+  pkg
 }: {
   context: PageContext;
   adaptersReady: boolean;
   platform?: unknown;
+  pkg?: ContentPackage | null;
 }) {
   if (context.activity) {
     return <FoundationActivityPage activityId={context.activity} adaptersReady={adaptersReady} />;
@@ -33,16 +36,16 @@ function PageBody({
   if (context.page === "foundations") return <FoundationsPage root={context.root} adaptersReady={adaptersReady} />;
   if (context.page === "projects") return <ProjectsPage root={context.root} />;
   if (/^week-\d+$/.test(context.page)) {
-    return <WeekPage weekId={context.page} root={context.root} platform={platform} />;
+    return <WeekPage weekId={context.page} root={context.root} platform={platform} pkg={pkg} />;
   }
   if (context.page === "assessment-practice") return <AssessmentPracticePage root={context.root} />;
   if (context.page === "resources") return <ResourcesPage root={context.root} />;
   if (context.page === "help") return <HelpPage />;
-  return <HomePage root={context.root} />;
+  return <HomePage root={context.root} pkg={pkg} />;
 }
 
 export function App({ context }: { context: PageContext }) {
-  const { learner, theme, accountDialog, platform, adaptersReady } = useHubPlatform(context.root);
+  const { learner, theme, accountDialog, platform, adaptersReady, curriculum } = useHubPlatform(context.root);
   const header = pageHeader(context);
 
   return (
@@ -97,8 +100,8 @@ export function App({ context }: { context: PageContext }) {
         ]
       }}
     >
-      <CourseLayout currentPage={context.section} root={context.root}>
-        <PageBody context={context} adaptersReady={adaptersReady} platform={platform} />
+      <CourseLayout currentPage={context.section} root={context.root} pkg={curriculum.package}>
+        <PageBody context={context} adaptersReady={adaptersReady} platform={platform} pkg={curriculum.package} />
       </CourseLayout>
     </HubShell>
   );

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { activityFromPackage, catalogFromPackage, homeWeeksFromPackage, isWeekAvailable, weekPageFromPackage } from "./from-package";
+import { activityFromPackage, catalogFromPackage, homeWeeksFromPackage, isWeekAvailable, overlayLiveWeekMetadata, weekPageFromPackage } from "./from-package";
 import { applyTLevelCurriculum } from "./apply-runtime";
 import pkg from "../../content/tlevel-software-development/package.json";
 
@@ -72,5 +72,38 @@ describe("T Level package hydration", () => {
     expect(week1?.sessions[0].activities[0].id).toBe("week-1-lesson-1-retrieval");
     expect(week1?.week.status).toBe("available");
     expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("planned");
+  });
+
+  it("overlays live week status by id, then by teachingWeek", () => {
+    const byId = overlayLiveWeekMetadata(pkg, {
+      weeks: [{ id: "week-2", metadata: { teachingWeek: 2, status: "available" } }]
+    });
+    expect(homeWeeksFromPackage(byId)[1].openable).toBe(true);
+    expect(homeWeeksFromPackage(byId)[1].status).toBe("available");
+
+    const byTeachingWeek = overlayLiveWeekMetadata(pkg, {
+      weeks: [{ id: "posted-week-two", metadata: { teachingWeek: 2, status: "available" } }]
+    });
+    expect(homeWeeksFromPackage(byTeachingWeek)[1].id).toBe("week-2");
+    expect(homeWeeksFromPackage(byTeachingWeek)[1].openable).toBe(true);
+
+    const idWins = overlayLiveWeekMetadata(pkg, {
+      weeks: [
+        { id: "week-2", metadata: { teachingWeek: 2, status: "archived" } },
+        { id: "other-week-2", metadata: { teachingWeek: 2, status: "available" } }
+      ]
+    });
+    expect(homeWeeksFromPackage(idWins)[1].status).toBe("archived");
+    expect(homeWeeksFromPackage(idWins)[1].openable).toBe(false);
+
+    const bundledAvailable = structuredClone(pkg);
+    const weekTwo = bundledAvailable.weeks.find((week) => week.id === "week-2");
+    if (!weekTwo?.metadata) throw new Error("missing week-2");
+    weekTwo.metadata.status = "available";
+    const livePlanned = overlayLiveWeekMetadata(bundledAvailable, {
+      weeks: [{ id: "week-2", metadata: { teachingWeek: 2, status: "planned" } }]
+    });
+    expect(homeWeeksFromPackage(livePlanned)[1].openable).toBe(false);
+    expect(homeWeeksFromPackage(livePlanned)[1].status).toBe("planned");
   });
 });

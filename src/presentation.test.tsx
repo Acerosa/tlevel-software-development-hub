@@ -1,5 +1,6 @@
 import { CompletionModal, InteractiveActivity, PracticeProgressPanel } from "@learning-platform/ui";
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { useEffect, useState, type ReactNode } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 import pkg from "../content/tlevel-software-development/package.json";
 import { CourseSidebar } from "./components/CourseSidebar";
@@ -22,6 +23,35 @@ function withWeekStatus(source: ContentPackage, updates: Record<string, string>)
     if (updates[week.id] && week.metadata) week.metadata.status = updates[week.id];
   }
   return clone;
+}
+
+function liveWeekByTeachingWeek(teachingWeek: number, status: string): ContentPackage {
+  return {
+    weeks: [{
+      id: `posted-week-${teachingWeek}`,
+      metadata: { teachingWeek, status, weekCommencing: "2026-09-07" }
+    }]
+  } as ContentPackage;
+}
+
+function DeferredCurriculum({
+  live,
+  children
+}: {
+  live: ContentPackage;
+  children: (pkg: ContentPackage | null) => ReactNode;
+}) {
+  const [pkg, setPkg] = useState<ContentPackage | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    void Promise.resolve(live).then((next) => {
+      if (!cancelled) setPkg(next);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [live]);
+  return <>{children(pkg)}</>;
 }
 
 function expectReactTextBlock(root: HTMLElement, blockType: "short-response" | "reflection") {
@@ -60,13 +90,74 @@ describe("T Level presentation", () => {
     expect(screen.queryByRole("link", { name: "Open Week 22" })).toBeNull();
   });
 
+  it("unlocks Week 2 on home when live metadata matches by teachingWeek", () => {
+    render(<HomePage root="." pkg={liveWeekByTeachingWeek(2, "available")} />);
+    expect(screen.getByRole("link", { name: "Open Week 2" }).getAttribute("href")).toBe("./week-2/");
+  });
+
+  it("updates home after an async loadLatest package lands in React state", async () => {
+    render(
+      <DeferredCurriculum live={withWeekStatus(content, { "week-2": "available" })}>
+        {(pkg) => <HomePage root="." pkg={pkg} />}
+      </DeferredCurriculum>
+    );
+    expect(screen.queryByRole("link", { name: "Open Week 2" })).toBeNull();
+    expect(await screen.findByRole("link", { name: "Open Week 2" })).toBeTruthy();
+  });
+
+  it("keeps bundled home weeks when a thin live package only overlays status", () => {
+    const thin = {
+      ...withWeekStatus(content, { "week-2": "available" }),
+      sessions: [],
+      activities: [],
+      weeks: withWeekStatus(content, { "week-2": "available" }).weeks?.map((week) => ({
+        ...week,
+        relationships: { ...(week.relationships || {}), sessions: [] }
+      }))
+    } as ContentPackage;
+    render(<HomePage root="." pkg={thin} />);
+    expect(screen.getByRole("link", { name: "Open Week 1" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Open Week 2" })).toBeTruthy();
+    expect(screen.getAllByText(/Week \d+/).length).toBeGreaterThan(2);
+  });
+
   it("marks the current course section instead of hard-coding Foundations", () => {
-    const { rerender } = render(<CourseSidebar currentPage="week-2" root=".." />);
+    const { rerender } = render(<CourseSidebar currentPage="week-1" root=".." />);
     const nav = () => screen.getByRole("navigation", { name: "Course sections" });
-    expect(within(nav()).getByRole("link", { name: /^Week 2(?!\d)/ }).getAttribute("aria-current")).toBe("page");
-    expect(within(nav()).getByText("Current").closest("a")?.textContent).toMatch(/Week 2/);
+    expect(within(nav()).getByRole("link", { name: /^Week 1(?!\d)/ }).getAttribute("aria-current")).toBe("page");
+    expect(within(nav()).getByText("Current").closest("a")?.textContent).toMatch(/Week 1/);
     rerender(<CourseSidebar currentPage="foundations" root=".." />);
     expect(within(nav()).getByRole("link", { name: /Foundations/ }).getAttribute("aria-current")).toBe("page");
+  });
+
+  it("does not treat locked weeks as open links in the sidebar", () => {
+    render(<CourseSidebar currentPage="home" root=".." pkg={content} />);
+    const nav = screen.getByRole("navigation", { name: "Course sections" });
+    expect(within(nav).getByRole("link", { name: /^Week 1(?!\d)/ })).toBeTruthy();
+    expect(within(nav).queryByRole("link", { name: /^Week 2(?!\d)/ })).toBeNull();
+    expect(within(nav).getByText(/^Week 2$/)).toBeTruthy();
+    expect(within(nav).getAllByText("Coming soon").length).toBeGreaterThan(0);
+  });
+
+  it("unlocks Week 2 in the sidebar when live status is available by id or teachingWeek", () => {
+    const { rerender } = render(
+      <CourseSidebar currentPage="home" root=".." pkg={withWeekStatus(content, { "week-2": "available" })} />
+    );
+    const nav = () => screen.getByRole("navigation", { name: "Course sections" });
+    expect(within(nav()).getByRole("link", { name: /^Week 2(?!\d)/ }).getAttribute("href")).toBe("../week-2/");
+    rerender(<CourseSidebar currentPage="home" root=".." pkg={liveWeekByTeachingWeek(2, "available")} />);
+    expect(within(nav()).getByRole("link", { name: /^Week 2(?!\d)/ })).toBeTruthy();
+  });
+
+  it("updates the sidebar after an async loadLatest package lands in React state", async () => {
+    render(
+      <DeferredCurriculum live={withWeekStatus(content, { "week-2": "available" })}>
+        {(pkg) => <CourseSidebar currentPage="home" root=".." pkg={pkg} />}
+      </DeferredCurriculum>
+    );
+    const nav = () => screen.getByRole("navigation", { name: "Course sections" });
+    expect(within(nav()).queryByRole("link", { name: /^Week 2(?!\d)/ })).toBeNull();
+    expect(await screen.findByRole("link", { name: /^Week 2(?!\d)/ })).toBeTruthy();
   });
 
   it("builds nested breadcrumbs for Foundations activities", () => {
@@ -143,6 +234,27 @@ describe("T Level presentation", () => {
     expect(classify.querySelector("[data-lp-sort-board]")).toBeNull();
     expect(within(classify).getByRole("button", { name: "Check types" })).toBeTruthy();
     expectReactTextBlock(written, "short-response");
+  });
+
+  it("unlocks Week 2 activities when live metadata matches by teachingWeek", () => {
+    const { container } = render(
+      <WeekPage weekId="week-2" root=".." pkg={liveWeekByTeachingWeek(2, "available")} />
+    );
+    expect(container.querySelector("[data-lp-activity='week-2-lesson-1-retrieval']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-week-locked]")).toBeNull();
+  });
+
+  it("keeps Week 2 locked when a live package with catalogue blocks still marks it planned", () => {
+    const { container } = render(<WeekPage weekId="week-2" root=".." pkg={content} />);
+    expect(screen.getByRole("heading", { name: "Coming soon" })).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity]")).toBeNull();
+  });
+
+  it("updates a week page after an async loadLatest package marks it available", async () => {
+    const { rerender } = render(<WeekPage weekId="week-2" root=".." pkg={null} />);
+    expect(screen.getByRole("heading", { name: "Coming soon" })).toBeTruthy();
+    rerender(<WeekPage weekId="week-2" root=".." pkg={withWeekStatus(content, { "week-2": "available" })} />);
+    expect(await screen.findByRole("heading", { name: /Lesson 1:/i })).toBeTruthy();
   });
 
   it("renders Week 3 single-choice, classification and short-response inline", () => {
