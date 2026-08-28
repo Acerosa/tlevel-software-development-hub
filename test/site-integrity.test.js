@@ -56,12 +56,19 @@ test("all GitHub Pages routes are Vite shells that mount the React hub", functio
     assert.match(html, /src\/main\.tsx/);
     assert.match(html, /theme-bootstrap\.js\?v=2/);
     assert.ok(html.indexOf("theme-bootstrap.js") < html.indexOf('type="module"'));
-    assert.doesNotMatch(html, /learning-platform-core\.iife\.js/);
-    assert.doesNotMatch(html, /cdn\.jsdelivr\.net/);
+    assert.doesNotMatch(html, /js\/core\/navigation\.js/);
+    assert.doesNotMatch(html, /data-course-navigation/);
+    assert.doesNotMatch(html, /data-site-header/);
   });
   const main = read("src/main.tsx");
   assert.match(main, /@learning-platform\/core\/theme\.css/);
   assert.match(main, /from "\.\/App"/);
+});
+
+test("legacy js/core/navigation.js is not loaded by deployed Pages shells", function () {
+  assert.match(read("js/core/navigation.js"), /week-1[\s\S]*week-2[\s\S]*week-3/);
+  assert.doesNotMatch(read("vite.config.ts"), /navigation\.js/);
+  assert.doesNotMatch(read("src/main.tsx"), /navigation\.js/);
 });
 
 test("existing routes, page content and local navigation targets remain available", function () {

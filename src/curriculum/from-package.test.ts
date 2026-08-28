@@ -95,5 +95,15 @@ describe("T Level package hydration", () => {
     });
     expect(homeWeeksFromPackage(idWins)[1].status).toBe("archived");
     expect(homeWeeksFromPackage(idWins)[1].openable).toBe(false);
+
+    const bundledAvailable = structuredClone(pkg);
+    const weekTwo = bundledAvailable.weeks.find((week) => week.id === "week-2");
+    if (!weekTwo?.metadata) throw new Error("missing week-2");
+    weekTwo.metadata.status = "available";
+    const livePlanned = overlayLiveWeekMetadata(bundledAvailable, {
+      weeks: [{ id: "week-2", metadata: { teachingWeek: 2, status: "planned" } }]
+    });
+    expect(homeWeeksFromPackage(livePlanned)[1].openable).toBe(false);
+    expect(homeWeeksFromPackage(livePlanned)[1].status).toBe("planned");
   });
 });
