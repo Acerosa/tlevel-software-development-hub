@@ -1,8 +1,7 @@
 import { Callout, StatusBadge } from "@learning-platform/ui";
 import bundledPackage from "../../content/tlevel-software-development/package.json";
 import {
-  homeWeeksFromPackage,
-  overlayLiveWeekMetadata,
+  weeksFromPublication,
   type ContentPackage
 } from "../curriculum/from-package";
 import { createSitePath } from "../paths";
@@ -19,8 +18,7 @@ function lockedWeekLabel(week: { status: string; weekCommencingLabel: string }) 
 }
 
 export function HomePage({ root, pkg }: { root: string; pkg?: ContentPackage | null }) {
-  const content = overlayLiveWeekMetadata(bundledPackage as ContentPackage, pkg);
-  const weeks = homeWeeksFromPackage(content);
+  const weeks = weeksFromPublication(bundledPackage as ContentPackage, pkg);
 
   return (
     <div className="study-stack">

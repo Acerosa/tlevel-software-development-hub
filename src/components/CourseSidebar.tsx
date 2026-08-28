@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 import bundledPackage from "../../content/tlevel-software-development/package.json";
 import { APP_CONFIG } from "../config";
 import {
-  homeWeeksFromPackage,
-  overlayLiveWeekMetadata,
+  weeksFromPublication,
   type ContentPackage
 } from "../curriculum/from-package";
 import { createSitePath, navigationItems } from "../paths";
@@ -24,16 +23,16 @@ type SidebarItem = {
 
 const COURSE_SECTION_IDS = APP_CONFIG.courseSectionIds as readonly string[];
 
-function sidebarItems(root: string, pkg?: ContentPackage | null): SidebarItem[] {
-  const weeks = homeWeeksFromPackage(
-    overlayLiveWeekMetadata(bundledPackage as ContentPackage, pkg)
-  ).map((week) => ({
-    id: week.id,
-    label: week.label,
-    path: week.path,
-    openable: week.openable,
-    status: week.status
-  }));
+function sidebarItems(root: string, currentPage: string, pkg?: ContentPackage | null): SidebarItem[] {
+  const weeks = weeksFromPublication(bundledPackage as ContentPackage, pkg)
+    .filter((week) => week.status !== "archived" || week.id === currentPage)
+    .map((week) => ({
+      id: week.id,
+      label: week.label,
+      path: week.path,
+      openable: week.openable,
+      status: week.status
+    }));
   const staticSections = APP_CONFIG.navigation.filter((item) => COURSE_SECTION_IDS.includes(item.id));
   const home = staticSections.filter((item) => item.id === "home");
   const rest = staticSections.filter((item) => item.id !== "home");
@@ -48,7 +47,7 @@ function sidebarItems(root: string, pkg?: ContentPackage | null): SidebarItem[] 
 }
 
 export function CourseSidebar({ currentPage, root, pkg }: CourseSidebarProps) {
-  const sections = sidebarItems(root, pkg);
+  const sections = sidebarItems(root, currentPage, pkg);
 
   return (
     <aside className="course-navigation" aria-labelledby="course-navigation-title">

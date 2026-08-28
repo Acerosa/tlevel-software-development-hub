@@ -144,12 +144,12 @@ export function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPacka
       const liveMeta = (week.id ? liveById.get(week.id) : undefined)
         || (n != null ? liveByTeachingWeek.get(n) : undefined);
       if (!liveMeta) return week;
-      const status = String(liveMeta.status || "").trim();
+      const liveStatus = liveMeta.status == null ? "" : String(liveMeta.status).trim();
       return {
         ...week,
         metadata: {
           ...week.metadata,
-          status: status || week.metadata?.status,
+          status: liveStatus || week.metadata?.status,
           weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
         }
       };
@@ -198,6 +198,14 @@ export function homeWeeksFromPackage(pkg: ContentPackage): HomeWeekCard[] {
     ...week,
     current: currentWeek != null && week.teachingWeek === currentWeek
   }));
+}
+
+/** Bundled week structure with live publication status when a published package is present. */
+export function weeksFromPublication(
+  bundled: ContentPackage,
+  live?: ContentPackage | null
+): HomeWeekCard[] {
+  return homeWeeksFromPackage(overlayLiveWeekMetadata(bundled, live));
 }
 
 export function weekPageFromPackage(pkg: ContentPackage, weekId: string): WeekPageModel | null {
