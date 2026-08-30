@@ -61,17 +61,22 @@
       payloadType === "array" ||
       (payload && payloadType === "object");
     var valid = response && typeof response.questionId === "string" &&
-      response.questionId.trim() && validPayload &&
-      typeof response.correct === "boolean" &&
-      Number.isFinite(response.score);
+      response.questionId.trim() && validPayload;
     if (!valid) {
       throw new SupabaseLearningError("VALIDATION_FAILED");
     }
+    if (payload && typeof payload === "object" && !Array.isArray(payload)) {
+      var optionId = payload.optionId || payload.selectedOptionId || payload.option_id;
+      var categoryId = payload.categoryId || payload.category || payload.category_id;
+      if ((optionId && !payload.optionId) || (categoryId && !payload.categoryId)) {
+        payload = Object.assign({}, payload);
+        if (optionId && !payload.optionId) payload.optionId = optionId;
+        if (categoryId && !payload.categoryId) payload.categoryId = categoryId;
+      }
+    }
     return {
       question_id: response.questionId.trim(),
-      response_payload: payload,
-      awarded_score: response.score,
-      is_correct: response.correct
+      response_payload: payload
     };
   }
 
