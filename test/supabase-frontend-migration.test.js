@@ -99,7 +99,7 @@ test("the submission bridge preserves required evidence and programming language
     ["3", ["a", "b"], { source: "print(3)" }]
   );
   assert.equal(response.attemptId, "programming-synthetic-1");
-  assert.doesNotMatch(JSON.stringify(calls[0].payload), /student_id|learner_id|enrolment_id|assignment_id|attempt_number|total_score|service_role/i);
+  assert.doesNotMatch(JSON.stringify(calls[0].payload), /student_id|learner_id|enrolment_id|assignment_id|attempt_number|total_score|service_role|awarded_score|is_correct/i);
 });
 
 test("the submission bridge refuses anonymous and unsupported activity submissions", async function () {
