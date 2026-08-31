@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: Acerosa/learning-platform-core
-          ref: main
+          ref: v0.2.2
           path: learning-platform-core
 
       - name: Check out reviewed Content
