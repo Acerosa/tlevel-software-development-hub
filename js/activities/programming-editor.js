@@ -243,8 +243,7 @@
           return;
         }
         if (action === "reset") {
-          reset(question, panel);
-          panel.querySelector("[data-programming-feedback]").innerHTML = "";
+          reset(question, panel);setAuthoredHtml(panel.querySelector("[data-programming-feedback]"), "");
           if (settings.onChange) {
             settings.onChange();
           }

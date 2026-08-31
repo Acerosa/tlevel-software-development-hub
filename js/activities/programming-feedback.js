@@ -22,8 +22,7 @@
   function renderInto(container, marked) {
     if (!container) {
       return;
-    }
-    container.innerHTML = render(marked, { preview: true });
+    }setAuthoredHtml(container, render(marked, { preview: true }));
     var feedback = container.querySelector("[data-programming-preview-feedback]");
     if (feedback) {
       feedback.focus();

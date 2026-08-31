@@ -1,5 +1,6 @@
 import "./bind-core";
 import "@learning-platform/content";
+import "../../content/engine/version.js";
 import "../../content/engine/state.js";
 import "../../content/engine/publication.js";
 import "../../content/engine/submit.js";

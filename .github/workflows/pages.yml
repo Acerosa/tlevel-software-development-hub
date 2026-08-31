@@ -30,21 +30,21 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: Acerosa/learning-platform-core
-          ref: v0.2.2
+          ref: v0.2.3
           path: learning-platform-core
 
       - name: Check out reviewed Content
         uses: actions/checkout@v7
         with:
           repository: Acerosa/learning-platform-content
-          ref: v0.1.0
+          ref: v0.1.1
           path: learning-platform-content
 
       - name: Check out reviewed UI
         uses: actions/checkout@v7
         with:
           repository: Acerosa/Acerosa-learning-platform-ui
-          ref: v0.1.4
+          ref: v0.1.7
           path: learning-platform-ui
 
       - name: Set up Node.js
@@ -52,7 +52,13 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: tlevel-software-development-hub/package-lock.json
+          cache-dependency-path: |
+            tlevel-software-development-hub/package-lock.json
+            learning-platform-ui/package-lock.json
+
+      - name: Install shared UI peer dependencies
+        working-directory: learning-platform-ui
+        run: npm ci
 
       - name: Install, test and build
         working-directory: tlevel-software-development-hub

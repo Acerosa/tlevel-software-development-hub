@@ -45,10 +45,7 @@
     })[0];
     var help = config.navigation.filter(function (item) {
       return item.id === "help";
-    })[0];
-
-    headerMount.innerHTML =
-      '<header class="site-header">' +
+    })[0];setAuthoredHtml(headerMount, '<header class="site-header">' +
       '<div class="site-header__bar page-width">' +
       '<a class="brand" href="' + utils.createSitePath(root, "") + '">' +
       '<span class="brand__name">Software Development Hub</span>' +
@@ -72,7 +69,7 @@
       "</div>" +
       '<nav class="site-nav" id="global-navigation" aria-label="Main navigation">' +
       '<div class="page-width"><ul class="site-nav__list">' + mobileLinks + "</ul></div>" +
-      "</nav></header>";
+      "</nav></header>");
 
     initialiseMenu(headerMount);
     if (window.ThemeService) {
@@ -114,12 +111,10 @@
       })
       .join("");
 
-    mounts.forEach(function (mount) {
-      mount.innerHTML =
-        '<aside class="course-navigation" aria-labelledby="course-navigation-title">' +
+    mounts.forEach(function (mount) {setAuthoredHtml(mount, '<aside class="course-navigation" aria-labelledby="course-navigation-title">' +
         '<h2 class="course-navigation__title" id="course-navigation-title">Course sections</h2>' +
         '<nav aria-label="Course sections"><ul class="course-navigation__list">' +
-        links + "</ul></nav></aside>";
+        links + "</ul></nav></aside>");
     });
   }
 

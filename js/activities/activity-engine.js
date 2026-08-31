@@ -262,16 +262,14 @@
     var submitted = attempt.submittedSections.indexOf(section.id) !== -1;
     var questions = section.questions.map(function (question, index) {
       return renderQuestion(question, index + 1, submitted);
-    }).join("");
-
-    mount.innerHTML = '<div class="activity-shell">' + languageControl() + progressHtml() +
+    }).join("");setAuthoredHtml(mount, '<div class="activity-shell">' + languageControl() + progressHtml() +
       '<section class="activity-section" aria-labelledby="section-heading">' +
       '<header class="activity-section__header"><p class="activity-section__eyebrow">Section ' +
       (currentIndex + 1) + " of " + activity.sections.length + '</p><h2 id="section-heading" tabindex="-1">' +
       escapeHtml(section.title) + "</h2><p>" + escapeHtml(section.intro) + "</p></header>" +
       (submitted ? sectionSummary(section) : '<div class="activity-error-summary" data-activity-error tabindex="-1" hidden></div>') +
       '<form data-activity-form novalidate><div class="question-list">' + questions + "</div>" +
-      sectionActions(section, submitted) + "</form></section></div>";
+      sectionActions(section, submitted) + "</form></section></div>");
     bindEvents();
   }
 
@@ -303,9 +301,7 @@
     var languageSummary = result.programmingLanguageLabel
       ? '<p class="result-language"><strong>Selected language:</strong> ' +
         escapeHtml(result.programmingLanguageLabel) + "</p>"
-      : "";
-
-    mount.innerHTML = languageControl() + '<section class="activity-results" aria-labelledby="results-heading">' +
+      : "";setAuthoredHtml(mount, languageControl() + '<section class="activity-results" aria-labelledby="results-heading">' +
       '<h2 id="results-heading" tabindex="-1">Activity result</h2>' +
       '<p>' + escapeHtml(activity.resultIntro || "Use this summary to decide what to review next.") + "</p>" + languageSummary +
       '<div class="result-score"><span class="result-score__value">' + result.percentage + '%</span><span>' +
@@ -318,7 +314,7 @@
       '<p class="activity-note">Secure, Developing and Needs Review are learning indicators for this activity. They are not Pearson grades.</p>' +
       submissionStatusHtml() +
       '<div class="activity-actions"><button class="primary-button" type="button" data-action="restart-activity">Retry the full activity</button>' +
-      '<a class="secondary-button" href="../">Back to Foundations</a></div></section>';
+      '<a class="secondary-button" href="../">Back to Foundations</a></div></section>');
     bindEvents();
     focusHeading("#results-heading");
   }
@@ -360,8 +356,7 @@
     if (!status) {
       return;
     }
-    var wrapper = document.createElement("div");
-    wrapper.innerHTML = submissionStatusHtml();
+    var wrapper = document.createElement("div");setAuthoredHtml(wrapper, submissionStatusHtml());
     status.replaceWith(wrapper.firstElementChild);
     bindSubmissionControl();
   }
@@ -694,8 +689,7 @@
         ? languageService.resolveActivity(baseActivity, languageId)
         : baseActivity;
       return true;
-    } catch (error) {
-      mount.innerHTML = '<p class="activity-load-error" role="alert">This language version could not be loaded. Please return to Foundations and try again.</p>';
+    } catch (error) {setAuthoredHtml(mount, '<p class="activity-load-error" role="alert">This language version could not be loaded. Please return to Foundations and try again.</p>');
       return false;
     }
   }
@@ -706,8 +700,7 @@
         escapeHtml(language.id) + '" ' + (selectedLanguage === language.id ? "checked" : "") +
         '><span><strong>' + escapeHtml(language.label) + '</strong><small>Use ' +
         escapeHtml(language.label) + " syntax throughout the programming sections.</small></span></label>";
-    }).join("");
-    mount.innerHTML = '<section class="language-selection" aria-labelledby="language-selection-heading">' +
+    }).join("");setAuthoredHtml(mount, '<section class="language-selection" aria-labelledby="language-selection-heading">' +
       '<p class="activity-section__eyebrow">Programming Diagnostic</p><h2 id="language-selection-heading" tabindex="-1">Choose your programming language</h2>' +
       '<p>Choose the language you are most comfortable using. The programming concepts are the same, but code examples and exercises will use your selected language.</p>' +
       '<form data-language-form><fieldset><legend class="visually-hidden">Programming language</legend><div class="language-options">' +
@@ -715,7 +708,7 @@
       '<div class="activity-actions"><button class="primary-button" type="submit">' +
       (selectedLanguage ? "Use selected language" : "Start diagnostic") + "</button>" +
       (canCancel ? '<button class="secondary-button" type="button" data-cancel-language>Cancel</button>' : "") +
-      "</div></fieldset></form></section>";
+      "</div></fieldset></form></section>");
 
     mount.querySelector("[data-language-form]").addEventListener("submit", function (event) {
       event.preventDefault();
@@ -778,8 +771,7 @@
     if (languageService && baseActivity.requiresProgrammingLanguage) {
       errors = errors.concat(languageService.validateActivity(baseActivity));
     }
-    if (errors.length) {
-      mount.innerHTML = '<p class="activity-load-error" role="alert">This activity could not be loaded. Please return to Foundations and try again.</p>';
+    if (errors.length) {setAuthoredHtml(mount, '<p class="activity-load-error" role="alert">This activity could not be loaded. Please return to Foundations and try again.</p>');
       return;
     }
 

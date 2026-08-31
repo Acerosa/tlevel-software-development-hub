@@ -20,9 +20,7 @@
     var mount = document.querySelector("[data-foundations-catalog]");
     if (!mount) {
       return;
-    }
-
-    mount.innerHTML = catalog.map(function (activity) {
+    }setAuthoredHtml(mount, catalog.map(function (activity) {
       var summary = remoteSummary(activity) || state.getSummary(activity.id, activity.version);
       var topics = activity.topics.map(function (topic) {
         return "<li>" + escapeHtml(topic) + "</li>";
@@ -43,7 +41,7 @@
         escapeHtml(summary.action) + "</a>" +
         "</article>"
       );
-    }).join("");
+    }).join(""));
   }
 
   function remoteSummary(activity) {

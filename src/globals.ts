@@ -1,5 +1,6 @@
 import { APP_CONFIG } from "./config";
 import { SUPABASE_CONFIG } from "./supabase-config";
+import { setAuthoredHtml } from "@learning-platform/core";
 
 declare global {
   interface Window {
@@ -33,6 +34,7 @@ declare global {
         assignments: Array<{ activity_key: string; activity_version: string }>;
       }>;
     };
+    setAuthoredHtml?: typeof setAuthoredHtml;
   }
 }
 
@@ -56,3 +58,4 @@ export type FoundationActivityProgress = {
 
 window.APP_CONFIG = APP_CONFIG;
 window.SUPABASE_CONFIG = SUPABASE_CONFIG;
+window.setAuthoredHtml = setAuthoredHtml;

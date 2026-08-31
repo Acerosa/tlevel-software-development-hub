@@ -5,6 +5,7 @@ import {
   LoadingState,
   PracticeProgressPanel,
   WeekView,
+  AuthoredHtml,
   questionIdFor,
   type ActivityBlockDocument,
   type ActivityDocument,
@@ -213,7 +214,7 @@ export function WeekPage({
               activity={activity}
               initialResponses={draftResponsesFor(activity)}
               renderFallback={(block) => (
-                <div dangerouslySetInnerHTML={{ __html: engine.renderBlock(block) }} />
+                <AuthoredHtml html={engine.renderBlock(block)} />
               )}
               onResult={(result: ActivityResult, block: ActivityBlockDocument) => {
                 const article = mountRef.current?.querySelector(`[data-lp-activity="${activity.id}"]`);
@@ -234,7 +235,7 @@ export function WeekPage({
     }));
   }, [content, model, recordPracticeResult]);
 
-  // Re-bind after every commit. React can rewrite dangerouslySetInnerHTML nodes on a
+  // Re-bind after every commit. React can rewrite authored HTML nodes on a
   // later render and wipe data-lp-bound / listeners without changing sessions identity.
   useLayoutEffect(() => {
     const rootEl = mountRef.current;

@@ -86,7 +86,7 @@
     var responses = (draft && draft.responses) || {};
     return {
       activityId: activity.id,
-      version: activity.version || "0.1.0",
+      version: ns.resolvedActivityVersion(activity),
       responses: Object.keys(responses).map(function (questionId) {
         var block = (activity.blocks || []).filter(function (item) {
           return ((item.content && item.content.questionId) || item.id) === questionId;
@@ -105,7 +105,7 @@
   function responseFingerprint(activity, draft) {
     return JSON.stringify({
       activityId: activity && activity.id,
-      activityVersion: (activity && activity.version) || "0.1.0",
+      activityVersion: ns.resolvedActivityVersion(activity),
       responses: (draft && draft.responses) || {}
     });
   }
@@ -143,6 +143,11 @@
       result.reason = LOCAL_KEEP_DRAFT;
       return Promise.resolve(result);
     }
+    if (!ns.resolvedActivityVersion(activity)) {
+      result.failed = true;
+      result.reason = "This activity cannot be saved because it has no published version.";
+      return Promise.resolve(result);
+    }
     if (
       draft
       && draft.submission
@@ -160,7 +165,7 @@
     try {
       var payload = {
         activityKey: activity.id,
-        activityVersion: activity.version || "0.1.0",
+        activityVersion: ns.resolvedActivityVersion(activity),
         responses: responses,
         sourcePage: options && options.sourcePage,
         startedAt: draft.startedAt,
