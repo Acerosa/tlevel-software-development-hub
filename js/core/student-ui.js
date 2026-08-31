@@ -10,16 +10,13 @@
 
   function renderAccount(student) {
     document.querySelectorAll("[data-student-account]").forEach(function (mount) {
-      if (!student) {
-        mount.innerHTML = '<button class="student-account__button" type="button" data-student-sign-in>Student sign in</button>';
+      if (!student) {setAuthoredHtml(mount, '<button class="student-account__button" type="button" data-student-sign-in>Student sign in</button>');
         mount.querySelector("[data-student-sign-in]").addEventListener("click", function (event) {
           accountDialog.open(event.currentTarget);
         });
         return;
-      }
-
-      mount.innerHTML = '<span class="student-account__name" data-student-name></span>' +
-        '<button class="student-account__button" type="button" data-student-sign-out>Sign out</button>';
+      }setAuthoredHtml(mount, '<span class="student-account__name" data-student-name></span>' +
+        '<button class="student-account__button" type="button" data-student-sign-out>Sign out</button>');
       mount.querySelector("[data-student-name]").textContent = student.firstName;
       mount.querySelector("[data-student-sign-out]").addEventListener("click", function () {
         studentContext.signOut().then(function () {

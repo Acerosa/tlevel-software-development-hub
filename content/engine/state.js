@@ -61,7 +61,7 @@
   function emptyDraft(activity) {
     return {
       activityId: activity.id,
-      activityVersion: activity.version || "0.1.0",
+      activityVersion: ns.resolvedActivityVersion(activity),
       startedAt: new Date().toISOString(),
       completedAt: null,
       responses: {},
@@ -102,7 +102,7 @@
     function load() {
       var stored = read();
       if (!stored || stored.activityId !== activity.id) return emptyDraft(activity);
-      if (stored.activityVersion !== (activity.version || "0.1.0")) return emptyDraft(activity);
+      if (stored.activityVersion !== ns.resolvedActivityVersion(activity)) return emptyDraft(activity);
       return stored;
     }
 
