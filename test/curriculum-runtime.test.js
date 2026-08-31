@@ -111,7 +111,7 @@ test("CI pins the reviewed UI catalogue used by week pages", () => {
   const workflow = read(".github/workflows/pages.yml");
   assert.match(workflow, /Acerosa-learning-platform-ui[\s\S]*ref: v0\.1\.7/);
   assert.match(workflow, /learning-platform-core[\s\S]*ref: v0\.2\.3/);
-  assert.match(workflow, /learning-platform-content[\s\S]*ref: v0\.1\.1/);
+  assert.match(workflow, /learning-platform-content[\s\S]*ref: v0\.1\.2/);
 });
 
 test("the live hub loads teaching content through platform.curriculum.loadLatest", () => {

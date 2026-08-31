@@ -45,7 +45,8 @@ The curriculum routes remain public. A signed-in, onboarded learner can submit
 completed Foundations attempts through `api.submit_attempt`; the backend derives
 the authenticated learner and assignment.
 
-This hub conforms to Hub Security Baseline v1. See `learning-platform-core`
+This hub conforms to Hub Security Baseline v1. Learner bundles exclude
+authoritative marking data. See `learning-platform-core`
 `docs/hub-security-baseline-v1.md`.
 
 ## Static Core dependency

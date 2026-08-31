@@ -1,4 +1,5 @@
 import react from "@vitejs/plugin-react";
+import { learnerSafeContentPlugin } from "@learning-platform/content/learner-safe";
 import { cpSync, mkdirSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { defineConfig } from "vite";
@@ -38,7 +39,7 @@ function copyStaticAssets() {
 
 export default defineConfig({
   base: "./",
-  plugins: [react(), copyStaticAssets()],
+  plugins: [react(), learnerSafeContentPlugin(), copyStaticAssets()],
   build: {
     sourcemap: true,
     rollupOptions: {
