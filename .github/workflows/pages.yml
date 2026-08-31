@@ -52,7 +52,13 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: tlevel-software-development-hub/package-lock.json
+          cache-dependency-path: |
+            tlevel-software-development-hub/package-lock.json
+            learning-platform-ui/package-lock.json
+
+      - name: Install shared UI peer dependencies
+        working-directory: learning-platform-ui
+        run: npm ci
 
       - name: Install, test and build
         working-directory: tlevel-software-development-hub
