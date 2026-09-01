@@ -6,11 +6,16 @@ import {
   PracticeProgressPanel,
   WeekView,
   AuthoredHtml,
+  aggregatePracticeProgress,
+  applyPracticeResult,
+  emptyPracticeProgress,
+  isCatalogueReactType,
+  isPracticeCompletionCue,
   questionIdFor,
   type ActivityBlockDocument,
   type ActivityDocument,
   type ActivityResult,
-  type ActivityScore
+  type PracticeProgressAggregate
 } from "@learning-platform/ui";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import bundledPackage from "../../content/tlevel-software-development/package.json";
@@ -54,11 +59,30 @@ function isScorableReactBlock(block: ActivityBlockDocument): boolean {
   return type === "single-choice" || type === "option-cards" || type === "classification";
 }
 
+function isCompletableReactBlock(block: ActivityBlockDocument): boolean {
+  return isCatalogueReactType(block.type);
+}
+
 function blockScorableTotal(block: ActivityBlockDocument): number {
   const type = normaliseBlockType(block.type);
   if (type === "single-choice" || type === "option-cards") return 1;
   if (type === "classification") return ((block.content && block.content.items) || []).length;
   return 0;
+}
+
+function weekRequiredTotal(content: ContentPackage, weekId: string): number {
+  const model = weekPageFromPackage(content, weekId);
+  if (!model) return 0;
+  let total = 0;
+  for (const session of model.sessions) {
+    for (const item of session.activities) {
+      const activity = content.activities?.find((entry) => entry.id === item.id) as ActivityDocument | undefined;
+      for (const block of activity?.blocks || []) {
+        if (isCompletableReactBlock(block as ActivityBlockDocument)) total += 1;
+      }
+    }
+  }
+  return total;
 }
 
 function weekScorableTotal(content: ContentPackage, weekId: string): number {
@@ -74,16 +98,6 @@ function weekScorableTotal(content: ContentPackage, weekId: string): number {
     }
   }
   return total;
-}
-
-function sumScores(scores: Record<string, ActivityScore>): ActivityScore {
-  return Object.values(scores).reduce(
-    (total, score) => ({
-      correct: total.correct + score.correct,
-      total: total.total + score.total
-    }),
-    { correct: 0, total: 0 }
-  );
 }
 
 function draftResponsesFor(activity: ActivityDocument): Record<string, unknown> {
@@ -161,8 +175,10 @@ export function WeekPage({
 }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const dismissedRef = useRef(false);
-  const scoresRef = useRef<Record<string, ActivityScore>>({});
-  const [practiceScore, setPracticeScore] = useState<ActivityScore>({ correct: 0, total: 0 });
+  const progressRef = useRef(emptyPracticeProgress());
+  const [practice, setPractice] = useState<PracticeProgressAggregate>(
+    aggregatePracticeProgress(emptyPracticeProgress(), { requiredBlocks: 0, scorableTotal: 0 })
+  );
   const [completionOpen, setCompletionOpen] = useState(false);
   const content = packageForWeek(pkg, weekId);
   const model = useMemo(
@@ -173,30 +189,36 @@ export function WeekPage({
     () => weekScorableTotal(content, weekId),
     [content, weekId]
   );
+  const requiredTotal = useMemo(
+    () => weekRequiredTotal(content, weekId),
+    [content, weekId]
+  );
 
   useEffect(() => {
-    scoresRef.current = {};
+    progressRef.current = emptyPracticeProgress();
     dismissedRef.current = false;
-    setPracticeScore({ correct: 0, total: 0 });
+    setPractice(aggregatePracticeProgress(emptyPracticeProgress(), {
+      requiredBlocks: requiredTotal,
+      scorableTotal
+    }));
     setCompletionOpen(false);
-  }, [weekId]);
+  }, [weekId, requiredTotal, scorableTotal]);
 
   const recordPracticeResult = useCallback((result: ActivityResult, block: ActivityBlockDocument) => {
-    if (!result.completed || !result.score || result.score.total <= 0) return;
-    if (!isScorableReactBlock(block)) return;
+    if (!result.completed) return;
+    if (!isCompletableReactBlock(block) && !isScorableReactBlock(block)) return;
 
-    scoresRef.current = {
-      ...scoresRef.current,
-      [questionIdFor(block)]: result.score
-    };
-    const aggregate = sumScores(scoresRef.current);
-    setPracticeScore(aggregate);
+    progressRef.current = applyPracticeResult(progressRef.current, questionIdFor(block), result);
+    const aggregate = aggregatePracticeProgress(progressRef.current, {
+      requiredBlocks: requiredTotal,
+      scorableTotal
+    });
+    setPractice(aggregate);
 
-    const meaningful = result.score.total >= 2 || Object.keys(scoresRef.current).length >= 2;
-    if (meaningful && aggregate.total > 0 && !dismissedRef.current) {
+    if (isPracticeCompletionCue(result, aggregate) && !dismissedRef.current) {
       setCompletionOpen(true);
     }
-  }, []);
+  }, [requiredTotal, scorableTotal]);
 
   const released = isWeekAvailable(model?.week.status);
 
@@ -212,6 +234,7 @@ export function WeekPage({
           children: (
             <InteractiveActivity
               activity={activity}
+              platform={platform}
               initialResponses={draftResponsesFor(activity)}
               renderFallback={(block) => (
                 <AuthoredHtml html={engine.renderBlock(block)} />
@@ -233,7 +256,7 @@ export function WeekPage({
         };
       })
     }));
-  }, [content, model, recordPracticeResult]);
+  }, [content, model, platform, recordPracticeResult]);
 
   // Re-bind after every commit. React can rewrite authored HTML nodes on a
   // later render and wipe data-lp-bound / listeners without changing sessions identity.
@@ -266,12 +289,12 @@ export function WeekPage({
 
   const weekNumber = model.week.teachingWeek;
   const weekBadge = `Week ${weekNumber}: ${model.week.title}`;
-  const summaryScore = {
-    correct: practiceScore.correct,
-    total: Math.max(scorableTotal, practiceScore.total, 1)
-  };
-  const coverage = summaryScore.total > 0 ? practiceScore.total / summaryScore.total : 0;
-  const practiceComplete = scorableTotal > 0 && practiceScore.total >= scorableTotal;
+  const summaryScore = scorableTotal > 0 ? {
+    correct: practice.score.correct,
+    total: Math.max(scorableTotal, practice.score.total, 1)
+  } : undefined;
+  const coverage = practice.completion;
+  const practiceComplete = practice.complete;
 
   function closeCompletion() {
     dismissedRef.current = true;
@@ -320,11 +343,11 @@ export function WeekPage({
         score={summaryScore}
         progress={coverage}
         completed={practiceComplete}
-        message="Check scored activities to update. Formative practice only."
+        message="Check items to update progress. Scores update only when the server returns a mark. Formative practice only."
         defaultCollapsed
       />
       <CompletionModal
-        open={completionOpen && practiceScore.total > 0}
+        open={completionOpen && practice.completedCount > 0}
         title="Practice complete"
         badge={weekBadge}
         score={summaryScore}
