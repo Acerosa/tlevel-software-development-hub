@@ -2,7 +2,7 @@
 
 The learner hub for the Pearson T Level Digital Software Development
 Occupational Specialism. It is a **current-generation** hub in the
-Contract-First Modular Hub Architecture: Core `0.2.0` with a GitHub Pages
+Contract-First Modular Hub Architecture: Core `0.2.5` with a GitHub Pages
 Vite application and a React/`@learning-platform/ui` shell around classic
 Foundations engines.
 
@@ -18,7 +18,7 @@ progress, or platform administration.
 
 Shared platform behaviour comes from:
 
-- `learning-platform-core` 0.2.0 for Supabase Auth/session restoration, staged
+- `learning-platform-core` 0.2.5 for Supabase Auth/session restoration, staged
   learner onboarding, learner context, theme behaviour, shared account UI,
   platform state, and learner API services;
 - `learning-platform-backend` learner API contract 0.1.0 for controlled
@@ -51,9 +51,10 @@ authoritative marking data. See `learning-platform-core`
 
 ## Static Core dependency
 
-GitHub Pages serves the Vite bundle. Reviewed Core 0.2.0 is consumed as
-`@learning-platform/core` at build time. Node tests also vendor the same
-browser assets under `vendor/learning-platform-core/0.2.0/`. Provenance is
+GitHub Pages serves the Vite bundle. Reviewed Core 0.2.5 is consumed as
+`@learning-platform/core` at build time. Node tests also vendor a legacy
+browser snapshot under `vendor/learning-platform-core/0.2.0/` (test fixture
+only; production uses the CI tag). Provenance is
 recorded beside those assets. Supabase JS is pinned at the exact browser
 version supported by the integration.
 

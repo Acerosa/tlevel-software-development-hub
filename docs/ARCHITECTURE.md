@@ -5,7 +5,7 @@ Modular Hub Architecture (see `learning-platform-backend`
 `docs/architecture.md`). A React + `@learning-platform/ui` shell wraps classic
 Foundations engines. Classic activity engines are retained. Historical
 `supabase/` migrations in this repository are extraction provenance and must
-not be applied as a second backend. Declared Core compatibility is `0.2.0`.
+not be applied as a second backend. Declared Core compatibility is `0.2.5`.
 
 ## Platform role
 
@@ -32,7 +32,7 @@ Every route loads the same dependency chain:
 ```text
 hub configuration
     -> pinned Supabase JS 2.112.3
-    -> @learning-platform/core 0.2.0 (Vite) / vendored 0.2.0 IIFE (tests)
+    -> @learning-platform/core 0.2.5 (Vite) / vendored 0.2.0 IIFE (tests)
     -> platform composition
     -> thin hub compatibility adapters
     -> navigation/account UI
@@ -100,7 +100,7 @@ come from Auth and the backend.
 
 The backend submission contract 0.1.0 currently validates client formative
 `awarded_score` and `is_correct` values against the registered activity
-questions. Core 0.2.0's neutral evidence service omits those fields, so directly
+questions. Core 0.2.5's neutral evidence service omits those fields, so directly
 switching to it would fail `api.submit_attempt`.
 
 `js/core/supabase-learning-api.js` is therefore retained as the only exception.
