@@ -1,5 +1,7 @@
 # learning-platform-core 0.2.0
 
+Legacy test fixture snapshot only. Production Pages builds use Core from CI tag `v0.2.5`.
+
 These browser assets are unmodified `learning-platform-core` 0.2.0 build
 outputs that include `@learning-platform/core/curriculum-runtime`
 (`PublishedCurriculumService`). They are kept in a versioned directory so this
