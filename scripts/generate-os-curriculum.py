@@ -17,7 +17,7 @@ from week1_curriculum import WEEK_1
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.2"
+PACKAGE_VERSION = "0.4.3"
 CLIENT = "Oakfield Adult Skills Hub"
 OAKFIELD_SCENARIO = {
     "title": "Oakfield Adult Skills Hub: Client Scenario",
@@ -287,7 +287,7 @@ def expand_blocks(activity_id: str, specs: list):
 
 WEEK_1["clientScenario"] = OAKFIELD_SCENARIO
 
-# Compact SoL week definitions. Each lesson has retrieval, main and formative.
+# Compact SoL week definitions. Week 1 lessons use exercises[]; later weeks use retrieval, main and formative.
 WEEKS = [
     WEEK_1,
     {
@@ -1984,6 +1984,21 @@ def build_activity(week_n: int, lo_ids: list[str], ident: str, spec: dict):
     )
 
 
+def lesson_activity_specs(session_id: str, lesson: dict) -> list[tuple[str, dict]]:
+    exercises = lesson.get("exercises")
+    if exercises:
+        specs = []
+        for index, spec in enumerate(exercises, start=1):
+            suffix = spec.get("id") or f"ex-{index:02d}"
+            specs.append((f"{session_id}-{suffix}", spec))
+        return specs
+    return [
+        (f"{session_id}-retrieval", lesson["retrieval"]),
+        (f"{session_id}-main", lesson["main"]),
+        (f"{session_id}-formative", lesson["formative"]),
+    ]
+
+
 def build_content():
     if [spec["n"] for spec in ALL_WEEKS] != list(range(1, 23)):
         raise SystemExit(f"expected weeks 1-22, got {[spec['n'] for spec in ALL_WEEKS]}")
@@ -2002,9 +2017,8 @@ def build_content():
         lo_ids = spec["lo_ids"] + [oid for oid, _ in spec["outcomes"]]
         for index, lesson in enumerate(spec["lessons"], start=1):
             session_id = f"week-{n}-lesson-{index}"
-            retrieval_id = f"{session_id}-retrieval"
-            main_id = f"{session_id}-main"
-            formative_id = f"{session_id}-formative"
+            activity_specs = lesson_activity_specs(session_id, lesson)
+            activity_ids = [ident for ident, _ in activity_specs]
             sessions.append(
                 rec(
                     "session",
@@ -2017,12 +2031,11 @@ def build_content():
                         "defaultOpen": index == 1,
                         "status": session_release_status(n, index),
                     },
-                    {"week": f"week-{n}", "activities": [retrieval_id, main_id, formative_id]},
+                    {"week": f"week-{n}", "activities": activity_ids},
                 )
             )
-            activities.append(build_activity(n, lo_ids, retrieval_id, lesson["retrieval"]))
-            activities.append(build_activity(n, lo_ids, main_id, lesson["main"]))
-            activities.append(build_activity(n, lo_ids, formative_id, lesson["formative"]))
+            for ident, activity_spec in activity_specs:
+                activities.append(build_activity(n, lo_ids, ident, activity_spec))
         hw = spec["homework"]
         hw_session = f"week-{n}-homework"
         hw_activity = f"{hw_session}-{hw['id_suffix']}"

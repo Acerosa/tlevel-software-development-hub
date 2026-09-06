@@ -37,13 +37,14 @@ describe("T Level package hydration", () => {
     const catalog = catalogFromPackage(pkg);
     expect(catalog.every((item) => item.id.startsWith("foundations-"))).toBe(true);
     expect(catalog).toHaveLength(5);
-    expect(pkg.activities.some((item) => item.id === "week-1-lesson-1-main")).toBe(true);
-    const retrieval = pkg.activities.find((item) => item.id === "week-1-lesson-1-retrieval");
-    expect((retrieval?.blocks || []).some((block) => block.type === "single-choice")).toBe(true);
-    expect((retrieval?.blocks || []).some((block) => block.type === "classification")).toBe(true);
-    const main = pkg.activities.find((item) => item.id === "week-1-lesson-1-main");
-    expect((main?.blocks || []).some((block) => block.type === "short-response")).toBe(true);
-    expect((main?.blocks || []).some((block) => block.type === "drag-drop")).toBe(true);
+    expect(pkg.activities.some((item) => item.id === "week-1-lesson-1-ex-01")).toBe(true);
+    const first = pkg.activities.find((item) => item.id === "week-1-lesson-1-ex-01");
+    expect((first?.blocks || []).some((block) => block.type === "single-choice")).toBe(true);
+    const lesson1Ids = pkg.sessions.find((item) => item.id === "week-1-lesson-1")?.relationships?.activities || [];
+    const byId = new Map(pkg.activities.map((item) => [item.id, item]));
+    expect(lesson1Ids.some((id) => (byId.get(id)?.blocks || []).some((block) => block.type === "classification"))).toBe(true);
+    expect(lesson1Ids.some((id) => (byId.get(id)?.blocks || []).some((block) => block.type === "short-response"))).toBe(true);
+    expect(lesson1Ids.some((id) => (byId.get(id)?.blocks || []).some((block) => block.type === "drag-drop"))).toBe(true);
   });
 
   it("exposes Weeks 1 to 22 for the learner home and week pages", () => {
@@ -73,7 +74,9 @@ describe("T Level package hydration", () => {
       "week-1-lesson-3",
       "week-1-homework"
     ]);
-    expect(week1?.sessions[0].activities[0].id).toBe("week-1-lesson-1-retrieval");
+    expect(week1?.sessions[0].activities[0].id).toBe("week-1-lesson-1-ex-01");
+    expect(week1?.sessions[0].activities.length).toBeGreaterThanOrEqual(25);
+    expect(week1?.sessions[0].activities.length).toBeLessThanOrEqual(30);
     expect(week1?.week.status).toBe("available");
     expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("planned");
     const week2Page = weekPageFromPackage(pkg, "week-2");
