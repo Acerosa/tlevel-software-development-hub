@@ -15,21 +15,70 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.0"
+PACKAGE_VERSION = "0.4.1"
 CLIENT = "Oakfield Adult Skills Hub"
-CLIENT_BRIEF = (
-    "Oakfield Adult Skills Hub is a local-authority adult education provider. "
-    "It offers free and low-cost English, maths, digital-skills and vocational "
-    "taster courses. Learners currently phone or visit reception. Staff keep a "
-    "paper diary and a shared spreadsheet. Tutors take paper registers. Managers "
-    "cannot see which courses are full until the end of the week. The client wants "
-    "a digital service so learners can find a course and request a place, tutors "
-    "can take a register, and managers can see attendance and produce funder "
-    "reports. The service must work for people with low digital confidence, screen "
-    "readers, and English as an additional language. Constraints include a limited "
-    "budget, UK GDPR, some venues with weak Wi-Fi, and staff who already use "
-    "Microsoft 365."
-)
+OAKFIELD_SCENARIO = {
+    "title": "Oakfield Adult Skills Hub: Client Scenario",
+    "blocks": [
+        {
+            "type": "paragraph",
+            "text": "Oakfield Adult Skills Hub is a local-authority adult education provider. It runs free and low-cost courses in English, maths, digital skills and vocational subjects across several community venues.",
+        },
+        {
+            "type": "paragraph",
+            "text": "At present, learners usually telephone or visit reception to ask about courses and request a place. Staff record bookings in a paper diary and a shared spreadsheet. Tutors use paper registers during lessons. Managers have limited visibility of course capacity and often do not know whether a course is full until information has been updated at the end of the week.",
+        },
+        {
+            "type": "paragraph",
+            "text": "Oakfield would like a digital service that improves how learners, tutors and managers access and manage course information.",
+        },
+        {
+            "type": "list",
+            "intro": "The service should allow learners to:",
+            "items": [
+                "find available courses",
+                "view useful course information",
+                "request a place on a course",
+            ],
+        },
+        {
+            "type": "list",
+            "intro": "It should allow tutors to:",
+            "items": [
+                "view relevant class information",
+                "record learner attendance",
+            ],
+        },
+        {
+            "type": "list",
+            "intro": "It should allow managers to:",
+            "items": [
+                "monitor attendance",
+                "view course capacity",
+                "produce information required for funding reports",
+            ],
+        },
+        {
+            "type": "paragraph",
+            "text": "The service must be suitable for users with different levels of digital confidence. It should support users who rely on screen readers and users for whom English is an additional language.",
+        },
+        {
+            "type": "list",
+            "intro": "Oakfield has also identified several constraints:",
+            "items": [
+                "the project has a limited budget",
+                "personal data must be handled in accordance with UK GDPR",
+                "some teaching venues have unreliable Wi-Fi",
+                "staff already use Microsoft 365 and would prefer to avoid unnecessary new systems or training",
+            ],
+        },
+        {
+            "type": "paragraph",
+            "text": "Oakfield expects the proposed solution to improve access to course information, reduce duplicated administrative work and give staff more reliable and timely information.",
+        },
+    ],
+    "note": "You will use the Oakfield scenario throughout this course. Refer back to it when analysing requirements, identifying risks, designing solutions, testing and evaluating.",
+}
 
 
 def dump(path: Path, data) -> None:
@@ -69,7 +118,14 @@ def teacher(ident: str, text: str):
     return block(ident, "teacher-note", {"text": text})
 
 
-def short(activity_id: str, qid: str, prompt: str, placeholder: str, guidance: str | None = None):
+def short(
+    activity_id: str,
+    qid: str,
+    prompt: str,
+    placeholder: str,
+    guidance: str | None = None,
+    min_chars: int | None = None,
+):
     content = {
         "formative": True,
         "questionId": f"{activity_id}:{qid}",
@@ -79,6 +135,8 @@ def short(activity_id: str, qid: str, prompt: str, placeholder: str, guidance: s
     }
     if guidance:
         content["guidance"] = guidance
+    if min_chars:
+        content["minChars"] = min_chars
     return block(f"{activity_id}-{qid}", "short-response", content)
 
 
@@ -99,21 +157,63 @@ def single(activity_id: str, qid: str, prompt: str, options: list, correct: str,
     )
 
 
-def classify(activity_id: str, qid: str, prompt: str, categories: list, items: list):
+def classify(
+    activity_id: str,
+    qid: str,
+    prompt: str,
+    categories: list,
+    items: list,
+    ok: str | None = None,
+    bad: str | None = None,
+):
+    content = {
+        "formative": True,
+        "questionId": f"{activity_id}:{qid}",
+        "sourceQuestionId": qid,
+        "prompt": prompt,
+        "categories": [{"id": cid, "label": label} for cid, label in categories],
+        "items": [
+            {"id": iid, "label": label, "correctCategoryId": cat} for iid, label, cat in items
+        ],
+    }
+    if ok or bad:
+        content["feedback"] = {"correct": ok or "", "incorrect": bad or ""}
+    return block(f"{activity_id}-{qid}", "classification", content)
+
+
+def match(
+    activity_id: str,
+    qid: str,
+    prompt: str,
+    items: list,
+    targets: list,
+    correct: dict,
+    ok: str,
+    bad: str,
+):
     return block(
         f"{activity_id}-{qid}",
-        "classification",
+        "drag-drop",
         {
             "formative": True,
             "questionId": f"{activity_id}:{qid}",
             "sourceQuestionId": qid,
             "prompt": prompt,
-            "categories": [{"id": cid, "label": label} for cid, label in categories],
-            "items": [
-                {"id": iid, "label": label, "correctCategoryId": cat} for iid, label, cat in items
-            ],
+            "items": [{"id": iid, "label": label} for iid, label in items],
+            "targets": [{"id": tid, "label": label} for tid, label in targets],
+            "correct": correct,
+            "feedback": {"correct": ok, "incorrect": bad},
         },
     )
+
+
+def session_release_status(week_n: int, lesson_index: int | None = None, homework: bool = False) -> str:
+    """Week 1 releases Lesson 1 only. Later weeks keep all sessions available once the week is posted."""
+    if week_n != 1:
+        return "available"
+    if homework:
+        return "planned"
+    return "available" if lesson_index == 1 else "planned"
 
 
 def activity(
@@ -168,11 +268,16 @@ def expand_blocks(activity_id: str, specs: list):
         elif kind == "t":
             out.append(teacher(f"{activity_id}-teacher", spec[1]))
         elif kind == "short":
-            out.append(short(activity_id, *spec[1:]))
+            qid, prompt, placeholder, *rest = spec[1:]
+            guidance = next((item for item in rest if isinstance(item, str)), None)
+            min_chars = next((item for item in rest if isinstance(item, int)), None)
+            out.append(short(activity_id, qid, prompt, placeholder, guidance, min_chars))
         elif kind == "single":
             out.append(single(activity_id, *spec[1:]))
         elif kind == "classify":
             out.append(classify(activity_id, *spec[1:]))
+        elif kind == "match":
+            out.append(match(activity_id, *spec[1:]))
         else:
             raise ValueError(spec)
     return out
@@ -185,8 +290,9 @@ WEEKS = [
         "title": "Client Brief, Context and Initial Research",
         "wc": "2026-08-31",
         "phase": "analyse-problem",
-        "practice": "LO1 / 1.1 — interpret a client brief; research the market, problems and risks; investigate current hardware and software",
+        "practice": "LO1 / 1.1: interpret a client brief; research the market, problems and risks; investigate current hardware and software",
         "lo_ids": ["lo1"],
+        "clientScenario": OAKFIELD_SCENARIO,
         "outcomes": [
             ("w1-interpret-brief", "Interpret a client request or project brief"),
             ("w1-research-market", "Research the market environment, common problems and risks"),
@@ -195,174 +301,254 @@ WEEKS = [
         "lessons": [
             {
                 "title": "Lesson 1: Annotating the client brief",
-                "summary": "Baseline diagnostic, then extract organisation, users, constraints, success measures and missing information from the Oakfield brief.",
+                "summary": "Use the Oakfield scenario to identify the client, users, current situation, problems, requirements and constraints.",
                 "retrieval": {
-                    "title": "Baseline diagnostic: what a software project is for",
-                    "summary": "Record what you already know about clients, users and what a brief usually contains.",
+                    "title": "Quick check: client, users and current practice",
+                    "summary": "Check that you can pick out the client, the users and how Oakfield works today.",
                     "type": "Diagnostic",
                     "minutes": 10,
-                    "topics": ["Client", "Brief", "Users"],
+                    "topics": ["Client", "Users", "Current situation"],
                     "blocks": [
-                        ("h2", "Baseline diagnostic"),
-                        ("p", "intro", "There are no marks for a 'right' baseline. This shows your starting point before we annotate a real brief."),
-                        ("short", "purpose", "In your own words, what is a software project for?", "A software project is for..."),
-                        ("short", "who", "Who is a client, and how is a client different from a user?", "The client is... The users are..."),
-                        ("single", "q1", "A local authority pays for a booking system that adult learners will use. Who is the client?",
-                         [("a", "Every adult learner who might book a course"), ("b", "The local authority / Adult Skills Hub that requested the system"), ("c", "The software tutor teaching this T Level"), ("d", "Microsoft, because staff already use 365")],
-                         "b", "The client is the organisation that requested the work. Learners are users, not the paying client.", "The client requested the work. Users are the people who will use the service."),
+                        ("h2", "Quick check"),
+                        ("p", "intro", "Use the Oakfield scenario at the top of this page. Do not guess from general knowledge."),
+                        ("single", "client", "Who is the client in the Oakfield scenario?",
+                         [("a", "Adult learners who book a course"), ("b", "Oakfield Adult Skills Hub, the organisation requesting the system"), ("c", "Tutors who take a register"), ("d", "Microsoft, because staff already use 365")],
+                         "b", "The client is the organisation that requested the work. Oakfield (the local-authority Adult Skills Hub) is asking for the service.", "Learners and tutors will use the service. They are users, not the client who requested it."),
+                        ("classify", "users", "Sort each group. Who would use the proposed digital service?",
+                         [("user", "User of the proposed system"), ("not-user", "Not a user of the proposed system")],
+                         [("item-1", "Learners looking for a course", "user"),
+                          ("item-2", "Tutors recording attendance", "user"),
+                          ("item-3", "Managers checking whether a course is full", "user"),
+                          ("item-4", "The T Level tutor teaching this unit", "not-user"),
+                          ("item-5", "Microsoft support staff", "not-user")],
+                         "Learners, tutors and managers are named as people who will use the service.",
+                         "The client requested the work. That does not make every nearby organisation a user."),
+                        ("single", "now", "How do learners usually request a place today?",
+                         [("a", "They book online and get an instant confirmation"), ("b", "They telephone or visit reception"), ("c", "They scan a QR code in the classroom"), ("d", "They email a central bookings team with a reference number")],
+                         "b", "The brief says learners usually telephone or visit reception. That is the current practice you must analyse.", "Look at what the brief says happens now, not at a typical commercial booking site."),
                     ],
                 },
                 "main": {
-                    "title": "Annotate a realistic client brief",
-                    "summary": "Watch how a brief is annotated, then mark organisation, users, constraints, success measures and gaps.",
+                    "title": "Annotate the Oakfield brief",
+                    "summary": "Classify statements from the brief, match stakeholder needs, then explain one constraint.",
                     "type": "Guided learning",
                     "minutes": 35,
-                    "topics": ["Client brief", "Context", "Constraints"],
+                    "topics": ["Client brief", "Requirements", "Constraints"],
                     "blocks": [
-                        ("h2", "Interpreting the client request"),
-                        ("p", "intro", "Analysts do not start coding until they understand the client, the market and the current systems. A brief mixes stated needs, implied needs and missing information."),
-                        ("c", "brief", "Continuing client: Oakfield Adult Skills Hub", CLIENT_BRIEF),
-                        ("h3", "extract", "What to extract"),
-                        ("p", "extract", "Mark the organisation, who the users are, constraints (budget, law, buildings, existing tools), how success would be judged, and questions the brief does not answer. Stated needs are written down. Implied needs are reasonable but not spelled out — for example, a register that still works if Wi-Fi drops."),
-                        ("short", "stated", "List three stated needs from the Oakfield brief.", "1. ... 2. ... 3. ...", "Quote or closely paraphrase the brief."),
-                        ("short", "missing", "List three research questions the brief does not answer.", "Question 1: ...", "Good questions are specific: numbers, venues, funding rules, devices."),
-                        ("t", "SoL Week 1: baseline then tutor-modelled brief annotation. UDL: written, visual and verbal brief. Scaffold: annotation prompts. Challenge: assumptions the brief does not give."),
+                        ("h2", "Annotate the brief"),
+                        ("p", "intro", "Keep the Oakfield scenario in view. Pull evidence from it; do not invent extra detail."),
+                        ("classify", "kinds", "Classify each statement from the Oakfield scenario.",
+                         [("current", "Current situation"), ("problem", "Problem"), ("requirement", "Requirement"), ("constraint", "Constraint")],
+                         [("item-1", "Staff record bookings in a paper diary and a shared spreadsheet", "current"),
+                          ("item-2", "Managers often do not know whether a course is full until the end of the week", "problem"),
+                          ("item-3", "Learners should be able to request a place on a course", "requirement"),
+                          ("item-4", "Personal data must be handled in accordance with UK GDPR", "constraint"),
+                          ("item-5", "Tutors use paper registers during lessons", "current"),
+                          ("item-6", "The project has a limited budget", "constraint")],
+                         "Current practice is what happens now. A problem is what goes wrong. A requirement is what the service should do. A constraint limits how you can do it.",
+                         "A constraint such as UK GDPR is not a user task. A requirement is something the service should allow someone to do."),
+                        ("classify", "stated", "Is each point stated in the brief, implied by it, or not yet known?",
+                         [("stated", "Stated in the brief"), ("implied", "Implied by the brief"), ("unknown", "Not yet known")],
+                         [("item-1", "Learners should be able to request a place", "stated"),
+                          ("item-2", "Attendance recording should still work if venue Wi-Fi drops", "implied"),
+                          ("item-3", "The exact project budget", "unknown"),
+                          ("item-4", "The system must follow UK GDPR", "stated"),
+                          ("item-5", "How many venues Oakfield uses", "unknown")],
+                         "Stated points are written in the brief. Implied points follow from what is written, such as unreliable Wi-Fi affecting a live register. Unknowns need research.",
+                         "Do not treat a missing figure as if the brief had already decided it."),
+                        ("match", "needs", "Match each need to the stakeholder it mainly serves.",
+                         [("find", "Find courses and request a place"), ("register", "Record learner attendance"), ("reports", "Monitor capacity and produce funding reports")],
+                         [("learner", "Learner"), ("tutor", "Tutor"), ("manager", "Manager")],
+                         {"find": "learner", "register": "tutor", "reports": "manager"},
+                         "The brief gives learners find-and-request, tutors attendance recording, and managers capacity and reports.",
+                         "Match the need to the group who would do that job, not to whoever pays for the project."),
+                        ("short", "constraints", "Name two constraints from the brief.", "1. ... 2. ...", "Use the brief. Budget, UK GDPR, unreliable Wi-Fi and existing Microsoft 365 are all constraints.", 40),
+                        ("single", "wifi", "Oakfield says some venues have unreliable Wi-Fi. What should the analyst investigate next?",
+                         [("a", "Which colour scheme would look modern on a booking screen"), ("b", "Whether attendance still needs to be recorded when a venue is offline, and how staff do that today"), ("c", "Which programming language is most popular this year"), ("d", "Whether the Hub should move every course to a single city-centre building")],
+                         "b", "Unreliable Wi-Fi is a constraint that affects a live digital register. Find out what happens in class today before you recommend a design.", "A Wi-Fi problem is about how the service must work in those venues, not about branding or the tech stack."),
+                        ("short", "evidence", "From the brief, give one problem, one requirement, one constraint and one missing piece of information.", "Problem: ... Requirement: ... Constraint: ... Missing: ...", "Quote or closely paraphrase the scenario.", 80),
                     ],
                 },
                 "formative": {
-                    "title": "Progress check: client, user or context",
-                    "summary": "Distinguish client, user and context in short extracts.",
+                    "title": "Progress check: reading the brief",
+                    "summary": "Check that you can still tell client from user, and pick a useful follow-up question.",
                     "type": "Classification",
                     "minutes": 10,
-                    "topics": ["Client", "User", "Context"],
+                    "topics": ["Client", "User", "Research questions"],
                     "blocks": [
-                        ("h2", "Classify each statement"),
-                        ("classify", "sort", "Classify each statement from the Oakfield scenario.",
-                         [("client", "Client / organisation"), ("user", "User"), ("context", "Context or constraint")],
-                         [("item-1", "The local authority pays for the project", "client"),
-                          ("item-2", "An adult learner with a screen reader books a maths taster", "user"),
-                          ("item-3", "Some venues have weak Wi-Fi", "context"),
-                          ("item-4", "A tutor takes a register on a tablet in class", "user"),
-                          ("item-5", "Staff already use Microsoft 365", "context"),
-                          ("item-6", "Managers need funder reports", "client")]),
+                        ("h2", "Progress check"),
+                        ("classify", "sort", "Classify each statement.",
+                         [("client", "Client / organisation"), ("user", "User"), ("constraint", "Constraint")],
+                         [("item-1", "Oakfield Adult Skills Hub requested the digital service", "client"),
+                          ("item-2", "An adult learner with a screen reader looks up a maths course", "user"),
+                          ("item-3", "Some teaching venues have unreliable Wi-Fi", "constraint"),
+                          ("item-4", "A tutor records who attended the session", "user"),
+                          ("item-5", "Staff already use Microsoft 365", "constraint")],
+                         "The client requested the work. Users are the people who will use the service. Constraints limit the design.",
+                         "Paying for the work does not make Oakfield a user of every screen. Wi-Fi and Microsoft 365 are limits, not user tasks."),
+                        ("short", "questions", "Write two questions an analyst should ask before recommending a solution.", "1. ... 2. ...", "Useful questions are specific: numbers, venues, devices, what happens if Wi-Fi fails.", 40),
                     ],
                 },
             },
             {
                 "title": "Lesson 2: Market, problems and risks",
-                "summary": "Research the market environment, typical problems and risks for adult-learning digital services.",
+                "summary": "Look beyond the brief: market context, problems with the current approach, and risks if nothing changes.",
                 "retrieval": {
-                    "title": "Retrieval: who the brief is about",
-                    "summary": "Retrieve client, users and constraints before looking at the wider market.",
+                    "title": "Retrieval: market or user need?",
+                    "summary": "Tell a single user need apart from a wider market issue.",
                     "type": "Retrieval",
                     "minutes": 8,
-                    "topics": ["Client", "Users"],
+                    "topics": ["Market", "User needs"],
                     "blocks": [
-                        ("h2", "Retrieve the Oakfield context"),
-                        ("short", "users", "Name two user groups in the Oakfield brief besides managers.", "1. ... 2. ..."),
-                        ("single", "q1", "Which statement is a market-environment point rather than a single user need?",
-                         [("a", "Fatima uses a screen reader"), ("b", "Other adult-learning providers already offer online enrolment"), ("c", "The tutor wants a paper backup register"), ("d", "The manager wants Friday reports")],
-                         "b", "The market is other providers, products and expectations around the client, not one person's need.", "Market environment is the wider setting: competitors, typical products, regulation and public expectation."),
+                        ("h2", "Market or user need?"),
+                        ("single", "q1", "Which statement is about the wider market, not one user's need?",
+                         [("a", "A learner uses a screen reader to look up courses"), ("b", "Other adult-learning providers already let people request a place online"), ("c", "A tutor wants a paper backup register"), ("d", "A manager wants Friday attendance figures")],
+                         "b", "The market is other providers and what is already normal around Oakfield. One person's access need is still a user need.", "A user need belongs to a person using the service. A market point is about other providers, typical products or public expectation."),
+                        ("classify", "sort", "Classify each Oakfield point.",
+                         [("problem", "Problem"), ("risk", "Risk"), ("constraint", "Constraint")],
+                         [("item-1", "Managers often do not know if a course is full until the week has ended", "problem"),
+                          ("item-2", "Personal data sitting in a shared spreadsheet could be copied or sent to the wrong person", "risk"),
+                          ("item-3", "The project has a limited budget", "constraint")],
+                         "A problem is already happening. A risk is harm that might happen. A constraint limits what you can propose.",
+                         "Budget is a limit on the work, not a user complaint happening today."),
                     ],
                 },
                 "main": {
-                    "title": "Research the market, problems and risks",
-                    "summary": "Use source cards to record typical problems and risks for this kind of service.",
+                    "title": "Problems, risks and why they matter",
+                    "summary": "Connect research points back to Oakfield, not to a generic booking product.",
                     "type": "Guided learning",
                     "minutes": 35,
                     "topics": ["Market research", "Risk", "Adult learning"],
                     "blocks": [
-                        ("h2", "Market environment and common risks"),
-                        ("p", "intro", "A proposal is weak if it only repeats the client's words. Research what similar services do, what usually goes wrong, and who might be excluded."),
-                        ("c", "cards", "Source-card themes", "Typical problems: duplicate bookings, no-shows, inaccessible forms, staff retyping paper registers, reports that do not match funder rules. Typical risks: personal data on shared spreadsheets, venues offline, learners who will not use an app-only service."),
-                        ("short", "problem", "Describe one common problem for a booking-and-register service, and why it would matter to Oakfield.", "Problem: ... Why it matters: ..."),
-                        ("short", "risk", "Identify one risk if Oakfield stays on paper and spreadsheets.", "Risk: ... Who is affected: ..."),
-                        ("t", "SoL Week 1 guided learning: pairs research market, problems and risks using source cards. Reduce reading load with cards. Extension: who is missing from typical vendor case studies."),
+                        ("h2", "What the current approach costs Oakfield"),
+                        ("p", "intro", "A proposal that only repeats the brief is weak. Look at what similar services do, what usually goes wrong, and who gets left out."),
+                        ("classify", "kinds", "Classify each statement about Oakfield's current approach.",
+                         [("problem", "Problem now"), ("risk", "Risk if nothing changes"), ("constraint", "Constraint")],
+                         [("item-1", "Staff retype paper registers into a spreadsheet", "problem"),
+                          ("item-2", "Learner data on a shared spreadsheet could be accessed by the wrong staff", "risk"),
+                          ("item-3", "Some venues have unreliable Wi-Fi", "constraint"),
+                          ("item-4", "Learners who will not use an app-only service may be unable to request a place", "risk"),
+                          ("item-5", "Staff already use Microsoft 365 and extra systems mean extra training", "constraint")],
+                         "Problems are happening now. Risks are harms that may follow. Constraints stay true even if you change the design.",
+                         "Unreliable Wi-Fi limits the design. A data leak from a shared spreadsheet is a risk, not a budget limit."),
+                        ("classify", "useful", "Which investigation would help Oakfield, and which would not?",
+                         [("useful", "Useful for Oakfield"), ("not-useful", "Not useful at this stage")],
+                         [("item-1", "How other adult-learning providers take bookings", "useful"),
+                          ("item-2", "Whether paper registers get lost or retyped", "useful"),
+                          ("item-3", "Which celebrity should appear on the home screen", "not-useful"),
+                          ("item-4", "What happens to attendance data if a venue is offline", "useful"),
+                          ("item-5", "Which JavaScript framework is trending this month", "not-useful")],
+                         "Useful research changes what you would recommend for Oakfield's users, data or venues.",
+                         "Fashion and decoration do not close a knowledge gap in this brief."),
+                        ("match", "matter-map", "Match each finding to why it matters for Oakfield.",
+                         [("other", "Other adult-learning providers already take online requests"), ("sheet", "Learner names sit on a shared spreadsheet"), ("wifi", "Some venues have unreliable Wi-Fi")],
+                         [("access", "Learners may expect to request a place without visiting reception"), ("gdpr", "Personal data could be copied or sent to the wrong person"), ("offline", "A live-only register may fail during a lesson")],
+                         {"other": "access", "sheet": "gdpr", "wifi": "offline"},
+                         "Each finding changes what you would investigate or recommend for Oakfield.",
+                         "Stay with Oakfield's users, data and venues. Do not treat this as a generic booking app."),
+                        ("short", "matter", "Pick one problem or risk from the brief. Why does it matter to Oakfield?", "It matters because...", "Name who is affected: learners, tutors, managers or funders.", 80),
                     ],
                 },
                 "formative": {
-                    "title": "Progress check: implied versus stated needs",
-                    "summary": "Mark whether extracts are stated, implied or not in the brief.",
+                    "title": "Progress check: problem, risk or constraint",
+                    "summary": "Check that you can still tell these three apart.",
                     "type": "Classification",
                     "minutes": 10,
-                    "topics": ["Stated needs", "Implied needs"],
+                    "topics": ["Problems", "Risks", "Constraints"],
                     "blocks": [
-                        ("h2", "Stated, implied, or not in the brief"),
-                        ("classify", "sort", "Classify each need.",
-                         [("stated", "Stated in the brief"), ("implied", "Implied but not written"), ("absent", "Not supported by the brief")],
-                         [("item-1", "Learners should be able to request a place", "stated"),
-                          ("item-2", "The register should still work if Wi-Fi drops", "implied"),
-                          ("item-3", "The Hub wants a native iOS game", "absent"),
-                          ("item-4", "The service must follow UK GDPR", "stated"),
-                          ("item-5", "Funder reports should be possible without retyping", "implied")]),
+                        ("h2", "Progress check"),
+                        ("classify", "sort", "Classify each statement.",
+                         [("problem", "Problem"), ("risk", "Risk"), ("constraint", "Constraint")],
+                         [("item-1", "Duplicate bookings because the diary and spreadsheet do not match", "problem"),
+                          ("item-2", "UK GDPR rules for personal data", "constraint"),
+                          ("item-3", "A missed funding report because attendance was updated too late", "risk"),
+                          ("item-4", "Learners queuing at reception while staff search the diary", "problem")],
+                         "If it is already going wrong, it is a problem. If it might cause harm later, it is a risk. If it limits the design, it is a constraint.",
+                         "GDPR is a legal limit. Late reports are a harm that might follow from the current process."),
                     ],
                 },
             },
             {
                 "title": "Lesson 3: Current systems and exit check",
-                "summary": "Investigate hardware and software already in use, then list remaining research questions.",
+                "summary": "Investigate current hardware, software and practice, then close the week with remaining unknowns.",
                 "retrieval": {
-                    "title": "Retrieval: problems and constraints",
-                    "summary": "Retrieve one problem and one constraint before investigating current systems.",
+                    "title": "Retrieval: current tools",
+                    "summary": "Match what Oakfield uses now to the limitation that creates.",
                     "type": "Retrieval",
                     "minutes": 8,
-                    "topics": ["Constraints", "Current systems"],
+                    "topics": ["Current systems"],
                     "blocks": [
-                        ("h2", "Retrieve constraints"),
-                        ("short", "constraint", "Name two constraints from the Oakfield brief.", "1. ... 2. ..."),
-                        ("single", "q1", "Why investigate current hardware and software before proposing a new system?",
-                         [("a", "So you can copy a competitor's branding"), ("b", "So the proposal fits what staff and venues already have"), ("c", "So you can skip user research"), ("d", "So coding can start on day one")],
-                         "b", "Current tools, devices and venues shape what is realistic. A proposal that ignores them fails at go-live.", "Current systems are part of the context, not an optional extra."),
+                        ("h2", "What they use now"),
+                        ("match", "tools", "Match the current tool to a limitation.",
+                         [("phone", "Telephone and reception"), ("diary", "Paper diary"), ("sheet", "Shared spreadsheet"), ("reg", "Paper registers"), ("office", "Microsoft 365"), ("wifi", "Venue Wi-Fi")],
+                         [("lim-phone", "Learners can only enquire when staff are free to answer"), ("lim-diary", "Staff at another venue cannot see the latest bookings"), ("lim-sheet", "The wrong person may be able to open learner data"), ("lim-reg", "Attendance is typed again after the lesson"), ("lim-office", "Extra systems would mean extra training"), ("lim-wifi", "A cloud-only register may fail during the session")],
+                         {"phone": "lim-phone", "diary": "lim-diary", "sheet": "lim-sheet", "reg": "lim-reg", "office": "lim-office", "wifi": "lim-wifi"},
+                         "Each current tool already creates a problem the new service has to deal with.",
+                         "Think about who can see the information, when it is updated, and what happens if a venue is offline."),
+                        ("single", "q1", "Which current practice is already in the brief?",
+                         [("a", "A dedicated student records system with live dashboards"), ("b", "Telephone and reception enquiries, a paper diary, a shared spreadsheet and paper registers"), ("c", "An app store listing for Oakfield"), ("d", "Chip-and-PIN terminals in every classroom")],
+                         "b", "The brief already names telephone, reception, diary, spreadsheet and paper registers.", "Do not invent systems the brief never mentioned."),
                     ],
                 },
                 "main": {
-                    "title": "Research log: current hardware and software",
-                    "summary": "Record what Oakfield already uses and what that means for a new service.",
-                    "type": "Independent application",
-                    "minutes": 30,
-                    "topics": ["Current systems", "Research log"],
+                    "title": "Investigate current systems",
+                    "summary": "Separate what the brief already tells you from what you still need to check on site.",
+                    "type": "Guided learning",
+                    "minutes": 35,
+                    "topics": ["Hardware", "Software", "Practice"],
                     "blocks": [
-                        ("h2", "Current hardware and software"),
-                        ("p", "intro", "Independent application: complete a structured research log. Sentence starters are allowed. Optional audio notes are fine if your centre agrees."),
-                        ("c", "starters", "Sentence starters", "Staff currently... Learners currently... Devices in classrooms include... Data is stored in... This matters because..."),
-                        ("short", "hardware", "What hardware are staff and learners likely to use today, and what is uncertain?", "Staff: ... Learners: ... Uncertain: ..."),
-                        ("short", "software", "What software is already in the brief, and what must you still find out?", "Already known: ... Still unknown: ..."),
-                        ("t", "SoL Week 1 independent application: research log of current hardware/software. UDL: sentence starters and optional audio. Exit check: three remaining research questions."),
+                        ("h2", "Known facts and research gaps"),
+                        ("p", "intro", "A new service has to work with what staff already do. Microsoft 365, paper and weak Wi-Fi all shape a realistic proposal."),
+                        ("classify", "gaps", "Is this already known from the brief, or still a research gap?",
+                         [("known", "Known from the brief"), ("gap", "Still a research gap")],
+                         [("item-1", "Staff already use Microsoft 365", "known"),
+                          ("item-2", "Some venues have unreliable Wi-Fi", "known"),
+                          ("item-3", "Exactly how many venues there are", "gap"),
+                          ("item-4", "Bookings are recorded in a paper diary and a shared spreadsheet", "known"),
+                          ("item-5", "Whether every classroom has a shared PC", "gap")],
+                         "Known facts come from the brief. Gaps need a site visit, interview or sample of current files.",
+                         "Microsoft 365 and Wi-Fi problems are already stated. Exact venue count is not."),
+                        ("classify", "ask", "Which questions would help an analyst investigate the current system?",
+                         [("useful", "Useful question"), ("not-useful", "Not useful yet")],
+                         [("item-1", "Who is allowed to edit the shared spreadsheet?", "useful"),
+                          ("item-2", "What happens to a booking if two people telephone at once?", "useful"),
+                          ("item-3", "Which celebrity should open the new website?", "not-useful"),
+                          ("item-4", "Can tutors take a register when the venue Wi-Fi is down?", "useful"),
+                          ("item-5", "Which shade of blue should the logo use?", "not-useful")],
+                         "Useful questions uncover access, double-booking, offline working or how Microsoft 365 is used now.",
+                         "Branding guesses do not explain how the current system works."),
+                        ("short", "compat", "Why does it matter that staff already use Microsoft 365?", "It matters because...", "Think about training, login and whether a new system would sit beside what they already open every day.", 80),
                     ],
                 },
                 "formative": {
-                    "title": "Exit check: three research questions",
-                    "summary": "Sort known systems from gaps, then list three questions you still need to answer before writing requirements.",
-                    "type": "Progress check",
+                    "title": "Exit check: remaining unknowns",
+                    "summary": "Leave with one unknown that still needs investigation.",
+                    "type": "Exit ticket",
                     "minutes": 10,
-                    "topics": ["Research questions"],
+                    "topics": ["Unknowns", "Current systems"],
                     "blocks": [
-                        ("h2", "Exit check"),
-                        ("classify", "sort", "Classify each statement about Oakfield today.",
-                         [("current", "Current system / already known"), ("unknown", "Still unknown / needs research")],
-                         [("item-1", "Staff keep a paper diary and a shared spreadsheet", "current"),
-                          ("item-2", "How many venues have reliable Wi-Fi", "unknown"),
-                          ("item-3", "Tutors take paper registers", "current"),
-                          ("item-4", "Whether waiting lists are required", "unknown")]),
-                        ("short", "q1", "Write three research questions you still need to answer about Oakfield.", "1. ... 2. ... 3. ...", "Each question should be answerable with evidence, not opinion."),
-                        ("single", "q2", "Which research question is most useful at this stage?",
-                         [("a", "Which colour scheme looks nicest?"), ("b", "How many venues have reliable Wi-Fi, and what do tutors use if it fails?"), ("c", "Should we use a trendy JavaScript framework?"), ("d", "Which celebrity should appear in the app?")],
-                         "b", "Useful questions close knowledge gaps that affect users, constraints and risk.", "Ask questions that change the proposal, not decoration."),
+                        ("h2", "Exit ticket"),
+                        ("short", "unknown", "Name one thing about Oakfield's current hardware, software or practice that the brief does not tell you. Why would you need it before proposing a solution?", "Unknown: ... Why I need it: ...", "Keep it specific: a venue, a file, a permission or a device.", 80),
                     ],
                 },
             },
         ],
         "homework": {
             "title": "Homework: one real digital product",
-            "summary": "Find one real digital product and describe the problem it addresses, the likely client and the users it serves.",
+            "summary": "Analyse one real digital product or service using the same headings you used on the Oakfield brief.",
             "id_suffix": "product",
             "minutes": 25,
             "topics": ["Client", "Users", "Problem"],
             "blocks": [
                 ("h2", "Independent study"),
-                ("p", "intro", "Choose a real public or education service (booking, benefits, learning, libraries). Do not invent a fictional start-up."),
-                ("short", "product", "Name the product and the problem it addresses.", "Product: ... Problem: ..."),
-                ("short", "roles", "Who is the likely client, and who are the users? Note one group who might be poorly served.", "Client: ... Users: ... Poorly served: ..."),
+                ("p", "intro", "Choose one real public or education service, such as booking, benefits, learning or libraries. Do not invent a fictional start-up. Short notes are enough."),
+                ("short", "name", "Product or service name", "Name: ...", 8),
+                ("short", "problem", "What problem does it address?", "Problem: ...", 30),
+                ("short", "client", "Who is the likely client?", "Client: ...", 15),
+                ("short", "users", "Who are the likely users?", "Users: ...", 15),
+                ("short", "feature", "Name one useful feature.", "Feature: ...", 20),
+                ("short", "limit", "Name one limitation or risk.", "Limitation or risk: ...", 30),
+                ("short", "source", "What source did you use?", "Source: ...", "A public website, help page or app listing is enough.", 15),
             ],
         },
     },
@@ -731,20 +917,23 @@ def week_meta(spec):
     n = spec["n"]
     outcomes = [oid for oid, _ in spec["outcomes"]]
     sessions = [f"week-{n}-lesson-{i}" for i in range(1, 4)] + [f"week-{n}-homework"]
+    metadata = {
+        "teachingWeek": n,
+        "title": spec["title"],
+        "status": "available" if n == 1 else "planned",
+        "phase": spec["phase"],
+        "professionalPractice": spec["practice"],
+        "route": f"weeks/week-{n}/",
+        "weekCommencing": spec["wc"],
+        "releaseDate": None,
+        "dueDate": None,
+    }
+    if spec.get("clientScenario"):
+        metadata["clientScenario"] = spec["clientScenario"]
     return rec(
         "week",
         f"week-{n}",
-        {
-            "teachingWeek": n,
-            "title": spec["title"],
-            "status": "available" if n == 1 else "planned",
-            "phase": spec["phase"],
-            "professionalPractice": spec["practice"],
-            "route": f"weeks/week-{n}/",
-            "weekCommencing": spec["wc"],
-            "releaseDate": None,
-            "dueDate": None,
-        },
+        metadata,
         {
             "curriculum": "tlevel-software-development-curriculum",
             "learningOutcomes": spec["lo_ids"] + outcomes,
@@ -2088,6 +2277,7 @@ def build_content():
                         "summary": lesson["summary"],
                         "sortOrder": index,
                         "defaultOpen": index == 1,
+                        "status": session_release_status(n, index),
                     },
                     {"week": f"week-{n}", "activities": [retrieval_id, main_id, formative_id]},
                 )
@@ -2108,6 +2298,7 @@ def build_content():
                     "summary": hw["summary"],
                     "sortOrder": 4,
                     "defaultOpen": False,
+                    "status": session_release_status(n, homework=True),
                 },
                 {"week": f"week-{n}", "activities": [hw_activity]},
             )

@@ -62,6 +62,16 @@ declare module "@learning-platform/core" {
 }
 
 declare module "*.js";
+declare module "@learning-platform/core/curriculum-runtime" {
+  export function isWeekAvailable(status?: string | null): boolean;
+  export function isSessionAvailable(status?: string | null): boolean;
+  export function isSessionAccessible(weekStatus?: string | null, sessionStatus?: string | null): boolean;
+  export const SESSION_NOT_RELEASED_COPY: string;
+  export function overlayLiveWeekMetadata<T extends Record<string, unknown>>(
+    base: T | null | undefined,
+    live: T | null | undefined
+  ): T | null | undefined;
+}
 declare module "@learning-platform/content" {
   export function validatePackage(pkg: unknown): { valid: boolean; issues?: unknown[] };
   export function renderActivity(activity: unknown, options?: { root?: string }): string;

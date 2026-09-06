@@ -1,5 +1,6 @@
 import {
   CompletionModal,
+  ContextPanel,
   EmptyState,
   InteractiveActivity,
   LoadingState,
@@ -25,6 +26,7 @@ import {
   isWeekAvailable,
   overlayLiveWeekMetadata,
   weekPageFromPackage,
+  type ClientScenario,
   type ContentPackage
 } from "../curriculum/from-package";
 import { createSitePath } from "../paths";
@@ -56,7 +58,10 @@ function persistableResponse(block: ActivityBlockDocument, result: ActivityResul
 
 function isScorableReactBlock(block: ActivityBlockDocument): boolean {
   const type = normaliseBlockType(block.type);
-  return type === "single-choice" || type === "option-cards" || type === "classification";
+  return type === "single-choice"
+    || type === "option-cards"
+    || type === "classification"
+    || type === "drag-drop";
 }
 
 function isCompletableReactBlock(block: ActivityBlockDocument): boolean {
@@ -66,7 +71,9 @@ function isCompletableReactBlock(block: ActivityBlockDocument): boolean {
 function blockScorableTotal(block: ActivityBlockDocument): number {
   const type = normaliseBlockType(block.type);
   if (type === "single-choice" || type === "option-cards") return 1;
-  if (type === "classification") return ((block.content && block.content.items) || []).length;
+  if (type === "classification" || type === "drag-drop") {
+    return ((block.content && block.content.items) || []).length;
+  }
   return 0;
 }
 
@@ -153,13 +160,43 @@ function weekHasCatalogueBlocks(content: ContentPackage, weekId: string): boolea
       const activity = content.activities?.find((entry) => entry.id === item.id);
       if ((activity?.blocks || []).some((block) => {
         const type = String(block.type || "");
-        return type === "single-choice" || type === "classification" || type === "short-response";
+        return type === "single-choice"
+          || type === "classification"
+          || type === "short-response"
+          || type === "drag-drop";
       })) {
         return true;
       }
     }
   }
   return false;
+}
+
+function ClientScenarioSection({ scenario }: { scenario: ClientScenario }) {
+  const blocks: NonNullable<ClientScenario["blocks"]> = scenario.blocks?.length
+    ? scenario.blocks
+    : (scenario.paragraphs || []).map((text) => ({ type: "paragraph", text }));
+  return (
+    <section className="lp-panel" data-lp-client-scenario="">
+      {scenario.title ? <h2>{scenario.title}</h2> : null}
+      {blocks.map((block, index) => {
+        if (block.type === "list") {
+          return (
+            <div key={`scenario-list-${index}`}>
+              {block.intro ? <p>{block.intro}</p> : null}
+              <ul>
+                {(block.items || []).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+        return block.text ? <p key={`scenario-p-${index}`}>{block.text}</p> : null;
+      })}
+      {scenario.note ? <p className="lp-panel-note">{scenario.note}</p> : null}
+    </section>
+  );
 }
 
 export function WeekPage({
@@ -289,6 +326,18 @@ export function WeekPage({
 
   const weekNumber = model.week.teachingWeek;
   const weekBadge = `Week ${weekNumber}: ${model.week.title}`;
+  const clientScenario = model.week.clientScenario;
+  const assignmentContext = {
+    type: "assignment",
+    contextType: "assignment",
+    heading: "Teaching context",
+    description: "Formative learning for Occupational Specialism Areas 1 to 3. This is not a Pearson assessment.",
+    items: [
+      { label: "Qualification", value: "T Level Digital Software Development" },
+      { label: "Content", value: "Occupational Specialism Areas 1 to 3 (1.1 to 3.2)" },
+      { label: "Week", value: weekBadge }
+    ]
+  };
   const summaryScore = scorableTotal > 0 ? {
     correct: practice.score.correct,
     total: Math.max(scorableTotal, practice.score.total, 1)
@@ -303,6 +352,15 @@ export function WeekPage({
 
   return (
     <div data-lp-mount="" data-lp-week-page="" ref={mountRef}>
+      {clientScenario ? (
+        <ContextPanel
+          contextType={assignmentContext.contextType}
+          heading={assignmentContext.heading}
+          items={assignmentContext.items}
+          description={assignmentContext.description}
+        />
+      ) : null}
+      {clientScenario ? <ClientScenarioSection scenario={clientScenario} /> : null}
       <WeekView
         week={{
           id: model.week.id,
@@ -312,20 +370,10 @@ export function WeekPage({
           status: model.week.status
         }}
         learningOutcomes={model.learningOutcomes}
-        context={{
-          type: "assignment",
-          contextType: "assignment",
-          heading: "Teaching context",
-          description: "Formative learning for Occupational Specialism Areas 1 to 3. This is not a Pearson assessment.",
-          items: [
-            { label: "Qualification", value: "T Level Digital Software Development" },
-            { label: "Content", value: "Occupational Specialism Areas 1 to 3 (1.1 to 3.2)" },
-            { label: "Week", value: weekBadge }
-          ]
-        }}
+        context={assignmentContext}
         features={{
           showTitle: false,
-          showAssignmentContext: true,
+          showAssignmentContext: !clientScenario,
           showProjectContext: false,
           showExamContext: false
         }}

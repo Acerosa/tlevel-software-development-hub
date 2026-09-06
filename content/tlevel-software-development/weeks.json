@@ -9,11 +9,73 @@
       "title": "Client Brief, Context and Initial Research",
       "status": "available",
       "phase": "analyse-problem",
-      "professionalPractice": "LO1 / 1.1 — interpret a client brief; research the market, problems and risks; investigate current hardware and software",
+      "professionalPractice": "LO1 / 1.1: interpret a client brief; research the market, problems and risks; investigate current hardware and software",
       "route": "weeks/week-1/",
       "weekCommencing": "2026-08-31",
       "releaseDate": null,
-      "dueDate": null
+      "dueDate": null,
+      "clientScenario": {
+        "title": "Oakfield Adult Skills Hub: Client Scenario",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Oakfield Adult Skills Hub is a local-authority adult education provider. It runs free and low-cost courses in English, maths, digital skills and vocational subjects across several community venues."
+          },
+          {
+            "type": "paragraph",
+            "text": "At present, learners usually telephone or visit reception to ask about courses and request a place. Staff record bookings in a paper diary and a shared spreadsheet. Tutors use paper registers during lessons. Managers have limited visibility of course capacity and often do not know whether a course is full until information has been updated at the end of the week."
+          },
+          {
+            "type": "paragraph",
+            "text": "Oakfield would like a digital service that improves how learners, tutors and managers access and manage course information."
+          },
+          {
+            "type": "list",
+            "intro": "The service should allow learners to:",
+            "items": [
+              "find available courses",
+              "view useful course information",
+              "request a place on a course"
+            ]
+          },
+          {
+            "type": "list",
+            "intro": "It should allow tutors to:",
+            "items": [
+              "view relevant class information",
+              "record learner attendance"
+            ]
+          },
+          {
+            "type": "list",
+            "intro": "It should allow managers to:",
+            "items": [
+              "monitor attendance",
+              "view course capacity",
+              "produce information required for funding reports"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The service must be suitable for users with different levels of digital confidence. It should support users who rely on screen readers and users for whom English is an additional language."
+          },
+          {
+            "type": "list",
+            "intro": "Oakfield has also identified several constraints:",
+            "items": [
+              "the project has a limited budget",
+              "personal data must be handled in accordance with UK GDPR",
+              "some teaching venues have unreliable Wi-Fi",
+              "staff already use Microsoft 365 and would prefer to avoid unnecessary new systems or training"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Oakfield expects the proposed solution to improve access to course information, reduce duplicated administrative work and give staff more reliable and timely information."
+          }
+        ],
+        "note": "You will use the Oakfield scenario throughout this course. Refer back to it when analysing requirements, identifying risks, designing solutions, testing and evaluating."
+      }
     },
     "relationships": {
       "curriculum": "tlevel-software-development-curriculum",
