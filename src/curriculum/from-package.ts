@@ -1,3 +1,10 @@
+import {
+  isSessionAccessible,
+  isWeekAvailable,
+  overlayLiveWeekMetadata as overlayLivePackageMetadata,
+  SESSION_NOT_RELEASED_COPY
+} from "@learning-platform/core/curriculum-runtime";
+
 type ContentBlock = {
   id?: string;
   type?: string;
@@ -42,6 +49,7 @@ type ContentSession = {
     kind?: string;
     summary?: string;
     defaultOpen?: boolean;
+    status?: string;
   };
   relationships?: {
     activities?: string[];
@@ -94,6 +102,7 @@ export type WeekPageModel = {
     kind: string;
     summary: string;
     defaultOpen: boolean;
+    accessible: boolean;
     activities: Array<{
       id: string;
       title: string;
@@ -114,47 +123,10 @@ function learnerWeekDescription(practice?: string) {
 }
 
 /** Learners may open a week only when Content `STATUSES` is `available`. */
-export function isWeekAvailable(status?: string | null): boolean {
-  return String(status || "").trim().toLowerCase() === "available";
-}
-
-/**
- * Keep bundled week catalogue/structure; overlay live publication status
- * (and week commencing) so a thin published package cannot blank Home/Week lists.
- * Match live weeks by id first, then by `metadata.teachingWeek`.
- */
-function teachingWeekNumber(week: ContentWeek): number | null {
-  const n = Number(week.metadata?.teachingWeek);
-  return Number.isFinite(n) && n > 0 ? n : null;
-}
+export { isWeekAvailable };
 
 export function overlayLiveWeekMetadata(base: ContentPackage, live: ContentPackage | null | undefined): ContentPackage {
-  if (!live?.weeks?.length) return base;
-  const liveById = new Map<string, ContentWeek["metadata"]>();
-  const liveByTeachingWeek = new Map<number, ContentWeek["metadata"]>();
-  for (const week of live.weeks) {
-    if (week.id) liveById.set(week.id, week.metadata);
-    const n = teachingWeekNumber(week);
-    if (n != null && !liveByTeachingWeek.has(n)) liveByTeachingWeek.set(n, week.metadata);
-  }
-  return {
-    ...base,
-    weeks: (base.weeks || []).map((week) => {
-      const n = teachingWeekNumber(week);
-      const liveMeta = (week.id ? liveById.get(week.id) : undefined)
-        || (n != null ? liveByTeachingWeek.get(n) : undefined);
-      if (!liveMeta) return week;
-      const liveStatus = liveMeta.status == null ? "" : String(liveMeta.status).trim();
-      return {
-        ...week,
-        metadata: {
-          ...week.metadata,
-          status: liveStatus || week.metadata?.status,
-          weekCommencing: liveMeta.weekCommencing ?? week.metadata?.weekCommencing
-        }
-      };
-    })
-  };
+  return overlayLivePackageMetadata(base, live) as ContentPackage;
 }
 
 export function formatWeekCommencing(value?: string | null): string {
@@ -212,29 +184,34 @@ export function weekPageFromPackage(pkg: ContentPackage, weekId: string): WeekPa
   const week = (pkg.weeks || []).find((item) => item.id === weekId);
   if (!week) return null;
   const teachingWeek = Number(week.metadata?.teachingWeek || 0);
+  const weekStatus = String(week.metadata?.status || "");
   const sessions = (week.relationships?.sessions || []).map((sessionId) => {
     const session = (pkg.sessions || []).find((item) => item.id === sessionId);
+    const accessible = isSessionAccessible(weekStatus, session?.metadata?.status);
     return {
       id: sessionId,
       title: session?.metadata?.title || sessionId,
       kind: session?.metadata?.kind || "session",
-      summary: session?.metadata?.summary || "",
-      defaultOpen: session?.metadata?.defaultOpen === true,
-      activities: (session?.relationships?.activities || []).map((activityId) => {
-        const activity = (pkg.activities || []).find((item) => item.id === activityId);
-        const minutes = activity?.metadata?.estimatedDurationMinutes;
-        return {
-          id: activityId,
-          title: activity?.metadata?.title || activityId,
-          description: activity?.metadata?.summary || "",
-          activityType: activity?.metadata?.activityType || "Activity",
-          duration: minutes ? `${minutes} minutes` : "",
-          status: "Available",
-          badge: true,
-          badgeStatus: activity?.metadata?.status || "available",
-          headingLevel: 3 as const
-        };
-      })
+      summary: accessible ? (session?.metadata?.summary || "") : SESSION_NOT_RELEASED_COPY,
+      defaultOpen: accessible && session?.metadata?.defaultOpen === true,
+      accessible,
+      activities: accessible
+        ? (session?.relationships?.activities || []).map((activityId) => {
+          const activity = (pkg.activities || []).find((item) => item.id === activityId);
+          const minutes = activity?.metadata?.estimatedDurationMinutes;
+          return {
+            id: activityId,
+            title: activity?.metadata?.title || activityId,
+            description: activity?.metadata?.summary || "",
+            activityType: activity?.metadata?.activityType || "Activity",
+            duration: minutes ? `${minutes} minutes` : "",
+            status: "Available",
+            badge: true,
+            badgeStatus: activity?.metadata?.status || "available",
+            headingLevel: 3 as const
+          };
+        })
+        : []
     };
   });
   const learningOutcomes = (week.relationships?.learningOutcomes || []).map((outcomeId) => {

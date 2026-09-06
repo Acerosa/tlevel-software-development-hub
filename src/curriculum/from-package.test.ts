@@ -72,6 +72,41 @@ describe("T Level package hydration", () => {
     expect(week1?.sessions[0].activities[0].id).toBe("week-1-lesson-1-retrieval");
     expect(week1?.week.status).toBe("available");
     expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("planned");
+    const week2Page = weekPageFromPackage(pkg, "week-2");
+    expect(week2Page?.sessions.every((session) => session.accessible === false)).toBe(true);
+    expect(week2Page?.sessions.flatMap((session) => session.activities)).toEqual([]);
+  });
+
+  it("shows only available sessions inside an available week", () => {
+    const edited = structuredClone(pkg);
+    const lesson2 = edited.sessions.find((item) => item.id === "week-1-lesson-2");
+    const lesson3 = edited.sessions.find((item) => item.id === "week-1-lesson-3");
+    const homework = edited.sessions.find((item) => item.id === "week-1-homework");
+    if (!lesson2?.metadata || !lesson3?.metadata || !homework?.metadata) throw new Error("missing week-1 sessions");
+    lesson2.metadata.status = "planned";
+    lesson3.metadata.status = "planned";
+    homework.metadata.status = "planned";
+    const page = weekPageFromPackage(edited, "week-1");
+    expect(page?.sessions.map((session) => ({ id: session.id, accessible: session.accessible }))).toEqual([
+      { id: "week-1-lesson-1", accessible: true },
+      { id: "week-1-lesson-2", accessible: false },
+      { id: "week-1-lesson-3", accessible: false },
+      { id: "week-1-homework", accessible: false }
+    ]);
+    expect(page?.sessions[0].activities.length).toBeGreaterThan(0);
+    expect(page?.sessions[1].activities).toEqual([]);
+    expect(page?.sessions[1].summary).toBe("Not released yet");
+  });
+
+  it("overlays live session status without replacing session structure", () => {
+    const live = overlayLiveWeekMetadata(pkg, {
+      weeks: [{ id: "week-1", metadata: { teachingWeek: 1, status: "available" } }],
+      sessions: [{ id: "week-1-lesson-2", metadata: { status: "planned", title: "Must not replace" } }]
+    });
+    const page = weekPageFromPackage(live, "week-1");
+    expect(page?.sessions[1].accessible).toBe(false);
+    expect(page?.sessions[1].title).toBe("Lesson 2: Market, problems and risks");
+    expect(live.sessions?.find((item) => item.id === "week-1-lesson-2")?.relationships?.activities?.length).toBeGreaterThan(0);
   });
 
   it("overlays live week status by id, then by teachingWeek", () => {
