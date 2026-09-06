@@ -7,7 +7,7 @@
     "metadata": {
       "title": "Lesson 1: Annotating the client brief",
       "kind": "session",
-      "summary": "Baseline diagnostic, then extract organisation, users, constraints, success measures and missing information from the Oakfield brief.",
+      "summary": "Use the Oakfield scenario to identify the client, users, current situation, problems, requirements and constraints.",
       "sortOrder": 1,
       "defaultOpen": true,
       "status": "available"
@@ -29,10 +29,10 @@
     "metadata": {
       "title": "Lesson 2: Market, problems and risks",
       "kind": "session",
-      "summary": "Research the market environment, typical problems and risks for adult-learning digital services.",
+      "summary": "Look beyond the brief: market context, problems with the current approach, and risks if nothing changes.",
       "sortOrder": 2,
       "defaultOpen": false,
-      "status": "available"
+      "status": "planned"
     },
     "relationships": {
       "week": "week-1",
@@ -51,10 +51,10 @@
     "metadata": {
       "title": "Lesson 3: Current systems and exit check",
       "kind": "session",
-      "summary": "Investigate hardware and software already in use, then list remaining research questions.",
+      "summary": "Investigate current hardware, software and practice, then close the week with remaining unknowns.",
       "sortOrder": 3,
       "defaultOpen": false,
-      "status": "available"
+      "status": "planned"
     },
     "relationships": {
       "week": "week-1",
@@ -73,10 +73,10 @@
     "metadata": {
       "title": "Homework: one real digital product",
       "kind": "homework",
-      "summary": "Find one real digital product and describe the problem it addresses, the likely client and the users it serves.",
+      "summary": "Analyse one real digital product or service using the same headings you used on the Oakfield brief.",
       "sortOrder": 4,
       "defaultOpen": false,
-      "status": "available"
+      "status": "planned"
     },
     "relationships": {
       "week": "week-1",

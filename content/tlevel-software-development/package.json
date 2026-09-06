@@ -2,7 +2,7 @@
   "schema": "lp.content.package",
   "schemaVersion": "0.1.0",
   "id": "tlevel-software-development-content",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "hub": {
     "schema": "lp.content.hub",
     "schemaVersion": "0.1.0",
@@ -895,11 +895,73 @@
         "title": "Client Brief, Context and Initial Research",
         "status": "available",
         "phase": "analyse-problem",
-        "professionalPractice": "LO1 / 1.1 — interpret a client brief; research the market, problems and risks; investigate current hardware and software",
+        "professionalPractice": "LO1 / 1.1: interpret a client brief; research the market, problems and risks; investigate current hardware and software",
         "route": "weeks/week-1/",
         "weekCommencing": "2026-08-31",
         "releaseDate": null,
-        "dueDate": null
+        "dueDate": null,
+        "clientScenario": {
+          "title": "Oakfield Adult Skills Hub: Client Scenario",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Oakfield Adult Skills Hub is a local-authority adult education provider. It runs free and low-cost courses in English, maths, digital skills and vocational subjects across several community venues."
+            },
+            {
+              "type": "paragraph",
+              "text": "At present, learners usually telephone or visit reception to ask about courses and request a place. Staff record bookings in a paper diary and a shared spreadsheet. Tutors use paper registers during lessons. Managers have limited visibility of course capacity and often do not know whether a course is full until information has been updated at the end of the week."
+            },
+            {
+              "type": "paragraph",
+              "text": "Oakfield would like a digital service that improves how learners, tutors and managers access and manage course information."
+            },
+            {
+              "type": "list",
+              "intro": "The service should allow learners to:",
+              "items": [
+                "find available courses",
+                "view useful course information",
+                "request a place on a course"
+              ]
+            },
+            {
+              "type": "list",
+              "intro": "It should allow tutors to:",
+              "items": [
+                "view relevant class information",
+                "record learner attendance"
+              ]
+            },
+            {
+              "type": "list",
+              "intro": "It should allow managers to:",
+              "items": [
+                "monitor attendance",
+                "view course capacity",
+                "produce information required for funding reports"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The service must be suitable for users with different levels of digital confidence. It should support users who rely on screen readers and users for whom English is an additional language."
+            },
+            {
+              "type": "list",
+              "intro": "Oakfield has also identified several constraints:",
+              "items": [
+                "the project has a limited budget",
+                "personal data must be handled in accordance with UK GDPR",
+                "some teaching venues have unreliable Wi-Fi",
+                "staff already use Microsoft 365 and would prefer to avoid unnecessary new systems or training"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Oakfield expects the proposed solution to improve access to course information, reduce duplicated administrative work and give staff more reliable and timely information."
+            }
+          ],
+          "note": "You will use the Oakfield scenario throughout this course. Refer back to it when analysing requirements, identifying risks, designing solutions, testing and evaluating."
+        }
       },
       "relationships": {
         "curriculum": "tlevel-software-development-curriculum",
@@ -1627,7 +1689,7 @@
       "metadata": {
         "title": "Lesson 1: Annotating the client brief",
         "kind": "session",
-        "summary": "Baseline diagnostic, then extract organisation, users, constraints, success measures and missing information from the Oakfield brief.",
+        "summary": "Use the Oakfield scenario to identify the client, users, current situation, problems, requirements and constraints.",
         "sortOrder": 1,
         "defaultOpen": true,
         "status": "available"
@@ -1649,10 +1711,10 @@
       "metadata": {
         "title": "Lesson 2: Market, problems and risks",
         "kind": "session",
-        "summary": "Research the market environment, typical problems and risks for adult-learning digital services.",
+        "summary": "Look beyond the brief: market context, problems with the current approach, and risks if nothing changes.",
         "sortOrder": 2,
         "defaultOpen": false,
-        "status": "available"
+        "status": "planned"
       },
       "relationships": {
         "week": "week-1",
@@ -1671,10 +1733,10 @@
       "metadata": {
         "title": "Lesson 3: Current systems and exit check",
         "kind": "session",
-        "summary": "Investigate hardware and software already in use, then list remaining research questions.",
+        "summary": "Investigate current hardware, software and practice, then close the week with remaining unknowns.",
         "sortOrder": 3,
         "defaultOpen": false,
-        "status": "available"
+        "status": "planned"
       },
       "relationships": {
         "week": "week-1",
@@ -1693,10 +1755,10 @@
       "metadata": {
         "title": "Homework: one real digital product",
         "kind": "homework",
-        "summary": "Find one real digital product and describe the problem it addresses, the likely client and the users it serves.",
+        "summary": "Analyse one real digital product or service using the same headings you used on the Oakfield brief.",
         "sortOrder": 4,
         "defaultOpen": false,
-        "status": "available"
+        "status": "planned"
       },
       "relationships": {
         "week": "week-1",
@@ -9057,9 +9119,9 @@
       "id": "week-1-lesson-1-retrieval",
       "version": "0.1.0",
       "metadata": {
-        "title": "Baseline diagnostic: what a software project is for",
+        "title": "Quick check: client, users and current practice",
         "status": "available",
-        "summary": "Record what you already know about clients, users and what a brief usually contains.",
+        "summary": "Check that you can pick out the client, the users and how Oakfield works today.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-1-retrieval",
@@ -9067,10 +9129,10 @@
         "activityType": "Diagnostic",
         "topics": [
           "Client",
-          "Brief",
-          "Users"
+          "Users",
+          "Current situation"
         ],
-        "detail": "Record what you already know about clients, users and what a brief usually contains."
+        "detail": "Check that you can pick out the client, the users and how Oakfield works today."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9094,7 +9156,7 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Baseline diagnostic",
+            "text": "Quick check",
             "level": 2
           }
         },
@@ -9107,67 +9169,35 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "There are no marks for a 'right' baseline. This shows your starting point before we annotate a real brief."
+            "text": "Use the Oakfield scenario at the top of this page. Do not guess from general knowledge."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-retrieval-purpose",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-1-retrieval:purpose",
-            "sourceQuestionId": "purpose",
-            "prompt": "In your own words, what is a software project for?",
-            "placeholder": "A software project is for..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-retrieval-who",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-1-retrieval:who",
-            "sourceQuestionId": "who",
-            "prompt": "Who is a client, and how is a client different from a user?",
-            "placeholder": "The client is... The users are..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-retrieval-q1",
+          "id": "week-1-lesson-1-retrieval-client",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "single-choice",
           "content": {
             "formative": true,
-            "questionId": "week-1-lesson-1-retrieval:q1",
-            "sourceQuestionId": "q1",
+            "questionId": "week-1-lesson-1-retrieval:client",
+            "sourceQuestionId": "client",
             "sourceType": "single",
-            "prompt": "A local authority pays for a booking system that adult learners will use. Who is the client?",
+            "prompt": "Who is the client in the Oakfield scenario?",
             "options": [
               {
                 "id": "a",
-                "label": "Every adult learner who might book a course"
+                "label": "Adult learners who book a course"
               },
               {
                 "id": "b",
-                "label": "The local authority / Adult Skills Hub that requested the system"
+                "label": "Oakfield Adult Skills Hub, the organisation requesting the system"
               },
               {
                 "id": "c",
-                "label": "The software tutor teaching this T Level"
+                "label": "Tutors who take a register"
               },
               {
                 "id": "d",
@@ -9176,8 +9206,103 @@
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "The client is the organisation that requested the work. Learners are users, not the paying client.",
-              "incorrect": "The client requested the work. Users are the people who will use the service."
+              "correct": "The client is the organisation that requested the work. Oakfield (the local-authority Adult Skills Hub) is asking for the service.",
+              "incorrect": "Learners and tutors will use the service. They are users, not the client who requested it."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-users",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:users",
+            "sourceQuestionId": "users",
+            "prompt": "Sort each group. Who would use the proposed digital service?",
+            "categories": [
+              {
+                "id": "user",
+                "label": "User of the proposed system"
+              },
+              {
+                "id": "not-user",
+                "label": "Not a user of the proposed system"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Learners looking for a course",
+                "correctCategoryId": "user"
+              },
+              {
+                "id": "item-2",
+                "label": "Tutors recording attendance",
+                "correctCategoryId": "user"
+              },
+              {
+                "id": "item-3",
+                "label": "Managers checking whether a course is full",
+                "correctCategoryId": "user"
+              },
+              {
+                "id": "item-4",
+                "label": "The T Level tutor teaching this unit",
+                "correctCategoryId": "not-user"
+              },
+              {
+                "id": "item-5",
+                "label": "Microsoft support staff",
+                "correctCategoryId": "not-user"
+              }
+            ],
+            "feedback": {
+              "correct": "Learners, tutors and managers are named as people who will use the service.",
+              "incorrect": "The client requested the work. That does not make every nearby organisation a user."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-retrieval-now",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-retrieval:now",
+            "sourceQuestionId": "now",
+            "sourceType": "single",
+            "prompt": "How do learners usually request a place today?",
+            "options": [
+              {
+                "id": "a",
+                "label": "They book online and get an instant confirmation"
+              },
+              {
+                "id": "b",
+                "label": "They telephone or visit reception"
+              },
+              {
+                "id": "c",
+                "label": "They scan a QR code in the classroom"
+              },
+              {
+                "id": "d",
+                "label": "They email a central bookings team with a reference number"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The brief says learners usually telephone or visit reception. That is the current practice you must analyse.",
+              "incorrect": "Look at what the brief says happens now, not at a typical commercial booking site."
             }
           }
         }
@@ -9189,9 +9314,9 @@
       "id": "week-1-lesson-1-main",
       "version": "0.1.0",
       "metadata": {
-        "title": "Annotate a realistic client brief",
+        "title": "Annotate the Oakfield brief",
         "status": "available",
-        "summary": "Watch how a brief is annotated, then mark organisation, users, constraints, success measures and gaps.",
+        "summary": "Classify statements from the brief, match stakeholder needs, then explain one constraint.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-1-main",
@@ -9199,10 +9324,10 @@
         "activityType": "Guided learning",
         "topics": [
           "Client brief",
-          "Context",
+          "Requirements",
           "Constraints"
         ],
-        "detail": "Watch how a brief is annotated, then mark organisation, users, constraints, success measures and gaps."
+        "detail": "Classify statements from the brief, match stakeholder needs, then explain one constraint."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9226,7 +9351,7 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Interpreting the client request",
+            "text": "Annotate the brief",
             "level": 2
           }
         },
@@ -9239,46 +9364,76 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Analysts do not start coding until they understand the client, the market and the current systems. A brief mixes stated needs, implied needs and missing information."
+            "text": "Keep the Oakfield scenario in view. Pull evidence from it; do not invent extra detail."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-main-brief",
+          "id": "week-1-lesson-1-main-kinds",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "callout",
+          "type": "classification",
           "content": {
-            "title": "Continuing client: Oakfield Adult Skills Hub",
-            "text": "Oakfield Adult Skills Hub is a local-authority adult education provider. It offers free and low-cost English, maths, digital-skills and vocational taster courses. Learners currently phone or visit reception. Staff keep a paper diary and a shared spreadsheet. Tutors take paper registers. Managers cannot see which courses are full until the end of the week. The client wants a digital service so learners can find a course and request a place, tutors can take a register, and managers can see attendance and produce funder reports. The service must work for people with low digital confidence, screen readers, and English as an additional language. Constraints include a limited budget, UK GDPR, some venues with weak Wi-Fi, and staff who already use Microsoft 365.",
-            "tone": "info"
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-main-extract-h",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "What to extract",
-            "level": 3
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-main-extract",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "paragraph",
-          "content": {
-            "text": "Mark the organisation, who the users are, constraints (budget, law, buildings, existing tools), how success would be judged, and questions the brief does not answer. Stated needs are written down. Implied needs are reasonable but not spelled out — for example, a register that still works if Wi-Fi drops."
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:kinds",
+            "sourceQuestionId": "kinds",
+            "prompt": "Classify each statement from the Oakfield scenario.",
+            "categories": [
+              {
+                "id": "current",
+                "label": "Current situation"
+              },
+              {
+                "id": "problem",
+                "label": "Problem"
+              },
+              {
+                "id": "requirement",
+                "label": "Requirement"
+              },
+              {
+                "id": "constraint",
+                "label": "Constraint"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Staff record bookings in a paper diary and a shared spreadsheet",
+                "correctCategoryId": "current"
+              },
+              {
+                "id": "item-2",
+                "label": "Managers often do not know whether a course is full until the end of the week",
+                "correctCategoryId": "problem"
+              },
+              {
+                "id": "item-3",
+                "label": "Learners should be able to request a place on a course",
+                "correctCategoryId": "requirement"
+              },
+              {
+                "id": "item-4",
+                "label": "Personal data must be handled in accordance with UK GDPR",
+                "correctCategoryId": "constraint"
+              },
+              {
+                "id": "item-5",
+                "label": "Tutors use paper registers during lessons",
+                "correctCategoryId": "current"
+              },
+              {
+                "id": "item-6",
+                "label": "The project has a limited budget",
+                "correctCategoryId": "constraint"
+              }
+            ],
+            "feedback": {
+              "correct": "Current practice is what happens now. A problem is what goes wrong. A requirement is what the service should do. A constraint limits how you can do it.",
+              "incorrect": "A constraint such as UK GDPR is not a user task. A requirement is something the service should allow someone to do."
+            }
           }
         },
         {
@@ -9288,43 +9443,184 @@
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "short-response",
+          "type": "classification",
           "content": {
             "formative": true,
             "questionId": "week-1-lesson-1-main:stated",
             "sourceQuestionId": "stated",
-            "prompt": "List three stated needs from the Oakfield brief.",
-            "placeholder": "1. ... 2. ... 3. ...",
-            "guidance": "Quote or closely paraphrase the brief."
+            "prompt": "Is each point stated in the brief, implied by it, or not yet known?",
+            "categories": [
+              {
+                "id": "stated",
+                "label": "Stated in the brief"
+              },
+              {
+                "id": "implied",
+                "label": "Implied by the brief"
+              },
+              {
+                "id": "unknown",
+                "label": "Not yet known"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Learners should be able to request a place",
+                "correctCategoryId": "stated"
+              },
+              {
+                "id": "item-2",
+                "label": "Attendance recording should still work if venue Wi-Fi drops",
+                "correctCategoryId": "implied"
+              },
+              {
+                "id": "item-3",
+                "label": "The exact project budget",
+                "correctCategoryId": "unknown"
+              },
+              {
+                "id": "item-4",
+                "label": "The system must follow UK GDPR",
+                "correctCategoryId": "stated"
+              },
+              {
+                "id": "item-5",
+                "label": "How many venues Oakfield uses",
+                "correctCategoryId": "unknown"
+              }
+            ],
+            "feedback": {
+              "correct": "Stated points are written in the brief. Implied points follow from what is written, such as unreliable Wi-Fi affecting a live register. Unknowns need research.",
+              "incorrect": "Do not treat a missing figure as if the brief had already decided it."
+            }
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-main-missing",
+          "id": "week-1-lesson-1-main-needs",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "drag-drop",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:needs",
+            "sourceQuestionId": "needs",
+            "prompt": "Match each need to the stakeholder it mainly serves.",
+            "items": [
+              {
+                "id": "find",
+                "label": "Find courses and request a place"
+              },
+              {
+                "id": "register",
+                "label": "Record learner attendance"
+              },
+              {
+                "id": "reports",
+                "label": "Monitor capacity and produce funding reports"
+              }
+            ],
+            "targets": [
+              {
+                "id": "learner",
+                "label": "Learner"
+              },
+              {
+                "id": "tutor",
+                "label": "Tutor"
+              },
+              {
+                "id": "manager",
+                "label": "Manager"
+              }
+            ],
+            "correct": {
+              "find": "learner",
+              "register": "tutor",
+              "reports": "manager"
+            },
+            "feedback": {
+              "correct": "The brief gives learners find-and-request, tutors attendance recording, and managers capacity and reports.",
+              "incorrect": "Match the need to the group who would do that job, not to whoever pays for the project."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-constraints",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-1-lesson-1-main:missing",
-            "sourceQuestionId": "missing",
-            "prompt": "List three research questions the brief does not answer.",
-            "placeholder": "Question 1: ...",
-            "guidance": "Good questions are specific: numbers, venues, funding rules, devices."
+            "questionId": "week-1-lesson-1-main:constraints",
+            "sourceQuestionId": "constraints",
+            "prompt": "Name two constraints from the brief.",
+            "placeholder": "1. ... 2. ...",
+            "guidance": "Use the brief. Budget, UK GDPR, unreliable Wi-Fi and existing Microsoft 365 are all constraints.",
+            "minChars": 40
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-1-main-teacher",
+          "id": "week-1-lesson-1-main-wifi",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "teacher-note",
+          "type": "single-choice",
           "content": {
-            "text": "SoL Week 1: baseline then tutor-modelled brief annotation. UDL: written, visual and verbal brief. Scaffold: annotation prompts. Challenge: assumptions the brief does not give."
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:wifi",
+            "sourceQuestionId": "wifi",
+            "sourceType": "single",
+            "prompt": "Oakfield says some venues have unreliable Wi-Fi. What should the analyst investigate next?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Which colour scheme would look modern on a booking screen"
+              },
+              {
+                "id": "b",
+                "label": "Whether attendance still needs to be recorded when a venue is offline, and how staff do that today"
+              },
+              {
+                "id": "c",
+                "label": "Which programming language is most popular this year"
+              },
+              {
+                "id": "d",
+                "label": "Whether the Hub should move every course to a single city-centre building"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Unreliable Wi-Fi is a constraint that affects a live digital register. Find out what happens in class today before you recommend a design.",
+              "incorrect": "A Wi-Fi problem is about how the service must work in those venues, not about branding or the tech stack."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-main-evidence",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-main:evidence",
+            "sourceQuestionId": "evidence",
+            "prompt": "From the brief, give one problem, one requirement, one constraint and one missing piece of information.",
+            "placeholder": "Problem: ... Requirement: ... Constraint: ... Missing: ...",
+            "guidance": "Quote or closely paraphrase the scenario.",
+            "minChars": 80
           }
         }
       ]
@@ -9335,9 +9631,9 @@
       "id": "week-1-lesson-1-formative",
       "version": "0.1.0",
       "metadata": {
-        "title": "Progress check: client, user or context",
+        "title": "Progress check: reading the brief",
         "status": "available",
-        "summary": "Distinguish client, user and context in short extracts.",
+        "summary": "Check that you can still tell client from user, and pick a useful follow-up question.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-1-formative",
@@ -9346,9 +9642,9 @@
         "topics": [
           "Client",
           "User",
-          "Context"
+          "Research questions"
         ],
-        "detail": "Distinguish client, user and context in short extracts."
+        "detail": "Check that you can still tell client from user, and pick a useful follow-up question."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9372,7 +9668,7 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Classify each statement",
+            "text": "Progress check",
             "level": 2
           }
         },
@@ -9388,7 +9684,7 @@
             "formative": true,
             "questionId": "week-1-lesson-1-formative:sort",
             "sourceQuestionId": "sort",
-            "prompt": "Classify each statement from the Oakfield scenario.",
+            "prompt": "Classify each statement.",
             "categories": [
               {
                 "id": "client",
@@ -9399,42 +9695,59 @@
                 "label": "User"
               },
               {
-                "id": "context",
-                "label": "Context or constraint"
+                "id": "constraint",
+                "label": "Constraint"
               }
             ],
             "items": [
               {
                 "id": "item-1",
-                "label": "The local authority pays for the project",
+                "label": "Oakfield Adult Skills Hub requested the digital service",
                 "correctCategoryId": "client"
               },
               {
                 "id": "item-2",
-                "label": "An adult learner with a screen reader books a maths taster",
+                "label": "An adult learner with a screen reader looks up a maths course",
                 "correctCategoryId": "user"
               },
               {
                 "id": "item-3",
-                "label": "Some venues have weak Wi-Fi",
-                "correctCategoryId": "context"
+                "label": "Some teaching venues have unreliable Wi-Fi",
+                "correctCategoryId": "constraint"
               },
               {
                 "id": "item-4",
-                "label": "A tutor takes a register on a tablet in class",
+                "label": "A tutor records who attended the session",
                 "correctCategoryId": "user"
               },
               {
                 "id": "item-5",
                 "label": "Staff already use Microsoft 365",
-                "correctCategoryId": "context"
-              },
-              {
-                "id": "item-6",
-                "label": "Managers need funder reports",
-                "correctCategoryId": "client"
+                "correctCategoryId": "constraint"
               }
-            ]
+            ],
+            "feedback": {
+              "correct": "The client requested the work. Users are the people who will use the service. Constraints limit the design.",
+              "incorrect": "Paying for the work does not make Oakfield a user of every screen. Wi-Fi and Microsoft 365 are limits, not user tasks."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-1-formative-questions",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-1-formative:questions",
+            "sourceQuestionId": "questions",
+            "prompt": "Write two questions an analyst should ask before recommending a solution.",
+            "placeholder": "1. ... 2. ...",
+            "guidance": "Useful questions are specific: numbers, venues, devices, what happens if Wi-Fi fails.",
+            "minChars": 40
           }
         }
       ]
@@ -9445,19 +9758,19 @@
       "id": "week-1-lesson-2-retrieval",
       "version": "0.1.0",
       "metadata": {
-        "title": "Retrieval: who the brief is about",
+        "title": "Retrieval: market or user need?",
         "status": "available",
-        "summary": "Retrieve client, users and constraints before looking at the wider market.",
+        "summary": "Tell a single user need apart from a wider market issue.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-2-retrieval",
         "estimatedDurationMinutes": 8,
         "activityType": "Retrieval",
         "topics": [
-          "Client",
-          "Users"
+          "Market",
+          "User needs"
         ],
-        "detail": "Retrieve client, users and constraints before looking at the wider market."
+        "detail": "Tell a single user need apart from a wider market issue."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9481,24 +9794,8 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Retrieve the Oakfield context",
+            "text": "Market or user need?",
             "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-2-retrieval-users",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-2-retrieval:users",
-            "sourceQuestionId": "users",
-            "prompt": "Name two user groups in the Oakfield brief besides managers.",
-            "placeholder": "1. ... 2. ..."
           }
         },
         {
@@ -9514,29 +9811,79 @@
             "questionId": "week-1-lesson-2-retrieval:q1",
             "sourceQuestionId": "q1",
             "sourceType": "single",
-            "prompt": "Which statement is a market-environment point rather than a single user need?",
+            "prompt": "Which statement is about the wider market, not one user's need?",
             "options": [
               {
                 "id": "a",
-                "label": "Fatima uses a screen reader"
+                "label": "A learner uses a screen reader to look up courses"
               },
               {
                 "id": "b",
-                "label": "Other adult-learning providers already offer online enrolment"
+                "label": "Other adult-learning providers already let people request a place online"
               },
               {
                 "id": "c",
-                "label": "The tutor wants a paper backup register"
+                "label": "A tutor wants a paper backup register"
               },
               {
                 "id": "d",
-                "label": "The manager wants Friday reports"
+                "label": "A manager wants Friday attendance figures"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "The market is other providers, products and expectations around the client, not one person's need.",
-              "incorrect": "Market environment is the wider setting: competitors, typical products, regulation and public expectation."
+              "correct": "The market is other providers and what is already normal around Oakfield. One person's access need is still a user need.",
+              "incorrect": "A user need belongs to a person using the service. A market point is about other providers, typical products or public expectation."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-retrieval-sort",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-retrieval:sort",
+            "sourceQuestionId": "sort",
+            "prompt": "Classify each Oakfield point.",
+            "categories": [
+              {
+                "id": "problem",
+                "label": "Problem"
+              },
+              {
+                "id": "risk",
+                "label": "Risk"
+              },
+              {
+                "id": "constraint",
+                "label": "Constraint"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Managers often do not know if a course is full until the week has ended",
+                "correctCategoryId": "problem"
+              },
+              {
+                "id": "item-2",
+                "label": "Personal data sitting in a shared spreadsheet could be copied or sent to the wrong person",
+                "correctCategoryId": "risk"
+              },
+              {
+                "id": "item-3",
+                "label": "The project has a limited budget",
+                "correctCategoryId": "constraint"
+              }
+            ],
+            "feedback": {
+              "correct": "A problem is already happening. A risk is harm that might happen. A constraint limits what you can propose.",
+              "incorrect": "Budget is a limit on the work, not a user complaint happening today."
             }
           }
         }
@@ -9548,9 +9895,9 @@
       "id": "week-1-lesson-2-main",
       "version": "0.1.0",
       "metadata": {
-        "title": "Research the market, problems and risks",
+        "title": "Problems, risks and why they matter",
         "status": "available",
-        "summary": "Use source cards to record typical problems and risks for this kind of service.",
+        "summary": "Connect research points back to Oakfield, not to a generic booking product.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-2-main",
@@ -9561,7 +9908,7 @@
           "Risk",
           "Adult learning"
         ],
-        "detail": "Use source cards to record typical problems and risks for this kind of service."
+        "detail": "Connect research points back to Oakfield, not to a generic booking product."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9585,7 +9932,7 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Market environment and common risks",
+            "text": "What the current approach costs Oakfield",
             "level": 2
           }
         },
@@ -9598,65 +9945,193 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "A proposal is weak if it only repeats the client's words. Research what similar services do, what usually goes wrong, and who might be excluded."
+            "text": "A proposal that only repeats the brief is weak. Look at what similar services do, what usually goes wrong, and who gets left out."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-2-main-cards",
+          "id": "week-1-lesson-2-main-kinds",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "callout",
+          "type": "classification",
           "content": {
-            "title": "Source-card themes",
-            "text": "Typical problems: duplicate bookings, no-shows, inaccessible forms, staff retyping paper registers, reports that do not match funder rules. Typical risks: personal data on shared spreadsheets, venues offline, learners who will not use an app-only service.",
-            "tone": "info"
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:kinds",
+            "sourceQuestionId": "kinds",
+            "prompt": "Classify each statement about Oakfield's current approach.",
+            "categories": [
+              {
+                "id": "problem",
+                "label": "Problem now"
+              },
+              {
+                "id": "risk",
+                "label": "Risk if nothing changes"
+              },
+              {
+                "id": "constraint",
+                "label": "Constraint"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Staff retype paper registers into a spreadsheet",
+                "correctCategoryId": "problem"
+              },
+              {
+                "id": "item-2",
+                "label": "Learner data on a shared spreadsheet could be accessed by the wrong staff",
+                "correctCategoryId": "risk"
+              },
+              {
+                "id": "item-3",
+                "label": "Some venues have unreliable Wi-Fi",
+                "correctCategoryId": "constraint"
+              },
+              {
+                "id": "item-4",
+                "label": "Learners who will not use an app-only service may be unable to request a place",
+                "correctCategoryId": "risk"
+              },
+              {
+                "id": "item-5",
+                "label": "Staff already use Microsoft 365 and extra systems mean extra training",
+                "correctCategoryId": "constraint"
+              }
+            ],
+            "feedback": {
+              "correct": "Problems are happening now. Risks are harms that may follow. Constraints stay true even if you change the design.",
+              "incorrect": "Unreliable Wi-Fi limits the design. A data leak from a shared spreadsheet is a risk, not a budget limit."
+            }
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-2-main-problem",
+          "id": "week-1-lesson-2-main-useful",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:useful",
+            "sourceQuestionId": "useful",
+            "prompt": "Which investigation would help Oakfield, and which would not?",
+            "categories": [
+              {
+                "id": "useful",
+                "label": "Useful for Oakfield"
+              },
+              {
+                "id": "not-useful",
+                "label": "Not useful at this stage"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "How other adult-learning providers take bookings",
+                "correctCategoryId": "useful"
+              },
+              {
+                "id": "item-2",
+                "label": "Whether paper registers get lost or retyped",
+                "correctCategoryId": "useful"
+              },
+              {
+                "id": "item-3",
+                "label": "Which celebrity should appear on the home screen",
+                "correctCategoryId": "not-useful"
+              },
+              {
+                "id": "item-4",
+                "label": "What happens to attendance data if a venue is offline",
+                "correctCategoryId": "useful"
+              },
+              {
+                "id": "item-5",
+                "label": "Which JavaScript framework is trending this month",
+                "correctCategoryId": "not-useful"
+              }
+            ],
+            "feedback": {
+              "correct": "Useful research changes what you would recommend for Oakfield's users, data or venues.",
+              "incorrect": "Fashion and decoration do not close a knowledge gap in this brief."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-matter-map",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "drag-drop",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-2-main:matter-map",
+            "sourceQuestionId": "matter-map",
+            "prompt": "Match each finding to why it matters for Oakfield.",
+            "items": [
+              {
+                "id": "other",
+                "label": "Other adult-learning providers already take online requests"
+              },
+              {
+                "id": "sheet",
+                "label": "Learner names sit on a shared spreadsheet"
+              },
+              {
+                "id": "wifi",
+                "label": "Some venues have unreliable Wi-Fi"
+              }
+            ],
+            "targets": [
+              {
+                "id": "access",
+                "label": "Learners may expect to request a place without visiting reception"
+              },
+              {
+                "id": "gdpr",
+                "label": "Personal data could be copied or sent to the wrong person"
+              },
+              {
+                "id": "offline",
+                "label": "A live-only register may fail during a lesson"
+              }
+            ],
+            "correct": {
+              "other": "access",
+              "sheet": "gdpr",
+              "wifi": "offline"
+            },
+            "feedback": {
+              "correct": "Each finding changes what you would investigate or recommend for Oakfield.",
+              "incorrect": "Stay with Oakfield's users, data and venues. Do not treat this as a generic booking app."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-2-main-matter",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-1-lesson-2-main:problem",
-            "sourceQuestionId": "problem",
-            "prompt": "Describe one common problem for a booking-and-register service, and why it would matter to Oakfield.",
-            "placeholder": "Problem: ... Why it matters: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-2-main-risk",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-2-main:risk",
-            "sourceQuestionId": "risk",
-            "prompt": "Identify one risk if Oakfield stays on paper and spreadsheets.",
-            "placeholder": "Risk: ... Who is affected: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-2-main-teacher",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "teacher-note",
-          "content": {
-            "text": "SoL Week 1 guided learning: pairs research market, problems and risks using source cards. Reduce reading load with cards. Extension: who is missing from typical vendor case studies."
+            "questionId": "week-1-lesson-2-main:matter",
+            "sourceQuestionId": "matter",
+            "prompt": "Pick one problem or risk from the brief. Why does it matter to Oakfield?",
+            "placeholder": "It matters because...",
+            "guidance": "Name who is affected: learners, tutors, managers or funders.",
+            "minChars": 80
           }
         }
       ]
@@ -9667,19 +10142,20 @@
       "id": "week-1-lesson-2-formative",
       "version": "0.1.0",
       "metadata": {
-        "title": "Progress check: implied versus stated needs",
+        "title": "Progress check: problem, risk or constraint",
         "status": "available",
-        "summary": "Mark whether extracts are stated, implied or not in the brief.",
+        "summary": "Check that you can still tell these three apart.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-2-formative",
         "estimatedDurationMinutes": 10,
         "activityType": "Classification",
         "topics": [
-          "Stated needs",
-          "Implied needs"
+          "Problems",
+          "Risks",
+          "Constraints"
         ],
-        "detail": "Mark whether extracts are stated, implied or not in the brief."
+        "detail": "Check that you can still tell these three apart."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9703,7 +10179,7 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Stated, implied, or not in the brief",
+            "text": "Progress check",
             "level": 2
           }
         },
@@ -9719,48 +10195,47 @@
             "formative": true,
             "questionId": "week-1-lesson-2-formative:sort",
             "sourceQuestionId": "sort",
-            "prompt": "Classify each need.",
+            "prompt": "Classify each statement.",
             "categories": [
               {
-                "id": "stated",
-                "label": "Stated in the brief"
+                "id": "problem",
+                "label": "Problem"
               },
               {
-                "id": "implied",
-                "label": "Implied but not written"
+                "id": "risk",
+                "label": "Risk"
               },
               {
-                "id": "absent",
-                "label": "Not supported by the brief"
+                "id": "constraint",
+                "label": "Constraint"
               }
             ],
             "items": [
               {
                 "id": "item-1",
-                "label": "Learners should be able to request a place",
-                "correctCategoryId": "stated"
+                "label": "Duplicate bookings because the diary and spreadsheet do not match",
+                "correctCategoryId": "problem"
               },
               {
                 "id": "item-2",
-                "label": "The register should still work if Wi-Fi drops",
-                "correctCategoryId": "implied"
+                "label": "UK GDPR rules for personal data",
+                "correctCategoryId": "constraint"
               },
               {
                 "id": "item-3",
-                "label": "The Hub wants a native iOS game",
-                "correctCategoryId": "absent"
+                "label": "A missed funding report because attendance was updated too late",
+                "correctCategoryId": "risk"
               },
               {
                 "id": "item-4",
-                "label": "The service must follow UK GDPR",
-                "correctCategoryId": "stated"
-              },
-              {
-                "id": "item-5",
-                "label": "Funder reports should be possible without retyping",
-                "correctCategoryId": "implied"
+                "label": "Learners queuing at reception while staff search the diary",
+                "correctCategoryId": "problem"
               }
-            ]
+            ],
+            "feedback": {
+              "correct": "If it is already going wrong, it is a problem. If it might cause harm later, it is a risk. If it limits the design, it is a constraint.",
+              "incorrect": "GDPR is a legal limit. Late reports are a harm that might follow from the current process."
+            }
           }
         }
       ]
@@ -9771,19 +10246,18 @@
       "id": "week-1-lesson-3-retrieval",
       "version": "0.1.0",
       "metadata": {
-        "title": "Retrieval: problems and constraints",
+        "title": "Retrieval: current tools",
         "status": "available",
-        "summary": "Retrieve one problem and one constraint before investigating current systems.",
+        "summary": "Match what Oakfield uses now to the limitation that creates.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-3-retrieval",
         "estimatedDurationMinutes": 8,
         "activityType": "Retrieval",
         "topics": [
-          "Constraints",
           "Current systems"
         ],
-        "detail": "Retrieve one problem and one constraint before investigating current systems."
+        "detail": "Match what Oakfield uses now to the limitation that creates."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9807,24 +10281,87 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Retrieve constraints",
+            "text": "What they use now",
             "level": 2
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-retrieval-constraint",
+          "id": "week-1-lesson-3-retrieval-tools",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "short-response",
+          "type": "drag-drop",
           "content": {
             "formative": true,
-            "questionId": "week-1-lesson-3-retrieval:constraint",
-            "sourceQuestionId": "constraint",
-            "prompt": "Name two constraints from the Oakfield brief.",
-            "placeholder": "1. ... 2. ..."
+            "questionId": "week-1-lesson-3-retrieval:tools",
+            "sourceQuestionId": "tools",
+            "prompt": "Match the current tool to a limitation.",
+            "items": [
+              {
+                "id": "phone",
+                "label": "Telephone and reception"
+              },
+              {
+                "id": "diary",
+                "label": "Paper diary"
+              },
+              {
+                "id": "sheet",
+                "label": "Shared spreadsheet"
+              },
+              {
+                "id": "reg",
+                "label": "Paper registers"
+              },
+              {
+                "id": "office",
+                "label": "Microsoft 365"
+              },
+              {
+                "id": "wifi",
+                "label": "Venue Wi-Fi"
+              }
+            ],
+            "targets": [
+              {
+                "id": "lim-phone",
+                "label": "Learners can only enquire when staff are free to answer"
+              },
+              {
+                "id": "lim-diary",
+                "label": "Staff at another venue cannot see the latest bookings"
+              },
+              {
+                "id": "lim-sheet",
+                "label": "The wrong person may be able to open learner data"
+              },
+              {
+                "id": "lim-reg",
+                "label": "Attendance is typed again after the lesson"
+              },
+              {
+                "id": "lim-office",
+                "label": "Extra systems would mean extra training"
+              },
+              {
+                "id": "lim-wifi",
+                "label": "A cloud-only register may fail during the session"
+              }
+            ],
+            "correct": {
+              "phone": "lim-phone",
+              "diary": "lim-diary",
+              "sheet": "lim-sheet",
+              "reg": "lim-reg",
+              "office": "lim-office",
+              "wifi": "lim-wifi"
+            },
+            "feedback": {
+              "correct": "Each current tool already creates a problem the new service has to deal with.",
+              "incorrect": "Think about who can see the information, when it is updated, and what happens if a venue is offline."
+            }
           }
         },
         {
@@ -9840,29 +10377,29 @@
             "questionId": "week-1-lesson-3-retrieval:q1",
             "sourceQuestionId": "q1",
             "sourceType": "single",
-            "prompt": "Why investigate current hardware and software before proposing a new system?",
+            "prompt": "Which current practice is already in the brief?",
             "options": [
               {
                 "id": "a",
-                "label": "So you can copy a competitor's branding"
+                "label": "A dedicated student records system with live dashboards"
               },
               {
                 "id": "b",
-                "label": "So the proposal fits what staff and venues already have"
+                "label": "Telephone and reception enquiries, a paper diary, a shared spreadsheet and paper registers"
               },
               {
                 "id": "c",
-                "label": "So you can skip user research"
+                "label": "An app store listing for Oakfield"
               },
               {
                 "id": "d",
-                "label": "So coding can start on day one"
+                "label": "Chip-and-PIN terminals in every classroom"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "Current tools, devices and venues shape what is realistic. A proposal that ignores them fails at go-live.",
-              "incorrect": "Current systems are part of the context, not an optional extra."
+              "correct": "The brief already names telephone, reception, diary, spreadsheet and paper registers.",
+              "incorrect": "Do not invent systems the brief never mentioned."
             }
           }
         }
@@ -9874,19 +10411,20 @@
       "id": "week-1-lesson-3-main",
       "version": "0.1.0",
       "metadata": {
-        "title": "Research log: current hardware and software",
+        "title": "Investigate current systems",
         "status": "available",
-        "summary": "Record what Oakfield already uses and what that means for a new service.",
+        "summary": "Separate what the brief already tells you from what you still need to check on site.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-3-main",
-        "estimatedDurationMinutes": 30,
-        "activityType": "Independent application",
+        "estimatedDurationMinutes": 35,
+        "activityType": "Guided learning",
         "topics": [
-          "Current systems",
-          "Research log"
+          "Hardware",
+          "Software",
+          "Practice"
         ],
-        "detail": "Record what Oakfield already uses and what that means for a new service."
+        "detail": "Separate what the brief already tells you from what you still need to check on site."
       },
       "relationships": {
         "learningOutcomes": [
@@ -9910,7 +10448,7 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Current hardware and software",
+            "text": "Known facts and research gaps",
             "level": 2
           }
         },
@@ -9923,65 +10461,137 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Independent application: complete a structured research log. Sentence starters are allowed. Optional audio notes are fine if your centre agrees."
+            "text": "A new service has to work with what staff already do. Microsoft 365, paper and weak Wi-Fi all shape a realistic proposal."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-main-starters",
+          "id": "week-1-lesson-3-main-gaps",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "callout",
+          "type": "classification",
           "content": {
-            "title": "Sentence starters",
-            "text": "Staff currently... Learners currently... Devices in classrooms include... Data is stored in... This matters because...",
-            "tone": "info"
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:gaps",
+            "sourceQuestionId": "gaps",
+            "prompt": "Is this already known from the brief, or still a research gap?",
+            "categories": [
+              {
+                "id": "known",
+                "label": "Known from the brief"
+              },
+              {
+                "id": "gap",
+                "label": "Still a research gap"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Staff already use Microsoft 365",
+                "correctCategoryId": "known"
+              },
+              {
+                "id": "item-2",
+                "label": "Some venues have unreliable Wi-Fi",
+                "correctCategoryId": "known"
+              },
+              {
+                "id": "item-3",
+                "label": "Exactly how many venues there are",
+                "correctCategoryId": "gap"
+              },
+              {
+                "id": "item-4",
+                "label": "Bookings are recorded in a paper diary and a shared spreadsheet",
+                "correctCategoryId": "known"
+              },
+              {
+                "id": "item-5",
+                "label": "Whether every classroom has a shared PC",
+                "correctCategoryId": "gap"
+              }
+            ],
+            "feedback": {
+              "correct": "Known facts come from the brief. Gaps need a site visit, interview or sample of current files.",
+              "incorrect": "Microsoft 365 and Wi-Fi problems are already stated. Exact venue count is not."
+            }
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-main-hardware",
+          "id": "week-1-lesson-3-main-ask",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-lesson-3-main:ask",
+            "sourceQuestionId": "ask",
+            "prompt": "Which questions would help an analyst investigate the current system?",
+            "categories": [
+              {
+                "id": "useful",
+                "label": "Useful question"
+              },
+              {
+                "id": "not-useful",
+                "label": "Not useful yet"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Who is allowed to edit the shared spreadsheet?",
+                "correctCategoryId": "useful"
+              },
+              {
+                "id": "item-2",
+                "label": "What happens to a booking if two people telephone at once?",
+                "correctCategoryId": "useful"
+              },
+              {
+                "id": "item-3",
+                "label": "Which celebrity should open the new website?",
+                "correctCategoryId": "not-useful"
+              },
+              {
+                "id": "item-4",
+                "label": "Can tutors take a register when the venue Wi-Fi is down?",
+                "correctCategoryId": "useful"
+              },
+              {
+                "id": "item-5",
+                "label": "Which shade of blue should the logo use?",
+                "correctCategoryId": "not-useful"
+              }
+            ],
+            "feedback": {
+              "correct": "Useful questions uncover access, double-booking, offline working or how Microsoft 365 is used now.",
+              "incorrect": "Branding guesses do not explain how the current system works."
+            }
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-lesson-3-main-compat",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-1-lesson-3-main:hardware",
-            "sourceQuestionId": "hardware",
-            "prompt": "What hardware are staff and learners likely to use today, and what is uncertain?",
-            "placeholder": "Staff: ... Learners: ... Uncertain: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-main-software",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-3-main:software",
-            "sourceQuestionId": "software",
-            "prompt": "What software is already in the brief, and what must you still find out?",
-            "placeholder": "Already known: ... Still unknown: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-main-teacher",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "teacher-note",
-          "content": {
-            "text": "SoL Week 1 independent application: research log of current hardware/software. UDL: sentence starters and optional audio. Exit check: three remaining research questions."
+            "questionId": "week-1-lesson-3-main:compat",
+            "sourceQuestionId": "compat",
+            "prompt": "Why does it matter that staff already use Microsoft 365?",
+            "placeholder": "It matters because...",
+            "guidance": "Think about training, login and whether a new system would sit beside what they already open every day.",
+            "minChars": 80
           }
         }
       ]
@@ -9992,18 +10602,19 @@
       "id": "week-1-lesson-3-formative",
       "version": "0.1.0",
       "metadata": {
-        "title": "Exit check: three research questions",
+        "title": "Exit check: remaining unknowns",
         "status": "available",
-        "summary": "Sort known systems from gaps, then list three questions you still need to answer before writing requirements.",
+        "summary": "Leave with one unknown that still needs investigation.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-lesson-3-formative",
         "estimatedDurationMinutes": 10,
-        "activityType": "Progress check",
+        "activityType": "Exit ticket",
         "topics": [
-          "Research questions"
+          "Unknowns",
+          "Current systems"
         ],
-        "detail": "Sort known systems from gaps, then list three questions you still need to answer before writing requirements."
+        "detail": "Leave with one unknown that still needs investigation."
       },
       "relationships": {
         "learningOutcomes": [
@@ -10027,111 +10638,26 @@
           "relationships": {},
           "type": "heading",
           "content": {
-            "text": "Exit check",
+            "text": "Exit ticket",
             "level": 2
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-formative-sort",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "classification",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-3-formative:sort",
-            "sourceQuestionId": "sort",
-            "prompt": "Classify each statement about Oakfield today.",
-            "categories": [
-              {
-                "id": "current",
-                "label": "Current system / already known"
-              },
-              {
-                "id": "unknown",
-                "label": "Still unknown / needs research"
-              }
-            ],
-            "items": [
-              {
-                "id": "item-1",
-                "label": "Staff keep a paper diary and a shared spreadsheet",
-                "correctCategoryId": "current"
-              },
-              {
-                "id": "item-2",
-                "label": "How many venues have reliable Wi-Fi",
-                "correctCategoryId": "unknown"
-              },
-              {
-                "id": "item-3",
-                "label": "Tutors take paper registers",
-                "correctCategoryId": "current"
-              },
-              {
-                "id": "item-4",
-                "label": "Whether waiting lists are required",
-                "correctCategoryId": "unknown"
-              }
-            ]
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-formative-q1",
+          "id": "week-1-lesson-3-formative-unknown",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-1-lesson-3-formative:q1",
-            "sourceQuestionId": "q1",
-            "prompt": "Write three research questions you still need to answer about Oakfield.",
-            "placeholder": "1. ... 2. ... 3. ...",
-            "guidance": "Each question should be answerable with evidence, not opinion."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-1-lesson-3-formative-q2",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "single-choice",
-          "content": {
-            "formative": true,
-            "questionId": "week-1-lesson-3-formative:q2",
-            "sourceQuestionId": "q2",
-            "sourceType": "single",
-            "prompt": "Which research question is most useful at this stage?",
-            "options": [
-              {
-                "id": "a",
-                "label": "Which colour scheme looks nicest?"
-              },
-              {
-                "id": "b",
-                "label": "How many venues have reliable Wi-Fi, and what do tutors use if it fails?"
-              },
-              {
-                "id": "c",
-                "label": "Should we use a trendy JavaScript framework?"
-              },
-              {
-                "id": "d",
-                "label": "Which celebrity should appear in the app?"
-              }
-            ],
-            "correctOptionId": "b",
-            "feedback": {
-              "correct": "Useful questions close knowledge gaps that affect users, constraints and risk.",
-              "incorrect": "Ask questions that change the proposal, not decoration."
-            }
+            "questionId": "week-1-lesson-3-formative:unknown",
+            "sourceQuestionId": "unknown",
+            "prompt": "Name one thing about Oakfield's current hardware, software or practice that the brief does not tell you. Why would you need it before proposing a solution?",
+            "placeholder": "Unknown: ... Why I need it: ...",
+            "guidance": "Keep it specific: a venue, a file, a permission or a device.",
+            "minChars": 80
           }
         }
       ]
@@ -10144,7 +10670,7 @@
       "metadata": {
         "title": "Homework: one real digital product",
         "status": "available",
-        "summary": "Find one real digital product and describe the problem it addresses, the likely client and the users it serves.",
+        "summary": "Analyse one real digital product or service using the same headings you used on the Oakfield brief.",
         "href": null,
         "difficulty": "standard",
         "familyId": "week-1-homework-product",
@@ -10155,7 +10681,7 @@
           "Users",
           "Problem"
         ],
-        "detail": "Find one real digital product and describe the problem it addresses, the likely client and the users it serves."
+        "detail": "Analyse one real digital product or service using the same headings you used on the Oakfield brief."
       },
       "relationships": {
         "learningOutcomes": [
@@ -10192,39 +10718,127 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Choose a real public or education service (booking, benefits, learning, libraries). Do not invent a fictional start-up."
+            "text": "Choose one real public or education service, such as booking, benefits, learning or libraries. Do not invent a fictional start-up. Short notes are enough."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-homework-product-product",
+          "id": "week-1-homework-product-name",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-1-homework-product:product",
-            "sourceQuestionId": "product",
-            "prompt": "Name the product and the problem it addresses.",
-            "placeholder": "Product: ... Problem: ..."
+            "questionId": "week-1-homework-product:name",
+            "sourceQuestionId": "name",
+            "prompt": "Product or service name",
+            "placeholder": "Name: ...",
+            "minChars": 8
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-1-homework-product-roles",
+          "id": "week-1-homework-product-problem",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-1-homework-product:roles",
-            "sourceQuestionId": "roles",
-            "prompt": "Who is the likely client, and who are the users? Note one group who might be poorly served.",
-            "placeholder": "Client: ... Users: ... Poorly served: ..."
+            "questionId": "week-1-homework-product:problem",
+            "sourceQuestionId": "problem",
+            "prompt": "What problem does it address?",
+            "placeholder": "Problem: ...",
+            "minChars": 30
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-product-client",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-product:client",
+            "sourceQuestionId": "client",
+            "prompt": "Who is the likely client?",
+            "placeholder": "Client: ...",
+            "minChars": 15
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-product-users",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-product:users",
+            "sourceQuestionId": "users",
+            "prompt": "Who are the likely users?",
+            "placeholder": "Users: ...",
+            "minChars": 15
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-product-feature",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-product:feature",
+            "sourceQuestionId": "feature",
+            "prompt": "Name one useful feature.",
+            "placeholder": "Feature: ...",
+            "minChars": 20
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-product-limit",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-product:limit",
+            "sourceQuestionId": "limit",
+            "prompt": "Name one limitation or risk.",
+            "placeholder": "Limitation or risk: ...",
+            "minChars": 30
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-1-homework-product-source",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-1-homework-product:source",
+            "sourceQuestionId": "source",
+            "prompt": "What source did you use?",
+            "placeholder": "Source: ...",
+            "guidance": "A public website, help page or app listing is enough.",
+            "minChars": 15
           }
         }
       ]

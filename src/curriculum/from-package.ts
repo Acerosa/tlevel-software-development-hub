@@ -27,6 +27,18 @@ type ContentActivity = {
   blocks?: ContentBlock[];
 };
 
+export type ClientScenario = {
+  title?: string;
+  note?: string;
+  paragraphs?: string[];
+  blocks?: Array<{
+    type?: string;
+    text?: string;
+    intro?: string;
+    items?: string[];
+  }>;
+};
+
 type ContentWeek = {
   id: string;
   metadata?: {
@@ -35,6 +47,7 @@ type ContentWeek = {
     status?: string;
     professionalPractice?: string;
     weekCommencing?: string;
+    clientScenario?: ClientScenario;
   };
   relationships?: {
     sessions?: string[];
@@ -94,6 +107,7 @@ export type WeekPageModel = {
     subtitle: string;
     status: string;
     weekCommencing: string;
+    clientScenario?: ClientScenario;
   };
   learningOutcomes: Array<{ id: string; title: string }>;
   sessions: Array<{
@@ -225,7 +239,8 @@ export function weekPageFromPackage(pkg: ContentPackage, weekId: string): WeekPa
       title: week.metadata?.title || `Week ${teachingWeek}`,
       subtitle: learnerWeekDescription(week.metadata?.professionalPractice),
       status: week.metadata?.status || "",
-      weekCommencing: week.metadata?.weekCommencing || ""
+      weekCommencing: week.metadata?.weekCommencing || "",
+      clientScenario: week.metadata?.clientScenario
     },
     learningOutcomes,
     sessions

@@ -40,6 +40,10 @@ describe("T Level package hydration", () => {
     expect(pkg.activities.some((item) => item.id === "week-1-lesson-1-main")).toBe(true);
     const retrieval = pkg.activities.find((item) => item.id === "week-1-lesson-1-retrieval");
     expect((retrieval?.blocks || []).some((block) => block.type === "single-choice")).toBe(true);
+    expect((retrieval?.blocks || []).some((block) => block.type === "classification")).toBe(true);
+    const main = pkg.activities.find((item) => item.id === "week-1-lesson-1-main");
+    expect((main?.blocks || []).some((block) => block.type === "short-response")).toBe(true);
+    expect((main?.blocks || []).some((block) => block.type === "drag-drop")).toBe(true);
   });
 
   it("exposes Weeks 1 to 22 for the learner home and week pages", () => {
@@ -75,6 +79,32 @@ describe("T Level package hydration", () => {
     const week2Page = weekPageFromPackage(pkg, "week-2");
     expect(week2Page?.sessions.every((session) => session.accessible === false)).toBe(true);
     expect(week2Page?.sessions.flatMap((session) => session.activities)).toEqual([]);
+    expect(weekPageFromPackage(pkg, "week-2")?.sessions.map((session) => session.id)).toEqual([
+      "week-2-lesson-1",
+      "week-2-lesson-2",
+      "week-2-lesson-3",
+      "week-2-homework"
+    ]);
+    const week2Sessions = pkg.sessions.filter((session) => String(session.id).startsWith("week-2-"));
+    expect(week2Sessions.every((session) => session.metadata?.status === "available")).toBe(true);
+  });
+
+  it("bundles Week 1 Lesson 1 as available and later Week 1 sessions as planned", () => {
+    const page = weekPageFromPackage(pkg, "week-1");
+    expect(page?.week.clientScenario?.title).toBe("Oakfield Adult Skills Hub: Client Scenario");
+    expect(page?.sessions.map((session) => ({ id: session.id, accessible: session.accessible }))).toEqual([
+      { id: "week-1-lesson-1", accessible: true },
+      { id: "week-1-lesson-2", accessible: false },
+      { id: "week-1-lesson-3", accessible: false },
+      { id: "week-1-homework", accessible: false }
+    ]);
+    expect(page?.sessions[0].activities.length).toBeGreaterThan(0);
+    expect(page?.sessions[1].activities).toEqual([]);
+    expect(page?.sessions[1].summary).toBe("Not released yet");
+    expect(pkg.sessions.find((item) => item.id === "week-1-lesson-1")?.metadata?.status).toBe("available");
+    expect(pkg.sessions.find((item) => item.id === "week-1-lesson-2")?.metadata?.status).toBe("planned");
+    expect(pkg.sessions.find((item) => item.id === "week-1-lesson-3")?.metadata?.status).toBe("planned");
+    expect(pkg.sessions.find((item) => item.id === "week-1-homework")?.metadata?.status).toBe("planned");
   });
 
   it("shows only available sessions inside an available week", () => {

@@ -163,3 +163,24 @@
     overflow-x: auto;
   }
 }
+
+[data-lp-client-scenario] {
+  margin-block: 1.25rem;
+}
+
+[data-lp-client-scenario] h2 {
+  margin: 0 0 0.75rem;
+}
+
+[data-lp-client-scenario] p,
+[data-lp-client-scenario] ul {
+  margin: 0 0 0.75rem;
+}
+
+[data-lp-client-scenario] ul {
+  padding-inline-start: 1.25rem;
+}
+
+[data-lp-client-scenario] .lp-panel-note {
+  margin-bottom: 0;
+}

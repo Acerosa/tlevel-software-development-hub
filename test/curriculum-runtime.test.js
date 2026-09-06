@@ -14,7 +14,11 @@ test("week catalogue activities keep interactive blocks in the bundled package",
   const retrieval = pkg.activities.find((item) => item.id === "week-1-lesson-1-retrieval");
   assert.ok(retrieval && Array.isArray(retrieval.blocks) && retrieval.blocks.length > 0);
   assert.ok(retrieval.blocks.some((block) => block.type === "single-choice"));
-  assert.ok(retrieval.blocks.some((block) => block.type === "short-response"));
+  assert.ok(retrieval.blocks.some((block) => block.type === "classification"));
+  const main = pkg.activities.find((item) => item.id === "week-1-lesson-1-main");
+  assert.ok(main.blocks.some((block) => block.type === "short-response"));
+  assert.ok(main.blocks.some((block) => block.type === "classification"));
+  assert.ok(main.blocks.some((block) => block.type === "drag-drop"));
   const classify = pkg.activities.find((item) => item.id === "week-1-lesson-1-formative");
   assert.ok(classify.blocks.some((block) => block.type === "classification"));
 });
@@ -22,7 +26,7 @@ test("week catalogue activities keep interactive blocks in the bundled package",
 test("the converted T Level package keeps Foundations identity and activity ids", () => {
   assert.equal(pkg.hub.id, "tlevel-software-development");
   assert.equal(pkg.curriculum.metadata.course, "t-level-digital-software-development");
-  assert.equal(pkg.version, "0.4.0");
+  assert.equal(pkg.version, "0.4.1");
   const foundationIds = pkg.activities
     .filter((item) => String(item.id).startsWith("foundations-"))
     .map((item) => item.id);
@@ -52,6 +56,11 @@ test("Week 1 follows the SoL teaching sequence", () => {
     return session && session.metadata.kind;
   });
   assert.deepEqual(lessonKinds, ["session", "session", "session", "homework"]);
+  assert.equal(pkg.sessions.find((item) => item.id === "week-1-lesson-1").metadata.status, "available");
+  assert.equal(pkg.sessions.find((item) => item.id === "week-1-lesson-2").metadata.status, "planned");
+  assert.equal(pkg.sessions.find((item) => item.id === "week-1-lesson-3").metadata.status, "planned");
+  assert.equal(pkg.sessions.find((item) => item.id === "week-1-homework").metadata.status, "planned");
+  assert.equal(week.metadata.clientScenario.title, "Oakfield Adult Skills Hub: Client Scenario");
   assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo1"));
   assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo2"));
   assert.ok(pkg.learningOutcomes.some((item) => item.id === "lo3"));

@@ -209,6 +209,31 @@ describe("T Level presentation", () => {
     expect(within(classify).getByRole("button", { name: "Check types" })).toBeTruthy();
     expect(classify.querySelector("[data-lp-sort-board]")).toBeNull();
     expectReactTextBlock(written, "short-response");
+    expect(written.querySelector("[data-lp-block='drag-drop']")).toBeTruthy();
+  });
+
+  it("shows the Oakfield scenario before any Week 1 exercise and does not repeat the full brief in Lesson 1", () => {
+    const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
+    const scenario = container.querySelector("[data-lp-client-scenario]") as HTMLElement;
+    const firstActivity = container.querySelector("[data-lp-activity]") as HTMLElement;
+    const main = container.querySelector('[data-lp-activity="week-1-lesson-1-main"]') as HTMLElement;
+    expect(scenario).toBeTruthy();
+    expect(within(scenario).getByRole("heading", { name: "Oakfield Adult Skills Hub: Client Scenario" })).toBeTruthy();
+    expect(scenario.textContent).toMatch(/local-authority adult education provider/);
+    expect(scenario.textContent).toMatch(/You will use the Oakfield scenario throughout this course/);
+    expect(firstActivity).toBeTruthy();
+    expect(scenario.compareDocumentPosition(firstActivity) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(main.textContent).not.toMatch(/local-authority adult education provider/);
+    expect(container.querySelectorAll("[data-lp-client-scenario]")).toHaveLength(1);
+  });
+
+  it("does not mount planned Week 1 sessions", () => {
+    const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-1-retrieval']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-2-retrieval']")).toBeNull();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-3-retrieval']")).toBeNull();
+    expect(container.querySelector("[data-lp-activity='week-1-homework-product']")).toBeNull();
+    expect(screen.getAllByText("Not released yet").length).toBe(3);
   });
 
   it("blocks a direct week URL when the package status is not available", () => {
