@@ -26,7 +26,7 @@ test("week catalogue activities keep interactive blocks in the bundled package",
 test("the converted T Level package keeps Foundations identity and activity ids", () => {
   assert.equal(pkg.hub.id, "tlevel-software-development");
   assert.equal(pkg.curriculum.metadata.course, "t-level-digital-software-development");
-  assert.equal(pkg.version, "0.4.1");
+  assert.equal(pkg.version, "0.4.2");
   const foundationIds = pkg.activities
     .filter((item) => String(item.id).startsWith("foundations-"))
     .map((item) => item.id);
