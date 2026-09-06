@@ -11,6 +11,16 @@ import { breadcrumbs } from "./page-copy";
 
 const content = pkg as ContentPackage;
 
+function week1Lesson1ActivityId(type: string): string {
+  const session = content.sessions?.find((item) => item.id === "week-1-lesson-1");
+  const byId = new Map((content.activities || []).map((item) => [item.id, item]));
+  const id = session?.relationships?.activities?.find((activityId) =>
+    ((byId.get(activityId)?.blocks || []) as Array<{ type?: string }>).some((block) => block.type === type)
+  );
+  if (!id) throw new Error("missing Week 1 Lesson 1 activity for " + type);
+  return id;
+}
+
 afterEach(() => {
   cleanup();
   delete window.__lpPackage;
@@ -189,7 +199,9 @@ describe("T Level presentation", () => {
     expect(screen.getByRole("heading", { name: /Lesson 3:/i })).toBeTruthy();
     expect(screen.getAllByRole("heading", { name: /Homework:/i }).length).toBeGreaterThan(0);
     expect(container.querySelector("#week-1-homework")).toBeTruthy();
-    expect(container.querySelector("[data-lp-activity='week-1-lesson-1-retrieval']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-1-ex-01']")).toBeTruthy();
+    expect(container.querySelectorAll("[data-lp-activity^='week-1-lesson-1-']").length).toBeGreaterThanOrEqual(25);
+    expect(container.querySelectorAll("[data-lp-activity^='week-1-lesson-1-']").length).toBeLessThanOrEqual(30);
     expect(container.querySelector("[href*='/week-1/'][href*='lesson']")).toBeNull();
     const panel = screen.getByRole("complementary", { name: "Practice progress" });
     expect(panel.getAttribute("data-lp-docked")).toBe("left");
@@ -199,39 +211,42 @@ describe("T Level presentation", () => {
 
   it("renders Week 1 single-choice, classification and short-response inline", () => {
     const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
-    const retrieval = container.querySelector('[data-lp-activity="week-1-lesson-1-retrieval"]') as HTMLElement;
-    const classify = container.querySelector('[data-lp-activity="week-1-lesson-1-formative"]') as HTMLElement;
-    const written = container.querySelector('[data-lp-activity="week-1-lesson-1-main"]') as HTMLElement;
+    const choice = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("single-choice")}"]`) as HTMLElement;
+    const classify = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("classification")}"]`) as HTMLElement;
+    const written = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("short-response")}"]`) as HTMLElement;
+    const match = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("drag-drop")}"]`) as HTMLElement;
 
-    expect(retrieval.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
-    expect(within(retrieval).getAllByRole("radio").length).toBeGreaterThan(0);
+    expect(choice.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
+    expect(within(choice).getAllByRole("radio").length).toBeGreaterThan(0);
     expect(classify.querySelector("[data-lp-block='classification']")).toBeTruthy();
     expect(within(classify).getByRole("button", { name: "Check types" })).toBeTruthy();
     expect(classify.querySelector("[data-lp-sort-board]")).toBeNull();
     expectReactTextBlock(written, "short-response");
-    expect(written.querySelector("[data-lp-block='drag-drop']")).toBeTruthy();
+    expect(match.querySelector("[data-lp-block='drag-drop']")).toBeTruthy();
   });
 
   it("shows the Oakfield scenario before any Week 1 exercise and does not repeat the full brief in Lesson 1", () => {
     const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
     const scenario = container.querySelector("[data-lp-client-scenario]") as HTMLElement;
     const firstActivity = container.querySelector("[data-lp-activity]") as HTMLElement;
-    const main = container.querySelector('[data-lp-activity="week-1-lesson-1-main"]') as HTMLElement;
+    const lessonActivities = container.querySelectorAll("[data-lp-activity^='week-1-lesson-1-']");
     expect(scenario).toBeTruthy();
     expect(within(scenario).getByRole("heading", { name: "Oakfield Adult Skills Hub: Client Scenario" })).toBeTruthy();
     expect(scenario.textContent).toMatch(/local-authority adult education provider/);
     expect(scenario.textContent).toMatch(/You will use the Oakfield scenario throughout this course/);
     expect(firstActivity).toBeTruthy();
     expect(scenario.compareDocumentPosition(firstActivity) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(main.textContent).not.toMatch(/local-authority adult education provider/);
+    lessonActivities.forEach((node) => {
+      expect(node.textContent).not.toMatch(/local-authority adult education provider/);
+    });
     expect(container.querySelectorAll("[data-lp-client-scenario]")).toHaveLength(1);
   });
 
   it("does not mount planned Week 1 sessions", () => {
     const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
-    expect(container.querySelector("[data-lp-activity='week-1-lesson-1-retrieval']")).toBeTruthy();
-    expect(container.querySelector("[data-lp-activity='week-1-lesson-2-retrieval']")).toBeNull();
-    expect(container.querySelector("[data-lp-activity='week-1-lesson-3-retrieval']")).toBeNull();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-1-ex-01']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-2-ex-01']")).toBeNull();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-3-ex-01']")).toBeNull();
     expect(container.querySelector("[data-lp-activity='week-1-homework-product']")).toBeNull();
     expect(screen.getAllByText("Not released yet").length).toBe(3);
   });
@@ -300,7 +315,7 @@ describe("T Level presentation", () => {
   it("opens CompletionModal with week badge after classification Check", async () => {
     const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
     const classify = await waitFor(() => {
-      const node = container.querySelector('[data-lp-activity="week-1-lesson-1-formative"]');
+      const node = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("classification")}"]`);
       expect(node).toBeTruthy();
       return node as HTMLElement;
     });

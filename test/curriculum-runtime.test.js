@@ -11,22 +11,34 @@ function read(file) {
 }
 
 test("week catalogue activities keep interactive blocks in the bundled package", () => {
-  const retrieval = pkg.activities.find((item) => item.id === "week-1-lesson-1-retrieval");
-  assert.ok(retrieval && Array.isArray(retrieval.blocks) && retrieval.blocks.length > 0);
-  assert.ok(retrieval.blocks.some((block) => block.type === "single-choice"));
-  assert.ok(retrieval.blocks.some((block) => block.type === "classification"));
-  const main = pkg.activities.find((item) => item.id === "week-1-lesson-1-main");
-  assert.ok(main.blocks.some((block) => block.type === "short-response"));
-  assert.ok(main.blocks.some((block) => block.type === "classification"));
-  assert.ok(main.blocks.some((block) => block.type === "drag-drop"));
-  const classify = pkg.activities.find((item) => item.id === "week-1-lesson-1-formative");
-  assert.ok(classify.blocks.some((block) => block.type === "classification"));
+  const session = pkg.sessions.find((item) => item.id === "week-1-lesson-1");
+  const ids = session.relationships.activities;
+  assert.ok(ids.length >= 25 && ids.length <= 30);
+  assert.equal(ids[0], "week-1-lesson-1-ex-01");
+  const byId = new Map(pkg.activities.map((item) => [item.id, item]));
+  const types = new Set();
+  for (const id of ids) {
+    const activity = byId.get(id);
+    assert.ok(activity && Array.isArray(activity.blocks) && activity.blocks.length > 0, id);
+    const interactive = activity.blocks.filter((block) => (
+      block.type === "single-choice" ||
+      block.type === "classification" ||
+      block.type === "drag-drop" ||
+      block.type === "short-response"
+    ));
+    assert.equal(interactive.length, 1, id + " should have one main interactive block");
+    types.add(interactive[0].type);
+  }
+  assert.ok(types.has("single-choice"));
+  assert.ok(types.has("classification"));
+  assert.ok(types.has("short-response"));
+  assert.ok(types.has("drag-drop"));
 });
 
 test("the converted T Level package keeps Foundations identity and activity ids", () => {
   assert.equal(pkg.hub.id, "tlevel-software-development");
   assert.equal(pkg.curriculum.metadata.course, "t-level-digital-software-development");
-  assert.equal(pkg.version, "0.4.2");
+  assert.equal(pkg.version, "0.4.3");
   const foundationIds = pkg.activities
     .filter((item) => String(item.id).startsWith("foundations-"))
     .map((item) => item.id);
@@ -80,6 +92,19 @@ test("Week 2 follows the SoL teaching sequence", () => {
   const week1 = pkg.weeks.find((item) => item.id === "week-1");
   assert.equal(week1.metadata.title, "Client Brief, Context and Initial Research");
   assert.equal(pkg.weeks.length, 22);
+});
+
+test("Weeks 2 to 22 keep retrieval, main and formative activity ids", () => {
+  for (let week = 2; week <= 22; week += 1) {
+    for (let lesson = 1; lesson <= 3; lesson += 1) {
+      const session = pkg.sessions.find((item) => item.id === `week-${week}-lesson-${lesson}`);
+      assert.deepEqual(session.relationships.activities, [
+        `week-${week}-lesson-${lesson}-retrieval`,
+        `week-${week}-lesson-${lesson}-main`,
+        `week-${week}-lesson-${lesson}-formative`
+      ]);
+    }
+  }
 });
 
 test("bundled week status is available only for Week 1", () => {
