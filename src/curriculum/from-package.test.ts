@@ -139,6 +139,20 @@ describe("T Level package hydration", () => {
     expect(live.sessions?.find((item) => item.id === "week-1-lesson-2")?.relationships?.activities?.length).toBeGreaterThan(0);
   });
 
+  it("keeps bundled session status when live publication omits it", () => {
+    const liveBare = {
+      weeks: pkg.weeks,
+      sessions: (pkg.sessions || []).map((session) => ({
+        id: session.id,
+        metadata: { title: session.metadata?.title }
+      }))
+    };
+    const overlaid = overlayLiveWeekMetadata(pkg, liveBare);
+    expect(overlaid.sessions?.find((item) => item.id === "week-1-lesson-1")?.metadata?.status).toBe("available");
+    expect(overlaid.sessions?.find((item) => item.id === "week-1-lesson-2")?.metadata?.status).toBe("planned");
+    expect(overlaid.sessions?.find((item) => item.id === "week-1-homework")?.metadata?.status).toBe("planned");
+  });
+
   it("overlays live week status by id, then by teachingWeek", () => {
     const byId = overlayLiveWeekMetadata(pkg, {
       weeks: [{ id: "week-2", metadata: { teachingWeek: 2, status: "available" } }]
