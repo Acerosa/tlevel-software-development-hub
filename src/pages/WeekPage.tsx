@@ -124,8 +124,7 @@ function packageForWeek(live: ContentPackage | null | undefined, weekId: string)
   const teaching = useLiveActivities
     ? {
         ...bundled,
-        activities: live?.activities?.length ? live.activities : bundled.activities,
-        sessions: live?.sessions?.length ? live.sessions : bundled.sessions
+        activities: live?.activities?.length ? live.activities : bundled.activities
       }
     : bundled;
   return overlayLiveWeekMetadata(teaching, live);

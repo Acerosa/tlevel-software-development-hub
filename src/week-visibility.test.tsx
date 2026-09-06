@@ -125,6 +125,16 @@ describe("live week visibility", () => {
     expect(within(screen.getByRole("navigation", { name: "Course sections" })).getByRole("link", { name: /^Week 2(?!\d)/ })).toBeTruthy();
   });
 
+  it("keeps bundled session release when live publication omits session status", () => {
+    const live = structuredClone(bundled);
+    for (const session of live.sessions || []) {
+      if (session.metadata) delete session.metadata.status;
+    }
+    const { container } = render(<WeekPage weekId="week-1" root=".." pkg={live} />);
+    expect(container.querySelector("[data-lp-activity]")).toBeTruthy();
+    expect(screen.getAllByText("Not released yet").length).toBeGreaterThan(0);
+  });
+
   it("Test 5 — archived weeks cannot open", () => {
     const live = withWeekStatus(bundled, { "week-2": "archived" });
 
