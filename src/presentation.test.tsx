@@ -6,7 +6,7 @@ import pkg from "../content/tlevel-software-development/package.json";
 import { CourseSidebar } from "./components/CourseSidebar";
 import { type ContentPackage } from "./curriculum/from-package";
 import { HomePage } from "./pages/HomePage";
-import { persistableResponse, WeekPage } from "./pages/WeekPage";
+import { accessibleWeekActivityTotal, persistableResponse, WeekPage } from "./pages/WeekPage";
 import { breadcrumbs } from "./page-copy";
 
 const content = pkg as ContentPackage;
@@ -19,6 +19,18 @@ function week1Lesson1ActivityId(type: string): string {
   );
   if (!id) throw new Error("missing Week 1 Lesson 1 activity for " + type);
   return id;
+}
+
+function week1ActivityItemCount(activityId: string): number {
+  const activity = content.activities?.find((item) => item.id === activityId);
+  const block = activity?.blocks?.[0] as { content?: { items?: unknown[] } } | undefined;
+  return (block?.content?.items || []).length;
+}
+
+function plannedWeek1ActivityCount(): number {
+  return (content.sessions || [])
+    .filter((session) => session.id !== "week-1-lesson-1" && String(session.id).startsWith("week-1-"))
+    .reduce((sum, session) => sum + (session.relationships?.activities || []).length, 0);
 }
 
 afterEach(() => {
@@ -260,10 +272,11 @@ describe("T Level presentation", () => {
     expect(container.querySelectorAll("[data-lp-activity^='week-1-lesson-1-']").length).toBeGreaterThanOrEqual(25);
     expect(container.querySelectorAll("[data-lp-activity^='week-1-lesson-1-']").length).toBeLessThanOrEqual(30);
     expect(container.querySelector("[href*='/week-1/'][href*='lesson']")).toBeNull();
-    const panel = screen.getByRole("complementary", { name: "Practice progress" });
+    const panel = screen.getByRole("complementary", { name: /Practice progress/ });
     expect(panel.getAttribute("data-lp-docked")).toBe("left");
     expect(panel.getAttribute("data-lp-collapsed")).toBe("true");
-    expect(within(panel).getByText(/\d+ \/ \d+/)).toBeTruthy();
+    const expectedActivities = accessibleWeekActivityTotal(content, "week-1");
+    expect(within(panel).getByText(`Practice progress: 0 / ${expectedActivities} activities completed`)).toBeTruthy();
   });
 
   it("renders Week 1 single-choice, classification and short-response inline", () => {
@@ -358,7 +371,7 @@ describe("T Level presentation", () => {
     expect(screen.getByRole("link", { name: "Back to course home" })).toBeTruthy();
     expect(container.querySelector("[data-lp-activity]")).toBeNull();
     expect(container.querySelector("[data-lp-week-locked]")).toBeTruthy();
-    expect(screen.queryByRole("complementary", { name: "Practice progress" })).toBeNull();
+    expect(screen.queryByRole("complementary", { name: /Practice progress/ })).toBeNull();
   });
 
   it("renders Week 2 inline exercises when the published package marks it available", () => {
@@ -412,10 +425,56 @@ describe("T Level presentation", () => {
     expectReactTextBlock(written, "short-response");
   });
 
+  it("counts accessible learner-visible activities, not scorable items or planned sessions", () => {
+    const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
+    const expected = accessibleWeekActivityTotal(content, "week-1");
+    const lesson1 = content.sessions?.find((session) => session.id === "week-1-lesson-1");
+    const lesson1Count = (lesson1?.relationships?.activities || []).length;
+    const classifyId = week1Lesson1ActivityId("classification");
+    const dragId = week1Lesson1ActivityId("drag-drop");
+    const writtenId = week1Lesson1ActivityId("short-response");
+    const classifyItems = week1ActivityItemCount(classifyId);
+    const dragItems = week1ActivityItemCount(dragId);
+    const panel = screen.getByRole("complementary", { name: /Practice progress/ });
+
+    expect(expected).toBe(lesson1Count);
+    expect(expected).toBe(container.querySelectorAll("[data-lp-activity^='week-1-lesson-1-']").length);
+    expect(classifyItems).toBeGreaterThan(1);
+    expect(dragItems).toBeGreaterThan(1);
+    expect(container.querySelector(`[data-lp-activity="${writtenId}"] [data-lp-block='short-response']`)).toBeTruthy();
+    expect(within(panel).getByText(`Practice progress: 0 / ${expected} activities completed`)).toBeTruthy();
+    expect(within(panel).queryByText(/of \d+ correct/)).toBeNull();
+    expect(within(panel).queryByText(new RegExp(`0 / ${classifyItems}`))).toBeNull();
+    expect(within(panel).queryByText(new RegExp(`0 / ${expected + plannedWeek1ActivityCount()}`))).toBeNull();
+    expect(screen.getAllByText("Not released yet").length).toBe(3);
+  });
+
+  it("increments activity progress by 1 after completing one Lesson 1 exercise", async () => {
+    const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
+    const expected = accessibleWeekActivityTotal(content, "week-1");
+    const panel = screen.getByRole("complementary", { name: /Practice progress/ });
+    expect(within(panel).getByText(`Practice progress: 0 / ${expected} activities completed`)).toBeTruthy();
+
+    const choice = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("single-choice")}"]`) as HTMLElement;
+    fireEvent.click(within(choice).getAllByRole("radio")[0]);
+    fireEvent.click(within(choice).getByRole("button", { name: "Check answer" }));
+
+    await waitFor(() => {
+      expect(within(panel).getByText(`Practice progress: 1 / ${expected} activities completed`)).toBeTruthy();
+    });
+    expect(screen.queryByRole("dialog", { name: /Practice complete/i })).toBeNull();
+    expect(within(panel).queryByText(/of \d+ correct/)).toBeNull();
+    expect(container.querySelector("[data-lp-activity='week-1-lesson-1-ex-01']")).toBeTruthy();
+  });
+
   it("opens CompletionModal with week badge after classification Check", async () => {
     const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
+    const expected = accessibleWeekActivityTotal(content, "week-1");
+    const classifyId = week1Lesson1ActivityId("classification");
+    const classifyItems = week1ActivityItemCount(classifyId);
+    expect(classifyItems).toBeGreaterThan(1);
     const classify = await waitFor(() => {
-      const node = container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("classification")}"]`);
+      const node = container.querySelector(`[data-lp-activity="${classifyId}"]`);
       expect(node).toBeTruthy();
       return node as HTMLElement;
     });
@@ -432,6 +491,9 @@ describe("T Level presentation", () => {
 
     const dialog = await waitFor(() => screen.getByRole("dialog", { name: /Practice complete/i }));
     expect(within(dialog).getByText(/Week 1:/i)).toBeTruthy();
+    expect(within(dialog).queryByText(/of \d+ correct/)).toBeNull();
+    const panel = screen.getByRole("complementary", { name: /Practice progress/ });
+    expect(within(panel).getByText(`Practice progress: 1 / ${expected} activities completed`)).toBeTruthy();
     fireEvent.click(within(dialog).getByRole("button", { name: "Continue" }));
     await waitFor(() => {
       expect(screen.queryByRole("dialog", { name: /Practice complete/i })).toBeNull();
