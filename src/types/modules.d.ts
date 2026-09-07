@@ -74,6 +74,8 @@ declare module "@learning-platform/core/curriculum-runtime" {
 }
 declare module "@learning-platform/content" {
   export function validatePackage(pkg: unknown): { valid: boolean; issues?: unknown[] };
+  export function validateLearnerSafePackage(pkg: unknown): { valid: boolean; issues?: unknown[] };
+  export function learnerSafePackage<T>(value: T): T;
   export function renderActivity(activity: unknown, options?: { root?: string }): string;
   export function renderBlock(block: unknown, options?: { root?: string }): string;
 }
