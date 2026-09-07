@@ -118,16 +118,36 @@ function draftResponsesFor(activity: ActivityDocument): Record<string, unknown> 
   }
 }
 
-function packageForWeek(live: ContentPackage | null | undefined, weekId: string): ContentPackage {
+function packageForWeek(live: ContentPackage | null | undefined): ContentPackage {
   const bundled = bundledPackage as ContentPackage;
-  const useLiveActivities = Boolean(live && weekHasCatalogueBlocks(live, weekId));
-  const teaching = useLiveActivities
-    ? {
-        ...bundled,
-        activities: live?.activities?.length ? live.activities : bundled.activities
-      }
-    : bundled;
+  const teaching = {
+    ...bundled,
+    activities: mergeLiveActivities(bundled.activities, live?.activities)
+  };
   return overlayLiveWeekMetadata(teaching, live);
+}
+
+function mergeLiveActivities(
+  bundled: ContentPackage["activities"],
+  live: ContentPackage["activities"]
+): ContentPackage["activities"] {
+  if (!live?.length) return bundled;
+  const liveById = new Map((live || []).map((activity) => [activity.id, activity]));
+  return (bundled || []).map((base) => {
+    const published = liveById.get(base.id);
+    if (published && activityHasCatalogueBlocks(published)) return published;
+    return base;
+  });
+}
+
+function activityHasCatalogueBlocks(activity: { blocks?: Array<{ type?: string }> } | undefined): boolean {
+  return (activity?.blocks || []).some((block) => {
+    const type = String(block.type || "");
+    return type === "single-choice"
+      || type === "classification"
+      || type === "short-response"
+      || type === "drag-drop";
+  });
 }
 
 function weekOpenable(content: ContentPackage, teachingWeek: number): boolean {
@@ -149,26 +169,6 @@ function notReleasedCopy(status: string, weekCommencing: string) {
       ? `This week is not available yet. Teaching is planned to commence ${when}.`
       : "This week is not available yet. Check back when your tutor posts it."
   };
-}
-
-function weekHasCatalogueBlocks(content: ContentPackage, weekId: string): boolean {
-  const model = weekPageFromPackage(content, weekId);
-  if (!model) return false;
-  for (const session of model.sessions) {
-    for (const item of session.activities) {
-      const activity = content.activities?.find((entry) => entry.id === item.id);
-      if ((activity?.blocks || []).some((block) => {
-        const type = String(block.type || "");
-        return type === "single-choice"
-          || type === "classification"
-          || type === "short-response"
-          || type === "drag-drop";
-      })) {
-        return true;
-      }
-    }
-  }
-  return false;
 }
 
 function ClientScenarioSection({ scenario }: { scenario: ClientScenario }) {
@@ -216,7 +216,7 @@ export function WeekPage({
     aggregatePracticeProgress(emptyPracticeProgress(), { requiredBlocks: 0, scorableTotal: 0 })
   );
   const [completionOpen, setCompletionOpen] = useState(false);
-  const content = packageForWeek(pkg, weekId);
+  const content = packageForWeek(pkg);
   const model = useMemo(
     () => weekPageFromPackage(content, weekId),
     [content, weekId]
@@ -265,8 +265,9 @@ export function WeekPage({
       ...session,
       activities: session.activities.map((item) => {
         const activity = content.activities?.find((entry) => entry.id === item.id) as ActivityDocument | undefined;
-        if (!activity) return { html: "" };
+        if (!activity) return { ...item };
         return {
+          ...item,
           children: (
             <InteractiveActivity
               activity={activity}
