@@ -134,6 +134,7 @@ test("StudentContext sign-in delegates to Core Auth and refreshes learner contex
     ["refresh"]
   ]);
   assert.equal(student.studentId, "SYN-001");
+  assert.equal(runtime.calls[0][1].includes("@"), true);
 });
 
 test("StudentContext clears display state on Core sign-out", async function () {
