@@ -59,4 +59,17 @@ test("T Level 0.4.3 passes canonical package validation including drag-drop", fu
       assert.equal(typeof (block.content && block.content.feedback && block.content.feedback.correct), "string", activity.id);
     });
   });
+  const authoringOnSafe = engine.validatePackage(safe);
+  assert.equal(authoringOnSafe.valid, false);
+  assert.ok(authoringOnSafe.issues.some(function (issue) {
+    return issue.code === "MISSING_FIELD" && /content\.correct/.test(issue.path);
+  }));
+  const learnerSafe = engine.validateLearnerSafePackage(safe);
+  assert.equal(learnerSafe.valid, true, engine.formatIssues(learnerSafe.issues));
+  const strippedDrag = safe.activities.reduce(function (count, activity) {
+    return count + (activity.blocks || []).filter(function (block) {
+      return block.type === "drag-drop";
+    }).length;
+  }, 0);
+  assert.ok(strippedDrag >= 18, "expected at least 18 learner-safe drag-drop blocks, got " + strippedDrag);
 });

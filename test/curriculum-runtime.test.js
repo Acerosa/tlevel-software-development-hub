@@ -145,12 +145,13 @@ test("CI pins the reviewed UI catalogue used by week pages", () => {
   const workflow = read(".github/workflows/pages.yml");
   assert.match(workflow, /Acerosa-learning-platform-ui[\s\S]*ref: v0\.1\.8/);
   assert.match(workflow, /learning-platform-core[\s\S]*ref: v0\.2\.8/);
-  assert.match(workflow, /learning-platform-content[\s\S]*ref: v0\.1\.3/);
+  assert.match(workflow, /learning-platform-content[\s\S]*ref: v0\.1\.4/);
 });
 
 test("the live hub loads teaching content through platform.curriculum.loadLatest", () => {
   assert.match(read("src/hooks/useHubPlatform.ts"), /loadTLevelCurriculum\(platform\)/);
-  assert.match(read("src/platform.ts"), /validatePackage/);
+  assert.match(read("src/platform.ts"), /validateLearnerSafePackage/);
+  assert.match(read("src/platform.ts"), /validatePackage: validateLearnerSafePackage/);
   assert.match(read("src/platform.ts"), /loadBundled/);
   assert.doesNotMatch(read("src/platform.ts"), /published_curriculum_package/);
   assert.match(read("src/activities/bootstrap.ts"), /foundationActivityFromPackage/);

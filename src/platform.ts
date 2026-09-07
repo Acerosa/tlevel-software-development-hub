@@ -1,6 +1,6 @@
 import { createPlatform } from "@learning-platform/core";
 import { createClient } from "@supabase/supabase-js";
-import { validatePackage } from "@learning-platform/content";
+import { validateLearnerSafePackage } from "@learning-platform/content";
 import { APP_CONFIG } from "./config";
 import { createSitePath } from "./paths";
 import { SUPABASE_CONFIG } from "./supabase-config";
@@ -34,7 +34,9 @@ export function createHubPlatform(root: string, createPlatformFn = createPlatfor
   }, {
     supabaseClient: client,
     localStorage: typeof window !== "undefined" ? window.localStorage : undefined,
-    validatePackage,
+    // Published packages are learner-safe (answer maps stripped). Authoring validatePackage
+    // must not gate hydration — that rejects stripped drag-drop blocks.
+    validatePackage: validateLearnerSafePackage,
     loadBundled: () => import("../content/tlevel-software-development/package.json").then((mod) => mod.default)
   });
 
