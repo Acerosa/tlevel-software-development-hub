@@ -35,12 +35,69 @@ function withWeekStatus(source: ContentPackage, updates: Record<string, string>)
   return clone;
 }
 
+function learnerSafePackage(source: ContentPackage): ContentPackage {
+  const clone = structuredClone(source);
+  for (const activity of clone.activities || []) {
+    for (const block of activity.blocks || []) {
+      const body = block.content as Record<string, unknown> | undefined;
+      if (!body) continue;
+      delete body.correctOptionId;
+      delete body.correct;
+      if (Array.isArray(body.options)) {
+        for (const option of body.options as Array<Record<string, unknown>>) {
+          delete option.correct;
+        }
+      }
+      if (Array.isArray(body.items)) {
+        for (const item of body.items as Array<Record<string, unknown>>) {
+          delete item.correct;
+        }
+      }
+    }
+  }
+  return clone;
+}
+
 function liveWeekByTeachingWeek(teachingWeek: number, status: string): ContentPackage {
   return {
     weeks: [{
       id: `posted-week-${teachingWeek}`,
       metadata: { teachingWeek, status, weekCommencing: "2026-09-07" }
     }]
+  } as ContentPackage;
+}
+
+/** 0.4.2-shaped live publication: catalogue blocks exist, but Week 1 IDs are the old retrieval/main/formative keys. */
+function livePackageWithLegacyWeek1Ids(): ContentPackage {
+  const block = {
+    type: "single-choice",
+    content: {
+      prompt: "Legacy live prompt that must not replace bundled exercises.",
+      options: [{ id: "a", label: "Legacy option" }]
+    }
+  };
+  return {
+    weeks: content.weeks,
+    sessions: (content.sessions || []).map((session) => (
+      session.id === "week-1-lesson-1"
+        ? {
+            ...session,
+            relationships: {
+              ...(session.relationships || {}),
+              activities: [
+                "week-1-lesson-1-retrieval",
+                "week-1-lesson-1-main",
+                "week-1-lesson-1-formative"
+              ]
+            }
+          }
+        : session
+    )),
+    activities: [
+      { id: "week-1-lesson-1-retrieval", version: "0.1.0", metadata: { title: "Legacy retrieval" }, blocks: [block] },
+      { id: "week-1-lesson-1-main", version: "0.1.0", metadata: { title: "Legacy main" }, blocks: [block] },
+      { id: "week-1-lesson-1-formative", version: "0.1.0", metadata: { title: "Legacy formative" }, blocks: [block] }
+    ]
   } as ContentPackage;
 }
 
@@ -223,6 +280,49 @@ describe("T Level presentation", () => {
     expect(classify.querySelector("[data-lp-sort-board]")).toBeNull();
     expectReactTextBlock(written, "short-response");
     expect(match.querySelector("[data-lp-block='drag-drop']")).toBeTruthy();
+  });
+
+  it("renders Week 1 exercise content, not empty Untitled activity cards", () => {
+    const { container } = render(<WeekPage weekId="week-1" root=".." pkg={content} />);
+    const ex01 = container.querySelector("[data-lp-activity='week-1-lesson-1-ex-01']") as HTMLElement;
+    expect(ex01).toBeTruthy();
+    expect(within(ex01).getByRole("heading", { name: "Who is the client?" })).toBeTruthy();
+    expect(within(ex01).getByText("Who is the client in the Oakfield scenario?")).toBeTruthy();
+    expect(screen.queryByText("Untitled activity")).toBeNull();
+    expect(container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("single-choice")}"] [data-lp-block='option-cards']`)).toBeTruthy();
+    expect(container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("classification")}"] [data-lp-block='classification']`)).toBeTruthy();
+    expect(container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("drag-drop")}"] [data-lp-block='drag-drop']`)).toBeTruthy();
+    expect(container.querySelector(`[data-lp-activity="${week1Lesson1ActivityId("short-response")}"] [data-lp-block='short-response']`)).toBeTruthy();
+  });
+
+  it("keeps bundled Week 1 exercise content when live catalogue activities use legacy IDs", () => {
+    const { container } = render(
+      <WeekPage weekId="week-1" root=".." pkg={livePackageWithLegacyWeek1Ids()} />
+    );
+    expect(screen.queryByText("Untitled activity")).toBeNull();
+    const ex01 = container.querySelector("[data-lp-activity='week-1-lesson-1-ex-01']") as HTMLElement;
+    expect(ex01).toBeTruthy();
+    expect(within(ex01).getByRole("heading", { name: "Who is the client?" })).toBeTruthy();
+    expect(within(ex01).getByText("Who is the client in the Oakfield scenario?")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='classification']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='drag-drop']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='short-response']")).toBeTruthy();
+  });
+
+  it("renders Week 1 exercise content from a learner-safe live package", () => {
+    const { container } = render(
+      <WeekPage weekId="week-1" root=".." pkg={learnerSafePackage(content)} />
+    );
+    const ex01 = container.querySelector("[data-lp-activity='week-1-lesson-1-ex-01']") as HTMLElement;
+    expect(ex01).toBeTruthy();
+    expect(within(ex01).getByRole("heading", { name: "Who is the client?" })).toBeTruthy();
+    expect(within(ex01).getByText("Who is the client in the Oakfield scenario?")).toBeTruthy();
+    expect(screen.queryByText("Untitled activity")).toBeNull();
+    expect(container.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='classification']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='drag-drop']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-block='short-response']")).toBeTruthy();
   });
 
   it("shows the Oakfield scenario before any Week 1 exercise and does not repeat the full brief in Lesson 1", () => {
