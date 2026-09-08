@@ -36,7 +36,15 @@ function PageBody({
   if (context.page === "foundations") return <FoundationsPage root={context.root} adaptersReady={adaptersReady} />;
   if (context.page === "projects") return <ProjectsPage root={context.root} />;
   if (/^week-\d+$/.test(context.page)) {
-    return <WeekPage weekId={context.page} root={context.root} platform={platform} pkg={pkg} />;
+    return (
+      <WeekPage
+        weekId={context.page}
+        root={context.root}
+        platform={platform}
+        pkg={pkg}
+        adaptersReady={adaptersReady}
+      />
+    );
   }
   if (context.page === "assessment-practice") return <AssessmentPracticePage root={context.root} />;
   if (context.page === "resources") return <ResourcesPage root={context.root} />;

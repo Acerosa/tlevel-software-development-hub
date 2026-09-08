@@ -242,12 +242,14 @@ export function WeekPage({
   weekId,
   root,
   pkg,
-  platform
+  platform,
+  adaptersReady = true
 }: {
   weekId: string;
   root: string;
   pkg?: ContentPackage | null;
   platform?: unknown;
+  adaptersReady?: boolean;
 }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const dismissedRef = useRef(false);
@@ -342,11 +344,12 @@ export function WeekPage({
     }));
   }, [content, model, platform, recordPracticeResult]);
 
-  // Re-bind after every commit. React can rewrite authored HTML nodes on a
-  // later render and wipe data-lp-bound / listeners without changing sessions identity.
+  // Wait for platform.initialise() so signed-in draft stores can hydrate from
+  // the server. Re-bind after every later commit because React can rewrite
+  // authored HTML nodes and wipe data-lp-bound / listeners.
   useLayoutEffect(() => {
     const rootEl = mountRef.current;
-    if (!rootEl || !sessions.length) return;
+    if (!rootEl || !sessions.length || !adaptersReady) return;
 
     getContentEngine().bindInteractive(rootEl, content, {
       sourcePage: window.location.pathname,
