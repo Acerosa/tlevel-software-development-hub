@@ -8,6 +8,7 @@ afterEach(() => {
   delete window.__lpPublishedCurriculum;
   delete window.FoundationActivityCatalog;
   document.body.removeAttribute("data-curriculum-source");
+  delete window.LearningPlatformContent;
 });
 
 describe("T Level package hydration", () => {
@@ -189,5 +190,21 @@ describe("T Level package hydration", () => {
     });
     expect(homeWeeksFromPackage(livePlanned)[1].openable).toBe(false);
     expect(homeWeeksFromPackage(livePlanned)[1].status).toBe("planned");
+  });
+
+  it("mirrors live publication state onto the content engine", () => {
+    const seen: unknown[] = [];
+    window.LearningPlatformContent = {
+      setPublicationState(state: unknown) {
+        seen.push(state);
+        return state;
+      }
+    };
+    applyTLevelCurriculum({
+      source: "published",
+      package: pkg,
+      state: { state: "PUBLISHED", allowsSubmission: true }
+    }, window);
+    expect(seen[0]).toMatchObject({ state: "PUBLISHED", allowsSubmission: true });
   });
 });

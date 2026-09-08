@@ -546,7 +546,7 @@
       persist(detail.completed ? { immediate: true } : undefined);
       if (detail.completed) {
         ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
-          publication: ns.getPublicationState()
+          publication: (options && options.publication) || ns.getPublicationState()
         })).then(function (result) {
           applySubmissionResult(article, draft, result, persist);
         });
@@ -605,7 +605,7 @@
         setFeedback(blockRoot, block, draft.responses[qid], true);
         persist({ immediate: true });
         ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
-          publication: ns.getPublicationState()
+          publication: (options && options.publication) || ns.getPublicationState()
         })).then(function (result) {
           applySubmissionResult(article, draft, result, persist);
         });
