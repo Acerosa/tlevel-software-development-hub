@@ -16,7 +16,7 @@ This hub teaches **T Level Digital Software Development** Occupational Specialis
 
 Foundations (`foundations/*`) stay a **separate track**. Catalogue Foundations activities can later follow this inline pattern; `programming-editor` stays a **hub host**. Do not fold Foundations into the week SoL page in this wave.
 
-UI is pinned at **`@learning-platform/ui` v0.1.8**.
+UI is pinned at **`@learning-platform/ui` v0.1.9**.
 
 ## Component bar and variety rules
 

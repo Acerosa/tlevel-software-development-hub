@@ -143,8 +143,8 @@ test("T Level runtime identity uses the registered T Level course", () => {
 
 test("CI pins the reviewed UI catalogue used by week pages", () => {
   const workflow = read(".github/workflows/pages.yml");
-  assert.match(workflow, /Acerosa-learning-platform-ui[\s\S]*ref: v0\.1\.8/);
-  assert.match(workflow, /learning-platform-core[\s\S]*ref: v0\.2\.10/);
+  assert.match(workflow, /Acerosa-learning-platform-ui[\s\S]*ref: v0\.1\.9/);
+  assert.match(workflow, /learning-platform-core[\s\S]*ref: v0\.2\.11/);
   assert.match(workflow, /learning-platform-content[\s\S]*ref: v0\.1\.4/);
 });
 
