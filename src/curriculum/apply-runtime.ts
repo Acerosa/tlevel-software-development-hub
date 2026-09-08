@@ -4,7 +4,7 @@ import { setAuthoredHtml } from "@learning-platform/core";
 export type CurriculumRuntime = {
   source?: string;
   package?: ContentPackage | null;
-  state?: { state?: string; message?: string } | null;
+  state?: { state?: string; message?: string; allowsSubmission?: boolean } | null;
   publication?: { version?: string; hub?: string; course?: string } | null;
 };
 

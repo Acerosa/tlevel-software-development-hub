@@ -519,7 +519,7 @@
       attempt.result = marking.createResult(activity, attempt);
       attempt.submission = null;
     }
-    store.save(attempt);
+    store.save(attempt, { immediate: true });
 
     if (attempt.result) {
       renderResults();
@@ -595,6 +595,7 @@
         if (error) {
           error.hidden = true;
         }
+        store.save(attempt, { remote: false });
       });
     }
 
@@ -619,7 +620,7 @@
           },
           onCheck: function (response, feedbackContainer) {
             attempt.responses[question.id] = response;
-            store.save(attempt);
+            store.save(attempt, { immediate: true });
             programmingFeedback.renderInto(feedbackContainer, marking.markQuestion(question, response));
           }
         });

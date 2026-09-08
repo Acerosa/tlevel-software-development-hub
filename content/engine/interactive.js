@@ -431,6 +431,20 @@
     else status.removeAttribute("data-lp-submit-state");
   }
 
+  function persistCheckedDraft(store, draft, options) {
+    var payload = Object.assign({}, draft, { completed: false });
+    if (payload.submission && payload.submission.status === "submitted") {
+      payload = Object.assign({}, payload, {
+        submission: Object.assign({}, payload.submission, { status: "local" })
+      });
+    }
+    if (payload.result) {
+      payload = Object.assign({}, payload);
+      delete payload.result;
+    }
+    store.save(payload, options);
+  }
+
   function applySubmissionResult(article, draft, result, persist) {
     if (!result) return;
     draft.submission = {
@@ -483,7 +497,13 @@
     var draft = store.load();
 
     function persist(options) {
-      store.save(draft, options);
+      var saveOptions = options || {};
+      persistCheckedDraft(store, draft, saveOptions);
+      updateActivityStatus(article, activity, draft);
+    }
+
+    function persistLocal() {
+      persistCheckedDraft(store, draft, { remote: false });
       updateActivityStatus(article, activity, draft);
     }
 
@@ -535,20 +555,17 @@
       var qid = detail.questionId;
       if (!qid) return;
       if (detail.completed === false) {
-        if (detail.response == null || detail.response === "") delete draft.responses[qid];
-        else draft.responses[qid] = detail.response;
         draft.checked[qid] = false;
-        persist();
         return;
       }
       draft.responses[qid] = detail.response;
       if (detail.completed) draft.checked[qid] = true;
-      persist(detail.completed ? { immediate: true } : undefined);
+      persist(detail.completed ? { immediate: true } : { remote: false });
       if (detail.completed) {
         ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
           publication: (options && options.publication) || ns.getPublicationState()
         })).then(function (result) {
-          applySubmissionResult(article, draft, result, persist);
+          applySubmissionResult(article, draft, result, persistLocal);
         });
       }
     });
@@ -557,12 +574,16 @@
       var blockRoot = event.target.closest("[data-lp-block-id]");
       var block;
       var qid;
+      var type;
       if (!blockRoot) return;
       block = blockById(activity, blockRoot.getAttribute("data-lp-block-id"));
       if (!block) return;
       qid = questionId(block);
+      type = ns.normaliseBlockType(block.type);
       draft.responses[qid] = collectResponse(blockRoot, block);
-      persist();
+      draft.checked[qid] = false;
+      if (isTextResponseType(type)) persist();
+      else persistLocal();
     });
 
     article.addEventListener("input", function (event) {
@@ -574,6 +595,7 @@
       if (!block) return;
       qid = questionId(block);
       draft.responses[qid] = collectResponse(blockRoot, block);
+      draft.checked[qid] = false;
       persist();
     });
 
@@ -607,7 +629,7 @@
         ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
           publication: (options && options.publication) || ns.getPublicationState()
         })).then(function (result) {
-          applySubmissionResult(article, draft, result, persist);
+          applySubmissionResult(article, draft, result, persistLocal);
         });
         return;
       }
@@ -622,7 +644,6 @@
           draft.responses[qid] = field.value;
           draft.checked[qid] = false;
           setFeedback(blockRoot, block, field.value, false);
-          persist();
         }
         return;
       }

@@ -35,6 +35,9 @@ declare global {
       }>;
     };
     setAuthoredHtml?: typeof setAuthoredHtml;
+    LearningPlatformContent?: {
+      setPublicationState?: (state: unknown) => unknown;
+    };
   }
 }
 

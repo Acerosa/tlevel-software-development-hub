@@ -257,6 +257,10 @@ export function WeekPage({
   const [practice, setPractice] = useState<PracticeProgressAggregate>(
     aggregatePracticeProgress(emptyPracticeProgress(), { requiredBlocks: 0, scorableTotal: 0 })
   );
+  const [draftByActivity, setDraftByActivity] = useState<Record<string, {
+    responses: Record<string, unknown>;
+    checked: Record<string, boolean>;
+  }>>({});
   const [completedActivityCount, setCompletedActivityCount] = useState(0);
   const [completionOpen, setCompletionOpen] = useState(false);
   const content = packageForWeek(pkg);
@@ -305,6 +309,33 @@ export function WeekPage({
     }
   }, [content, model, requiredTotal, scorableTotal]);
 
+  useEffect(() => {
+    if (!adaptersReady || !model || !isWeekAvailable(model.week.status)) return;
+    let cancelled = false;
+    const engine = getContentEngine();
+    const activities = (model.sessions || []).flatMap((session) => (
+      session.activities.map((item) => content.activities?.find((entry) => entry.id === item.id)).filter(Boolean)
+    )) as ActivityDocument[];
+    void Promise.all(activities.map(async (activity) => {
+      try {
+        if (!engine.createDraftStore) {
+          return [activity.id, { responses: {}, checked: {} }] as const;
+        }
+        const store = engine.createDraftStore(activity, { platform });
+        const draft = store.hydrate ? await store.hydrate() : store.load();
+        return [activity.id, {
+          responses: draft?.responses && typeof draft.responses === "object" ? draft.responses : {},
+          checked: draft?.checked && typeof draft.checked === "object" ? draft.checked : {}
+        }] as const;
+      } catch {
+        return [activity.id, { responses: {}, checked: {} }] as const;
+      }
+    })).then((entries) => {
+      if (!cancelled) setDraftByActivity(Object.fromEntries(entries));
+    });
+    return () => { cancelled = true; };
+  }, [adaptersReady, content, model, platform, weekId]);
+
   const released = isWeekAvailable(model?.week.status);
 
   const sessions = useMemo(() => {
@@ -321,7 +352,8 @@ export function WeekPage({
             <InteractiveActivity
               activity={activity}
               platform={platform}
-              initialResponses={draftResponsesFor(activity)}
+              initialResponses={draftByActivity[activity.id]?.responses || draftResponsesFor(activity)}
+              initialChecked={draftByActivity[activity.id]?.checked}
               renderFallback={(block) => (
                 <AuthoredHtml html={engine.renderBlock(block)} />
               )}
@@ -342,7 +374,7 @@ export function WeekPage({
         };
       })
     }));
-  }, [content, model, platform, recordPracticeResult]);
+  }, [content, draftByActivity, model, platform, recordPracticeResult]);
 
   // Wait for platform.initialise() so signed-in draft stores can hydrate from
   // the server. Re-bind after every later commit because React can rewrite
