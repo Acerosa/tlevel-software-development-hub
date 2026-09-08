@@ -546,6 +546,17 @@ test("activity results use the shared learning adapter with retry and identity r
   assert.doesNotMatch(submissionApi, /studentId|student_id|enrolment_id|assignment_id/);
 });
 
+test("Foundations programming Check persists without submitting; last-section Submit remains the attempt boundary", function () {
+  const engine = read("js/activities/activity-engine.js");
+  const onCheckStart = engine.indexOf("onCheck: function (response, feedbackContainer) {");
+  const onCheckBody = engine.slice(onCheckStart, onCheckStart + 420);
+  assert.match(onCheckBody, /store\.save\(attempt, \{ immediate: true \}\)/);
+  assert.doesNotMatch(onCheckBody, /submitResult|submitCurrentResult/);
+  assert.match(engine, /function submitSection\(event\)/);
+  assert.match(engine, /if \(attempt\.submittedSections\.length === activity\.sections\.length\)/);
+  assert.match(engine, /submitCurrentResult\(\);/);
+});
+
 test("Programming Diagnostic loads its editor, checker and feedback layers separately", function () {
   const bootstrap = read("src/activities/bootstrap.ts");
   const checkerIndex = bootstrap.indexOf("programming-checker.js");
