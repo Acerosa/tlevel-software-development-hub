@@ -445,6 +445,40 @@
     store.save(payload, options);
   }
 
+  function allQuestionsChecked(activity, draft) {
+    var interactive = activityInteractiveBlocks(activity);
+    return interactive.length > 0 && interactive.every(function (block) {
+      return Boolean(draft && draft.checked && draft.checked[questionId(block)]);
+    });
+  }
+
+  function activityAlreadySubmitted(draft) {
+    return Boolean(draft && draft.submission && draft.submission.status === "submitted");
+  }
+
+  function ensureFinishButton(article, activity) {
+    var button = article.querySelector("[data-lp-finish-activity]");
+    var status;
+    if (button) return button;
+    button = document.createElement("button");
+    button.type = "button";
+    button.className = "lp-button";
+    button.setAttribute("data-lp-finish-activity", activity.id);
+    button.textContent = "Finish activity";
+    button.hidden = true;
+    status = article.querySelector("[data-lp-activity-status]");
+    if (status && status.parentNode) status.parentNode.insertBefore(button, status);
+    else article.appendChild(button);
+    return button;
+  }
+
+  function syncFinishButton(article, activity, draft) {
+    var button = ensureFinishButton(article, activity);
+    var ready = allQuestionsChecked(activity, draft) && !activityAlreadySubmitted(draft);
+    button.hidden = !ready;
+    button.disabled = !ready;
+  }
+
   function applySubmissionResult(article, draft, result, persist) {
     if (!result) return;
     draft.submission = {
@@ -465,14 +499,10 @@
 
   function updateActivityStatus(article, activity, draft) {
     var status = article.querySelector("[data-lp-activity-status]");
-    var interactive = activityInteractiveBlocks(activity);
-    var complete = interactive.length > 0 && interactive.every(function (block) {
-      var result = ns.markBlock(block, draft.responses[questionId(block)]);
-      return result.complete;
-    });
-    draft.completed = complete;
-    if (complete && !draft.completedAt) draft.completedAt = new Date().toISOString();
-    if (!complete) draft.completedAt = null;
+    var ready = allQuestionsChecked(activity, draft);
+    draft.completed = ready;
+    if (!ready) draft.completedAt = null;
+    syncFinishButton(article, activity, draft);
     if (status) {
       if (draft.submission && draft.submission.failed) {
         status.textContent = draft.submission.reason
@@ -486,15 +516,19 @@
         return;
       }
       status.removeAttribute("data-lp-submit-state");
-      status.textContent = complete
-        ? "Practised. This is learning progress, not an assignment grade."
-        : (Object.keys(draft.responses).length ? "In progress. Your draft is saved on this device." : "");
+      if (ready) {
+        status.textContent = "All questions checked. Finish the activity to save it to your learning record.";
+        return;
+      }
+      status.textContent = Object.keys(draft.responses).length ? "In progress. Your draft is saved on this device." : "";
     }
   }
 
   function bindActivity(article, activity, options) {
     var store = ns.createDraftStore(activity, options);
     var draft = store.load();
+    var finishInFlight = false;
+    ensureFinishButton(article, activity);
 
     function persist(options) {
       var saveOptions = options || {};
@@ -505,6 +539,29 @@
     function persistLocal() {
       persistCheckedDraft(store, draft, { remote: false });
       updateActivityStatus(article, activity, draft);
+    }
+
+    function persistChecked(saveOptions) {
+      if (activityAlreadySubmitted(draft)) {
+        persistLocal();
+        return;
+      }
+      persist(saveOptions);
+    }
+
+    function finishActivity() {
+      if (!allQuestionsChecked(activity, draft) || activityAlreadySubmitted(draft) || finishInFlight) return;
+      finishInFlight = true;
+      draft.completed = true;
+      draft.completedAt = new Date().toISOString();
+      persist({ immediate: true });
+      ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
+        publication: (options && options.publication) || ns.getPublicationState()
+      })).then(function (result) {
+        applySubmissionResult(article, draft, result, persistLocal);
+        if (!result || result.status !== "submitted") finishInFlight = false;
+        syncFinishButton(article, activity, draft);
+      });
     }
 
     function restoreDraft(next) {
@@ -556,18 +613,12 @@
       if (!qid) return;
       if (detail.completed === false) {
         draft.checked[qid] = false;
+        updateActivityStatus(article, activity, draft);
         return;
       }
       draft.responses[qid] = detail.response;
       if (detail.completed) draft.checked[qid] = true;
-      persist(detail.completed ? { immediate: true } : { remote: false });
-      if (detail.completed) {
-        ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
-          publication: (options && options.publication) || ns.getPublicationState()
-        })).then(function (result) {
-          applySubmissionResult(article, draft, result, persistLocal);
-        });
-      }
+      persistChecked(detail.completed ? { immediate: true } : { remote: false });
     });
 
     article.addEventListener("change", function (event) {
@@ -605,10 +656,12 @@
       if (!target || typeof target.closest !== "function") return;
 
       var checkEl = target.closest("[data-lp-check]");
+      var finishEl = target.closest("[data-lp-finish-activity]");
       var resetBlockEl = target.closest("[data-lp-reset-block]");
       var copyEl = target.closest("[data-lp-copy]");
       var resetActivityEl = target.closest("[data-lp-reset-activity]");
       var checkId = checkEl && checkEl.getAttribute("data-lp-check");
+      var finishId = finishEl && finishEl.getAttribute("data-lp-finish-activity");
       var resetBlockId = resetBlockEl && resetBlockEl.getAttribute("data-lp-reset-block");
       var copyId = copyEl && copyEl.getAttribute("data-lp-copy");
       var resetActivity = resetActivityEl && resetActivityEl.getAttribute("data-lp-reset-activity");
@@ -625,12 +678,12 @@
         draft.responses[qid] = collectResponse(blockRoot, block);
         draft.checked[qid] = true;
         setFeedback(blockRoot, block, draft.responses[qid], true);
-        persist({ immediate: true });
-        ns.submitActivityDraft(activity, draft, Object.assign({}, options, {
-          publication: (options && options.publication) || ns.getPublicationState()
-        })).then(function (result) {
-          applySubmissionResult(article, draft, result, persistLocal);
-        });
+        persistChecked({ immediate: true });
+        return;
+      }
+
+      if (finishId === activity.id) {
+        finishActivity();
         return;
       }
 
@@ -644,6 +697,7 @@
           draft.responses[qid] = field.value;
           draft.checked[qid] = false;
           setFeedback(blockRoot, block, field.value, false);
+          updateActivityStatus(article, activity, draft);
         }
         return;
       }
