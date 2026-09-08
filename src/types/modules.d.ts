@@ -59,6 +59,7 @@ declare module "@learning-platform/core" {
     learnerContext: unknown;
     onboardingService: unknown;
   }): { element: HTMLElement; open: (trigger?: EventTarget | null) => void; destroy?: () => void };
+  export function setAuthoredHtml(element: Element | null, html: string): boolean;
 }
 
 declare module "*.js";

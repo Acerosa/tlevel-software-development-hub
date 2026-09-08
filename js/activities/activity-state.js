@@ -106,10 +106,12 @@
       return clone(stored);
     }
 
-    function save(attempt) {
+    function save(attempt, saveOptions) {
       var written = write(key, attempt);
       if (remote && typeof remote.save === "function") {
-        try { remote.save(attempt); } catch (error) {}
+        var payload = clone(attempt);
+        delete payload.result;
+        try { remote.save(payload, saveOptions || {}); } catch (error) {}
       }
       return written;
     }

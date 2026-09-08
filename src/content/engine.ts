@@ -52,10 +52,19 @@ export type ContentEngine = {
   createMemoryStorage?: () => Storage;
   createDraftStore?: (
     activity: { id: string; version?: string },
-    options?: { storage?: Storage; learnerKey?: string }
+    options?: { storage?: Storage; learnerKey?: string; platform?: unknown }
   ) => {
-    load: () => { responses: Record<string, unknown>; activityId: string; submission?: { status?: string; failed?: boolean; reason?: string } };
-    save: (draft: unknown) => unknown;
+    load: () => {
+      responses: Record<string, unknown>;
+      checked?: Record<string, boolean>;
+      activityId: string;
+      submission?: { status?: string; failed?: boolean; reason?: string };
+    };
+    save: (draft: unknown, options?: { immediate?: boolean; remote?: boolean }) => unknown;
+    hydrate?: (local?: unknown) => Promise<{
+      responses?: Record<string, unknown>;
+      checked?: Record<string, boolean>;
+    } | null>;
   };
   migrateGuestDrafts?: (options?: { storage?: Storage; learnerKey?: string }) => {
     migrated: number;
