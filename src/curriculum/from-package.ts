@@ -249,6 +249,15 @@ export function weekPageFromPackage(pkg: ContentPackage, weekId: string): WeekPa
 
 type RestoredQuestion = Record<string, unknown> & { id: string; type: string; prompt: string };
 
+function withChoiceValues(options: unknown) {
+  if (!Array.isArray(options)) return options;
+  return options.map((option) => {
+    if (!option || typeof option !== "object") return option;
+    const record = option as Record<string, unknown>;
+    return { ...record, value: record.value ?? record.id };
+  });
+}
+
 function parseRemainder(activity: ContentActivity): Record<string, unknown> {
   const remainder = (activity.blocks || []).find((item) => item.id === `${activity.id}-source-remainder`);
   const text = String(remainder?.content?.text || "");
@@ -332,6 +341,7 @@ export function activityFromPackage(pkg: ContentPackage, activityId: string): Re
       question.rows = content.rows;
       question.answer = content.answer;
     }
+    question.options = withChoiceValues(question.options);
     if (current) current.questions.push(question);
     else questions.push(question);
   });

@@ -14,8 +14,10 @@ describe("T Level package hydration", () => {
   it("restores Requirements Classification questions from published blocks", () => {
     const restored = activityFromPackage(pkg, "foundations-requirements-classification");
     expect(restored?.title).toBe("Requirements Classification");
-    const sections = restored?.sections as Array<{ questions?: Array<{ id: string }> }> | undefined;
+    const sections = restored?.sections as Array<{ questions?: Array<{ id: string; options?: Array<{ id?: string; value?: string }> }> }> | undefined;
     expect(sections?.[0]?.questions?.[0]?.id).toBe("FOUND-REQ-001");
+    expect(sections?.[0]?.questions?.[0]?.options?.[0]).toMatchObject({ id: "functional", value: "functional" });
+    expect(sections?.[0]?.questions?.[0]?.options?.[1]?.value).toBeTruthy();
   });
 
   it("applies a mutated published title without reading Foundations JS banks", () => {
