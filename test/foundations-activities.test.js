@@ -28,7 +28,8 @@ function run(relativePath, browserWindow) {
     String,
     Number,
     JSON,
-    encodeURIComponent
+    encodeURIComponent,
+    Promise
   });
   vm.runInContext(read(relativePath), context, { filename: relativePath });
   return browserWindow;
@@ -436,6 +437,47 @@ test("guest activity progress can be adopted by the newly signed-in learner", fu
   assert.equal(adopted.learnerKey, "00000001");
   assert.equal(studentStore.load().responses.Q1, "answer");
   assert.equal(guestStore.load().responses.Q1, "answer");
+});
+
+test("authenticated activity hydrate restores responses from the shared progress API", async function () {
+  const storage = createStorage();
+  const saved = [];
+  const browserWindow = {
+    localStorage: storage,
+    StudentContext: { getStudentId: function () { return "00000001"; } },
+    crypto: { randomUUID: function () { return "uuid-remote"; } },
+    LearningPlatform: {
+      platform: {
+        auth: {
+          isSignedIn: function () { return true; },
+          getSession: function () { return { user: { id: "auth-user" } }; }
+        },
+        progress: {
+          createStore: function () {
+            return {
+              hydrate: async function () {
+                return {
+                  activityId: "foundations-remote",
+                  activityVersion: "1.0.0",
+                  responses: { Q1: "server-a", Q2: "server-b", Q3: "server-c" },
+                  currentSectionId: "start"
+                };
+              },
+              save: function (attempt) { saved.push(attempt); }
+            };
+          }
+        }
+      }
+    }
+  };
+  run("js/activities/activity-state.js", browserWindow);
+  const activity = { id: "foundations-remote", version: "1.0.0", sections: [{ id: "start" }] };
+  const store = browserWindow.FoundationActivityState.createStore(activity);
+  const restored = await store.hydrate();
+  assert.equal(restored.responses.Q1, "server-a");
+  assert.equal(store.load().responses.Q3, "server-c");
+  store.save({ ...restored, responses: { ...restored.responses, Q4: "local" } });
+  assert.equal(saved.length, 1);
 });
 
 test("Foundations code does not execute learner-supplied code", function () {

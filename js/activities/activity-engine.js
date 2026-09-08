@@ -25,6 +25,12 @@
       .replace(/"/g, "&quot;");
   }
 
+  function optionChoiceValue(option) {
+    if (!option) return "";
+    if (option.value != null && option.value !== "") return String(option.value);
+    return option.id == null ? "" : String(option.id);
+  }
+
   function sectionById(sectionId) {
     return activity.sections.filter(function (section) {
       return section.id === sectionId;
@@ -47,12 +53,13 @@
     var current = attempt.responses[question.id];
 
     return '<div class="answer-options">' + question.options.map(function (option) {
+      var choice = optionChoiceValue(option);
       var checked = question.type === "multiple"
-        ? Array.isArray(current) && current.indexOf(option.value) !== -1
-        : current === option.value;
+        ? Array.isArray(current) && current.indexOf(choice) !== -1
+        : current === choice;
       return (
         '<label class="answer-option"><input type="' + inputType + '" name="' +
-        escapeHtml(question.id) + '" value="' + escapeHtml(option.value) + '"' +
+        escapeHtml(question.id) + '" value="' + escapeHtml(choice) + '"' +
         (checked ? " checked" : "") + (submitted ? " disabled" : "") + ">" +
         '<span>' + escapeHtml(option.label) + "</span></label>"
       );
@@ -74,8 +81,9 @@
     var current = attempt.responses[question.id] || {};
     var rows = question.rows.map(function (row) {
       var options = '<option value="">Choose an answer</option>' + question.options.map(function (option) {
-        return '<option value="' + escapeHtml(option.value) + '"' +
-          (current[row.id] === option.value ? " selected" : "") + ">" +
+        var choice = optionChoiceValue(option);
+        return '<option value="' + escapeHtml(choice) + '"' +
+          (current[row.id] === choice ? " selected" : "") + ">" +
           escapeHtml(option.label) + "</option>";
       }).join("");
       return (
@@ -644,34 +652,48 @@
 
   function rebindLearnerState(student) {
     var nextStore = stateService.createStore(baseActivity);
+    function applyStore(nextAttempt) {
+      store = nextStore;
+      attempt = nextAttempt || store.start();
+      if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
+        renderLanguageSelection("", false);
+        return;
+      }
+      if (!prepareActivity(attempt.programmingLanguage)) {
+        return;
+      }
+      currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
+        return section.id === attempt.currentSectionId;
+      }));
+      if (attempt.result) {
+        renderResults();
+        submitCurrentResult();
+      } else {
+        renderSection();
+      }
+    }
+
     if (!store || nextStore.key === store.key) {
+      if (nextStore.hydrate) {
+        nextStore.hydrate().then(function (resolved) {
+          if (resolved) applyStore(resolved);
+        });
+      }
       return;
     }
 
     var previousAttempt = attempt;
-    var nextAttempt = nextStore.load();
     var previousWasGuest = store.learnerKey === encodeURIComponent("guest");
-    if (student && previousWasGuest && !nextAttempt && hasAttemptProgress()) {
-      nextAttempt = nextStore.adopt(previousAttempt);
+    function finish(nextAttempt) {
+      if (student && previousWasGuest && !nextAttempt && hasAttemptProgress()) {
+        nextAttempt = nextStore.adopt(previousAttempt);
+      }
+      applyStore(nextAttempt);
     }
-
-    store = nextStore;
-    attempt = nextAttempt || store.start();
-    if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
-      renderLanguageSelection("", false);
-      return;
-    }
-    if (!prepareActivity(attempt.programmingLanguage)) {
-      return;
-    }
-    currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
-      return section.id === attempt.currentSectionId;
-    }));
-    if (attempt.result) {
-      renderResults();
-      submitCurrentResult();
+    if (nextStore.hydrate) {
+      nextStore.hydrate().then(finish);
     } else {
-      renderSection();
+      finish(nextStore.load());
     }
   }
 
@@ -776,27 +798,35 @@
     }
 
     store = stateService.createStore(baseActivity);
-    attempt = store.start();
-    if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
-      renderLanguageSelection("", false);
-      return;
-    }
-    if (!prepareActivity(attempt.programmingLanguage)) {
-      return;
-    }
-    currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
-      return section.id === attempt.currentSectionId;
-    }));
+    function begin(existing) {
+      attempt = existing || store.start();
+      if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
+        renderLanguageSelection("", false);
+        return;
+      }
+      if (!prepareActivity(attempt.programmingLanguage)) {
+        return;
+      }
+      currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
+        return section.id === attempt.currentSectionId;
+      }));
 
-    if (attempt.result) {
-      renderResults();
-      submitCurrentResult();
+      if (attempt.result) {
+        renderResults();
+        submitCurrentResult();
+      } else {
+        renderSection();
+      }
+
+      if (window.StudentContext && window.StudentContext.subscribe) {
+        window.StudentContext.subscribe(rebindLearnerState);
+      }
+    }
+
+    if (store.hydrate) {
+      store.hydrate().then(begin);
     } else {
-      renderSection();
-    }
-
-    if (window.StudentContext && window.StudentContext.subscribe) {
-      window.StudentContext.subscribe(rebindLearnerState);
+      begin(store.start());
     }
   }
 
