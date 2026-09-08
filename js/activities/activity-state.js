@@ -70,9 +70,33 @@
     return attempt;
   }
 
+  function getRemoteStore(activity, extraLegacyKeys) {
+    var platform = window.LearningPlatform && window.LearningPlatform.platform;
+    var progress = platform && platform.progress;
+    if (!progress || typeof progress.createStore !== "function") return null;
+    if (!platform.auth || typeof platform.auth.isSignedIn !== "function" || !platform.auth.isSignedIn()) {
+      return null;
+    }
+    try {
+      return progress.createStore({
+        activityKey: activity.id,
+        activityVersion: activity.version,
+        storage: window.localStorage,
+        legacyKeys: extraLegacyKeys || []
+      });
+    } catch (error) {
+      return null;
+    }
+  }
+
   function createStore(activity) {
     var learnerKey = currentLearnerKey();
     var key = storageKey(activity.id, learnerKey);
+    var remote = getRemoteStore(activity, [
+      key,
+      storageKey(activity.id, encodeURIComponent("guest")),
+      storageKey(activity.id, encodeURIComponent("authenticated"))
+    ]);
 
     function load() {
       var stored = read(key);
@@ -83,7 +107,11 @@
     }
 
     function save(attempt) {
-      return write(key, attempt);
+      var written = write(key, attempt);
+      if (remote && typeof remote.save === "function") {
+        try { remote.save(attempt); } catch (error) {}
+      }
+      return written;
     }
 
     function reset(seed) {
@@ -118,6 +146,29 @@
         var attempt = newAttempt(activity, learnerKey);
         save(attempt);
         return attempt;
+      },
+      hydrate: function () {
+        if (!remote || typeof remote.hydrate !== "function") {
+          return Promise.resolve(load());
+        }
+        return remote.hydrate(load()).then(function (resolved) {
+          if (!resolved || resolved.activityId !== activity.id) return load();
+          if (activity.version && resolved.activityVersion && resolved.activityVersion !== activity.version) {
+            return load();
+          }
+          write(key, resolved);
+          return clone(resolved);
+        }).catch(function () {
+          return load();
+        });
+      },
+      flush: function () {
+        if (remote && typeof remote.flush === "function") return remote.flush();
+        return Promise.resolve(null);
+      },
+      clearRemote: function () {
+        if (remote && typeof remote.clear === "function") return remote.clear({ local: false });
+        return Promise.resolve();
       }
     });
   }

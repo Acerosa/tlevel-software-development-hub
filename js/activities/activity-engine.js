@@ -644,34 +644,48 @@
 
   function rebindLearnerState(student) {
     var nextStore = stateService.createStore(baseActivity);
+    function applyStore(nextAttempt) {
+      store = nextStore;
+      attempt = nextAttempt || store.start();
+      if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
+        renderLanguageSelection("", false);
+        return;
+      }
+      if (!prepareActivity(attempt.programmingLanguage)) {
+        return;
+      }
+      currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
+        return section.id === attempt.currentSectionId;
+      }));
+      if (attempt.result) {
+        renderResults();
+        submitCurrentResult();
+      } else {
+        renderSection();
+      }
+    }
+
     if (!store || nextStore.key === store.key) {
+      if (nextStore.hydrate) {
+        nextStore.hydrate().then(function (resolved) {
+          if (resolved) applyStore(resolved);
+        });
+      }
       return;
     }
 
     var previousAttempt = attempt;
-    var nextAttempt = nextStore.load();
     var previousWasGuest = store.learnerKey === encodeURIComponent("guest");
-    if (student && previousWasGuest && !nextAttempt && hasAttemptProgress()) {
-      nextAttempt = nextStore.adopt(previousAttempt);
+    function finish(nextAttempt) {
+      if (student && previousWasGuest && !nextAttempt && hasAttemptProgress()) {
+        nextAttempt = nextStore.adopt(previousAttempt);
+      }
+      applyStore(nextAttempt);
     }
-
-    store = nextStore;
-    attempt = nextAttempt || store.start();
-    if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
-      renderLanguageSelection("", false);
-      return;
-    }
-    if (!prepareActivity(attempt.programmingLanguage)) {
-      return;
-    }
-    currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
-      return section.id === attempt.currentSectionId;
-    }));
-    if (attempt.result) {
-      renderResults();
-      submitCurrentResult();
+    if (nextStore.hydrate) {
+      nextStore.hydrate().then(finish);
     } else {
-      renderSection();
+      finish(nextStore.load());
     }
   }
 
@@ -776,27 +790,35 @@
     }
 
     store = stateService.createStore(baseActivity);
-    attempt = store.start();
-    if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
-      renderLanguageSelection("", false);
-      return;
-    }
-    if (!prepareActivity(attempt.programmingLanguage)) {
-      return;
-    }
-    currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
-      return section.id === attempt.currentSectionId;
-    }));
+    function begin(existing) {
+      attempt = existing || store.start();
+      if (baseActivity.requiresProgrammingLanguage && !attempt.programmingLanguage) {
+        renderLanguageSelection("", false);
+        return;
+      }
+      if (!prepareActivity(attempt.programmingLanguage)) {
+        return;
+      }
+      currentIndex = Math.max(0, activity.sections.findIndex(function (section) {
+        return section.id === attempt.currentSectionId;
+      }));
 
-    if (attempt.result) {
-      renderResults();
-      submitCurrentResult();
+      if (attempt.result) {
+        renderResults();
+        submitCurrentResult();
+      } else {
+        renderSection();
+      }
+
+      if (window.StudentContext && window.StudentContext.subscribe) {
+        window.StudentContext.subscribe(rebindLearnerState);
+      }
+    }
+
+    if (store.hydrate) {
+      store.hydrate().then(begin);
     } else {
-      renderSection();
-    }
-
-    if (window.StudentContext && window.StudentContext.subscribe) {
-      window.StudentContext.subscribe(rebindLearnerState);
+      begin(store.start());
     }
   }
 
