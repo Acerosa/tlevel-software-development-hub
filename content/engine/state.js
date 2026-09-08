@@ -106,29 +106,64 @@
       return stored;
     }
 
-    function save(draft, options) {
+    function resolvePlatform() {
+      return (options && options.platform)
+        || (root.LearningPlatform && root.LearningPlatform.platform)
+        || null;
+    }
+
+    function resolveRemote() {
+      var platform = resolvePlatform();
+      if (!platform || !platform.auth || typeof platform.auth.isSignedIn !== "function"
+          || !platform.auth.isSignedIn()
+          || !platform.progress || typeof platform.progress.createStore !== "function") {
+        return null;
+      }
+      if (!remote) {
+        try {
+          remote = platform.progress.createStore({
+            activityKey: activity.id,
+            activityVersion: ns.resolvedActivityVersion(activity),
+            storage: storage,
+            legacyKeys: [
+              currentKey(),
+              storageKey(activity.id, { learnerKey: "guest" }),
+              storageKey(activity.id, { learnerKey: "authenticated" })
+            ]
+          });
+        } catch (error) {
+          remote = null;
+        }
+      }
+      return remote;
+    }
+
+    function save(draft, saveOptions) {
+      var current = resolveRemote();
       write(draft);
-      if (remote && typeof remote.save === "function") {
-        try { remote.save(draft, options || {}); } catch (error) {}
+      if (current && typeof current.save === "function") {
+        try { current.save(draft, saveOptions || {}); } catch (error) {}
       }
       return draft;
     }
 
     function reset() {
+      var current = resolveRemote();
       try { storage.removeItem(currentKey()); } catch (error) {}
       var draft = emptyDraft(activity);
       write(draft);
-      if (remote && typeof remote.clear === "function") {
-        try { remote.clear(); } catch (error) {}
+      if (current && typeof current.clear === "function") {
+        try { current.clear(); } catch (error) {}
       }
       return draft;
     }
 
     function hydrate() {
-      if (!remote || typeof remote.hydrate !== "function") {
+      var current = resolveRemote();
+      if (!current || typeof current.hydrate !== "function") {
         return Promise.resolve(load());
       }
-      return remote.hydrate(load()).then(function (resolved) {
+      return current.hydrate(load()).then(function (resolved) {
         var hasWork = resolved && resolved.responses && Object.keys(resolved.responses).length;
         if (hasWork) write(resolved);
         return hasWork ? resolved : load();
@@ -138,24 +173,6 @@
     }
 
     var remote = null;
-    try {
-      var platform = root.LearningPlatform && root.LearningPlatform.platform;
-      if (platform && platform.auth && typeof platform.auth.isSignedIn === "function" && platform.auth.isSignedIn()
-          && platform.progress && typeof platform.progress.createStore === "function") {
-        remote = platform.progress.createStore({
-          activityKey: activity.id,
-          activityVersion: ns.resolvedActivityVersion(activity),
-          storage: storage,
-          legacyKeys: [
-            currentKey(),
-            storageKey(activity.id, { learnerKey: "guest" }),
-            storageKey(activity.id, { learnerKey: "authenticated" })
-          ]
-        });
-      }
-    } catch (error) {
-      remote = null;
-    }
 
     return {
       get key() { return currentKey(); },
@@ -164,7 +181,8 @@
       reset: reset,
       hydrate: hydrate,
       flush: function () {
-        if (remote && typeof remote.flush === "function") return remote.flush();
+        var current = resolveRemote();
+        if (current && typeof current.flush === "function") return current.flush();
         return Promise.resolve(null);
       }
     };
