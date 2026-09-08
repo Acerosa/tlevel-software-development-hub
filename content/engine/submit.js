@@ -112,11 +112,41 @@
 
   var LOCAL_KEEP_DRAFT = "Your work is still saved on this device. It has not been sent to your learning record yet. You can continue the lesson and try again later.";
 
+  function publicationHasDecision(value) {
+    return Boolean(value && (typeof value.allowsSubmission === "boolean" || value.state));
+  }
+
+  function resolvePublication(options, platform) {
+    var fromOptions = options && options.publication;
+    if (publicationHasDecision(fromOptions)) return fromOptions;
+    if (platform && platform.curriculum && typeof platform.curriculum.getState === "function") {
+      try {
+        var live = platform.curriculum.getState();
+        if (publicationHasDecision(live)) return live;
+      } catch (error) {}
+    }
+    return ns.getPublicationState();
+  }
+
+  function publicationAllows(options, platform) {
+    var resolved = resolvePublication(options, platform);
+    if (ns.publicationAllowsSubmission(resolved)) return true;
+    if (platform && platform.curriculum && typeof platform.curriculum.allowsSubmission === "function") {
+      try {
+        return Boolean(platform.curriculum.allowsSubmission());
+      } catch (error) {
+        return false;
+      }
+    }
+    return false;
+  }
+
   ns.submitActivityDraft = function (activity, draft, options) {
     var platform = (options && options.platform) || (root.LearningPlatform && root.LearningPlatform.platform);
     var responses = ns.buildActivityEvidence(activity, draft);
     var activityId = activity && activity.id;
     var fingerprint = responseFingerprint(activity, draft);
+    var publication = resolvePublication(options, platform);
     var result = {
       status: "local",
       failed: false,
@@ -134,8 +164,11 @@
     if (!platform || !platform.auth || !platform.auth.isSignedIn()) {
       return Promise.resolve(result);
     }
-    if (!ns.publicationAllowsSubmission(options && options.publication)) {
-      result.reason = ns.publicationSubmissionMessage(options && options.publication);
+    if (!publicationAllows(options, platform)) {
+      result.reason = ns.publicationSubmissionMessage(publication)
+        || (platform.curriculum && typeof platform.curriculum.submissionMessage === "function"
+          ? platform.curriculum.submissionMessage()
+          : result.reason);
       return Promise.resolve(result);
     }
     if (!platform.submission || typeof platform.submission.submit !== "function") {

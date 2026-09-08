@@ -31,6 +31,9 @@ export function applyTLevelCurriculum(
     target.document.body.dataset.curriculumSource = source;
     target.document.body.dataset.publicationState = runtime.state?.state || "ERROR";
   }
+  if (runtime.state && typeof target.LearningPlatformContent?.setPublicationState === "function") {
+    target.LearningPlatformContent.setPublicationState(runtime.state);
+  }
   if (runtime.state && target.document && typeof renderStatus === "function") {
     setAuthoredHtml(bannerHost(target.document), renderStatus(runtime.state));
   }
