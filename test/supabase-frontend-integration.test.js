@@ -214,3 +214,19 @@ test("hub modules contain no parallel Auth client or token persistence", functio
   assert.equal((source.match(/createClient\s*\(/g) || []).length, 0);
   assert.doesNotMatch(source, /refreshToken|accessToken|sessionStorageKey/);
 });
+
+test("hub platform uses Core hub-scoped Auth persistence", async function () {
+  const source = read("src/platform.ts");
+  assert.match(source, /createSupabaseClient/);
+  assert.match(source, /hubCode:\s*APP_CONFIG\.hubId/);
+  assert.doesNotMatch(source, /persistSession:\s*true/);
+  const { createAuthStorageKey } = await import("@learning-platform/core/advanced");
+  assert.equal(
+    createAuthStorageKey("https://hubwpkrqndorznwzvaer.supabase.co", "tlevel-software-development"),
+    "sb-hubwpkrqndorznwzvaer-auth-token--tlevel-software-development"
+  );
+  assert.equal(
+    createAuthStorageKey("https://hubwpkrqndorznwzvaer.supabase.co", "unit-3-cyber-security"),
+    "sb-hubwpkrqndorznwzvaer-auth-token--unit-3-cyber-security"
+  );
+});

@@ -1,4 +1,5 @@
 import { createPlatform } from "@learning-platform/core";
+import { createSupabaseClient } from "@learning-platform/core/advanced";
 import { createClient } from "@supabase/supabase-js";
 import { validateLearnerSafePackage } from "@learning-platform/content";
 import { APP_CONFIG } from "./config";
@@ -6,13 +7,11 @@ import { createSitePath } from "./paths";
 import { SUPABASE_CONFIG } from "./supabase-config";
 
 export function createHubPlatform(root: string, createPlatformFn = createPlatform) {
-  const client = createClient(SUPABASE_CONFIG.projectUrl, SUPABASE_CONFIG.publishableKey, {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: true
-    }
-  });
+  const client = createSupabaseClient({
+    projectUrl: SUPABASE_CONFIG.projectUrl,
+    publishableKey: SUPABASE_CONFIG.publishableKey,
+    hubCode: APP_CONFIG.hubId
+  }, { createClient });
   const platform = createPlatformFn({
     hubCode: APP_CONFIG.hubId,
     courseKey: APP_CONFIG.courseKey,

@@ -85,4 +85,10 @@ declare module "@learning-platform/content" {
   export function renderActivity(activity: unknown, options?: { root?: string }): string;
   export function renderBlock(block: unknown, options?: { root?: string }): string;
 }
-declare module "@learning-platform/core/theme.css";
+declare module "@learning-platform/core/advanced" {
+  export function createSupabaseClient(
+    config: { projectUrl: string; publishableKey: string; hubCode: string },
+    dependencies?: { createClient?: unknown; client?: unknown; authStorage?: unknown }
+  ): unknown;
+  export function createAuthStorageKey(projectUrl: string, hubCode: string): string;
+}
