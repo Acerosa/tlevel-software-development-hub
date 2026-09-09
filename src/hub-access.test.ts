@@ -242,7 +242,7 @@ describe("T Level hub access", () => {
     platform.destroy();
   });
 
-  it("hides the platform-wide year and group picker when one T Level group is eligible", async () => {
+  it("does not show a year and group picker on T Level onboarding", async () => {
     const client = fakeClient({
       session: { access_token: "managed", user: { id: "auth-user" } },
       enrolments: [],
@@ -274,8 +274,8 @@ describe("T Level hub access", () => {
     dialog.showOnboarding?.();
     await new Promise((resolve) => setTimeout(resolve, 20));
     const picker = dialog.element.querySelector("#lp-registration-option") as HTMLSelectElement | null;
-    expect(picker?.value).toBe("tlevel-dsd-y2");
-    expect(picker?.closest(".lp-form__field")?.hidden).toBe(true);
+    expect(picker).toBeNull();
+    expect(dialog.element.textContent).toContain("Enter your learner details to finish setting up your account.");
     expect(dialog.element.textContent).not.toContain("Choose a year and group");
     dialog.destroy?.();
     platform.destroy();
