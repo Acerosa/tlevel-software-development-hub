@@ -30,6 +30,23 @@ test("the Vite production build is a static GitHub Pages site", function () {
   const home = fs.readFileSync(path.join(dist, "index.html"), "utf8");
   const diagnostic = fs.readFileSync(path.join(dist, "foundations/programming-diagnostic/index.html"), "utf8");
   assert.match(home, /type="module"/);
+  assert.match(home, /assets\/[^"' >]+\.js/);
+  assert.doesNotMatch(home, /main\.tsx/);
+  assert.doesNotMatch(home, /\/src\/main\.tsx/);
+  function collectHtml(directory, acc) {
+    acc = acc || [];
+    fs.readdirSync(directory).forEach(function (entry) {
+      const full = path.join(directory, entry);
+      if (fs.statSync(full).isDirectory()) collectHtml(full, acc);
+      else if (entry === "index.html") acc.push(full);
+    });
+    return acc;
+  }
+  collectHtml(dist).forEach(function (file) {
+    const html = fs.readFileSync(file, "utf8");
+    assert.doesNotMatch(html, /main\.tsx/, file + " must not reference TypeScript source");
+    assert.match(html, /assets\/[^"' >]+\.js/, file + " must reference a built assets/*.js bundle");
+  });
   assert.match(diagnostic, /data-activity="programming-diagnostic"/);
   assert.doesNotMatch(home + diagnostic, /express|next\/server|Server Actions/i);
   const assets = path.join(dist, "assets");
