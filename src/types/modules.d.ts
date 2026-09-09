@@ -29,12 +29,17 @@ declare module "@learning-platform/core" {
     auth: { signOut: () => Promise<void> };
     learner: {
       subscribe: (listener: (state: LearnerState) => void) => () => void;
+      getContext: () => { groupCode?: string; yearGroup?: string } | null;
     };
     state: {
+      getState: () => { status: string };
       subscribe: (listener: (snapshot: { status: string }) => void) => () => void;
     };
     onboarding: unknown;
-    assignments?: unknown;
+    assignments?: {
+      getAssignments?: () => Promise<unknown>;
+      getHubAssignments?: (hubCode: string) => Promise<unknown>;
+    };
     assignment?: unknown;
     enrolments?: unknown;
     enrolment?: unknown;
@@ -58,7 +63,7 @@ declare module "@learning-platform/core" {
     authService: unknown;
     learnerContext: unknown;
     onboardingService: unknown;
-  }): { element: HTMLElement; open: (trigger?: EventTarget | null) => void; destroy?: () => void };
+  }): { element: HTMLElement; open: (trigger?: EventTarget | null) => void; showOnboarding?: () => void; destroy?: () => void };
   export function setAuthoredHtml(element: Element | null, html: string): boolean;
 }
 
