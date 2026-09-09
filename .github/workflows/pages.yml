@@ -66,6 +66,16 @@ jobs:
           npm ci
           npm test
 
+      - name: Assert Pages artifact is the Vite bundle
+        working-directory: tlevel-software-development-hub
+        run: |
+          test -f dist/index.html
+          if grep -E 'src/main\.tsx|main\.tsx' dist/index.html; then
+            echo "dist/index.html must not reference TypeScript source" >&2
+            exit 1
+          fi
+          grep -E 'assets/[^"/]+\.js' dist/index.html
+
       - name: Configure GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/configure-pages@v6
