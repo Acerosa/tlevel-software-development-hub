@@ -58,11 +58,19 @@ function fakeClient({
         },
         rpc(name: string, payload: unknown) {
           calls.push({ type: "rpc", name, payload });
-          const data = name === "resolve_learner_hub_access"
-            ? [access]
-            : name === "my_hub_assignments"
-              ? hubAssignments
-              : [];
+          if (name === "resolve_learner_hub_access") {
+            const groupCode = typeof access.group_code === "string" ? access.group_code : "";
+            const yearGroup = typeof access.year_group === "string" ? access.year_group : "";
+            if (
+              (access.status === "enrolled_created" || access.status === "enrolled_reactivated")
+              && groupCode
+              && !enrolments.some((item) => item.group_code === groupCode && item.status === "active")
+            ) {
+              enrolments.push({ status: "active", group_code: groupCode, year_group: yearGroup });
+            }
+            return Promise.resolve({ data: [access], error: null });
+          }
+          const data = name === "my_hub_assignments" ? hubAssignments : [];
           return Promise.resolve({ data, error: null });
         }
       };
@@ -95,6 +103,8 @@ describe("T Level hub access", () => {
     await platform.initialise();
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(platform.state.getState().status).toBe("ready");
+    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
+    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
     expect(await platform.assignments.getHubAssignments("tlevel-software-development")).toEqual([
       { activity_key: "foundations-requirements-classification" }
     ]);
@@ -121,6 +131,65 @@ describe("T Level hub access", () => {
     await platform.initialise();
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(platform.state.getState().status).toBe("ready");
+    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
+    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
+    expect(await platform.assignments.getHubAssignments("tlevel-software-development")).toEqual([
+      { activity_key: "foundations-requirements-classification" }
+    ]);
+    platform.destroy();
+  });
+
+  it("reactivates a withdrawn T Level enrolment and refreshes learner context", async () => {
+    const client = fakeClient({
+      enrolments: [
+        { status: "active", group_code: "CYBER-TEST-A", year_group: "Year 1" },
+        { status: "withdrawn", group_code: "TLEVEL-DSD-Y2", year_group: "Year 2" }
+      ],
+      access: { status: "enrolled_reactivated", group_code: "TLEVEL-DSD-Y2", year_group: "Year 2" },
+      hubAssignments: [{ activity_key: "foundations-requirements-classification" }]
+    });
+    const platform = createPlatform({
+      hubCode: "tlevel-software-development",
+      hubName: "T Level Digital Software Development Hub",
+      courseKey: "t-level-digital-software-development"
+    }, {
+      supabaseClient: client,
+      sessionStorage: memoryStorage(),
+      localStorage: memoryStorage(),
+      document: null,
+      window: null
+    });
+    await platform.initialise();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(platform.state.getState().status).toBe("ready");
+    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
+    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
+    expect(client.calls.filter((call) => call.type === "rpc" && call.name === "resolve_learner_hub_access").length).toBeGreaterThanOrEqual(1);
+    platform.destroy();
+  });
+
+  it("auto-enrols a Unit 14-enrolled learner into the single T Level open_auto group", async () => {
+    const client = fakeClient({
+      enrolments: [{ status: "active", group_code: "UNIT14-TEST-A", year_group: "Year 1" }],
+      access: { status: "enrolled_created", group_code: "TLEVEL-DSD-Y2", year_group: "Year 2" },
+      hubAssignments: [{ activity_key: "foundations-requirements-classification" }]
+    });
+    const platform = createPlatform({
+      hubCode: "tlevel-software-development",
+      hubName: "T Level Digital Software Development Hub",
+      courseKey: "t-level-digital-software-development"
+    }, {
+      supabaseClient: client,
+      sessionStorage: memoryStorage(),
+      localStorage: memoryStorage(),
+      document: null,
+      window: null
+    });
+    await platform.initialise();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(platform.state.getState().status).toBe("ready");
+    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
+    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
     expect(await platform.assignments.getHubAssignments("tlevel-software-development")).toEqual([
       { activity_key: "foundations-requirements-classification" }
     ]);

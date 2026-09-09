@@ -29,8 +29,10 @@ declare module "@learning-platform/core" {
     auth: { signOut: () => Promise<void> };
     learner: {
       subscribe: (listener: (state: LearnerState) => void) => () => void;
+      getContext: () => { groupCode?: string; yearGroup?: string } | null;
     };
     state: {
+      getState: () => { status: string };
       subscribe: (listener: (snapshot: { status: string }) => void) => () => void;
     };
     onboarding: unknown;
