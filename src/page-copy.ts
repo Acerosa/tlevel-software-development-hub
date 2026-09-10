@@ -55,6 +55,10 @@ const PAGE_COPY: Record<string, { title: string; subtitle: string }> = {
   help: {
     title: "Help",
     subtitle: "Guidance for finding and using course materials."
+  },
+  account: {
+    title: "Learner account",
+    subtitle: "Sign in, create an account, or refresh your session."
   }
 };
 

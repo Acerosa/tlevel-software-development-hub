@@ -7,7 +7,7 @@
     hubVersion: "0.1.0",
     siteName: "T Level Digital Software Development Hub",
     shortName: "Software Development Hub",
-    coreVersion: "0.2.8",
+    coreVersion: "0.2.17",
     learnerApiContractVersion: "0.1.0",
     submissionContractVersion: "0.1.0",
     currentPhase: "Week 1: Client Brief, Context and Initial Research",
@@ -22,7 +22,8 @@
         path: "assessment-practice/"
       },
       { id: "resources", label: "Resources", path: "resources/" },
-      { id: "help", label: "Help", path: "help/" }
+      { id: "help", label: "Help", path: "help/" },
+      { id: "account", label: "Account", path: "account/" }
     ]),
     features: Object.freeze({
       authentication: true,

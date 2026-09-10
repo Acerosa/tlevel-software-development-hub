@@ -5,7 +5,7 @@ export const APP_CONFIG = Object.freeze({
   siteName: "T Level Digital Software Development Hub",
   shortName: "Software Development Hub",
   qualification: "T Level Digital",
-  coreVersion: "0.2.8",
+  coreVersion: "0.2.17",
   learnerApiContractVersion: "0.1.0",
   submissionContractVersion: "0.1.0",
   currentPhase: "Week 1: Client Brief, Context and Initial Research",
@@ -20,7 +20,8 @@ export const APP_CONFIG = Object.freeze({
       path: "assessment-practice/"
     }),
     Object.freeze({ id: "resources", label: "Resources", path: "resources/" }),
-    Object.freeze({ id: "help", label: "Help", path: "help/" })
+    Object.freeze({ id: "help", label: "Help", path: "help/" }),
+    Object.freeze({ id: "account", label: "Account", path: "account/" })
   ]),
   courseSectionIds: Object.freeze([
     "home",

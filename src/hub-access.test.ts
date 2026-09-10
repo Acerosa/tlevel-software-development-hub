@@ -83,11 +83,11 @@ describe("T Level hub access", () => {
     document.body.replaceChildren();
   });
 
-  it("auto-enrols a Cyber-enrolled learner into the single T Level open_auto group", async () => {
+  it("does not treat a Cyber enrolment as T Level authority — learner must join with class key", async () => {
     const client = fakeClient({
       enrolments: [{ status: "active", group_code: "CYBER-TEST-A", year_group: "Year 1" }],
-      access: { status: "enrolled_created", group_code: "TLEVEL-DSD-Y2", year_group: "Year 2" },
-      hubAssignments: [{ activity_key: "foundations-requirements-classification" }]
+      access: { status: "no_enrolment" },
+      hubAssignments: [{ activity_key: "week2-malware-symptoms" }]
     });
     const platform = createPlatform({
       hubCode: "tlevel-software-development",
@@ -102,19 +102,40 @@ describe("T Level hub access", () => {
     });
     await platform.initialise();
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(platform.state.getState().status).toBe("ready");
-    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
-    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
-    expect(await platform.assignments.getHubAssignments("tlevel-software-development")).toEqual([
-      { activity_key: "foundations-requirements-classification" }
-    ]);
+    expect(platform.state.getState().status).toBe("no-enrolment");
+    // Learner is NOT auto-enrolled from a Cyber enrolment — open_explicit gate applies.
+    expect(client.calls.some((call) => call.type === "rpc" && call.name === "my_hub_assignments")).toBe(false);
     platform.destroy();
   });
 
-  it("auto-enrols an L2E-enrolled learner into the single T Level open_auto group", async () => {
+  it("does not treat an L2E enrolment as T Level authority — learner must join with class key", async () => {
     const client = fakeClient({
       enrolments: [{ status: "active", group_code: "L2E-DELIVERY-A", year_group: "Year 1" }],
-      access: { status: "enrolled_created", group_code: "TLEVEL-DSD-Y2", year_group: "Year 2" },
+      access: { status: "no_enrolment" },
+      hubAssignments: [{ activity_key: "week-1-digital-technology" }]
+    });
+    const platform = createPlatform({
+      hubCode: "tlevel-software-development",
+      hubName: "T Level Digital Software Development Hub",
+      courseKey: "t-level-digital-software-development"
+    }, {
+      supabaseClient: client,
+      sessionStorage: memoryStorage(),
+      localStorage: memoryStorage(),
+      document: null,
+      window: null
+    });
+    await platform.initialise();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(platform.state.getState().status).toBe("no-enrolment");
+    expect(client.calls.some((call) => call.type === "rpc" && call.name === "my_hub_assignments")).toBe(false);
+    platform.destroy();
+  });
+
+  it("does not treat a Unit 14 enrolment as T Level authority — learner must join with class key", async () => {
+    const client = fakeClient({
+      enrolments: [{ status: "active", group_code: "UNIT14-TEST-A", year_group: "Year 1" }],
+      access: { status: "no_enrolment" },
       hubAssignments: [{ activity_key: "foundations-requirements-classification" }]
     });
     const platform = createPlatform({
@@ -130,16 +151,12 @@ describe("T Level hub access", () => {
     });
     await platform.initialise();
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(platform.state.getState().status).toBe("ready");
-    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
-    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
-    expect(await platform.assignments.getHubAssignments("tlevel-software-development")).toEqual([
-      { activity_key: "foundations-requirements-classification" }
-    ]);
+    expect(platform.state.getState().status).toBe("no-enrolment");
+    expect(client.calls.some((call) => call.type === "rpc" && call.name === "my_hub_assignments")).toBe(false);
     platform.destroy();
   });
 
-  it("reactivates a withdrawn T Level enrolment and refreshes learner context", async () => {
+  it("reactivates a withdrawn T Level enrolment when the resolver confirms T Level access", async () => {
     const client = fakeClient({
       enrolments: [
         { status: "active", group_code: "CYBER-TEST-A", year_group: "Year 1" },
@@ -165,58 +182,6 @@ describe("T Level hub access", () => {
     expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
     expect(platform.learner.getContext().yearGroup).toBe("Year 2");
     expect(client.calls.filter((call) => call.type === "rpc" && call.name === "resolve_learner_hub_access").length).toBeGreaterThanOrEqual(1);
-    platform.destroy();
-  });
-
-  it("auto-enrols a Unit 14-enrolled learner into the single T Level open_auto group", async () => {
-    const client = fakeClient({
-      enrolments: [{ status: "active", group_code: "UNIT14-TEST-A", year_group: "Year 1" }],
-      access: { status: "enrolled_created", group_code: "TLEVEL-DSD-Y2", year_group: "Year 2" },
-      hubAssignments: [{ activity_key: "foundations-requirements-classification" }]
-    });
-    const platform = createPlatform({
-      hubCode: "tlevel-software-development",
-      hubName: "T Level Digital Software Development Hub",
-      courseKey: "t-level-digital-software-development"
-    }, {
-      supabaseClient: client,
-      sessionStorage: memoryStorage(),
-      localStorage: memoryStorage(),
-      document: null,
-      window: null
-    });
-    await platform.initialise();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(platform.state.getState().status).toBe("ready");
-    expect(platform.learner.getContext().groupCode).toBe("TLEVEL-DSD-Y2");
-    expect(platform.learner.getContext().yearGroup).toBe("Year 2");
-    expect(await platform.assignments.getHubAssignments("tlevel-software-development")).toEqual([
-      { activity_key: "foundations-requirements-classification" }
-    ]);
-    platform.destroy();
-  });
-
-  it("does not treat a Cyber enrolment as T Level authority when the resolver denies T Level", async () => {
-    const client = fakeClient({
-      enrolments: [{ status: "active", group_code: "CYBER-TEST-A", year_group: "Year 1" }],
-      access: { status: "no_enrolment" },
-      hubAssignments: [{ activity_key: "week2-malware-symptoms" }]
-    });
-    const platform = createPlatform({
-      hubCode: "tlevel-software-development",
-      hubName: "T Level Digital Software Development Hub",
-      courseKey: "t-level-digital-software-development"
-    }, {
-      supabaseClient: client,
-      sessionStorage: memoryStorage(),
-      localStorage: memoryStorage(),
-      document: null,
-      window: null
-    });
-    await platform.initialise();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(platform.state.getState().status).toBe("no-enrolment");
-    expect(client.calls.some((call) => call.type === "rpc" && call.name === "my_hub_assignments")).toBe(false);
     platform.destroy();
   });
 
