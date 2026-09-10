@@ -27,6 +27,7 @@ export function useHubPlatform(root: string) {
   const [theme, setTheme] = useState<ThemeControl | null>(null);
   const [accountDialog, setAccountDialog] = useState<AccountDialog | null>(null);
   const [platformState, setPlatformState] = useState("loading");
+  const [authStatus, setAuthStatus] = useState("signed-out");
   const [adaptersReady, setAdaptersReady] = useState(false);
   const [curriculum, setCurriculum] = useState<LoadedCurriculum>(EMPTY_CURRICULUM);
 
@@ -36,6 +37,10 @@ export function useHubPlatform(root: string) {
     let cancelled = false;
     document.body.dataset.platformState = "loading";
 
+    const stopAuth = platform.auth.subscribe?.((authState) => {
+      setAuthStatus(authState.status);
+    });
+    if (stopAuth) unsubscribers.push(stopAuth);
     unsubscribers.push(platform.learner.subscribe((state) => {
       setLearner(state.context || null);
     }));
@@ -62,16 +67,23 @@ export function useHubPlatform(root: string) {
     setAccountDialog(dialog);
     window.LearningPlatform = { platform, coreVersion: APP_CONFIG.coreVersion };
 
+    // Start Auth+learner resolve immediately (do not wait for curriculum).
+    // Platform initialise also recovers if a pre-auth empty profile probe raced Auth restore.
     void (async () => {
       await loadHubAdapters();
-      const runtime = await loadTLevelCurriculum(platform) as CurriculumRuntime;
-      if (cancelled) return;
-      setCurriculum({
-        source: runtime.source || "none",
-        package: runtime.package || null
-      });
-      await platform.initialise();
-      if (!cancelled) setAdaptersReady(true);
+      const ready = platform.initialise();
+      try {
+        const runtime = await loadTLevelCurriculum(platform) as CurriculumRuntime;
+        if (!cancelled) {
+          setCurriculum({
+            source: runtime.source || "none",
+            package: runtime.package || null
+          });
+        }
+      } finally {
+        await ready;
+        if (!cancelled) setAdaptersReady(true);
+      }
     })();
 
     return () => {
@@ -83,7 +95,16 @@ export function useHubPlatform(root: string) {
     };
   }, [platform]);
 
-  return { platform, learner, theme, accountDialog, platformState, adaptersReady, curriculum };
+  return {
+    platform,
+    learner,
+    theme,
+    accountDialog,
+    platformState,
+    authStatus,
+    adaptersReady,
+    curriculum
+  };
 }
 
 export type { HubPlatform };
