@@ -123,3 +123,69 @@ test("practice completed flag is stripped before a Core save from the week engin
   assert.equal(saved[0].draft.completed, false);
   assert.equal(saved[0].draft.checked.q1, true);
 });
+
+test("empty draft includes results map", function () {
+  const saved = [];
+  const { engine, storage } = loadEngine(saved);
+  const activity = { id: "week-1-lesson-1-ex-01", version: "0.1.0" };
+  const draft = engine.createDraftStore(activity, { storage }).load();
+  assert.equal(typeof draft.results, "object");
+  assert.ok(draft.results);
+  assert.equal(Object.keys(draft.results).length, 0);
+});
+
+test("hydrate keeps checked-only remote drafts", async function () {
+  const browserWindow = {
+    localStorage: memoryStorage(),
+    LearningPlatform: {
+      platform: {
+        auth: {
+          isSignedIn() { return true; },
+          getSession() { return { user: { id: "auth-user" } }; }
+        },
+        progress: {
+          createStore() {
+            return {
+              save() {},
+              hydrate() {
+                return Promise.resolve({
+                  activityId: "week-1-lesson-1-ex-01",
+                  activityVersion: "0.1.0",
+                  responses: {},
+                  checked: { q1: true },
+                  results: { q1: { correct: true, status: "correct" } },
+                  completed: false,
+                  submission: { status: "local" }
+                });
+              },
+              flush() { return Promise.resolve(null); },
+              clear() { return Promise.resolve(); }
+            };
+          }
+        }
+      }
+    }
+  };
+  const context = vm.createContext({
+    window: browserWindow,
+    globalThis: browserWindow,
+    console,
+    Date,
+    Math,
+    Object,
+    Array,
+    String,
+    Number,
+    JSON,
+    encodeURIComponent,
+    Promise
+  });
+  vm.runInContext(read("content/engine/version.js"), context, { filename: "content/engine/version.js" });
+  vm.runInContext(read("content/engine/state.js"), context, { filename: "content/engine/state.js" });
+  const engine = browserWindow.LearningPlatformContent;
+  const activity = { id: "week-1-lesson-1-ex-01", version: "0.1.0" };
+  const store = engine.createDraftStore(activity, { storage: browserWindow.localStorage });
+  const hydrated = await store.hydrate();
+  assert.equal(hydrated.checked.q1, true);
+  assert.deepEqual(hydrated.results.q1, { correct: true, status: "correct" });
+});
