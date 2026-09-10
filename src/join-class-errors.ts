@@ -54,8 +54,16 @@ export function joinClassFailureMessage(failure: unknown): string {
  */
 export function shouldCompleteProfileBeforeJoin(
   platformState: string,
-  learnerStatus?: string | null
+  learnerStatus?: string | null,
+  authStatus?: string | null
 ): boolean {
-  if (String(learnerStatus || "").trim() === "authenticated") return false;
+  const auth = String(authStatus ?? "").trim();
+  // Auth still restoring: never show identity fields (prevents pre-auth flash).
+  // Undefined authStatus keeps legacy behaviour for unit tests / callers that
+  // only pass platform+learner status.
+  if (auth === "loading" || auth === "signing-in") return false;
+  const learner = String(learnerStatus || "").trim();
+  if (learner === "loading") return false;
+  if (learner === "authenticated") return false;
   return platformState === "onboarding-required";
 }

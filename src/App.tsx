@@ -1,6 +1,7 @@
 import { HubShell, LearnerHeader } from "@learning-platform/ui";
 import { useEffect, useMemo, useRef } from "react";
 import { accountPageAutoOpenAction } from "./account-auto-open";
+import { focusJoinClassPanel, shouldOpenCoreOnboarding } from "./focus-join-class";
 import { CourseLayout } from "./components/CourseSidebar";
 import { JoinClassPanel } from "./components/JoinClassPanel";
 import { APP_CONFIG } from "./config";
@@ -34,6 +35,7 @@ function PageBody({
   adaptersReady,
   platform,
   platformState,
+  authStatus,
   pkg,
   onJoined,
   onOpenSignIn,
@@ -44,6 +46,7 @@ function PageBody({
   adaptersReady: boolean;
   platform?: unknown;
   platformState: string;
+  authStatus?: string | null;
   pkg?: ContentPackage | null;
   onJoined?: () => void;
   onOpenSignIn?: (trigger?: EventTarget | null) => void;
@@ -66,6 +69,7 @@ function PageBody({
       compact
       root={context.root}
       platformState={platformState}
+      authStatus={authStatus}
       platform={platform as never}
       onSignIn={(trigger) => onOpenSignIn?.(trigger)}
       onSwitchAccount={onSwitchAccount}
@@ -129,11 +133,11 @@ function PageBody({
 }
 
 export function App({ context }: { context: PageContext }) {
-  const { learner, theme, accountDialog, platform, adaptersReady, curriculum, platformState } = useHubPlatform(context.root);
+  const { learner, theme, accountDialog, platform, adaptersReady, curriculum, platformState, authStatus } = useHubPlatform(context.root);
   const header = pageHeader(context);
   const enrolments = (learner as { enrolments?: EnrolmentRow[] } | null)?.enrolments;
   const joinNeeded = needsJoinClass(platformState, { enrolments });
-  const signedIn = Boolean(learner) || joinNeeded;
+  const signedIn = authStatus === "authenticated" || Boolean(learner) || joinNeeded;
   const guardedPlatform = useMemo(
     () => withEnrolmentGuardedMarking(platform as never, () => platformState),
     [platform, platformState]
@@ -141,10 +145,11 @@ export function App({ context }: { context: PageContext }) {
 
   function openAccount(trigger?: EventTarget | null, options?: { mode?: "sign-in" | "register" }) {
     // Identity onboarding only when Auth has no learner profile. Returning
-    // learners needing a class key stay on JoinClass (class-key-only), not Core's
-    // complete_learner_onboarding form.
+    // learners (learnerStatus authenticated) stay on JoinClass — even if
+    // platformState briefly says onboarding-required after hub resolve.
+    const learnerStatus = platform.learner?.getState?.()?.status || null;
     if (
-      platformState === "onboarding-required"
+      shouldOpenCoreOnboarding(platformState, learnerStatus)
       && options?.mode !== "register"
       && typeof accountDialog?.showOnboarding === "function"
     ) {
@@ -152,6 +157,11 @@ export function App({ context }: { context: PageContext }) {
       return;
     }
     accountDialog?.open(trigger, options);
+  }
+
+  function openJoinClass(trigger?: EventTarget | null) {
+    if (focusJoinClassPanel()) return;
+    openAccount(trigger);
   }
 
   /** Guest / post-sign-out: always open Core Sign in (never onboarding). */
@@ -190,16 +200,26 @@ export function App({ context }: { context: PageContext }) {
     const action = accountPageAutoOpenAction(
       context.page,
       platformState,
-      didAutoOpenAccount.current
+      didAutoOpenAccount.current,
+      platform.learner?.getState?.()?.status || null
     );
     if (!action || !accountDialog) return;
     didAutoOpenAccount.current = true;
-    if (action === "onboarding" && typeof accountDialog.showOnboarding === "function") {
+    const learnerStatus = platform.learner?.getState?.()?.status || null;
+    if (
+      action === "onboarding"
+      && shouldOpenCoreOnboarding(platformState, learnerStatus)
+      && typeof accountDialog.showOnboarding === "function"
+    ) {
       accountDialog.showOnboarding();
       return;
     }
+    if (action === "onboarding") {
+      focusJoinClassPanel();
+      return;
+    }
     if (action === "sign-in") accountDialog.open();
-  }, [accountDialog, context.page, platformState]);
+  }, [accountDialog, context.page, platformState, platform]);
 
   async function refreshAfterJoin() {
     const l = platform.learner as { refresh?: () => Promise<unknown> };
@@ -226,7 +246,7 @@ export function App({ context }: { context: PageContext }) {
                   className="lp-button"
                   type="button"
                   data-join-class-open=""
-                  onClick={(event) => openAccount(event.currentTarget)}
+                  onClick={(event) => openJoinClass(event.currentTarget)}
                 >
                   {JOIN_CLASS_PROMPT}
                 </button>
@@ -276,6 +296,7 @@ export function App({ context }: { context: PageContext }) {
           adaptersReady={adaptersReady}
           platform={guardedPlatform}
           platformState={platformState}
+          authStatus={authStatus}
           pkg={curriculum.package}
           onJoined={() => { void refreshAfterJoin(); }}
           onOpenSignIn={platformState === "signed-out" ? openSignInDialog : openAccount}

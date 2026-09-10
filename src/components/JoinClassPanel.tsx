@@ -30,6 +30,7 @@ type OnboardingService = {
 
 type JoinClassPanelProps = {
   platformState: string;
+  authStatus?: string | null;
   platform: {
     onboarding?: OnboardingService;
     learner?: {
@@ -73,6 +74,7 @@ function tlevelEnrolment(enrolments: EnrolmentRow[] | null | undefined) {
 
 export function JoinClassPanel({
   platformState,
+  authStatus = null,
   platform,
   root = ".",
   compact = false,
@@ -86,6 +88,9 @@ export function JoinClassPanel({
   const enrolled = (platformState === "ready" || platformState === "no-assignments")
     && hasExpectedGroupEnrolment(enrolments);
   const guest = platformState === "signed-out";
+  const authRestoring = authStatus === "loading" || authStatus === "signing-in"
+    || platformState === "loading"
+    || platformState === "signing-in";
   const initial = profileFromPlatform(platform);
 
   const [firstName, setFirstName] = useState(initial.firstName);
@@ -137,6 +142,15 @@ export function JoinClassPanel({
     );
   }
 
+  if (authRestoring) {
+    return (
+      <section className="join-class panel" data-lp-join-class="restoring" aria-labelledby="join-class-heading">
+        <h2 id="join-class-heading">Checking your account…</h2>
+        <p role="status">Restoring your learning account for this hub.</p>
+      </section>
+    );
+  }
+
   if (enrolled) {
     const joined = tlevelEnrolment(enrolments);
     const groupLabel = [joined?.yearGroup || context?.yearGroup, joined?.groupName || joined?.groupCode || EXPECTED_GROUP_CODE]
@@ -158,7 +172,7 @@ export function JoinClassPanel({
   const learnerStatus = platform.learner?.getState?.()?.status || null;
   // Returning learners: class-key only. Identity fields only for true first-time
   // Auth users (onboarding-required, no linked profile).
-  const needsProfileFields = shouldCompleteProfileBeforeJoin(platformState, learnerStatus);
+  const needsProfileFields = shouldCompleteProfileBeforeJoin(platformState, learnerStatus, authStatus);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -185,7 +199,7 @@ export function JoinClassPanel({
       }
       // Profile linking is not class-key enrolment. Only complete when Core still
       // requires onboarding; otherwise Student ID conflicts mask join_learner_hub_group.
-      const mustCompleteProfile = shouldCompleteProfileBeforeJoin(platformState, learnerStatus);
+      const mustCompleteProfile = shouldCompleteProfileBeforeJoin(platformState, learnerStatus, authStatus);
       if (mustCompleteProfile) {
         if (!details.firstName || !details.surname || !details.studentNumber) {
           throw Object.assign(new Error("Enter your learner details."), {
