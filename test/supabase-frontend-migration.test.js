@@ -171,6 +171,6 @@ test("the canonical manifest contains only generic LHDS metadata", function () {
   assert.equal(manifest.repositoryUrl, "https://github.com/Acerosa/tlevel-software-development-hub");
   assert.equal(manifest.deploymentUrl, "https://acerosa.github.io/tlevel-software-development-hub");
   assert.deepEqual(manifest.courses, ["t-level-digital-software-development"]);
-  assert.equal(manifest.compatibility.required.coreVersion, "0.2.17");
+  assert.equal(manifest.compatibility.required.coreVersion, "0.2.18");
   assert.doesNotMatch(JSON.stringify(manifest), /questionBank|week|taskContent|supabaseUrl|publishableKey/i);
 });

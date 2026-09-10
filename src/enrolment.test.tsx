@@ -226,11 +226,14 @@ describe("T Level normal learner enrolment", () => {
 
     render(
       <JoinClassPanel
-        platformState="ready"
+        platformState="no-enrolment"
         platform={platform}
       />
     );
 
+    expect(screen.queryByLabelText(/First name/i)).toBeNull();
+    expect(screen.queryByLabelText(/^Surname$/i)).toBeNull();
+    expect(screen.queryByLabelText(/Student ID/i)).toBeNull();
     expect(screen.queryByRole("combobox")).toBeNull();
     fireEvent.change(screen.getByLabelText(/Class registration key/i), {
       target: { value: EXPECTED_REGISTRATION_KEY }
@@ -241,6 +244,46 @@ describe("T Level normal learner enrolment", () => {
     await waitFor(() => expect(joinClass).toHaveBeenCalledTimes(1));
     expect(complete).not.toHaveBeenCalled();
     expect(joinClass).toHaveBeenCalledWith(EXPECTED_REGISTRATION_KEY);
+  });
+
+  it("returning learner with empty local profile fields still uses class-key only", async () => {
+    const complete = vi.fn(async () => ({ student_number: "STU-OLD" }));
+    const joinClass = vi.fn(async () => ({ groupCode: EXPECTED_GROUP_CODE, status: "enrolled_created" }));
+    const platform = {
+      onboarding: {
+        getPending: () => null,
+        complete,
+        joinClass
+      },
+      learner: {
+        getState: () => ({
+          status: "authenticated",
+          context: {
+            firstName: "",
+            surname: "",
+            studentNumber: "STU-OLD",
+            enrolments: []
+          }
+        })
+      }
+    };
+
+    render(
+      <JoinClassPanel
+        platformState="no-enrolment"
+        platform={platform}
+      />
+    );
+
+    expect(screen.queryByLabelText(/First name/i)).toBeNull();
+    fireEvent.change(screen.getByLabelText(/Class registration key/i), {
+      target: { value: EXPECTED_REGISTRATION_KEY }
+    });
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "Join class" }));
+    });
+    await waitFor(() => expect(joinClass).toHaveBeenCalledWith(EXPECTED_REGISTRATION_KEY));
+    expect(complete).not.toHaveBeenCalled();
   });
 
   it("wrong class key is denied and does not invent a second Auth identity", async () => {

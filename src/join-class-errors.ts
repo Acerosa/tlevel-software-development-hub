@@ -47,6 +47,15 @@ export function joinClassFailureMessage(failure: unknown): string {
   return DEFAULT_JOIN;
 }
 
-export function shouldCompleteProfileBeforeJoin(platformState: string): boolean {
+/**
+ * Identity fields + complete_learner_onboarding only for first-time Auth users
+ * with no learner profile. Returning learners (authenticated + profile) join
+ * with class key only — even if platformState briefly says onboarding-required.
+ */
+export function shouldCompleteProfileBeforeJoin(
+  platformState: string,
+  learnerStatus?: string | null
+): boolean {
+  if (String(learnerStatus || "").trim() === "authenticated") return false;
   return platformState === "onboarding-required";
 }
