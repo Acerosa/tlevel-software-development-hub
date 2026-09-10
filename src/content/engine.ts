@@ -57,6 +57,7 @@ export type ContentEngine = {
     load: () => {
       responses: Record<string, unknown>;
       checked?: Record<string, boolean>;
+      results?: Record<string, unknown>;
       activityId: string;
       submission?: { status?: string; failed?: boolean; reason?: string };
     };
@@ -64,6 +65,7 @@ export type ContentEngine = {
     hydrate?: (local?: unknown) => Promise<{
       responses?: Record<string, unknown>;
       checked?: Record<string, boolean>;
+      results?: Record<string, unknown>;
     } | null>;
   };
   migrateGuestDrafts?: (options?: { storage?: Storage; learnerKey?: string }) => {

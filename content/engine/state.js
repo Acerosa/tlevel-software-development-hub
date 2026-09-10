@@ -66,6 +66,7 @@
       completedAt: null,
       responses: {},
       checked: {},
+      results: {},
       completed: false,
       submission: { status: "local" }
     };
@@ -164,7 +165,9 @@
         return Promise.resolve(load());
       }
       return current.hydrate(load()).then(function (resolved) {
-        var hasWork = resolved && resolved.responses && Object.keys(resolved.responses).length;
+        var hasResponses = resolved && resolved.responses && Object.keys(resolved.responses).length;
+        var hasChecked = resolved && resolved.checked && Object.keys(resolved.checked).length;
+        var hasWork = Boolean(hasResponses || hasChecked);
         if (hasWork) write(resolved);
         return hasWork ? resolved : load();
       }).catch(function () {
@@ -209,7 +212,8 @@
   function draftHasWork(draft) {
     if (!draft || typeof draft !== "object") return false;
     if (draft.submission && draft.submission.status === "submitted") return true;
-    return Boolean(draft.responses && Object.keys(draft.responses).length);
+    if (draft.responses && Object.keys(draft.responses).length) return true;
+    return Boolean(draft.checked && Object.keys(draft.checked).length);
   }
 
   ns.migrateGuestDrafts = function (options) {

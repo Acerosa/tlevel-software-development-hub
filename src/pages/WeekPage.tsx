@@ -17,7 +17,8 @@ import {
   type ActivityDocument,
   type ActivityResult,
   type PracticeProgressAggregate,
-  type PracticeProgressState
+  type PracticeProgressState,
+  type RestoredActivityResult
 } from "@learning-platform/ui";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import bundledPackage from "../../content/tlevel-software-development/package.json";
@@ -260,6 +261,7 @@ export function WeekPage({
   const [draftByActivity, setDraftByActivity] = useState<Record<string, {
     responses: Record<string, unknown>;
     checked: Record<string, boolean>;
+    results: Record<string, RestoredActivityResult>;
   }>>({});
   const [completedActivityCount, setCompletedActivityCount] = useState(0);
   const [completionOpen, setCompletionOpen] = useState(false);
@@ -319,16 +321,19 @@ export function WeekPage({
     void Promise.all(activities.map(async (activity) => {
       try {
         if (!engine.createDraftStore) {
-          return [activity.id, { responses: {}, checked: {} }] as const;
+          return [activity.id, { responses: {}, checked: {}, results: {} }] as const;
         }
         const store = engine.createDraftStore(activity, { platform });
         const draft = store.hydrate ? await store.hydrate() : store.load();
         return [activity.id, {
-          responses: draft?.responses && typeof draft.responses === "object" ? draft.responses : {},
-          checked: draft?.checked && typeof draft.checked === "object" ? draft.checked : {}
+          responses: draft?.responses && typeof draft.responses === "object" ? draft.responses as Record<string, unknown> : {},
+          checked: draft?.checked && typeof draft.checked === "object" ? draft.checked as Record<string, boolean> : {},
+          results: draft?.results && typeof draft.results === "object"
+            ? draft.results as Record<string, RestoredActivityResult>
+            : {}
         }] as const;
       } catch {
-        return [activity.id, { responses: {}, checked: {} }] as const;
+        return [activity.id, { responses: {}, checked: {}, results: {} }] as const;
       }
     })).then((entries) => {
       if (!cancelled) setDraftByActivity(Object.fromEntries(entries));
@@ -354,6 +359,7 @@ export function WeekPage({
               platform={platform}
               initialResponses={draftByActivity[activity.id]?.responses || draftResponsesFor(activity)}
               initialChecked={draftByActivity[activity.id]?.checked}
+              initialResults={draftByActivity[activity.id]?.results}
               renderFallback={(block) => (
                 <AuthoredHtml html={engine.renderBlock(block)} />
               )}
@@ -364,7 +370,13 @@ export function WeekPage({
                   detail: {
                     questionId: questionIdFor(block),
                     response: persistableResponse(block, result),
-                    completed: result.completed
+                    completed: result.completed,
+                    result: {
+                      correct: result.correct ?? null,
+                      canRetry: result.canRetry,
+                      status: result.status,
+                      requiresReview: result.requiresReview
+                    }
                   }
                 }));
                 recordPracticeResult(result, block);

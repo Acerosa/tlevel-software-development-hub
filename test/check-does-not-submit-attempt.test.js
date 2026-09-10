@@ -172,7 +172,12 @@ test("React lp-block-result Check does not submit; Finish activity submits once"
   const qid = "week-1-lesson-1-ex-01:client";
   article.dispatchEvent(new document.defaultView.CustomEvent("lp-block-result", {
     bubbles: true,
-    detail: { questionId: qid, response: "a", completed: true }
+    detail: {
+      questionId: qid,
+      response: "a",
+      completed: true,
+      result: { correct: true, status: "correct", canRetry: false }
+    }
   }));
   assert.equal(submits.length, 0);
   article.querySelector("[data-lp-finish-activity]").click();
@@ -182,6 +187,61 @@ test("React lp-block-result Check does not submit; Finish activity submits once"
   article.querySelector("[data-lp-finish-activity]").click();
   await new Promise((resolve) => setTimeout(resolve, 0));
   assert.equal(submits.length, 1);
+});
+
+test("React lp-block-result Check persists learner-safe results without answer keys", function () {
+  const activity = oneQuestionActivity();
+  const saves = [];
+  const { article } = bind(activity, { saves });
+  const qid = "week-1-lesson-1-ex-01:client";
+  article.dispatchEvent(new article.ownerDocument.defaultView.CustomEvent("lp-block-result", {
+    bubbles: true,
+    detail: {
+      questionId: qid,
+      response: "a",
+      completed: true,
+      result: {
+        correct: false,
+        status: "incorrect",
+        canRetry: true,
+        correctOptionId: "c",
+        score: { correct: 0, total: 1 }
+      }
+    }
+  }));
+  const lastSave = saves.at(-1);
+  assert.equal(lastSave.draft.checked[qid], true);
+  assert.deepEqual(lastSave.draft.results[qid], {
+    correct: false,
+    status: "incorrect",
+    canRetry: true
+  });
+  assert.equal(Object.prototype.hasOwnProperty.call(lastSave.draft.results[qid], "correctOptionId"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(lastSave.draft.results[qid], "score"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(lastSave.draft, "result"), false);
+});
+
+test("cleared Check removes stored results for that question", function () {
+  const activity = oneQuestionActivity();
+  const saves = [];
+  const { article } = bind(activity, { saves });
+  const qid = "week-1-lesson-1-ex-01:client";
+  article.dispatchEvent(new article.ownerDocument.defaultView.CustomEvent("lp-block-result", {
+    bubbles: true,
+    detail: {
+      questionId: qid,
+      response: "a",
+      completed: true,
+      result: { correct: true, status: "correct" }
+    }
+  }));
+  article.dispatchEvent(new article.ownerDocument.defaultView.CustomEvent("lp-block-result", {
+    bubbles: true,
+    detail: { questionId: qid, response: "a", completed: false }
+  }));
+  const lastSave = saves.at(-1);
+  assert.equal(lastSave.draft.checked[qid], false);
+  assert.equal(lastSave.draft.results[qid], undefined);
 });
 
 test("checking the last question of a multi-question activity does not submit", function () {
@@ -214,4 +274,15 @@ test("week Check handlers only submit from Finish activity", function () {
   assert.match(source, /function finishActivity\(\)/);
   assert.match(source, /data-lp-finish-activity/);
   assert.match(source, /finishActivity\(\)/);
+});
+
+test("WeekPage hydrates initialResults from draft store", function () {
+  const weekPage = read("src/pages/WeekPage.tsx");
+  assert.match(weekPage, /initialResults=\{draftByActivity\[activity\.id\]\?\.results\}/);
+  assert.match(weekPage, /initialChecked=\{draftByActivity\[activity\.id\]\?\.checked\}/);
+  assert.match(weekPage, /results:\s*draft\?\.results/);
+  assert.match(weekPage, /correct:\s*result\.correct\s*\?\?\s*null/);
+  assert.match(weekPage, /canRetry:\s*result\.canRetry/);
+  assert.match(weekPage, /status:\s*result\.status/);
+  assert.match(weekPage, /requiresReview:\s*result\.requiresReview/);
 });
