@@ -7,7 +7,7 @@
     hubVersion: "0.1.0",
     siteName: "T Level Digital Software Development Hub",
     shortName: "Software Development Hub",
-    coreVersion: "0.2.19",
+    coreVersion: "0.2.20",
     learnerApiContractVersion: "0.1.0",
     submissionContractVersion: "0.1.0",
     currentPhase: "Week 1: Client Brief, Context and Initial Research",
