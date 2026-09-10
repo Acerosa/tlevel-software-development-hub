@@ -140,8 +140,11 @@ export function App({ context }: { context: PageContext }) {
   );
 
   function openAccount(trigger?: EventTarget | null, options?: { mode?: "sign-in" | "register" }) {
+    // Identity onboarding only when Auth has no learner profile. Returning
+    // learners needing a class key stay on JoinClass (class-key-only), not Core's
+    // complete_learner_onboarding form.
     if (
-      joinNeeded
+      platformState === "onboarding-required"
       && options?.mode !== "register"
       && typeof accountDialog?.showOnboarding === "function"
     ) {

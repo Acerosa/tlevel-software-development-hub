@@ -155,10 +155,10 @@ export function JoinClassPanel({
 
   if (!accessNeedsJoin) return null;
 
-  const needsProfileFields = shouldCompleteProfileBeforeJoin(platformState)
-    || !initial.firstName
-    || !initial.surname
-    || !initial.studentNumber;
+  const learnerStatus = platform.learner?.getState?.()?.status || null;
+  // Returning learners: class-key only. Identity fields only for true first-time
+  // Auth users (onboarding-required, no linked profile).
+  const needsProfileFields = shouldCompleteProfileBeforeJoin(platformState, learnerStatus);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -173,11 +173,6 @@ export function JoinClassPanel({
       studentNumber: studentNumber.trim()
     };
     try {
-      if (!details.firstName || !details.surname || !details.studentNumber) {
-        throw Object.assign(new Error("Enter your learner details."), {
-          learnerMessage: "Enter your first name, surname and Student ID."
-        });
-      }
       if (!key) {
         throw Object.assign(new Error("Enter your class registration key."), {
           learnerMessage: "Enter the class registration key from your tutor."
@@ -190,11 +185,16 @@ export function JoinClassPanel({
       }
       // Profile linking is not class-key enrolment. Only complete when Core still
       // requires onboarding; otherwise Student ID conflicts mask join_learner_hub_group.
-      if (
-        shouldCompleteProfileBeforeJoin(platformState)
-        && typeof platform.onboarding?.complete === "function"
-      ) {
-        await platform.onboarding.complete(details);
+      const mustCompleteProfile = shouldCompleteProfileBeforeJoin(platformState, learnerStatus);
+      if (mustCompleteProfile) {
+        if (!details.firstName || !details.surname || !details.studentNumber) {
+          throw Object.assign(new Error("Enter your learner details."), {
+            learnerMessage: "Enter your first name, surname and Student ID."
+          });
+        }
+        if (typeof platform.onboarding?.complete === "function") {
+          await platform.onboarding.complete(details);
+        }
       }
       await platform.onboarding.joinClass(key);
       setStatus("You have joined your class.");

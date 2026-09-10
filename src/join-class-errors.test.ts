@@ -36,5 +36,7 @@ describe("join class failure mapping", () => {
     expect(shouldCompleteProfileBeforeJoin("onboarding-required")).toBe(true);
     expect(shouldCompleteProfileBeforeJoin("no-enrolment")).toBe(false);
     expect(shouldCompleteProfileBeforeJoin("ready")).toBe(false);
+    expect(shouldCompleteProfileBeforeJoin("onboarding-required", "authenticated")).toBe(false);
+    expect(shouldCompleteProfileBeforeJoin("onboarding-required", "onboarding-required")).toBe(true);
   });
 });
