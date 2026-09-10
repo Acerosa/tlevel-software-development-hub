@@ -21,7 +21,8 @@ const routeFiles = [
   "task-3/index.html",
   "assessment-practice/index.html",
   "resources/index.html",
-  "help/index.html"
+  "help/index.html",
+  "account/index.html"
 ];
 
 function read(relativePath) {
@@ -48,7 +49,7 @@ function assertLocalReferenceExists(route, reference) {
 }
 
 test("all GitHub Pages routes are Vite shells that mount the React hub", function () {
-  assert.equal(routeFiles.length, 37);
+  assert.equal(routeFiles.length, 38);
   routeFiles.forEach(function (route) {
     const html = read(route);
     assert.match(html, /id="root"/);
