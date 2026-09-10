@@ -37,6 +37,7 @@ afterEach(() => {
   cleanup();
   delete window.__lpPackage;
   delete window.__lpPublishedCurriculum;
+  window.localStorage.clear();
 });
 
 function withWeekStatus(source: ContentPackage, updates: Record<string, string>): ContentPackage {

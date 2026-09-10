@@ -7,11 +7,14 @@ import {
   PracticeProgressPanel,
   WeekView,
   AuthoredHtml,
+  activityProgressLabel,
   aggregatePracticeProgress,
   applyPracticeResult,
+  completedActivityCountFromState,
   emptyPracticeProgress,
-  isCatalogueReactType,
+  isCompletableReactBlock,
   isPracticeCompletionCue,
+  isScorableReactBlock,
   questionIdFor,
   type ActivityBlockDocument,
   type ActivityDocument,
@@ -56,18 +59,6 @@ function persistableResponse(block: ActivityBlockDocument, result: ActivityResul
     return String(responses).trim();
   }
   return responses && typeof responses === "object" ? responses : {};
-}
-
-function isScorableReactBlock(block: ActivityBlockDocument): boolean {
-  const type = normaliseBlockType(block.type);
-  return type === "single-choice"
-    || type === "option-cards"
-    || type === "classification"
-    || type === "drag-drop";
-}
-
-function isCompletableReactBlock(block: ActivityBlockDocument): boolean {
-  return isCatalogueReactType(block.type);
 }
 
 function blockScorableTotal(block: ActivityBlockDocument): number {
@@ -127,24 +118,15 @@ function completedAccessibleActivityCount(
   model: WeekPageModel | null
 ): number {
   if (!model) return 0;
-  let completed = 0;
+  const activities: ActivityDocument[] = [];
   for (const session of model.sessions) {
     if (!session.accessible) continue;
     for (const item of session.activities) {
       const activity = content.activities?.find((entry) => entry.id === item.id) as ActivityDocument | undefined;
-      const blockIds = (activity?.blocks || [])
-        .filter((block) => isCompletableReactBlock(block as ActivityBlockDocument))
-        .map((block) => questionIdFor(block as ActivityBlockDocument));
-      if (!blockIds.length) continue;
-      if (blockIds.every((id) => state.completed[id])) completed += 1;
+      if (activity) activities.push(activity);
     }
   }
-  return completed;
-}
-
-function activityProgressLabel(completed: number, total: number): string {
-  const noun = total === 1 ? "activity" : "activities";
-  return `${completed} / ${total} ${noun} completed`;
+  return completedActivityCountFromState(activities, state.completed);
 }
 
 function draftResponsesFor(activity: ActivityDocument): Record<string, unknown> {
@@ -254,6 +236,7 @@ export function WeekPage({
   const mountRef = useRef<HTMLDivElement>(null);
   const dismissedRef = useRef(false);
   const progressRef = useRef(emptyPracticeProgress());
+  const liveProgressRef = useRef(false);
   const [practice, setPractice] = useState<PracticeProgressAggregate>(
     aggregatePracticeProgress(emptyPracticeProgress(), { requiredBlocks: 0, scorableTotal: 0 })
   );
@@ -283,6 +266,7 @@ export function WeekPage({
 
   useEffect(() => {
     progressRef.current = emptyPracticeProgress();
+    liveProgressRef.current = false;
     dismissedRef.current = false;
     setPractice(aggregatePracticeProgress(emptyPracticeProgress(), {
       requiredBlocks: requiredTotal,
@@ -293,9 +277,9 @@ export function WeekPage({
   }, [weekId, requiredTotal, scorableTotal]);
 
   const recordPracticeResult = useCallback((result: ActivityResult, block: ActivityBlockDocument) => {
-    if (!result.completed) return;
     if (!isCompletableReactBlock(block) && !isScorableReactBlock(block)) return;
 
+    liveProgressRef.current = true;
     progressRef.current = applyPracticeResult(progressRef.current, questionIdFor(block), result);
     const aggregate = aggregatePracticeProgress(progressRef.current, {
       requiredBlocks: requiredTotal,
@@ -304,7 +288,7 @@ export function WeekPage({
     setPractice(aggregate);
     setCompletedActivityCount(completedAccessibleActivityCount(progressRef.current, content, model));
 
-    if (isPracticeCompletionCue(result, aggregate) && !dismissedRef.current) {
+    if (result.completed && isPracticeCompletionCue(result, aggregate) && !dismissedRef.current) {
       setCompletionOpen(true);
     }
   }, [content, model, requiredTotal, scorableTotal]);
@@ -331,10 +315,35 @@ export function WeekPage({
         return [activity.id, { responses: {}, checked: {} }] as const;
       }
     })).then((entries) => {
-      if (!cancelled) setDraftByActivity(Object.fromEntries(entries));
+      if (cancelled) return;
+      const nextDrafts = Object.fromEntries(entries);
+      setDraftByActivity(nextDrafts);
+      // Do not clobber in-session Check progress if the learner already acted.
+      if (liveProgressRef.current) return;
+      let restored = emptyPracticeProgress();
+      for (const activity of activities) {
+        const checked = nextDrafts[activity.id]?.checked || {};
+        for (const block of activity.blocks || []) {
+          if (!isCompletableReactBlock(block as ActivityBlockDocument)) continue;
+          const qid = questionIdFor(block as ActivityBlockDocument);
+          if (!checked[qid]) continue;
+          restored = applyPracticeResult(restored, qid, {
+            completed: true,
+            correct: null,
+            attempts: 1,
+            responses: nextDrafts[activity.id]?.responses?.[qid]
+          });
+        }
+      }
+      progressRef.current = restored;
+      setPractice(aggregatePracticeProgress(restored, {
+        requiredBlocks: requiredTotal,
+        scorableTotal
+      }));
+      setCompletedActivityCount(completedAccessibleActivityCount(restored, content, model));
     });
     return () => { cancelled = true; };
-  }, [adaptersReady, content, model, platform, weekId]);
+  }, [adaptersReady, content, model, platform, requiredTotal, scorableTotal, weekId]);
 
   const released = isWeekAvailable(model?.week.status);
 

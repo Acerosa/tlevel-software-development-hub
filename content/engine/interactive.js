@@ -613,6 +613,8 @@
       if (!qid) return;
       if (detail.completed === false) {
         draft.checked[qid] = false;
+        draft.responses[qid] = detail.response;
+        persistChecked({ remote: false });
         updateActivityStatus(article, activity, draft);
         return;
       }
