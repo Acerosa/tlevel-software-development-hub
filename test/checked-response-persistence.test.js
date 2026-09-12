@@ -109,6 +109,14 @@ test("classification retry replaces the stored mapping for the same question", f
   assert.deepEqual(Object.keys(saved.at(-1).draft.responses), [qid]);
 });
 
+test("lp-block-result Try again clears checked and persists the reset immediately", function () {
+  const source = read("content/engine/interactive.js");
+  assert.match(source, /detail\.completed === false/);
+  assert.match(source, /draft\.responses\[qid\] = detail\.response/);
+  assert.match(source, /draft\.checked\[qid\] = false/);
+  assert.match(source, /persistChecked\(\{ immediate: true \}\)/);
+});
+
 test("practice completed flag is stripped before a Core save from the week engine helper path", function () {
   const saved = [];
   const { engine, storage } = loadEngine(saved);

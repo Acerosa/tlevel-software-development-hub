@@ -566,6 +566,7 @@
 
     function restoreDraft(next) {
       if (!next) return;
+      if (store.isDirty && store.isDirty()) return;
       if (
         draft && draft.responses && Object.keys(draft.responses).length &&
         (!next.responses || !Object.keys(next.responses).length)
@@ -623,7 +624,8 @@
       if (!qid) return;
       if (detail.completed === false) {
         draft.checked[qid] = false;
-        updateActivityStatus(article, activity, draft);
+        if ("response" in detail) draft.responses[qid] = detail.response;
+        persistChecked({ immediate: true });
         return;
       }
       draft.responses[qid] = detail.response;
