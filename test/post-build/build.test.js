@@ -66,7 +66,7 @@ test("the Vite production build is a static GitHub Pages site", function () {
   // Week pages ship catalogue blocks in the bundled package (L2E-style inline
   // InteractiveActivity). Gzip stays the tighter network budget.
   // Core 0.2.22 (Realtime invalidation + dirty/revision handling) adds ~3KB gzip
-  // to the Core ESM versus 0.2.21. Combined with UI 0.1.13 dirty-protection, the
+  // to the Core ESM versus 0.2.21. Combined with UI 0.1.14 dirty-protection, the
   // T Level learner JS gzip is 330641 bytes on this candidate. Budget raised from
   // 320KB to 340KB after review; do not raise further without a new attribution.
   assert.ok(jsTotal < 1500 * 1024, "learner JS should stay under 1500KB uncompressed, got " + jsTotal);
