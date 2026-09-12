@@ -162,6 +162,24 @@ function mergeLiveActivities(
   });
 }
 
+function draftSliceFromState(draft: { responses?: unknown; checked?: unknown } | null | undefined) {
+  return {
+    responses: draft?.responses && typeof draft.responses === "object" ? draft.responses as Record<string, unknown> : {},
+    checked: draft?.checked && typeof draft.checked === "object" ? draft.checked as Record<string, boolean> : {}
+  };
+}
+
+function sameDraftSlice(
+  current: { responses: Record<string, unknown>; checked: Record<string, boolean> } | undefined,
+  next: { responses: Record<string, unknown>; checked: Record<string, boolean> }
+) {
+  return Boolean(
+    current
+    && JSON.stringify(current.responses) === JSON.stringify(next.responses)
+    && JSON.stringify(current.checked) === JSON.stringify(next.checked)
+  );
+}
+
 function activityHasCatalogueBlocks(activity: { blocks?: Array<{ type?: string }> } | undefined): boolean {
   return (activity?.blocks || []).some((block) => {
     const type = String(block.type || "");
@@ -246,7 +264,7 @@ export function WeekPage({
   }>>({});
   const [completedActivityCount, setCompletedActivityCount] = useState(0);
   const [completionOpen, setCompletionOpen] = useState(false);
-  const content = packageForWeek(pkg);
+  const content = useMemo(() => packageForWeek(pkg), [pkg]);
   const model = useMemo(
     () => weekPageFromPackage(content, weekId),
     [content, weekId]
@@ -296,6 +314,7 @@ export function WeekPage({
   useEffect(() => {
     if (!adaptersReady || !model || !isWeekAvailable(model.week.status)) return;
     let cancelled = false;
+    const unsubscribers: Array<() => void> = [];
     const engine = getContentEngine();
     const activities = (model.sessions || []).flatMap((session) => (
       session.activities.map((item) => content.activities?.find((entry) => entry.id === item.id)).filter(Boolean)
@@ -306,11 +325,17 @@ export function WeekPage({
           return [activity.id, { responses: {}, checked: {} }] as const;
         }
         const store = engine.createDraftStore(activity, { platform });
+        if (typeof store.subscribe === "function") {
+          unsubscribers.push(store.subscribe((state) => {
+            if (cancelled) return;
+            const next = draftSliceFromState(state);
+            setDraftByActivity((prev) => (
+              sameDraftSlice(prev[activity.id], next) ? prev : { ...prev, [activity.id]: next }
+            ));
+          }));
+        }
         const draft = store.hydrate ? await store.hydrate() : store.load();
-        return [activity.id, {
-          responses: draft?.responses && typeof draft.responses === "object" ? draft.responses : {},
-          checked: draft?.checked && typeof draft.checked === "object" ? draft.checked : {}
-        }] as const;
+        return [activity.id, draftSliceFromState(draft)] as const;
       } catch {
         return [activity.id, { responses: {}, checked: {} }] as const;
       }
@@ -342,7 +367,10 @@ export function WeekPage({
       }));
       setCompletedActivityCount(completedAccessibleActivityCount(restored, content, model));
     });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      unsubscribers.forEach((unsubscribe) => unsubscribe());
+    };
   }, [adaptersReady, content, model, platform, requiredTotal, scorableTotal, weekId]);
 
   const released = isWeekAvailable(model?.week.status);
@@ -385,9 +413,13 @@ export function WeekPage({
     }));
   }, [content, draftByActivity, model, platform, recordPracticeResult]);
 
-  // Wait for platform.initialise() so signed-in draft stores can hydrate from
-  // the server. Re-bind after every later commit because React can rewrite
-  // authored HTML nodes and wipe data-lp-bound / listeners.
+  const activityBindKey = useMemo(
+    () => (model?.sessions || []).map((session) => session.activities.map((item) => item.id).join(",")).join("|"),
+    [model]
+  );
+
+  // Re-bind when the week's activity set changes. Do not re-bind because one
+  // activity's restored draft changed.
   useLayoutEffect(() => {
     const rootEl = mountRef.current;
     if (!rootEl || !sessions.length || !adaptersReady) return;
@@ -396,7 +428,7 @@ export function WeekPage({
       sourcePage: window.location.pathname,
       platform: platform || (typeof window !== "undefined" ? window.LearningPlatform?.platform : undefined)
     });
-  });
+  }, [activityBindKey, adaptersReady, content, platform, weekId]);
 
   if (!model) {
     return <LoadingState message="This week has not been published yet." />;

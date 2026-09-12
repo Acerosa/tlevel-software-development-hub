@@ -65,8 +65,9 @@ test("the Vite production build is a static GitHub Pages site", function () {
   }, 0);
   // Week pages ship catalogue blocks in the bundled package (L2E-style inline
   // InteractiveActivity). Gzip stays the tighter network budget. Week 1's
-  // expanded Oakfield bank pushed gzip just over 300KB. UI 0.1.13 practice
-  // progress helpers and Try again restore hardening add ~8KB gzip.
+  // expanded Oakfield bank, UI 0.1.14 practice-progress/Try-again helpers, and
+  // Core 0.2.22 Realtime/dirty handling sit under the reviewed 340KB gzip cap.
+  // Do not raise further without a new attribution.
   assert.ok(jsTotal < 1500 * 1024, "learner JS should stay under 1500KB uncompressed, got " + jsTotal);
   assert.ok(cssTotal < 200 * 1024, "learner CSS should stay under 200KB, got " + cssTotal);
   assert.ok(gzipTotal < 340 * 1024, "learner JS gzip should stay under 340KB, got " + gzipTotal);
