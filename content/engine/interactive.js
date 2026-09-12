@@ -606,6 +606,16 @@
     if (store.hydrate) {
       store.hydrate().then(restoreDraft);
     }
+    if (article._lpRemoteUnsub) {
+      try { article._lpRemoteUnsub(); } catch (error) {}
+      article._lpRemoteUnsub = null;
+    }
+    if (typeof store.subscribe === "function") {
+      article._lpRemoteUnsub = store.subscribe(function (next) {
+        if (!article.isConnected) return;
+        restoreDraft(next);
+      });
+    }
 
     article.addEventListener("lp-block-result", function (event) {
       var detail = event.detail || {};

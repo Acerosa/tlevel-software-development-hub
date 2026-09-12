@@ -65,6 +65,7 @@ export type ContentEngine = {
       responses?: Record<string, unknown>;
       checked?: Record<string, boolean>;
     } | null>;
+    subscribe?: (listener: (state: unknown) => void) => () => void;
   };
   migrateGuestDrafts?: (options?: { storage?: Storage; learnerKey?: string }) => {
     migrated: number;
