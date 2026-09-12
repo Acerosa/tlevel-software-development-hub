@@ -566,6 +566,7 @@
 
     function restoreDraft(next) {
       if (!next) return;
+      if (store.isDirty && store.isDirty()) return;
       if (
         draft && draft.responses && Object.keys(draft.responses).length &&
         (!next.responses || !Object.keys(next.responses).length)
@@ -606,6 +607,16 @@
     if (store.hydrate) {
       store.hydrate().then(restoreDraft);
     }
+    if (article._lpRemoteUnsub) {
+      try { article._lpRemoteUnsub(); } catch (error) {}
+      article._lpRemoteUnsub = null;
+    }
+    if (typeof store.subscribe === "function") {
+      article._lpRemoteUnsub = store.subscribe(function (next) {
+        if (!article.isConnected) return;
+        restoreDraft(next);
+      });
+    }
 
     article.addEventListener("lp-block-result", function (event) {
       var detail = event.detail || {};
@@ -614,8 +625,7 @@
       if (detail.completed === false) {
         draft.checked[qid] = false;
         draft.responses[qid] = detail.response;
-        persistChecked({ remote: false });
-        updateActivityStatus(article, activity, draft);
+        persistChecked({ immediate: true });
         return;
       }
       draft.responses[qid] = detail.response;

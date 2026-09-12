@@ -180,6 +180,15 @@
       save: save,
       reset: reset,
       hydrate: hydrate,
+      subscribe: function (listener) {
+        var current = resolveRemote();
+        if (current && typeof current.subscribe === "function") return current.subscribe(listener);
+        return function () {};
+      },
+      isDirty: function () {
+        var current = resolveRemote();
+        return Boolean(current && typeof current.isDirty === "function" && current.isDirty());
+      },
       flush: function () {
         var current = resolveRemote();
         if (current && typeof current.flush === "function") return current.flush();
