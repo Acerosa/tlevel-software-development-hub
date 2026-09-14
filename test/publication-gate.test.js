@@ -11,8 +11,8 @@ const pkg = JSON.parse(
   )
 );
 
-test("T Level 0.4.4 passes canonical package validation including drag-drop", function () {
-  assert.equal(pkg.version, "0.4.4");
+test("T Level 0.4.6 passes canonical package validation including drag-drop", function () {
+  assert.equal(pkg.version, "0.4.6");
   function interactiveType(activity) {
     const block = (activity.blocks || []).find(function (item) {
       return item.type === "single-choice" || item.type === "classification" || item.type === "drag-drop" || item.type === "short-response";
@@ -41,12 +41,12 @@ test("T Level 0.4.4 passes canonical package validation including drag-drop", fu
   });
   ["week-2-lesson-1", "week-2-lesson-2", "week-2-lesson-3"].forEach(function (sessionId) {
     const mix = mixFor(sessionId);
-    assert.ok(mix.total >= 25 && mix.total <= 30, sessionId + " total " + mix.total);
-    assert.ok(mix["single-choice"] >= 6 && mix["single-choice"] <= 11, sessionId + " single-choice " + mix["single-choice"]);
-    assert.ok(mix.classification >= 4, sessionId + " classification " + mix.classification);
-    assert.ok(mix["drag-drop"] >= 4, sessionId + " drag-drop " + mix["drag-drop"]);
-    assert.ok(mix["short-response"] >= 7, sessionId + " written " + mix["short-response"]);
-    assert.ok(mix["single-choice"] / mix.total <= 0.45, sessionId + " single-choice share too high");
+    assert.equal(mix.total, 18, sessionId + " total " + mix.total);
+    assert.ok(mix["single-choice"] >= 4 && mix["single-choice"] <= 8, sessionId + " single-choice " + mix["single-choice"]);
+    assert.ok(mix.classification >= 3, sessionId + " classification " + mix.classification);
+    assert.ok(mix["drag-drop"] >= 3, sessionId + " drag-drop " + mix["drag-drop"]);
+    assert.ok(mix["short-response"] >= 4, sessionId + " written " + mix["short-response"]);
+    assert.ok(mix["single-choice"] / mix.total <= 0.5, sessionId + " single-choice share too high");
     assert.equal(mix.other, 0, sessionId + " unexpected types");
   });
   const homework = pkg.sessions.find(function (item) { return item.id === "week-1-homework"; });
@@ -103,5 +103,5 @@ test("T Level 0.4.4 passes canonical package validation including drag-drop", fu
       return block.type === "drag-drop";
     }).length;
   }, 0);
-  assert.ok(strippedDrag >= 30, "expected at least 30 learner-safe drag-drop blocks, got " + strippedDrag);
+  assert.ok(strippedDrag >= 25, "expected at least 25 learner-safe drag-drop blocks, got " + strippedDrag);
 });

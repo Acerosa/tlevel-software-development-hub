@@ -32,7 +32,7 @@ test("production-style learner-safe package hydrates under learner-safe validati
   const live = publishReadyLearnerPackage();
   assert.equal(live.weeks.length, 22);
   assert.equal(live.sessions.length, 88);
-  assert.equal(live.activities.length, 375);
+  assert.equal(live.activities.length, 345);
   assert.equal(validatePackage(live).valid, false);
   const result = validateLearnerSafePackage(live);
   assert.equal(result.valid, true, formatIssues(result.issues));

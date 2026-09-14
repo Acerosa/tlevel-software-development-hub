@@ -381,7 +381,7 @@ describe("T Level presentation", () => {
     );
     const first = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-01"]') as HTMLElement;
     const classify = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-05"]') as HTMLElement;
-    const written = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-17"]') as HTMLElement;
+    const written = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-18"]') as HTMLElement;
 
     expect(first.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
     expect(classify.querySelector("[data-lp-block='classification']")).toBeTruthy();
