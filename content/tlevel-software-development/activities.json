@@ -17512,7 +17512,7 @@
             },
             {
               "id": "item-2",
-              "label": "Whether course pages work with a screen reader has been tested",
+              "label": "Whether course pages work with a screen reader",
               "correctCategoryId": "check"
             },
             {
@@ -17528,11 +17528,11 @@
             {
               "id": "item-5",
               "label": "Some learners may only have access to a library PC",
-              "correctCategoryId": "known"
+              "correctCategoryId": "check"
             }
           ],
           "feedback": {
-            "correct": "The brief names user groups. Testing and route design still need verification.",
+            "correct": "The brief names digital confidence and EAL. Screen-reader fit, the telephone route and library-PC access still need verification.",
             "incorrect": "Accessibility gaps become research or design actions, not assumptions."
           }
         }
