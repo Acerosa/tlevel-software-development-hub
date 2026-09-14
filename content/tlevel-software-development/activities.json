@@ -13929,9 +13929,9 @@
     "id": "week-2-lesson-2-ex-01",
     "version": "0.1.0",
     "metadata": {
-      "title": "Retrieve comparison criteria",
+      "title": "Prioritise criteria under conflict",
       "status": "available",
-      "summary": "List criteria before choosing a favourite.",
+      "summary": "Two good criteria can still pull in different directions.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-2-lesson-2-ex-01",
@@ -13940,7 +13940,7 @@
       "topics": [
         "Evaluation criteria"
       ],
-      "detail": "List criteria before choosing a favourite."
+      "detail": "Two good criteria can still pull in different directions."
     },
     "relationships": {
       "learningOutcomes": [
@@ -13968,29 +13968,29 @@
           "questionId": "week-2-lesson-2-ex-01:criteria-q",
           "sourceQuestionId": "criteria-q",
           "sourceType": "single",
-          "prompt": "Which option is weakest as an evaluation criterion for Oakfield solutions?",
+          "prompt": "Oakfield must choose between an app-only booking route and keeping a telephone option. Which comparison question best resolves the conflict for learners and managers?",
           "options": [
             {
               "id": "a",
-              "label": "Cost including staff training"
+              "label": "Which option has the newest interface design?"
             },
             {
               "id": "b",
-              "label": "Whether learners with low digital confidence can complete a booking"
+              "label": "Which option lets a learner with only a library PC still request a place while managers get timely booking data?"
             },
             {
               "id": "c",
-              "label": "Whether the tutor personally enjoys using AI chat"
+              "label": "Which option the project team would enjoy using most?"
             },
             {
               "id": "d",
-              "label": "Whether personal data stays under UK GDPR controls"
+              "label": "Which vendor visited reception most recently?"
             }
           ],
-          "correctOptionId": "c",
+          "correctOptionId": "b",
           "feedback": {
-            "correct": "Personal taste is not an evaluation criterion for a public service.",
-            "incorrect": "Use purpose, users, cost, risk and regulation."
+            "correct": "Evaluation under conflict means asking which option serves both access and organisational need — not taste or novelty.",
+            "incorrect": "Use named users and the jobs in the brief."
           }
         }
       }
@@ -15808,9 +15808,9 @@
     "id": "week-2-lesson-2-ex-26",
     "version": "0.1.0",
     "metadata": {
-      "title": "Good GDPR next action",
+      "title": "Privacy trade-off for tutors",
       "status": "available",
-      "summary": "Reliable sources, not polls.",
+      "summary": "Evaluation must name who bears the risk.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-2-lesson-2-ex-26",
@@ -15819,7 +15819,7 @@
       "topics": [
         "Privacy"
       ],
-      "detail": "Reliable sources, not polls."
+      "detail": "Evaluation must name who bears the risk."
     },
     "relationships": {
       "learningOutcomes": [
@@ -15837,39 +15837,39 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-2-ex-26-gdpr-next",
+        "id": "week-2-lesson-2-ex-26-tutor-privacy",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
         "type": "single-choice",
         "content": {
           "formative": true,
-          "questionId": "week-2-lesson-2-ex-26:gdpr-next",
-          "sourceQuestionId": "gdpr-next",
+          "questionId": "week-2-lesson-2-ex-26:tutor-privacy",
+          "sourceQuestionId": "tutor-privacy",
           "sourceType": "single",
-          "prompt": "A good next action for an unknown about GDPR and biometrics is:",
+          "prompt": "A manager wants tutors to export full class registers to a shared drive for quick funding checks. Which evaluation question best protects learners and tutors?",
           "options": [
             {
               "id": "a",
-              "label": "Assume it is fine because other colleges do it"
+              "label": "Will the folder colour match Oakfield branding?"
             },
             {
               "id": "b",
-              "label": "Check ICO / centre DPO guidance and record the source"
+              "label": "Who can open the file, is access logged, and do tutors still need a classroom-safe way to mark attendance?"
             },
             {
               "id": "c",
-              "label": "Skip the topic until after coding"
+              "label": "Can the export finish before lunch?"
             },
             {
               "id": "d",
-              "label": "Ask a social media poll"
+              "label": "Does the spreadsheet use the newest font?"
             }
           ],
           "correctOptionId": "b",
           "feedback": {
-            "correct": "Legal and data questions need reliable sources, not assumption.",
-            "incorrect": "Record the gap and a concrete research action."
+            "correct": "Privacy evaluation asks who can see learner data and whether classroom practice still works — not speed or decoration.",
+            "incorrect": "Shared learner data is already a risk in the current spreadsheet process."
           }
         }
       }
@@ -16559,18 +16559,19 @@
     "id": "week-2-lesson-3-ex-08",
     "version": "0.1.0",
     "metadata": {
-      "title": "Emerging vs established (regulation lesson)",
+      "title": "Regulation, gap or assumption?",
       "status": "available",
-      "summary": "Context again for technology claims.",
+      "summary": "Separate duties from guesses before recommending.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-2-lesson-3-ex-08",
       "estimatedDurationMinutes": 3,
       "activityType": "Classification",
       "topics": [
-        "Emerging technology"
+        "Regulation",
+        "Knowledge gaps"
       ],
-      "detail": "Context again for technology claims."
+      "detail": "Separate duties from guesses before recommending."
     },
     "relationships": {
       "learningOutcomes": [
@@ -16588,56 +16589,60 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-ex-08-emerg-estab",
+        "id": "week-2-lesson-3-ex-08-reg-gap",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
         "type": "classification",
         "content": {
           "formative": true,
-          "questionId": "week-2-lesson-3-ex-08:emerg-estab",
-          "sourceQuestionId": "emerg-estab",
-          "prompt": "Classify each technology for Oakfield admin.",
+          "questionId": "week-2-lesson-3-ex-08:reg-gap",
+          "sourceQuestionId": "reg-gap",
+          "prompt": "Before recommending an attendance technology, classify each statement.",
           "categories": [
             {
-              "id": "emerging",
-              "label": "Emerging in this context"
+              "id": "regulation",
+              "label": "Regulation or guidance applies"
             },
             {
-              "id": "established",
-              "label": "Established in this context"
+              "id": "gap",
+              "label": "Honest knowledge gap"
+            },
+            {
+              "id": "assumption",
+              "label": "Assumption or guess"
             }
           ],
           "items": [
             {
               "id": "item-1",
-              "label": "Paper diary and shared spreadsheet for bookings",
-              "correctCategoryId": "established"
+              "label": "Attendance records may contain personal data under UK GDPR",
+              "correctCategoryId": "regulation"
             },
             {
               "id": "item-2",
-              "label": "Biometric attendance for adult learners",
-              "correctCategoryId": "emerging"
+              "label": "The lawful basis for biometric attendance has not been checked yet",
+              "correctCategoryId": "gap"
             },
             {
               "id": "item-3",
-              "label": "Microsoft 365 email already used by staff",
-              "correctCategoryId": "established"
+              "label": "Every learner will prefer a smartphone app",
+              "correctCategoryId": "assumption"
             },
             {
               "id": "item-4",
-              "label": "AI course matching for learners with low digital confidence",
-              "correctCategoryId": "emerging"
+              "label": "Public digital services should be accessible to disabled users",
+              "correctCategoryId": "regulation"
             },
             {
               "id": "item-5",
-              "label": "Telephone enquiries to reception",
-              "correctCategoryId": "established"
+              "label": "Centre acceptable-use rules for AI tools have not been reviewed",
+              "correctCategoryId": "gap"
             }
           ],
           "feedback": {
-            "correct": "Regulation questions often bite hardest on emerging options.",
-            "incorrect": "Established tools still need GDPR and access controls."
+            "correct": "Regulation sets limits. Gaps need a research action. Assumptions pretend certainty.",
+            "incorrect": "Do not treat a guess as ready for a recommendation."
           }
         }
       }
@@ -17450,18 +17455,18 @@
     "id": "week-2-lesson-3-ex-20",
     "version": "0.1.0",
     "metadata": {
-      "title": "Accessibility gap example",
+      "title": "Accessibility barriers and checks",
       "status": "available",
-      "summary": "Connect users to actions.",
+      "summary": "Sort what is known from what still needs investigation.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-2-lesson-3-ex-20",
-      "estimatedDurationMinutes": 4,
-      "activityType": "Written response",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
       "topics": [
         "Accessibility"
       ],
-      "detail": "Connect users to actions."
+      "detail": "Sort what is known from what still needs investigation."
     },
     "relationships": {
       "learningOutcomes": [
@@ -17479,19 +17484,57 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-2-lesson-3-ex-20-access-gap",
+        "id": "week-2-lesson-3-ex-20-access-check",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
-        "type": "short-response",
+        "type": "classification",
         "content": {
           "formative": true,
-          "questionId": "week-2-lesson-3-ex-20:access-gap",
-          "sourceQuestionId": "access-gap",
-          "prompt": "Describe one accessibility-related knowledge gap for Oakfield and how you would close it.",
-          "placeholder": "Gap: ... Close it by...",
-          "guidance": "Example: whether course content has been tested with a screen reader; action: check with access lead / test with assistive tech.",
-          "minChars": 70
+          "questionId": "week-2-lesson-3-ex-20:access-check",
+          "sourceQuestionId": "access-check",
+          "prompt": "For Oakfield's booking service, classify each accessibility point.",
+          "categories": [
+            {
+              "id": "known",
+              "label": "Known from the brief or prior research"
+            },
+            {
+              "id": "check",
+              "label": "Still needs an accessibility check"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Some learners have lower digital confidence",
+              "correctCategoryId": "known"
+            },
+            {
+              "id": "item-2",
+              "label": "Whether course pages work with a screen reader has been tested",
+              "correctCategoryId": "check"
+            },
+            {
+              "id": "item-3",
+              "label": "Some learners use English as an additional language",
+              "correctCategoryId": "known"
+            },
+            {
+              "id": "item-4",
+              "label": "Whether the telephone route remains usable alongside any online form",
+              "correctCategoryId": "check"
+            },
+            {
+              "id": "item-5",
+              "label": "Some learners may only have access to a library PC",
+              "correctCategoryId": "known"
+            }
+          ],
+          "feedback": {
+            "correct": "The brief names user groups. Testing and route design still need verification.",
+            "incorrect": "Accessibility gaps become research or design actions, not assumptions."
+          }
         }
       }
     ]
