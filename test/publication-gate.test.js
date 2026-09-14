@@ -11,8 +11,8 @@ const pkg = JSON.parse(
   )
 );
 
-test("T Level 0.4.6 passes canonical package validation including drag-drop", function () {
-  assert.equal(pkg.version, "0.4.6");
+test("T Level 0.4.10 passes canonical package validation including drag-drop", function () {
+  assert.equal(pkg.version, "0.4.10");
   function interactiveType(activity) {
     const block = (activity.blocks || []).find(function (item) {
       return item.type === "single-choice" || item.type === "classification" || item.type === "drag-drop" || item.type === "short-response";

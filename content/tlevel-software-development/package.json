@@ -2,7 +2,7 @@
   "schema": "lp.content.package",
   "schemaVersion": "0.1.0",
   "id": "tlevel-software-development-content",
-  "version": "0.4.6",
+  "version": "0.4.10",
   "hub": {
     "schema": "lp.content.hub",
     "schemaVersion": "0.1.0",
@@ -988,7 +988,7 @@
       "metadata": {
         "teachingWeek": 2,
         "title": "Emerging Technologies, Solutions and Knowledge Gaps",
-        "status": "planned",
+        "status": "available",
         "phase": "analyse-problem",
         "professionalPractice": "LO1 / 1.1 — research emerging technologies; evaluate existing and potential solutions; identify regulations and personal knowledge gaps",
         "route": "weeks/week-2/",
