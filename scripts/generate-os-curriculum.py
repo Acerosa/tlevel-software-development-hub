@@ -13,11 +13,12 @@ import json
 from pathlib import Path
 
 from week1_curriculum import WEEK_1
+from week2_curriculum import WEEK_2
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.3"
+PACKAGE_VERSION = "0.4.4"
 CLIENT = "Oakfield Adult Skills Hub"
 OAKFIELD_SCENARIO = {
     "title": "Oakfield Adult Skills Hub: Client Scenario",
@@ -287,188 +288,10 @@ def expand_blocks(activity_id: str, specs: list):
 
 WEEK_1["clientScenario"] = OAKFIELD_SCENARIO
 
-# Compact SoL week definitions. Week 1 lessons use exercises[]; later weeks use retrieval, main and formative.
+# Week 1–2 lessons use exercises[]; later weeks use retrieval, main and formative.
 WEEKS = [
     WEEK_1,
-    {
-        "n": 2,
-        "title": "Emerging Technologies, Solutions and Knowledge Gaps",
-        "wc": "2026-09-07",
-        "phase": "analyse-problem",
-        "practice": "LO1 / 1.1 — research emerging technologies; evaluate existing and potential solutions; identify regulations and personal knowledge gaps",
-        "lo_ids": ["lo1"],
-        "outcomes": [
-            ("w2-research-emerging", "Research newly emerging technologies"),
-            ("w2-evaluate-solutions", "Evaluate existing and potential solutions against user needs"),
-            ("w2-identify-gaps", "Identify guidelines, regulations and personal knowledge gaps"),
-        ],
-        "lessons": [
-            {
-                "title": "Lesson 1: Existing versus emerging options",
-                "summary": "Retrieve Week 1 findings, then compare an existing approach with an emerging alternative.",
-                "retrieval": {
-                    "title": "Retrieval: Oakfield context and current systems",
-                    "summary": "Retrieve client context and current systems before considering newer technologies.",
-                    "type": "Retrieval",
-                    "minutes": 8,
-                    "topics": ["Current systems", "Client context"],
-                    "blocks": [
-                        ("h2", "Retrieve Week 1"),
-                        ("short", "now", "What do Oakfield staff use today to take bookings and registers?", "Bookings: ... Registers: ..."),
-                        ("single", "q1", "A technology is 'emerging' in this project when:",
-                         [("a", "It is digital"), ("b", "It is still developing or not yet a normal fit for this context"), ("c", "A vendor advertised it this week"), ("d", "It uses the cloud")],
-                         "b", "Emerging is about development and adoption in context, not a marketing label.", "Something can be current in one sector and emerging in adult-learning admin."),
-                    ],
-                },
-                "main": {
-                    "title": "Compare existing and emerging solutions",
-                    "summary": "Use fitness for purpose, cost, risk, regulation and user impact — not personal preference.",
-                    "type": "Guided learning",
-                    "minutes": 35,
-                    "topics": ["Evaluation", "Emerging technology"],
-                    "blocks": [
-                        ("h2", "Comparing options"),
-                        ("p", "intro", "Teams evaluate options before they write a proposal. An emerging tool is not automatically better."),
-                        ("c", "criteria", "Comparison criteria", "Purpose and users; cost (including training); risk; regulation (GDPR, accessibility); user impact, including digital exclusion; vendor lock-in and maintainability."),
-                        ("short", "compare", "Compare paper-plus-spreadsheet with one emerging alternative (for example AI course matching or biometric attendance). Use at least three criteria.", "Existing: ... Emerging: ... Criteria: ..."),
-                        ("short", "justify", "Why is your alternative emerging rather than established in this adult-learning context?", "It is emerging because..."),
-                        ("t", "SoL Week 2: tutor models comparison. Prompts cover purpose, users, cost, risk, regulation. Extension: lock-in, accessibility, long-term maintainability."),
-                    ],
-                },
-                "formative": {
-                    "title": "Progress check: evidence or preference",
-                    "summary": "Spot evaluations that use evidence rather than taste.",
-                    "type": "Classification",
-                    "minutes": 10,
-                    "topics": ["Evaluation"],
-                    "blocks": [
-                        ("h2", "Evidence or preference"),
-                        ("classify", "sort", "Classify each justification.",
-                         [("evidence", "Uses evidence / criteria"), ("preference", "Personal preference or hype")],
-                         [("item-1", "Biometric registers may need extra lawful-basis advice under UK GDPR", "evidence"),
-                          ("item-2", "AI matching sounds modern so we should use it", "preference"),
-                          ("item-3", "An app-only service would exclude learners who only use the library PC", "evidence"),
-                          ("item-4", "I like the vendor's logo", "preference")]),
-                    ],
-                },
-            },
-            {
-                "title": "Lesson 2: Evaluate candidate solutions",
-                "summary": "Evaluate two or three candidates for Oakfield, including at least one emerging technology.",
-                "retrieval": {
-                    "title": "Retrieval: comparison criteria",
-                    "summary": "Retrieve the criteria used to compare solutions.",
-                    "type": "Retrieval",
-                    "minutes": 8,
-                    "topics": ["Evaluation criteria"],
-                    "blocks": [
-                        ("h2", "Retrieve the criteria"),
-                        ("short", "criteria", "List four criteria for comparing solutions in this project.", "1. ..."),
-                        ("single", "q1", "Which option is weakest as an evaluation?",
-                         [("a", "Cost including staff training"), ("b", "Whether learners with low digital confidence can complete a booking"), ("c", "Whether the tutor personally enjoys using AI chat"), ("d", "Whether personal data stays in the UK / under UK GDPR")],
-                         "c", "Personal taste is not an evaluation criterion for a public service.", "Use purpose, users, cost, risk and regulation."),
-                    ],
-                },
-                "main": {
-                    "title": "Candidate solutions for Oakfield",
-                    "summary": "Record strengths, limitations and unknowns for two or three options.",
-                    "type": "Guided learning",
-                    "minutes": 35,
-                    "topics": ["Solutions", "Unknowns"],
-                    "blocks": [
-                        ("h2", "Evaluate candidates"),
-                        ("p", "intro", "Include the current way of working as a candidate. Include at least one emerging option. Record unknowns honestly — they become knowledge gaps."),
-                        ("c", "options", "Possible candidates", "A: improved spreadsheet plus email. B: Microsoft Forms / Power Apps on existing 365. C: specialist adult-learning MIS. D: emerging AI recommender for courses. E: QR or biometric attendance."),
-                        ("short", "table", "For two candidates, record one strength, one limitation and one unknown each.", "Candidate 1: ... Candidate 2: ..."),
-                        ("short", "users", "Which candidate is weaker for a learner who does not own a smartphone, and why?", "Candidate: ... Why: ..."),
-                        ("t", "SoL Week 2 guided learning: evaluate 2–3 candidates including one emerging technology. Source cards reduce reading load."),
-                    ],
-                },
-                "formative": {
-                    "title": "Progress check: unknowns are not failures",
-                    "summary": "Sort known facts from guesses, then name what still needs research.",
-                    "type": "Progress check",
-                    "minutes": 10,
-                    "topics": ["Knowledge gaps"],
-                    "blocks": [
-                        ("h2", "Name the unknown"),
-                        ("classify", "sort", "Classify each statement from an evaluation.",
-                         [("known", "Supported by the brief or research"), ("unknown", "Still an unknown"), ("assumption", "Assumption or guess")],
-                         [("item-1", "Staff already use Microsoft 365", "known"),
-                          ("item-2", "Biometric attendance would be popular with every learner", "assumption"),
-                          ("item-3", "The lawful basis for biometric attendance has not been checked", "unknown"),
-                          ("item-4", "Learners currently phone or visit reception", "known")]),
-                        ("short", "unknown", "Write one unknown from your evaluation and one action that would close it.", "Unknown: ... Action: ..."),
-                        ("single", "q1", "A good next action for an unknown about GDPR and biometrics is:",
-                         [("a", "Assume it is fine because other colleges do it"), ("b", "Check ICO / centre DPO guidance and record the source"), ("c", "Skip the topic until after coding"), ("d", "Ask a social media poll")],
-                         "b", "Legal and data questions need reliable sources, not assumption.", "Record the gap and a concrete research action."),
-                    ],
-                },
-            },
-            {
-                "title": "Lesson 3: Regulation and knowledge gaps",
-                "summary": "Identify guidelines or regulations that may apply, and list personal knowledge, skill or information gaps.",
-                "retrieval": {
-                    "title": "Retrieval: why regulation appears in evaluation",
-                    "summary": "Retrieve why regulation is a comparison criterion, not an afterthought.",
-                    "type": "Retrieval",
-                    "minutes": 8,
-                    "topics": ["Regulation"],
-                    "blocks": [
-                        ("h2", "Retrieve regulation as a criterion"),
-                        ("single", "q1", "Why does UK GDPR matter when choosing an attendance technology?",
-                         [("a", "It only applies to banks"), ("b", "Attendance data can be personal data and some biometrics are special category data"), ("c", "It bans all cloud software"), ("d", "It replaces accessibility law")],
-                         "b", "Registers identify people. Some biometric data needs extra conditions.", "Data protection shapes which options are even legal."),
-                        ("short", "gap", "Name one thing you do not yet know well enough to recommend a technology to Oakfield.", "I do not yet know..."),
-                    ],
-                },
-                "main": {
-                    "title": "Guidelines, regulations and personal gaps",
-                    "summary": "List applicable rules and a short personal research plan.",
-                    "type": "Independent application",
-                    "minutes": 30,
-                    "topics": ["GDPR", "Accessibility", "Training needs"],
-                    "blocks": [
-                        ("h2", "Rules and gaps"),
-                        ("p", "intro", "You are not expected to be a lawyer. You are expected to name relevant guidelines and be honest about what you still need to learn."),
-                        ("c", "rules-note", "Likely starting points", "UK GDPR and ICO guidance; Equality Act / accessibility of public digital services; centre acceptable-use and AI policies; funder data-quality rules."),
-                        ("short", "rules", "Name two guidelines or regulations that may apply to Oakfield's service, and what they might affect.", "1. ... affects ... 2. ..."),
-                        ("short", "plan", "Write one knowledge gap and one action to address it (source, person, or practice task).", "Gap: ... Action: ..."),
-                        ("t", "SoL Week 2 independent application: regulations/guidelines and personal knowledge gaps. Challenge: vendor lock-in and maintainability."),
-                    ],
-                },
-                "formative": {
-                    "title": "Progress check: emerging, not established",
-                    "summary": "Sort emerging from established in this adult-learning context, then justify one choice.",
-                    "type": "Progress check",
-                    "minutes": 8,
-                    "topics": ["Emerging technology"],
-                    "blocks": [
-                        ("h2", "Emerging in this context"),
-                        ("classify", "sort", "Classify each technology for Oakfield's adult-learning admin, not for tech news in general.",
-                         [("emerging", "Emerging in this context"), ("established", "Established in this context")],
-                         [("item-1", "Paper diary and shared spreadsheet for bookings", "established"),
-                          ("item-2", "Biometric attendance for adult learners", "emerging"),
-                          ("item-3", "Microsoft 365 email already used by staff", "established"),
-                          ("item-4", "AI course matching for learners with low digital confidence", "emerging")]),
-                        ("short", "why", "Pick one technology. Explain why it is emerging, not established, for Oakfield.", "Technology: ... It is emerging here because..."),
-                    ],
-                },
-            },
-        ],
-        "homework": {
-            "title": "Homework: one emerging technology with a source",
-            "summary": "Research one emerging technology relevant to Oakfield. Note one benefit, one risk and one source.",
-            "id_suffix": "emerging",
-            "minutes": 25,
-            "topics": ["Emerging technology", "Sources"],
-            "blocks": [
-                ("h2", "Independent study"),
-                ("short", "tech", "Name the technology, one benefit and one risk for Oakfield's users.", "Technology: ... Benefit: ... Risk: ..."),
-                ("short", "source", "Give the source you used (title, organisation, year or date). Why is it usable for a proposal?", "Source: ... I would use it because..."),
-            ],
-        },
-    },
+    WEEK_2,
     {
         "n": 3,
         "title": "Business Requirements, Scope and Decomposition",

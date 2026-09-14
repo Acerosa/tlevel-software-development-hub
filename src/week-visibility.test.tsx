@@ -64,7 +64,7 @@ describe("live week visibility", () => {
     unmountNav();
 
     const { container } = render(<WeekPage weekId="week-2" root=".." pkg={live} />);
-    expect(container.querySelector("[data-lp-activity='week-2-lesson-1-retrieval']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity='week-2-lesson-1-ex-01']")).toBeTruthy();
     expect(container.querySelector("[data-lp-week-locked]")).toBeNull();
   });
 

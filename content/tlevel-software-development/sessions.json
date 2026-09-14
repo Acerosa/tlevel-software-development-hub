@@ -168,7 +168,7 @@
     "metadata": {
       "title": "Lesson 1: Existing versus emerging options",
       "kind": "session",
-      "summary": "Retrieve Week 1 findings, then compare an existing approach with an emerging alternative.",
+      "summary": "Retrieve Week 1 findings, then research and compare emerging technologies against established approaches for Oakfield.",
       "sortOrder": 1,
       "defaultOpen": true,
       "status": "available"
@@ -176,9 +176,34 @@
     "relationships": {
       "week": "week-2",
       "activities": [
-        "week-2-lesson-1-retrieval",
-        "week-2-lesson-1-main",
-        "week-2-lesson-1-formative"
+        "week-2-lesson-1-ex-01",
+        "week-2-lesson-1-ex-02",
+        "week-2-lesson-1-ex-03",
+        "week-2-lesson-1-ex-04",
+        "week-2-lesson-1-ex-05",
+        "week-2-lesson-1-ex-06",
+        "week-2-lesson-1-ex-07",
+        "week-2-lesson-1-ex-08",
+        "week-2-lesson-1-ex-09",
+        "week-2-lesson-1-ex-10",
+        "week-2-lesson-1-ex-11",
+        "week-2-lesson-1-ex-12",
+        "week-2-lesson-1-ex-13",
+        "week-2-lesson-1-ex-14",
+        "week-2-lesson-1-ex-15",
+        "week-2-lesson-1-ex-16",
+        "week-2-lesson-1-ex-17",
+        "week-2-lesson-1-ex-18",
+        "week-2-lesson-1-ex-19",
+        "week-2-lesson-1-ex-20",
+        "week-2-lesson-1-ex-21",
+        "week-2-lesson-1-ex-22",
+        "week-2-lesson-1-ex-23",
+        "week-2-lesson-1-ex-24",
+        "week-2-lesson-1-ex-25",
+        "week-2-lesson-1-ex-26",
+        "week-2-lesson-1-ex-27",
+        "week-2-lesson-1-ex-28"
       ]
     }
   },
@@ -190,7 +215,7 @@
     "metadata": {
       "title": "Lesson 2: Evaluate candidate solutions",
       "kind": "session",
-      "summary": "Evaluate two or three candidates for Oakfield, including at least one emerging technology.",
+      "summary": "Evaluate existing and potential solutions against different Oakfield user needs, including conflicting priorities.",
       "sortOrder": 2,
       "defaultOpen": false,
       "status": "available"
@@ -198,9 +223,34 @@
     "relationships": {
       "week": "week-2",
       "activities": [
-        "week-2-lesson-2-retrieval",
-        "week-2-lesson-2-main",
-        "week-2-lesson-2-formative"
+        "week-2-lesson-2-ex-01",
+        "week-2-lesson-2-ex-02",
+        "week-2-lesson-2-ex-03",
+        "week-2-lesson-2-ex-04",
+        "week-2-lesson-2-ex-05",
+        "week-2-lesson-2-ex-06",
+        "week-2-lesson-2-ex-07",
+        "week-2-lesson-2-ex-08",
+        "week-2-lesson-2-ex-09",
+        "week-2-lesson-2-ex-10",
+        "week-2-lesson-2-ex-11",
+        "week-2-lesson-2-ex-12",
+        "week-2-lesson-2-ex-13",
+        "week-2-lesson-2-ex-14",
+        "week-2-lesson-2-ex-15",
+        "week-2-lesson-2-ex-16",
+        "week-2-lesson-2-ex-17",
+        "week-2-lesson-2-ex-18",
+        "week-2-lesson-2-ex-19",
+        "week-2-lesson-2-ex-20",
+        "week-2-lesson-2-ex-21",
+        "week-2-lesson-2-ex-22",
+        "week-2-lesson-2-ex-23",
+        "week-2-lesson-2-ex-24",
+        "week-2-lesson-2-ex-25",
+        "week-2-lesson-2-ex-26",
+        "week-2-lesson-2-ex-27",
+        "week-2-lesson-2-ex-28"
       ]
     }
   },
@@ -212,7 +262,7 @@
     "metadata": {
       "title": "Lesson 3: Regulation and knowledge gaps",
       "kind": "session",
-      "summary": "Identify guidelines or regulations that may apply, and list personal knowledge, skill or information gaps.",
+      "summary": "Identify guidelines and regulations that may apply, practise spotting assumptions, and plan how to close personal knowledge gaps.",
       "sortOrder": 3,
       "defaultOpen": false,
       "status": "available"
@@ -220,9 +270,34 @@
     "relationships": {
       "week": "week-2",
       "activities": [
-        "week-2-lesson-3-retrieval",
-        "week-2-lesson-3-main",
-        "week-2-lesson-3-formative"
+        "week-2-lesson-3-ex-01",
+        "week-2-lesson-3-ex-02",
+        "week-2-lesson-3-ex-03",
+        "week-2-lesson-3-ex-04",
+        "week-2-lesson-3-ex-05",
+        "week-2-lesson-3-ex-06",
+        "week-2-lesson-3-ex-07",
+        "week-2-lesson-3-ex-08",
+        "week-2-lesson-3-ex-09",
+        "week-2-lesson-3-ex-10",
+        "week-2-lesson-3-ex-11",
+        "week-2-lesson-3-ex-12",
+        "week-2-lesson-3-ex-13",
+        "week-2-lesson-3-ex-14",
+        "week-2-lesson-3-ex-15",
+        "week-2-lesson-3-ex-16",
+        "week-2-lesson-3-ex-17",
+        "week-2-lesson-3-ex-18",
+        "week-2-lesson-3-ex-19",
+        "week-2-lesson-3-ex-20",
+        "week-2-lesson-3-ex-21",
+        "week-2-lesson-3-ex-22",
+        "week-2-lesson-3-ex-23",
+        "week-2-lesson-3-ex-24",
+        "week-2-lesson-3-ex-25",
+        "week-2-lesson-3-ex-26",
+        "week-2-lesson-3-ex-27",
+        "week-2-lesson-3-ex-28"
       ]
     }
   },

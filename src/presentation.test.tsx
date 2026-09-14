@@ -379,14 +379,14 @@ describe("T Level presentation", () => {
     const { container } = render(
       <WeekPage weekId="week-2" root=".." pkg={withWeekStatus(content, { "week-2": "available" })} />
     );
-    const retrieval = container.querySelector('[data-lp-activity="week-2-lesson-1-retrieval"]') as HTMLElement;
-    const classify = container.querySelector('[data-lp-activity="week-2-lesson-1-formative"]') as HTMLElement;
-    const written = container.querySelector('[data-lp-activity="week-2-lesson-1-main"]') as HTMLElement;
+    const first = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-01"]') as HTMLElement;
+    const classify = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-05"]') as HTMLElement;
+    const written = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-17"]') as HTMLElement;
 
-    expect(retrieval.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
+    expect(first.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
     expect(classify.querySelector("[data-lp-block='classification']")).toBeTruthy();
     expect(classify.querySelector("[data-lp-sort-board]")).toBeNull();
-    expect(within(classify).getByRole("button", { name: "Check types" })).toBeTruthy();
+    expect(within(classify).getByRole("button", { name: /Check/i })).toBeTruthy();
     expectReactTextBlock(written, "short-response");
   });
 
@@ -394,7 +394,7 @@ describe("T Level presentation", () => {
     const { container } = render(
       <WeekPage weekId="week-2" root=".." pkg={liveWeekByTeachingWeek(2, "available")} />
     );
-    expect(container.querySelector("[data-lp-activity='week-2-lesson-1-retrieval']")).toBeTruthy();
+    expect(container.querySelector("[data-lp-activity='week-2-lesson-1-ex-01']")).toBeTruthy();
     expect(container.querySelector("[data-lp-week-locked]")).toBeNull();
   });
 
