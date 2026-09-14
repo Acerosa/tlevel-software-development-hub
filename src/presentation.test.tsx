@@ -37,7 +37,7 @@ afterEach(() => {
   cleanup();
   delete window.__lpPackage;
   delete window.__lpPublishedCurriculum;
-  window.localStorage.clear();
+  window.localStorage?.clear?.();
 });
 
 function withWeekStatus(source: ContentPackage, updates: Record<string, string>): ContentPackage {
@@ -155,9 +155,9 @@ describe("T Level presentation", () => {
   it("puts the SoL weeks on the home page and only opens available weeks", () => {
     render(<HomePage root="." />);
     expect(screen.getByRole("link", { name: "Open Week 1" }).getAttribute("href")).toBe("./week-1/");
-    expect(screen.queryByRole("link", { name: "Open Week 2" })).toBeNull();
+    expect(screen.getByRole("link", { name: "Open Week 2" }).getAttribute("href")).toBe("./week-2/");
     expect(screen.queryByRole("link", { name: "Open Week 22" })).toBeNull();
-    expect(screen.getByText("Coming soon · week commencing 7 September 2026")).toBeTruthy();
+    expect(screen.getByText("Coming soon · week commencing 14 September 2026")).toBeTruthy();
     expect(screen.getAllByText(/Coming soon/).length).toBeGreaterThan(1);
     expect(screen.getByRole("link", { name: "Open Foundations" }).getAttribute("href")).toBe("./foundations/");
     expect(screen.queryByRole("link", { name: /Task 1/i })).toBeNull();
@@ -177,12 +177,12 @@ describe("T Level presentation", () => {
 
   it("updates home after an async loadLatest package lands in React state", async () => {
     render(
-      <DeferredCurriculum live={withWeekStatus(content, { "week-2": "available" })}>
+      <DeferredCurriculum live={withWeekStatus(content, { "week-3": "available" })}>
         {(pkg) => <HomePage root="." pkg={pkg} />}
       </DeferredCurriculum>
     );
-    expect(screen.queryByRole("link", { name: "Open Week 2" })).toBeNull();
-    expect(await screen.findByRole("link", { name: "Open Week 2" })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: "Open Week 3" })).toBeNull();
+    expect(await screen.findByRole("link", { name: "Open Week 3" })).toBeTruthy();
   });
 
   it("keeps bundled home weeks when a thin live package only overlays status", () => {
@@ -214,8 +214,9 @@ describe("T Level presentation", () => {
     render(<CourseSidebar currentPage="home" root=".." pkg={content} />);
     const nav = screen.getByRole("navigation", { name: "Course sections" });
     expect(within(nav).getByRole("link", { name: /^Week 1(?!\d)/ })).toBeTruthy();
-    expect(within(nav).queryByRole("link", { name: /^Week 2(?!\d)/ })).toBeNull();
-    expect(within(nav).getByText(/^Week 2$/)).toBeTruthy();
+    expect(within(nav).getByRole("link", { name: /^Week 2(?!\d)/ })).toBeTruthy();
+    expect(within(nav).queryByRole("link", { name: /^Week 3(?!\d)/ })).toBeNull();
+    expect(within(nav).getByText(/^Week 3$/)).toBeTruthy();
     expect(within(nav).getAllByText("Coming soon").length).toBeGreaterThan(0);
   });
 
@@ -231,13 +232,13 @@ describe("T Level presentation", () => {
 
   it("updates the sidebar after an async loadLatest package lands in React state", async () => {
     render(
-      <DeferredCurriculum live={withWeekStatus(content, { "week-2": "available" })}>
+      <DeferredCurriculum live={withWeekStatus(content, { "week-3": "available" })}>
         {(pkg) => <CourseSidebar currentPage="home" root=".." pkg={pkg} />}
       </DeferredCurriculum>
     );
     const nav = () => screen.getByRole("navigation", { name: "Course sections" });
-    expect(within(nav()).queryByRole("link", { name: /^Week 2(?!\d)/ })).toBeNull();
-    expect(await screen.findByRole("link", { name: /^Week 2(?!\d)/ })).toBeTruthy();
+    expect(within(nav()).queryByRole("link", { name: /^Week 3(?!\d)/ })).toBeNull();
+    expect(await screen.findByRole("link", { name: /^Week 3(?!\d)/ })).toBeTruthy();
   });
 
   it("builds nested breadcrumbs for Foundations activities", () => {
@@ -366,22 +367,22 @@ describe("T Level presentation", () => {
   });
 
   it("blocks a direct week URL when the package status is not available", () => {
-    const { container } = render(<WeekPage weekId="week-2" root=".." pkg={content} />);
+    const { container } = render(<WeekPage weekId="week-3" root=".." pkg={content} />);
     expect(screen.getByRole("heading", { name: "Coming soon" })).toBeTruthy();
-    expect(screen.getByText(/planned to commence 7 September 2026/i)).toBeTruthy();
+    expect(screen.getByText(/planned to commence 14 September 2026/i)).toBeTruthy();
     expect(screen.getByRole("link", { name: "Back to course home" })).toBeTruthy();
     expect(container.querySelector("[data-lp-activity]")).toBeNull();
     expect(container.querySelector("[data-lp-week-locked]")).toBeTruthy();
     expect(screen.queryByRole("complementary", { name: /Practice progress/ })).toBeNull();
   });
 
-  it("renders Week 2 inline exercises when the published package marks it available", () => {
+  it("renders Week 2 inline exercises from the bundled available package", () => {
     const { container } = render(
-      <WeekPage weekId="week-2" root=".." pkg={withWeekStatus(content, { "week-2": "available" })} />
+      <WeekPage weekId="week-2" root=".." pkg={content} />
     );
     const first = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-01"]') as HTMLElement;
     const classify = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-05"]') as HTMLElement;
-    const written = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-17"]') as HTMLElement;
+    const written = container.querySelector('[data-lp-activity="week-2-lesson-1-ex-18"]') as HTMLElement;
 
     expect(first.querySelector("[data-lp-block='option-cards']")).toBeTruthy();
     expect(classify.querySelector("[data-lp-block='classification']")).toBeTruthy();
@@ -398,16 +399,16 @@ describe("T Level presentation", () => {
     expect(container.querySelector("[data-lp-week-locked]")).toBeNull();
   });
 
-  it("keeps Week 2 locked when a live package with catalogue blocks still marks it planned", () => {
-    const { container } = render(<WeekPage weekId="week-2" root=".." pkg={content} />);
+  it("keeps Week 3 locked when a live package with catalogue blocks still marks it planned", () => {
+    const { container } = render(<WeekPage weekId="week-3" root=".." pkg={content} />);
     expect(screen.getByRole("heading", { name: "Coming soon" })).toBeTruthy();
     expect(container.querySelector("[data-lp-activity]")).toBeNull();
   });
 
   it("updates a week page after an async loadLatest package marks it available", async () => {
-    const { rerender } = render(<WeekPage weekId="week-2" root=".." pkg={null} />);
+    const { rerender } = render(<WeekPage weekId="week-3" root=".." pkg={null} />);
     expect(screen.getByRole("heading", { name: "Coming soon" })).toBeTruthy();
-    rerender(<WeekPage weekId="week-2" root=".." pkg={withWeekStatus(content, { "week-2": "available" })} />);
+    rerender(<WeekPage weekId="week-3" root=".." pkg={withWeekStatus(content, { "week-3": "available" })} />);
     expect(await screen.findByRole("heading", { name: /Lesson 1:/i })).toBeTruthy();
   });
 

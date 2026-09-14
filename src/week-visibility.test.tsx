@@ -108,7 +108,7 @@ describe("live week visibility", () => {
   });
 
   it("Test 4 — async hydration updates home and sidebar from the live package", async () => {
-    const live = withWeekStatus(bundled, { "week-2": "available" });
+    const live = withWeekStatus(bundled, { "week-3": "available" });
     render(
       <DeferredCurriculum live={live}>
         {(pkg) => (
@@ -119,10 +119,10 @@ describe("live week visibility", () => {
         )}
       </DeferredCurriculum>
     );
-    expect(screen.queryByRole("link", { name: "Open Week 2" })).toBeNull();
-    expect(within(screen.getByRole("navigation", { name: "Course sections" })).queryByRole("link", { name: /^Week 2(?!\d)/ })).toBeNull();
-    expect(await screen.findByRole("link", { name: "Open Week 2" })).toBeTruthy();
-    expect(within(screen.getByRole("navigation", { name: "Course sections" })).getByRole("link", { name: /^Week 2(?!\d)/ })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: "Open Week 3" })).toBeNull();
+    expect(within(screen.getByRole("navigation", { name: "Course sections" })).queryByRole("link", { name: /^Week 3(?!\d)/ })).toBeNull();
+    expect(await screen.findByRole("link", { name: "Open Week 3" })).toBeTruthy();
+    expect(within(screen.getByRole("navigation", { name: "Course sections" })).getByRole("link", { name: /^Week 3(?!\d)/ })).toBeTruthy();
   });
 
   it("keeps bundled session release when live publication omits session status", () => {

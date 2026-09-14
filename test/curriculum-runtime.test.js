@@ -38,7 +38,7 @@ test("week catalogue activities keep interactive blocks in the bundled package",
 test("the converted T Level package keeps Foundations identity and activity ids", () => {
   assert.equal(pkg.hub.id, "tlevel-software-development");
   assert.equal(pkg.curriculum.metadata.course, "t-level-digital-software-development");
-  assert.equal(pkg.version, "0.4.4");
+  assert.equal(pkg.version, "0.4.10");
   const foundationIds = pkg.activities
     .filter((item) => String(item.id).startsWith("foundations-"))
     .map((item) => item.id);
@@ -94,14 +94,18 @@ test("Week 2 follows the SoL teaching sequence", () => {
   assert.equal(pkg.weeks.length, 22);
 });
 
-test("Week 2 taught lessons use the expanded exercise activity model", () => {
+test("Week 2 taught lessons use the curated 18-exercise activity model", () => {
+  let week2Total = 0;
   for (let lesson = 1; lesson <= 3; lesson += 1) {
     const session = pkg.sessions.find((item) => item.id === `week-2-lesson-${lesson}`);
     const ids = session.relationships.activities;
-    assert.ok(ids.length >= 25 && ids.length <= 30, `week-2-lesson-${lesson} count ${ids.length}`);
+    assert.equal(ids.length, 18, `week-2-lesson-${lesson} count ${ids.length}`);
+    week2Total += ids.length;
     assert.equal(ids[0], `week-2-lesson-${lesson}-ex-01`);
-    assert.equal(ids[ids.length - 1], `week-2-lesson-${lesson}-ex-${String(ids.length).padStart(2, "0")}`);
+    assert.ok(ids.every((id) => id.startsWith(`week-2-lesson-${lesson}-ex-`)));
     assert.ok(!ids.some((id) => /-(retrieval|main|formative)$/.test(id)));
+    // Non-contiguous IDs are intentional: retain production identity for survivors.
+    assert.ok(ids.includes(`week-2-lesson-${lesson}-ex-28`), `week-2-lesson-${lesson} keeps consolidation ex-28`);
     const byId = new Map(pkg.activities.map((item) => [item.id, item]));
     const seen = new Set();
     for (const id of ids) {
@@ -113,6 +117,8 @@ test("Week 2 taught lessons use the expanded exercise activity model", () => {
   }
   const homework = pkg.sessions.find((item) => item.id === "week-2-homework");
   assert.deepEqual(homework.relationships.activities, ["week-2-homework-emerging"]);
+  week2Total += homework.relationships.activities.length;
+  assert.equal(week2Total, 55);
 });
 
 test("Weeks 3 to 22 keep retrieval, main and formative activity ids", () => {
@@ -128,14 +134,22 @@ test("Weeks 3 to 22 keep retrieval, main and formative activity ids", () => {
   }
 });
 
-test("bundled week status is available only for Week 1", () => {
+test("bundled week status posts Weeks 1 and 2 as available", () => {
   const statuses = pkg.weeks.map((week) => [week.id, week.metadata.status, week.metadata.teachingWeek]);
   assert.equal(pkg.weeks[0].metadata.status, "available");
   assert.equal(pkg.weeks[0].id, "week-1");
-  for (const week of pkg.weeks.slice(1)) {
+  assert.equal(pkg.weeks[1].metadata.status, "available");
+  assert.equal(pkg.weeks[1].id, "week-2");
+  for (const week of pkg.weeks.slice(2)) {
     assert.equal(week.metadata.status, "planned", week.id + " should be planned until posted");
   }
   assert.equal(statuses.length, 22);
+});
+
+test("generator marks posted teaching weeks available via POSTED_TEACHING_WEEKS", () => {
+  const source = read("scripts/generate-os-curriculum.py");
+  assert.match(source, /POSTED_TEACHING_WEEKS\s*=\s*frozenset\(\{1,\s*2\}\)/);
+  assert.match(source, /available" if n in POSTED_TEACHING_WEEKS else "planned"/);
 });
 
 test("the 22-week SoL covers Areas 1 to 3 through revision", () => {

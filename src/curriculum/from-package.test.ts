@@ -60,12 +60,12 @@ describe("T Level package hydration", () => {
     expect(weeks[0].openable).toBe(true);
     expect(weeks[0].status).toBe("available");
     expect(weeks[0].current).toBe(true);
-    expect(weeks[1].openable).toBe(false);
-    expect(weeks[1].status).toBe("planned");
+    expect(weeks[1].openable).toBe(true);
+    expect(weeks[1].status).toBe("available");
     expect(weeks[1].weekCommencing).toBe("2026-09-07");
     expect(weeks[21].openable).toBe(false);
     expect(weeks[21].status).toBe("planned");
-    expect(weeks.filter((week) => week.openable)).toHaveLength(1);
+    expect(weeks.filter((week) => week.openable)).toHaveLength(2);
     expect(isWeekAvailable("available")).toBe(true);
     expect(isWeekAvailable("planned")).toBe(false);
     expect(isWeekAvailable("archived")).toBe(false);
@@ -81,10 +81,10 @@ describe("T Level package hydration", () => {
     expect(week1?.sessions[0].activities.length).toBeGreaterThanOrEqual(25);
     expect(week1?.sessions[0].activities.length).toBeLessThanOrEqual(30);
     expect(week1?.week.status).toBe("available");
-    expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("planned");
+    expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("available");
     const week2Page = weekPageFromPackage(pkg, "week-2");
-    expect(week2Page?.sessions.every((session) => session.accessible === false)).toBe(true);
-    expect(week2Page?.sessions.flatMap((session) => session.activities)).toEqual([]);
+    expect(week2Page?.sessions.every((session) => session.accessible === true)).toBe(true);
+    expect(week2Page?.sessions.flatMap((session) => session.activities).length).toBe(55);
     expect(weekPageFromPackage(pkg, "week-2")?.sessions.map((session) => session.id)).toEqual([
       "week-2-lesson-1",
       "week-2-lesson-2",
