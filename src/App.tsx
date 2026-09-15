@@ -105,6 +105,7 @@ function PageBody({
           platform={platform}
           pkg={pkg}
           adaptersReady={adaptersReady}
+          platformState={platformState}
         />
       </>
     );
@@ -140,7 +141,7 @@ export function App({ context }: { context: PageContext }) {
   const signedIn = authStatus === "authenticated" || Boolean(learner) || joinNeeded;
   const guardedPlatform = useMemo(
     () => withEnrolmentGuardedMarking(platform as never, () => platformState),
-    [platform, platformState]
+    [platform]
   );
 
   function openAccount(trigger?: EventTarget | null, options?: { mode?: "sign-in" | "register" }) {
