@@ -243,13 +243,15 @@ export function WeekPage({
   root,
   pkg,
   platform,
-  adaptersReady = true
+  adaptersReady = true,
+  platformState = "loading"
 }: {
   weekId: string;
   root: string;
   pkg?: ContentPackage | null;
   platform?: unknown;
   adaptersReady?: boolean;
+  platformState?: string;
 }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const dismissedRef = useRef(false);
@@ -313,6 +315,8 @@ export function WeekPage({
 
   useEffect(() => {
     if (!adaptersReady || !model || !isWeekAvailable(model.week.status)) return;
+    const canHydrateRemote = platformState === "ready" || platformState === "no-assignments";
+    if (!canHydrateRemote) return;
     let cancelled = false;
     const unsubscribers: Array<() => void> = [];
     const engine = getContentEngine();
@@ -371,7 +375,7 @@ export function WeekPage({
       cancelled = true;
       unsubscribers.forEach((unsubscribe) => unsubscribe());
     };
-  }, [adaptersReady, content, model, platform, requiredTotal, scorableTotal, weekId]);
+  }, [adaptersReady, content, model, platform, platformState, requiredTotal, scorableTotal, weekId]);
 
   const released = isWeekAvailable(model?.week.status);
 
