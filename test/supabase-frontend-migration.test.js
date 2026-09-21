@@ -206,3 +206,30 @@ test("the canonical manifest contains only generic LHDS metadata", function () {
   assert.equal(manifest.compatibility.required.coreVersion, "0.2.25");
   assert.doesNotMatch(JSON.stringify(manifest), /questionBank|week|taskContent|supabaseUrl|publishableKey/i);
 });
+
+function shouldSkipPostInitialiseLearnerRefresh(learner) {
+  return Boolean(learner && learner.status === "authenticated" && learner.context);
+}
+
+test("recoverLearnerAfterAuthRestore does not repeat bootstrap when learner is already authenticated", function () {
+  const source = read("src/platform.ts");
+  assert.match(source, /learner\?\.status === "authenticated" && learner\.context/);
+  assert.match(source, /recoverLearnerAfterAuthRestore/);
+  assert.equal(shouldSkipPostInitialiseLearnerRefresh({
+    status: "authenticated",
+    context: { studentNumber: "1001" }
+  }), true);
+  assert.equal(shouldSkipPostInitialiseLearnerRefresh({
+    status: "authenticated",
+    context: null
+  }), false);
+  assert.equal(shouldSkipPostInitialiseLearnerRefresh({
+    status: "onboarding-required",
+    context: null
+  }), false);
+  assert.equal(shouldSkipPostInitialiseLearnerRefresh({
+    status: "unknown"
+  }), false);
+  assert.match(source, /status !== "onboarding-required"/);
+  assert.match(source, /platform\.learner\.refresh/);
+});

@@ -60,6 +60,10 @@ export function createHubPlatform(root: string, createPlatformFn = createPlatfor
   async function recoverLearnerAfterAuthRestore() {
     const auth = platform.auth.getState?.();
     if (auth?.status !== "authenticated") return;
+    const learner = platform.learner.getState?.();
+    // Core 0.2.25 already completed learner bootstrap during initialise.
+    // A second refresh here repeats ensure/profile/enrolments with no invalidation.
+    if (learner?.status === "authenticated" && learner.context) return;
     try {
       await client.auth.getSession();
     } catch {
@@ -70,8 +74,8 @@ export function createHubPlatform(root: string, createPlatformFn = createPlatfor
     } catch {
       // Keep whatever state Core published; UI gates still avoid identity flash.
     }
-    const learner = platform.learner.getState?.();
-    if (learner?.status !== "onboarding-required") return;
+    const afterRefresh = platform.learner.getState?.();
+    if (afterRefresh?.status !== "onboarding-required") return;
     await new Promise((resolve) => setTimeout(resolve, 150));
     try {
       await client.auth.getSession();
