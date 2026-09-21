@@ -121,28 +121,60 @@ test("the submission bridge refuses anonymous and unsupported activity submissio
   assert.equal(window.SupabaseLearningApi.canSubmit({ activityId: "not-enabled" }), false);
 });
 
-test("learner analytics delegates to Core progress and assignment services", async function () {
+test("learner analytics delegates to Core progress and reuses boot assignments", async function () {
   const calls = [];
   const window = {
     LearningPlatform: {
       platform: {
+        config: { hubCode: "tlevel-software-development" },
         progress: {
           getProgress() { calls.push("progress"); return Promise.resolve([{ activity_key: "a" }]); },
           getAttempts() { calls.push("attempts"); return Promise.resolve([{ activity_key: "a" }]); }
         },
         assignment: {
-          getAssignments() { calls.push("assignments"); return Promise.resolve([{ activity_key: "a" }]); }
+          getCachedHubAssignments() {
+            calls.push("cached-assignments");
+            return [{ activity_key: "a" }];
+          },
+          getHubAssignments() { calls.push("hub-assignments"); return Promise.resolve([{ activity_key: "b" }]); },
+          getAssignments() { calls.push("assignments"); return Promise.resolve([{ activity_key: "c" }]); }
         }
       }
     }
   };
   run(window, "js/core/supabase-analytics.js");
   const result = await window.SupabaseAnalytics.studentProgress();
-  assert.deepEqual(calls, ["progress", "attempts", "assignments"]);
+  assert.deepEqual(calls, ["progress", "cached-assignments"]);
   assert.equal(result.activities.length, 1);
-  assert.equal(result.attempts.length, 1);
+  assert.equal(result.attempts.length, 0);
   assert.equal(result.assignments.length, 1);
+  assert.equal(result.assignments[0].activity_key, "a");
   assert.doesNotMatch(read("js/core/supabase-analytics.js"), /teacher_group|\.from\(|\/rest\/v1/);
+});
+
+test("learner analytics fetches hub assignments when boot snapshot is missing", async function () {
+  const calls = [];
+  const window = {
+    LearningPlatform: {
+      platform: {
+        config: { hubCode: "tlevel-software-development" },
+        progress: {
+          getProgress() { calls.push("progress"); return Promise.resolve([]); }
+        },
+        assignments: {
+          getCachedHubAssignments() { calls.push("cached-miss"); return null; },
+          getHubAssignments() {
+            calls.push("hub-assignments");
+            return Promise.resolve([{ activity_key: "fresh" }]);
+          }
+        }
+      }
+    }
+  };
+  run(window, "js/core/supabase-analytics.js");
+  const result = await window.SupabaseAnalytics.studentProgress();
+  assert.deepEqual(calls, ["progress", "cached-miss", "hub-assignments"]);
+  assert.equal(result.assignments[0].activity_key, "fresh");
 });
 
 test("the obsolete Apps Script and local learner-session compatibility is removed", function () {
@@ -171,6 +203,6 @@ test("the canonical manifest contains only generic LHDS metadata", function () {
   assert.equal(manifest.repositoryUrl, "https://github.com/Acerosa/tlevel-software-development-hub");
   assert.equal(manifest.deploymentUrl, "https://acerosa.github.io/tlevel-software-development-hub");
   assert.deepEqual(manifest.courses, ["t-level-digital-software-development"]);
-  assert.equal(manifest.compatibility.required.coreVersion, "0.2.23");
+  assert.equal(manifest.compatibility.required.coreVersion, "0.2.25");
   assert.doesNotMatch(JSON.stringify(manifest), /questionBank|week|taskContent|supabaseUrl|publishableKey/i);
 });
