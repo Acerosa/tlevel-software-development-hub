@@ -471,7 +471,7 @@
     "metadata": {
       "title": "Lesson 1: Milestone plan",
       "kind": "session",
-      "summary": "Retrieve scoped requirements and draft a milestone schedule that includes testing and client review.",
+      "summary": "Distinguish tasks, subtasks and milestones; sequence work with dependencies, testing and client review.",
       "sortOrder": 1,
       "defaultOpen": true,
       "status": "available"
@@ -479,9 +479,15 @@
     "relationships": {
       "week": "week-5",
       "activities": [
-        "week-5-lesson-1-retrieval",
-        "week-5-lesson-1-main",
-        "week-5-lesson-1-formative"
+        "week-5-lesson-1-ex-01",
+        "week-5-lesson-1-ex-02",
+        "week-5-lesson-1-ex-03",
+        "week-5-lesson-1-ex-04",
+        "week-5-lesson-1-ex-05",
+        "week-5-lesson-1-ex-06",
+        "week-5-lesson-1-ex-07",
+        "week-5-lesson-1-ex-08",
+        "week-5-lesson-1-ex-09"
       ]
     }
   },
@@ -493,7 +499,7 @@
     "metadata": {
       "title": "Lesson 2: Resources and a costed outline",
       "kind": "session",
-      "summary": "Allocate people, time and other resources; produce a simple costed outline for an early increment.",
+      "summary": "Identify people, tools and services; estimate costs with clear assumptions and trade-offs.",
       "sortOrder": 2,
       "defaultOpen": false,
       "status": "available"
@@ -501,9 +507,15 @@
     "relationships": {
       "week": "week-5",
       "activities": [
-        "week-5-lesson-2-retrieval",
-        "week-5-lesson-2-main",
-        "week-5-lesson-2-formative"
+        "week-5-lesson-2-ex-01",
+        "week-5-lesson-2-ex-02",
+        "week-5-lesson-2-ex-03",
+        "week-5-lesson-2-ex-04",
+        "week-5-lesson-2-ex-05",
+        "week-5-lesson-2-ex-06",
+        "week-5-lesson-2-ex-07",
+        "week-5-lesson-2-ex-08",
+        "week-5-lesson-2-ex-09"
       ]
     }
   },
@@ -515,7 +527,7 @@
     "metadata": {
       "title": "Lesson 3: Language and stack choice",
       "kind": "session",
-      "summary": "Recommend a language or stack against suitability, policy, scalability, security, staffing, cost and reliability.",
+      "summary": "Recommend a language or stack against suitability, policy, security, staffing, cost and reliability — not personal favourites alone.",
       "sortOrder": 3,
       "defaultOpen": false,
       "status": "available"
@@ -523,9 +535,15 @@
     "relationships": {
       "week": "week-5",
       "activities": [
-        "week-5-lesson-3-retrieval",
-        "week-5-lesson-3-main",
-        "week-5-lesson-3-formative"
+        "week-5-lesson-3-ex-01",
+        "week-5-lesson-3-ex-02",
+        "week-5-lesson-3-ex-03",
+        "week-5-lesson-3-ex-04",
+        "week-5-lesson-3-ex-05",
+        "week-5-lesson-3-ex-06",
+        "week-5-lesson-3-ex-07",
+        "week-5-lesson-3-ex-08",
+        "week-5-lesson-3-ex-09"
       ]
     }
   },
@@ -537,7 +555,7 @@
     "metadata": {
       "title": "Homework: public project overruns",
       "kind": "homework",
-      "summary": "Compare two public project overruns in the news and identify whether the issue looks like scope, schedule, resource or cost.",
+      "summary": "Compare two public digital overruns and link them to schedule, cost, resource or assumption problems.",
       "sortOrder": 4,
       "defaultOpen": false,
       "status": "available"

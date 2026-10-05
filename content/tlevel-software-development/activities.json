@@ -18076,227 +18076,21 @@
   {
     "schema": "lp.content.activity",
     "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-1-retrieval",
+    "id": "week-5-lesson-1-ex-01",
     "version": "0.1.0",
     "metadata": {
-      "title": "Retrieval: work before a first usable version",
+      "title": "What is a milestone?",
       "status": "available",
-      "summary": "Identify work that must happen before a first usable version.",
+      "summary": "A checkpoint of completed work, not a day-to-day task.",
       "href": null,
       "difficulty": "standard",
-      "familyId": "week-5-lesson-1-retrieval",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Retrieval",
-      "topics": [
-        "Planning"
-      ],
-      "detail": "Identify work that must happen before a first usable version."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "lo1",
-        "w5-schedule",
-        "w5-resources-cost",
-        "w5-language"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-retrieval-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Before a first usable version",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-retrieval-before",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-1-retrieval:before",
-          "sourceQuestionId": "before",
-          "prompt": "List four pieces of work that must happen before Oakfield staff could try a first usable version.",
-          "placeholder": "1. ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-retrieval-q1",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "single-choice",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-1-retrieval:q1",
-          "sourceQuestionId": "q1",
-          "sourceType": "single",
-          "prompt": "A milestone plan that only lists 'build screens' is weak because:",
-          "options": [
-            {
-              "id": "a",
-              "label": "Building is unimportant"
-            },
-            {
-              "id": "b",
-              "label": "Testing and client review must appear, not just construction"
-            },
-            {
-              "id": "c",
-              "label": "Milestones are only for Waterfall"
-            },
-            {
-              "id": "d",
-              "label": "Clients never look at plans"
-            }
-          ],
-          "correctOptionId": "b",
-          "feedback": {
-            "correct": "Planning belongs in a proposal. Review and testing are work, not extras.",
-            "incorrect": "Include testing and client review in the order of work."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-1-main",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Draft milestones for Oakfield",
-      "status": "available",
-      "summary": "Sequence milestones for the decomposed parts, including testing and review.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-5-lesson-1-main",
-      "estimatedDurationMinutes": 35,
-      "activityType": "Guided learning",
-      "topics": [
-        "Milestones",
-        "Schedule"
-      ],
-      "detail": "Sequence milestones for the decomposed parts, including testing and review."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "lo1",
-        "w5-schedule",
-        "w5-resources-cost",
-        "w5-language"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-main-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Order the work",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-main-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "Supported learners can sequence prepared milestone cards. Extension: show a dependency and a contingency if a milestone slips. Under-costed digital projects can reduce quality, accessibility or staff wellbeing."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-main-order",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-1-main:order",
-          "sourceQuestionId": "order",
-          "prompt": "List five milestones in order for increment 1. Justify why two of them are in that order.",
-          "placeholder": "1. ... Justification: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-main-test",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-1-main:test",
-          "sourceQuestionId": "test",
-          "prompt": "Where do testing and client review sit in your plan? What happens if a milestone slips?",
-          "placeholder": "Testing: ... Slip: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-main-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "SoL Week 5: tutor models a simple milestone plan. Timeline templates. Testing and client review must appear."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-1-formative",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Progress check: justify order",
-      "status": "available",
-      "summary": "Justify the order of two milestones.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-5-lesson-1-formative",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Progress check",
+      "familyId": "week-5-lesson-1-ex-01",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
       "topics": [
         "Milestones"
       ],
-      "detail": "Justify the order of two milestones."
+      "detail": "A checkpoint of completed work, not a day-to-day task."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18314,131 +18108,39 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-formative-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Justify two milestones",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-1-formative-why",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-1-formative:why",
-          "sourceQuestionId": "why",
-          "prompt": "Why must one of your milestones come before another?",
-          "placeholder": "A comes before B because..."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-2-retrieval",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Retrieval: who does the work",
-      "status": "available",
-      "summary": "Retrieve roles you already know before costing.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-5-lesson-2-retrieval",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Retrieval",
-      "topics": [
-        "Resources"
-      ],
-      "detail": "Retrieve roles you already know before costing."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "lo1",
-        "w5-schedule",
-        "w5-resources-cost",
-        "w5-language"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-retrieval-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "People and time",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-retrieval-who",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-2-retrieval:who",
-          "sourceQuestionId": "who",
-          "prompt": "Name three people-types a small Oakfield increment might need (job role, not celebrity).",
-          "placeholder": "1. ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-retrieval-q1",
+        "id": "week-5-lesson-1-ex-01-ms",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
         "type": "single-choice",
         "content": {
           "formative": true,
-          "questionId": "week-5-lesson-2-retrieval:q1",
-          "sourceQuestionId": "q1",
+          "questionId": "week-5-lesson-1-ex-01:ms",
+          "sourceQuestionId": "ms",
           "sourceType": "single",
-          "prompt": "A cost estimate should include:",
+          "prompt": "In a software project schedule, a milestone is best described as:",
           "options": [
             {
               "id": "a",
-              "label": "Only the software licence if it is free"
+              "label": "Any email sent during the project"
             },
             {
               "id": "b",
-              "label": "People time, licences, devices, training and an assumption list"
+              "label": "A checkpoint that shows a meaningful piece of work is complete"
             },
             {
               "id": "c",
-              "label": "Only the programmer's salary in ten years"
+              "label": "The name of the programming language"
             },
             {
               "id": "d",
-              "label": "Nothing, because public projects are free"
+              "label": "A meeting with no agenda"
             }
           ],
           "correctOptionId": "b",
           "feedback": {
-            "correct": "Costing is part of a proposal. State assumptions.",
-            "incorrect": "Hidden staff time is still a cost."
+            "correct": "Milestones mark completed progress you can check. They are not every small action.",
+            "incorrect": "Look for a verifiable point of progress, not background chat."
           }
         }
       }
@@ -18447,22 +18149,21 @@
   {
     "schema": "lp.content.activity",
     "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-2-main",
+    "id": "week-5-lesson-1-ex-02",
     "version": "0.1.0",
     "metadata": {
-      "title": "Cost an early increment",
+      "title": "Task or subtask?",
       "status": "available",
-      "summary": "Allocate resources to decomposed parts and cost the increment.",
+      "summary": "Subtasks break a larger task into smaller steps.",
       "href": null,
       "difficulty": "standard",
-      "familyId": "week-5-lesson-2-main",
-      "estimatedDurationMinutes": 35,
-      "activityType": "Guided learning",
+      "familyId": "week-5-lesson-1-ex-02",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
       "topics": [
-        "Cost",
-        "Resources"
+        "Tasks"
       ],
-      "detail": "Allocate resources to decomposed parts and cost the increment."
+      "detail": "Subtasks break a larger task into smaller steps."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18480,84 +18181,40 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-main-title",
+        "id": "week-5-lesson-1-ex-02-sub",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "A simple costed outline",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-main-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "You are not producing a full commercial bid. You are showing you can think in days, roles and assumptions. Use round numbers and label them as estimates."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-main-example",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "callout",
-        "content": {
-          "title": "Worked cost idea",
-          "text": "Example assumption: one developer and one analyst for four weeks, plus tutor time to trial the register, plus accessibility testing. State if 365 licences are already paid.",
-          "tone": "info"
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-main-cost",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
+        "type": "single-choice",
         "content": {
           "formative": true,
-          "questionId": "week-5-lesson-2-main:cost",
-          "sourceQuestionId": "cost",
-          "prompt": "Draft a simple costed outline for increment 1. List assumptions.",
-          "placeholder": "People: ... Other: ... Assumptions: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-main-assume",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-2-main:assume",
-          "sourceQuestionId": "assume",
-          "prompt": "Name one cost assumption that, if wrong, would change the plan.",
-          "placeholder": "If ... then ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-main-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "SoL Week 5: worked cost example. Do not invent fake precision."
+          "questionId": "week-5-lesson-1-ex-02:sub",
+          "sourceQuestionId": "sub",
+          "sourceType": "single",
+          "prompt": "A college is building a room-booking web form. Which is most clearly a subtask of 'build the booking form'?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Open the service to the whole county"
+            },
+            {
+              "id": "b",
+              "label": "Wire the date picker and validate that the room is free"
+            },
+            {
+              "id": "c",
+              "label": "Write the final board report for governors"
+            },
+            {
+              "id": "d",
+              "label": "Choose a new college logo"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Validating the form fields is work inside building the form. Board reports and logos are separate work.",
+            "incorrect": "A subtask sits under a larger task, not beside the whole project."
+          }
         }
       }
     ]
@@ -18565,21 +18222,745 @@
   {
     "schema": "lp.content.activity",
     "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-2-formative",
+    "id": "week-5-lesson-1-ex-03",
     "version": "0.1.0",
     "metadata": {
-      "title": "Progress check: one cost assumption",
+      "title": "Classify schedule items",
       "status": "available",
-      "summary": "Name one cost assumption.",
+      "summary": "Sort tasks, subtasks and milestones.",
       "href": null,
       "difficulty": "standard",
-      "familyId": "week-5-lesson-2-formative",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Progress check",
+      "familyId": "week-5-lesson-1-ex-03",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
+      "topics": [
+        "Scheduling"
+      ],
+      "detail": "Sort tasks, subtasks and milestones."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-03-sort-items",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-03:sort-items",
+          "sourceQuestionId": "sort-items",
+          "prompt": "Classify each item for a gym membership app project.",
+          "categories": [
+            {
+              "id": "task",
+              "label": "Task"
+            },
+            {
+              "id": "subtask",
+              "label": "Subtask"
+            },
+            {
+              "id": "milestone",
+              "label": "Milestone"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Design the membership join screen",
+              "correctCategoryId": "task"
+            },
+            {
+              "id": "item-2",
+              "label": "Add validation so under-16s need a parent contact",
+              "correctCategoryId": "subtask"
+            },
+            {
+              "id": "item-3",
+              "label": "First usable join-and-pay flow ready for staff trial",
+              "correctCategoryId": "milestone"
+            },
+            {
+              "id": "item-4",
+              "label": "Write the payment confirmation email template",
+              "correctCategoryId": "subtask"
+            },
+            {
+              "id": "item-5",
+              "label": "Complete end-to-end test of join, pay and confirmation",
+              "correctCategoryId": "milestone"
+            }
+          ],
+          "feedback": {
+            "correct": "Tasks are chunks of work. Subtasks are steps inside a task. Milestones are checkable completion points.",
+            "incorrect": "Do not call every email a milestone."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1-ex-04",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Match schedule terms",
+      "status": "available",
+      "summary": "Link each term to what it means in planning.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-1-ex-04",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Matching",
+      "topics": [
+        "Scheduling"
+      ],
+      "detail": "Link each term to what it means in planning."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-04-terms",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "drag-drop",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-04:terms",
+          "sourceQuestionId": "terms",
+          "prompt": "Match each scheduling term to its meaning.",
+          "items": [
+            {
+              "id": "dep",
+              "label": "Dependency"
+            },
+            {
+              "id": "par",
+              "label": "Parallel work"
+            },
+            {
+              "id": "slip",
+              "label": "Slip"
+            }
+          ],
+          "targets": [
+            {
+              "id": "m-dep",
+              "label": "One piece of work cannot start until another finishes"
+            },
+            {
+              "id": "m-par",
+              "label": "Two pieces of work can progress at the same time"
+            },
+            {
+              "id": "m-slip",
+              "label": "A planned date is delayed"
+            }
+          ],
+          "correct": {
+            "dep": "m-dep",
+            "par": "m-par",
+            "slip": "m-slip"
+          },
+          "feedback": {
+            "correct": "Dependencies force order. Parallel work saves calendar time when resources allow. Slip means the plan moved.",
+            "incorrect": "Do not treat every delay as a new task."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1-ex-05",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Spot the dependency",
+      "status": "available",
+      "summary": "Some work must wait for other work.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-1-ex-05",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Dependencies"
+      ],
+      "detail": "Some work must wait for other work."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-05-dep",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-05:dep",
+          "sourceQuestionId": "dep",
+          "sourceType": "single",
+          "prompt": "For an event-booking system, which statement correctly describes a dependency?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Writing the FAQ page cannot begin until the payment provider integration returns a booking reference"
+            },
+            {
+              "id": "b",
+              "label": "Choosing a colour for the footer must wait until the domain name is renewed in five years"
+            },
+            {
+              "id": "c",
+              "label": "User research and writing the privacy notice must always be done by the same person on the same day"
+            },
+            {
+              "id": "d",
+              "label": "Testing is optional if the developer feels confident"
+            }
+          ],
+          "correctOptionId": "a",
+          "feedback": {
+            "correct": "The FAQ can describe the payment flow only after the integration behaviour is known. That is a real dependency.",
+            "incorrect": "Ask what information or output one task needs from another."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1-ex-06",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Sequential or parallel?",
+      "status": "available",
+      "summary": "Judge what can safely overlap.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-1-ex-06",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
+      "topics": [
+        "Parallel work"
+      ],
+      "detail": "Judge what can safely overlap."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-06-seq-par",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-06:seq-par",
+          "sourceQuestionId": "seq-par",
+          "prompt": "For a small online retailer checkout project, classify each pair of activities.",
+          "categories": [
+            {
+              "id": "sequential",
+              "label": "Must be sequential"
+            },
+            {
+              "id": "parallel",
+              "label": "Can run in parallel"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Define the basket fields, then build the basket API that uses those fields",
+              "correctCategoryId": "sequential"
+            },
+            {
+              "id": "item-2",
+              "label": "Draft help-centre articles while developers build the basket screen",
+              "correctCategoryId": "parallel"
+            },
+            {
+              "id": "item-3",
+              "label": "Complete payment sandbox tests before going live with real card charges",
+              "correctCategoryId": "sequential"
+            },
+            {
+              "id": "item-4",
+              "label": "Photograph product images while the product list page layout is being coded",
+              "correctCategoryId": "parallel"
+            },
+            {
+              "id": "item-5",
+              "label": "Agree the live go-live checklist, then switch on real card charges",
+              "correctCategoryId": "sequential"
+            }
+          ],
+          "feedback": {
+            "correct": "Parallel means independent enough not to block each other. Live charges depend on a agreed checklist after tests.",
+            "incorrect": "If one output is an input to the other, keep them sequential."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1-ex-07",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Weak schedule for a room-booking pilot",
+      "status": "available",
+      "summary": "Find what the plan left out.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-1-ex-07",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Milestones"
+      ],
+      "detail": "Find what the plan left out."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-07-weak",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-07:weak",
+          "sourceQuestionId": "weak",
+          "sourceType": "single",
+          "prompt": "A college room-booking pilot plan lists only: design screens, build screens, launch to staff. What is the main weakness?",
+          "options": [
+            {
+              "id": "a",
+              "label": "It uses British English"
+            },
+            {
+              "id": "b",
+              "label": "It omits testing and client/staff review before launch"
+            },
+            {
+              "id": "c",
+              "label": "It mentions screens at all"
+            },
+            {
+              "id": "d",
+              "label": "It is shorter than twenty pages"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "A usable plan must include checking the work and getting feedback before launch, not only construction.",
+            "incorrect": "Ask where testing and review sit in the order."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1-ex-08",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Improve a streaming team's plan",
+      "status": "available",
+      "summary": "Add missing checkpoints and order.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-1-ex-08",
+      "estimatedDurationMinutes": 4,
+      "activityType": "Written response",
+      "topics": [
+        "Schedule"
+      ],
+      "detail": "Add missing checkpoints and order."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-08-scenario",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "A streaming service team plans: build playlist screen → polish animation → public launch. No testing or product-owner review is listed."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-08-improve",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-08:improve",
+          "sourceQuestionId": "improve",
+          "prompt": "Rewrite the plan as five ordered milestones. Include testing and a review checkpoint. Justify why one milestone must come before another.",
+          "placeholder": "1. ... 2. ... 3. ... 4. ... 5. ... Justification: A before B because...",
+          "guidance": "Keep milestones checkable. Do not invent Week 4 requirements wording.",
+          "minChars": 80
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-1-ex-09",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Which milestone first for Oakfield?",
+      "status": "available",
+      "summary": "Apply judgement to a familiar context.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-1-ex-09",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Milestones"
+      ],
+      "detail": "Apply judgement to a familiar context."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-1-ex-09-oak-order",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-1-ex-09:oak-order",
+          "sourceQuestionId": "oak-order",
+          "sourceType": "single",
+          "prompt": "Oakfield wants tutors to trial a first usable digital register. Which milestone should come first?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Roll out to every venue with no trial"
+            },
+            {
+              "id": "b",
+              "label": "Complete a supervised tutor trial of the register flow and capture issues"
+            },
+            {
+              "id": "c",
+              "label": "Rewrite the college prospectus"
+            },
+            {
+              "id": "d",
+              "label": "Replace all classroom Wi-Fi before any screen is designed"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "A first usable version needs a supervised trial and feedback before wide roll-out. Prospectus work is unrelated.",
+            "incorrect": "Prefer a checkable trial milestone over an all-or-nothing launch."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-01",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "What counts as a project resource?",
+      "status": "available",
+      "summary": "Resources are what the project consumes or needs.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-01",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Resources"
+      ],
+      "detail": "Resources are what the project consumes or needs."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-2-ex-01-res",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-2-ex-01:res",
+          "sourceQuestionId": "res",
+          "sourceType": "single",
+          "prompt": "Which item is most clearly a project resource for building a community-centre booking site?",
+          "options": [
+            {
+              "id": "a",
+              "label": "A developer’s time for four weeks"
+            },
+            {
+              "id": "b",
+              "label": "The colour of the centre’s front door"
+            },
+            {
+              "id": "c",
+              "label": "A rumour that bookings will rise"
+            },
+            {
+              "id": "d",
+              "label": "The postcode of a different town"
+            }
+          ],
+          "correctOptionId": "a",
+          "feedback": {
+            "correct": "People time is a core resource. Door colour and rumours are not what you allocate in a costed outline.",
+            "incorrect": "Ask what the project uses up: people, tools, licences, devices, services."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-02",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Classify resource types",
+      "status": "available",
+      "summary": "People, hardware, software and services.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-02",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
+      "topics": [
+        "Resources"
+      ],
+      "detail": "People, hardware, software and services."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-2-ex-02-res-type",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-2-ex-02:res-type",
+          "sourceQuestionId": "res-type",
+          "prompt": "Classify each resource for a transport-app pilot.",
+          "categories": [
+            {
+              "id": "people",
+              "label": "People"
+            },
+            {
+              "id": "hardware",
+              "label": "Hardware"
+            },
+            {
+              "id": "software",
+              "label": "Software / licences"
+            },
+            {
+              "id": "service",
+              "label": "External service"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Two part-time developers for six weeks",
+              "correctCategoryId": "people"
+            },
+            {
+              "id": "item-2",
+              "label": "Three Android test phones",
+              "correctCategoryId": "hardware"
+            },
+            {
+              "id": "item-3",
+              "label": "Map API usage fees",
+              "correctCategoryId": "service"
+            },
+            {
+              "id": "item-4",
+              "label": "IDE and cloud hosting subscription",
+              "correctCategoryId": "software"
+            },
+            {
+              "id": "item-5",
+              "label": "Accessibility tester for two days",
+              "correctCategoryId": "people"
+            }
+          ],
+          "feedback": {
+            "correct": "People do the work. Hardware is physical kit. Software/licences are tools you run. Services are bought capability such as APIs.",
+            "incorrect": "Do not put every cost under 'software'."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-03",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "One-off or recurring cost?",
+      "status": "available",
+      "summary": "Timing of spend matters in a proposal.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-03",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
       "topics": [
         "Cost"
       ],
-      "detail": "Name one cost assumption."
+      "detail": "Timing of spend matters in a proposal."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18597,131 +18978,39 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-formative-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Assumptions",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-2-formative-a",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-2-formative:a",
-          "sourceQuestionId": "a",
-          "prompt": "Write one cost assumption for Oakfield.",
-          "placeholder": "Assumption: ..."
-        }
-      }
-    ]
-  },
-  {
-    "schema": "lp.content.activity",
-    "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-3-retrieval",
-    "version": "0.1.0",
-    "metadata": {
-      "title": "Retrieval: taught criteria",
-      "status": "available",
-      "summary": "Retrieve the language-choice criteria.",
-      "href": null,
-      "difficulty": "standard",
-      "familyId": "week-5-lesson-3-retrieval",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Retrieval",
-      "topics": [
-        "Language choice"
-      ],
-      "detail": "Retrieve the language-choice criteria."
-    },
-    "relationships": {
-      "learningOutcomes": [
-        "lo1",
-        "w5-schedule",
-        "w5-resources-cost",
-        "w5-language"
-      ],
-      "assignment": "os-formative",
-      "questions": [],
-      "assets": [],
-      "prerequisites": []
-    },
-    "blocks": [
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-retrieval-title",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Taught criteria",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-retrieval-crit",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-3-retrieval:crit",
-          "sourceQuestionId": "crit",
-          "prompt": "List the language-choice criteria taught this week.",
-          "placeholder": "Suitability, ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-retrieval-q1",
+        "id": "week-5-lesson-2-ex-03-timing",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
         "type": "single-choice",
         "content": {
           "formative": true,
-          "questionId": "week-5-lesson-3-retrieval:q1",
-          "sourceQuestionId": "q1",
+          "questionId": "week-5-lesson-2-ex-03:timing",
+          "sourceQuestionId": "timing",
           "sourceType": "single",
-          "prompt": "Choosing a language only because you already know it is weak because:",
+          "prompt": "A gym membership app will use a paid SMS reminder service charged monthly. That SMS fee is best described as:",
           "options": [
             {
               "id": "a",
-              "label": "Skills never matter"
+              "label": "A one-off set-up cost only"
             },
             {
               "id": "b",
-              "label": "Staffing is one criterion, but policy, security, cost and reliability also matter for Oakfield"
+              "label": "A recurring cost while the service is used"
             },
             {
               "id": "c",
-              "label": "Clients always want a new language"
+              "label": "Not a cost because learners pay membership"
             },
             {
               "id": "d",
-              "label": "Microsoft 365 forbids all code"
+              "label": "A milestone"
             }
           ],
           "correctOptionId": "b",
           "feedback": {
-            "correct": "Staffing is relevant, not the only factor. Record the trade-off.",
-            "incorrect": "Use the full taught list."
+            "correct": "Monthly charges continue after launch. That is recurring, not a single purchase.",
+            "incorrect": "Ask whether the spend stops after set-up or keeps repeating."
           }
         }
       }
@@ -18730,22 +19019,21 @@
   {
     "schema": "lp.content.activity",
     "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-3-main",
+    "id": "week-5-lesson-2-ex-04",
     "version": "0.1.0",
     "metadata": {
-      "title": "Recommend a stack",
+      "title": "Match cost ideas to examples",
       "status": "available",
-      "summary": "Recommend a language or stack for Oakfield against the taught criteria.",
+      "summary": "Connect cost types to concrete items.",
       "href": null,
       "difficulty": "standard",
-      "familyId": "week-5-lesson-3-main",
-      "estimatedDurationMinutes": 30,
-      "activityType": "Independent application",
+      "familyId": "week-5-lesson-2-ex-04",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Matching",
       "topics": [
-        "Language",
-        "Stack"
+        "Cost"
       ],
-      "detail": "Recommend a language or stack for Oakfield against the taught criteria."
+      "detail": "Connect cost types to concrete items."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18763,70 +19051,53 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-main-title",
+        "id": "week-5-lesson-2-ex-04-cost-ex",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
-        "type": "heading",
-        "content": {
-          "text": "Language-choice record",
-          "level": 2
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-main-intro",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "paragraph",
-        "content": {
-          "text": "A defensible recommendation for Oakfield might be web tech on the existing Microsoft 365 / cloud tools the staff already have, or a small web app the centre can host. Justify it; do not just name a favourite language."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-main-rec",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
+        "type": "drag-drop",
         "content": {
           "formative": true,
-          "questionId": "week-5-lesson-3-main:rec",
-          "sourceQuestionId": "rec",
-          "prompt": "Recommend a language or stack. Score it against the taught criteria.",
-          "placeholder": "Recommendation: ... Suitability: ... Policy: ... Security: ... Staffing: ... Cost: ... Reliability: ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-main-reject",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "short-response",
-        "content": {
-          "formative": true,
-          "questionId": "week-5-lesson-3-main:reject",
-          "sourceQuestionId": "reject",
-          "prompt": "Name one option you would not choose and why.",
-          "placeholder": "I would not choose ... because ..."
-        }
-      },
-      {
-        "schema": "lp.content.block",
-        "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-main-teacher",
-        "version": "0.1.0",
-        "metadata": {},
-        "relationships": {},
-        "type": "teacher-note",
-        "content": {
-          "text": "SoL Week 5 independent: language-choice record covering suitability, policy, scalability, security, staffing, cost, reliability."
+          "questionId": "week-5-lesson-2-ex-04:cost-ex",
+          "sourceQuestionId": "cost-ex",
+          "prompt": "Match each cost idea to the best example for an event-booking project.",
+          "items": [
+            {
+              "id": "one",
+              "label": "One-off cost"
+            },
+            {
+              "id": "rec",
+              "label": "Recurring cost"
+            },
+            {
+              "id": "hidden",
+              "label": "Easy-to-miss cost"
+            }
+          ],
+          "targets": [
+            {
+              "id": "e-one",
+              "label": "Buying a domain name for the first year"
+            },
+            {
+              "id": "e-rec",
+              "label": "Monthly hosting while the site stays live"
+            },
+            {
+              "id": "e-hidden",
+              "label": "Staff time to train reception on the new process"
+            }
+          ],
+          "correct": {
+            "one": "e-one",
+            "rec": "e-rec",
+            "hidden": "e-hidden"
+          },
+          "feedback": {
+            "correct": "Domain purchase is typically up-front. Hosting repeats. Training time is real even when nobody invoices it.",
+            "incorrect": "Hidden costs are still costs."
+          }
         }
       }
     ]
@@ -18834,21 +19105,21 @@
   {
     "schema": "lp.content.activity",
     "schemaVersion": "0.1.0",
-    "id": "week-5-lesson-3-formative",
+    "id": "week-5-lesson-2-ex-05",
     "version": "0.1.0",
     "metadata": {
-      "title": "Progress check: one criterion",
+      "title": "Missing cost in a retailer plan",
       "status": "available",
-      "summary": "Name one language-choice criterion besides personal skill.",
+      "summary": "Find what the estimate forgot.",
       "href": null,
       "difficulty": "standard",
-      "familyId": "week-5-lesson-3-formative",
-      "estimatedDurationMinutes": 8,
-      "activityType": "Progress check",
+      "familyId": "week-5-lesson-2-ex-05",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
       "topics": [
-        "Language choice"
+        "Cost"
       ],
-      "detail": "Name one language-choice criterion besides personal skill."
+      "detail": "Find what the estimate forgot."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18866,30 +19137,993 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-formative-title",
+        "id": "week-5-lesson-2-ex-05-missing",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
-        "type": "heading",
+        "type": "single-choice",
         "content": {
-          "text": "Not just skill",
-          "level": 2
+          "formative": true,
+          "questionId": "week-5-lesson-2-ex-05:missing",
+          "sourceQuestionId": "missing",
+          "sourceType": "single",
+          "prompt": "A small online retailer’s estimate lists: developer days, hosting, and a payment provider fee. It says nothing else. What important cost is most clearly missing?",
+          "options": [
+            {
+              "id": "a",
+              "label": "A celebrity endorsement"
+            },
+            {
+              "id": "b",
+              "label": "Time for testing and fixing defects before launch"
+            },
+            {
+              "id": "c",
+              "label": "The price of tea in the staff room"
+            },
+            {
+              "id": "d",
+              "label": "International shipping for a product they do not sell"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Testing and defect fixing consume people time and often get left out of thin estimates.",
+            "incorrect": "Look for work that must happen before customers pay."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-06",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Choose within a limited budget",
+      "status": "available",
+      "summary": "Trade features against cost.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-06",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Trade-offs"
+      ],
+      "detail": "Trade features against cost."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-2-ex-06-budget",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-2-ex-06:budget",
+          "sourceQuestionId": "budget",
+          "sourceType": "single",
+          "prompt": "A community centre has £2,000 for a first booking increment. Which option best fits a limited first increment?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Build a custom native app for six phone brands before any web form exists"
+            },
+            {
+              "id": "b",
+              "label": "Use existing Microsoft 365 tools for a simple request form and review process, then cost a later phase"
+            },
+            {
+              "id": "c",
+              "label": "Hire a full marketing agency and delay any booking work"
+            },
+            {
+              "id": "d",
+              "label": "Buy biometric turnstiles for every room"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "A first increment should stay inside budget and reuse existing tools where they already fit. Multi-platform apps and turnstiles blow a small budget.",
+            "incorrect": "Prefer a scoped early increment over an all-features launch."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-07",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Strong or weak cost assumption?",
+      "status": "available",
+      "summary": "Assumptions must be stated and checkable.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-07",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
+      "topics": [
+        "Assumptions"
+      ],
+      "detail": "Assumptions must be stated and checkable."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-2-ex-07-assume",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-2-ex-07:assume",
+          "sourceQuestionId": "assume",
+          "prompt": "Classify each statement for a college booking estimate.",
+          "categories": [
+            {
+              "id": "strong",
+              "label": "Useful stated assumption"
+            },
+            {
+              "id": "weak",
+              "label": "Weak / vague assumption"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "We assume one developer at four days per week for three weeks",
+              "correctCategoryId": "strong"
+            },
+            {
+              "id": "item-2",
+              "label": "We assume it will somehow be cheap",
+              "correctCategoryId": "weak"
+            },
+            {
+              "id": "item-3",
+              "label": "We assume Microsoft 365 licences are already paid by the college",
+              "correctCategoryId": "strong"
+            },
+            {
+              "id": "item-4",
+              "label": "We assume nobody will need training",
+              "correctCategoryId": "weak"
+            },
+            {
+              "id": "item-5",
+              "label": "We assume accessibility testing needs two paid days",
+              "correctCategoryId": "strong"
+            }
+          ],
+          "feedback": {
+            "correct": "Useful assumptions name roles, days, licences or test effort. Vague hope is not an assumption you can manage.",
+            "incorrect": "If the assumption is wrong, the plan should change."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-08",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Draft a simple costed outline",
+      "status": "available",
+      "summary": "People, other costs and assumptions.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-08",
+      "estimatedDurationMinutes": 4,
+      "activityType": "Written response",
+      "topics": [
+        "Cost"
+      ],
+      "detail": "People, other costs and assumptions."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-2-ex-08-scenario",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "A community organisation wants a first online room-request form. Budget is tight. Round numbers are fine."
         }
       },
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-lesson-3-formative-c",
+        "id": "week-5-lesson-2-ex-08-cost",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
         "type": "short-response",
         "content": {
           "formative": true,
-          "questionId": "week-5-lesson-3-formative:c",
-          "sourceQuestionId": "c",
-          "prompt": "Name one criterion besides 'I already know it' and apply it to Oakfield.",
-          "placeholder": "Criterion: ... Applied: ..."
+          "questionId": "week-5-lesson-2-ex-08:cost",
+          "sourceQuestionId": "cost",
+          "prompt": "Draft a simple costed outline for increment 1. List people time, other costs, and two assumptions.",
+          "placeholder": "People: ... Other: ... Assumptions: 1. ... 2. ...",
+          "guidance": "Use days/roles, not fake precision. Include at least one non-people cost or training item.",
+          "minChars": 80
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-2-ex-09",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Explain a resource trade-off",
+      "status": "available",
+      "summary": "Say what you give up and why.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-2-ex-09",
+      "estimatedDurationMinutes": 4,
+      "activityType": "Written response",
+      "topics": [
+        "Trade-offs"
+      ],
+      "detail": "Say what you give up and why."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-2-ex-09-trade",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-2-ex-09:trade",
+          "sourceQuestionId": "trade",
+          "prompt": "A gym app team can afford either a second developer for two weeks or paid accessibility testing — not both this month. Which would you choose for a first member-join increment, and what risk does the other choice leave?",
+          "placeholder": "I would choose... because... The risk of not choosing the other is...",
+          "guidance": "There is no single right answer if your reasons are tied to users, schedule or quality.",
+          "minChars": 70
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-01",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Is there one best language?",
+      "status": "available",
+      "summary": "Choice depends on context.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-01",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Language choice"
+      ],
+      "detail": "Choice depends on context."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-01-best",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-01:best",
+          "sourceQuestionId": "best",
+          "sourceType": "single",
+          "prompt": "Which statement is most accurate for choosing a programming language on a client project?",
+          "options": [
+            {
+              "id": "a",
+              "label": "There is one best language for every organisation"
+            },
+            {
+              "id": "b",
+              "label": "The best choice depends on requirements, constraints and context"
+            },
+            {
+              "id": "c",
+              "label": "The newest language is always safest"
+            },
+            {
+              "id": "d",
+              "label": "Only languages used in gaming are professional"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Suitability is judged against the project’s needs and limits, not a global ranking.",
+            "incorrect": "Avoid treating any language as universally best."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-02",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Taught criteria or not?",
+      "status": "available",
+      "summary": "Separate decision criteria from distractions.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-02",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
+      "topics": [
+        "Language choice"
+      ],
+      "detail": "Separate decision criteria from distractions."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-02-criteria",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-02:criteria",
+          "sourceQuestionId": "criteria",
+          "prompt": "For a language/stack decision, classify each point.",
+          "categories": [
+            {
+              "id": "criterion",
+              "label": "Taught decision criterion"
+            },
+            {
+              "id": "not",
+              "label": "Not a reliable criterion"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "Security and how credentials are handled",
+              "correctCategoryId": "criterion"
+            },
+            {
+              "id": "item-2",
+              "label": "Whether the logo uses a favourite colour",
+              "correctCategoryId": "not"
+            },
+            {
+              "id": "item-3",
+              "label": "Existing staff skills and training time",
+              "correctCategoryId": "criterion"
+            },
+            {
+              "id": "item-4",
+              "label": "Licensing and ongoing cost",
+              "correctCategoryId": "criterion"
+            },
+            {
+              "id": "item-5",
+              "label": "A social-media post saying the language is 'dead'",
+              "correctCategoryId": "not"
+            }
+          ],
+          "feedback": {
+            "correct": "Criteria include suitability, policy, scalability, security, staffing, cost and reliability.",
+            "incorrect": "Fashion and branding preferences are not enough on their own."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-03",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Staffing is one factor, not the only one",
+      "status": "available",
+      "summary": "Balance skill with other criteria.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-03",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Staffing"
+      ],
+      "detail": "Balance skill with other criteria."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-03-staff",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-03:staff",
+          "sourceQuestionId": "staff",
+          "sourceType": "single",
+          "prompt": "A teammate wants language X only because they already know it. Why is that incomplete as a recommendation?",
+          "options": [
+            {
+              "id": "a",
+              "label": "Skills never matter on projects"
+            },
+            {
+              "id": "b",
+              "label": "Staffing matters, but policy, security, cost and reliability must also be weighed for the client"
+            },
+            {
+              "id": "c",
+              "label": "Clients always ban languages staff know"
+            },
+            {
+              "id": "d",
+              "label": "Only brand-new languages are allowed"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Known skills reduce training cost, but they do not cancel security, policy or total cost.",
+            "incorrect": "Record the trade-off; do not stop at personal familiarity."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-04",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Match criteria to questions",
+      "status": "available",
+      "summary": "Each criterion asks something concrete.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-04",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Matching",
+      "topics": [
+        "Language choice"
+      ],
+      "detail": "Each criterion asks something concrete."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-04-crit-q",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "drag-drop",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-04:crit-q",
+          "sourceQuestionId": "crit-q",
+          "prompt": "Match each criterion to a useful question for a gym membership app.",
+          "items": [
+            {
+              "id": "sec",
+              "label": "Security"
+            },
+            {
+              "id": "cost",
+              "label": "Cost"
+            },
+            {
+              "id": "rel",
+              "label": "Reliability"
+            }
+          ],
+          "targets": [
+            {
+              "id": "q-sec",
+              "label": "How will member passwords and payment data be protected?"
+            },
+            {
+              "id": "q-cost",
+              "label": "What licences, hosting and training will we pay for in year one?"
+            },
+            {
+              "id": "q-rel",
+              "label": "What happens if the booking service is down on Monday evening peak?"
+            }
+          ],
+          "correct": {
+            "sec": "q-sec",
+            "cost": "q-cost",
+            "rel": "q-rel"
+          },
+          "feedback": {
+            "correct": "Good criteria turn into questions the team can evidence.",
+            "incorrect": "Do not leave criteria as empty labels."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-05",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Weak stack choice for a tournament site",
+      "status": "available",
+      "summary": "Spot the unjustified choice.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-05",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Stack"
+      ],
+      "detail": "Spot the unjustified choice."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-05-weak-stack",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-05:weak-stack",
+          "sourceQuestionId": "weak-stack",
+          "sourceType": "single",
+          "prompt": "A gaming tournament platform must take entries and show live brackets. Which recommendation is weakest?",
+          "options": [
+            {
+              "id": "a",
+              "label": "A web stack the team can host and monitor, with clear backup for peak load"
+            },
+            {
+              "id": "b",
+              "label": "An experimental language nobody on the team has used, chosen because a blog called it 'cool'"
+            },
+            {
+              "id": "c",
+              "label": "A managed cloud service with documented support hours during events"
+            },
+            {
+              "id": "d",
+              "label": "A stack already used for similar ticketing/bracket tools, with a training plan"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "Novelty alone is a weak reason when reliability at peak entry time matters.",
+            "incorrect": "Ask for evidence against the taught criteria."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-06",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Better fit for a travel app",
+      "status": "available",
+      "summary": "Apply criteria to a short scenario.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-06",
+      "estimatedDurationMinutes": 2,
+      "activityType": "Single choice",
+      "topics": [
+        "Suitability"
+      ],
+      "detail": "Apply criteria to a short scenario."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-06-travel",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "single-choice",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-06:travel",
+          "sourceQuestionId": "travel",
+          "sourceType": "single",
+          "prompt": "A transport app needs offline-tolerant timetable views for field staff with limited connectivity. Which choice is most defensible for a first increment?",
+          "options": [
+            {
+              "id": "a",
+              "label": "A heavy desktop-only install that needs a permanent high-speed link"
+            },
+            {
+              "id": "b",
+              "label": "A progressive web or mobile approach that caches timetable data and degrades gracefully offline"
+            },
+            {
+              "id": "c",
+              "label": "A blockchain ledger for every bus stop visit"
+            },
+            {
+              "id": "d",
+              "label": "A print-only PDF with no digital update path"
+            }
+          ],
+          "correctOptionId": "b",
+          "feedback": {
+            "correct": "The constraint is unreliable connectivity. Caching and graceful offline behaviour match that need better than always-online desktop or unrelated tech.",
+            "incorrect": "Match the stack to the operating constraint."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-07",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Suitable or unsuitable for Oakfield?",
+      "status": "available",
+      "summary": "Reuse a familiar constraint set lightly.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-07",
+      "estimatedDurationMinutes": 3,
+      "activityType": "Classification",
+      "topics": [
+        "Compatibility"
+      ],
+      "detail": "Reuse a familiar constraint set lightly."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-07-oak-fit",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "classification",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-07:oak-fit",
+          "sourceQuestionId": "oak-fit",
+          "prompt": "Oakfield staff already use Microsoft 365 and have a limited budget. Classify each option for a first booking increment.",
+          "categories": [
+            {
+              "id": "suitable",
+              "label": "Worth serious evaluation now"
+            },
+            {
+              "id": "unsuitable",
+              "label": "Poor fit for increment 1"
+            }
+          ],
+          "items": [
+            {
+              "id": "item-1",
+              "label": "A simple web form on existing Microsoft 365 tools",
+              "correctCategoryId": "suitable"
+            },
+            {
+              "id": "item-2",
+              "label": "A full rewrite of Microsoft 365 itself",
+              "correctCategoryId": "unsuitable"
+            },
+            {
+              "id": "item-3",
+              "label": "A small hosted web app the centre can afford to run",
+              "correctCategoryId": "suitable"
+            },
+            {
+              "id": "item-4",
+              "label": "A bespoke language runtime that only one student knows",
+              "correctCategoryId": "unsuitable"
+            },
+            {
+              "id": "item-5",
+              "label": "Keeping telephone booking while adding an online request route",
+              "correctCategoryId": "suitable"
+            }
+          ],
+          "feedback": {
+            "correct": "Suitable options respect budget, existing tools and continuity. Unsuitable options ignore staffing and cost constraints.",
+            "incorrect": "Familiar tools can still be evaluated; they are not automatic winners without criteria."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-08",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Reject one option with reasons",
+      "status": "available",
+      "summary": "Show you can say no with criteria.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-08",
+      "estimatedDurationMinutes": 4,
+      "activityType": "Written response",
+      "topics": [
+        "Justification"
+      ],
+      "detail": "Show you can say no with criteria."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-08-scenario",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "A streaming start-up wants a catalogue and watchlist. Someone proposes a rare experimental stack with no security track record and no staff experience."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-08-reject",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-08:reject",
+          "sourceQuestionId": "reject",
+          "prompt": "Explain why you would not choose that stack for increment 1. Refer to at least two taught criteria.",
+          "placeholder": "I would not choose it because... Criteria: ...",
+          "guidance": "Mention security/reliability and staffing or cost. Do not invent FR/NFR lists from Week 4.",
+          "minChars": 70
+        }
+      }
+    ]
+  },
+  {
+    "schema": "lp.content.activity",
+    "schemaVersion": "0.1.0",
+    "id": "week-5-lesson-3-ex-09",
+    "version": "0.1.0",
+    "metadata": {
+      "title": "Justify a stack for a retailer",
+      "status": "available",
+      "summary": "Score against criteria, not preference.",
+      "href": null,
+      "difficulty": "standard",
+      "familyId": "week-5-lesson-3-ex-09",
+      "estimatedDurationMinutes": 4,
+      "activityType": "Written response",
+      "topics": [
+        "Justification"
+      ],
+      "detail": "Score against criteria, not preference."
+    },
+    "relationships": {
+      "learningOutcomes": [
+        "lo1",
+        "w5-schedule",
+        "w5-resources-cost",
+        "w5-language"
+      ],
+      "assignment": "os-formative",
+      "questions": [],
+      "assets": [],
+      "prerequisites": []
+    },
+    "blocks": [
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
+        "id": "week-5-lesson-3-ex-09-justify",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "short-response",
+        "content": {
+          "formative": true,
+          "questionId": "week-5-lesson-3-ex-09:justify",
+          "sourceQuestionId": "justify",
+          "prompt": "Recommend a language or stack for a small online retailer’s first checkout increment. Score it briefly against suitability, staffing, cost, security and reliability. Name one option you reject and why.",
+          "placeholder": "Recommendation: ... Suitability: ... Staffing: ... Cost: ... Security: ... Reliability: ... Reject: ... because...",
+          "guidance": "Keep scores short. Show the trade-off; do not claim a universal best language.",
+          "minChars": 100
         }
       }
     ]
@@ -18902,7 +20136,7 @@
     "metadata": {
       "title": "Homework: public project overruns",
       "status": "available",
-      "summary": "Compare two public project overruns in the news and identify whether the issue looks like scope, schedule, resource or cost.",
+      "summary": "Compare two public digital overruns and link them to schedule, cost, resource or assumption problems.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-5-homework-overruns",
@@ -18912,7 +20146,7 @@
         "Planning",
         "Public projects"
       ],
-      "detail": "Compare two public project overruns in the news and identify whether the issue looks like scope, schedule, resource or cost."
+      "detail": "Compare two public digital overruns and link them to schedule, cost, resource or assumption problems."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18943,6 +20177,18 @@
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
+        "id": "week-5-homework-overruns-intro",
+        "version": "0.1.0",
+        "metadata": {},
+        "relationships": {},
+        "type": "paragraph",
+        "content": {
+          "text": "Find two well-known public digital projects that ran late, over budget, or both. You only need short, reliable notes — not a long essay."
+        }
+      },
+      {
+        "schema": "lp.content.block",
+        "schemaVersion": "0.1.0",
         "id": "week-5-homework-overruns-two",
         "version": "0.1.0",
         "metadata": {},
@@ -18952,24 +20198,28 @@
           "formative": true,
           "questionId": "week-5-homework-overruns:two",
           "sourceQuestionId": "two",
-          "prompt": "Name two public digital overruns (or well-known delayed public systems) and the main issue type for each.",
-          "placeholder": "1. ... Issue: scope/schedule/resource/cost. 2. ..."
+          "prompt": "For each project, name it and say whether the main issue looks most like schedule, cost, resources, or unrealistic assumptions (you may combine two).",
+          "placeholder": "1. Project: ... Main issue: ... 2. Project: ... Main issue: ...",
+          "guidance": "Use reputable news or official reports. One sentence of evidence per project is enough.",
+          "minChars": 50
         }
       },
       {
         "schema": "lp.content.block",
         "schemaVersion": "0.1.0",
-        "id": "week-5-homework-overruns-oak",
+        "id": "week-5-homework-overruns-warn",
         "version": "0.1.0",
         "metadata": {},
         "relationships": {},
         "type": "short-response",
         "content": {
           "formative": true,
-          "questionId": "week-5-homework-overruns:oak",
-          "sourceQuestionId": "oak",
-          "prompt": "What warning does this give for Oakfield's increment 1?",
-          "placeholder": "Warning: ..."
+          "questionId": "week-5-homework-overruns:warn",
+          "sourceQuestionId": "warn",
+          "prompt": "What warning does this give for a first software increment (Oakfield or another small service)? Link your warning to schedule, cost or resources.",
+          "placeholder": "Warning: ... Because...",
+          "guidance": "Focus on planning discipline, not blaming a programming language.",
+          "minChars": 40
         }
       }
     ]
