@@ -19,12 +19,12 @@ from week5_curriculum import WEEK_5
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.12"
+PACKAGE_VERSION = "0.4.29"
 
 # Teaching weeks marked available in the bundled package.
 # Extend this set when a new week is posted for learners; Admin visibility
 # publishes remain the live override path.
-POSTED_TEACHING_WEEKS = frozenset({1, 2})
+POSTED_TEACHING_WEEKS = frozenset({1, 2, 5})
 CLIENT = "Oakfield Adult Skills Hub"
 OAKFIELD_SCENARIO = {
     "title": "Oakfield Adult Skills Hub: Client Scenario",
