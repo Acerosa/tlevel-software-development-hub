@@ -19,7 +19,7 @@ from week5_curriculum import WEEK_5
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.11"
+PACKAGE_VERSION = "0.4.12"
 
 # Teaching weeks marked available in the bundled package.
 # Extend this set when a new week is posted for learners; Admin visibility

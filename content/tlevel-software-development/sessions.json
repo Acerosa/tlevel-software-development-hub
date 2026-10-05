@@ -471,7 +471,7 @@
     "metadata": {
       "title": "Lesson 1: Milestone plan",
       "kind": "session",
-      "summary": "Distinguish tasks, subtasks and milestones; sequence work with dependencies, testing and client review.",
+      "summary": "Distinguish tasks, subtasks and milestones; sequence work with dependencies, testing and client review; produce a small schedule.",
       "sortOrder": 1,
       "defaultOpen": true,
       "status": "available"
@@ -499,7 +499,7 @@
     "metadata": {
       "title": "Lesson 2: Resources and a costed outline",
       "kind": "session",
-      "summary": "Identify people, tools and services; estimate costs with clear assumptions and trade-offs.",
+      "summary": "Identify people, tools and services; produce a costed outline against a budget; justify resource trade-offs.",
       "sortOrder": 2,
       "defaultOpen": false,
       "status": "available"
@@ -527,7 +527,7 @@
     "metadata": {
       "title": "Lesson 3: Language and stack choice",
       "kind": "session",
-      "summary": "Recommend a language or stack against suitability, policy, security, staffing, cost and reliability — not personal favourites alone.",
+      "summary": "Compare plausible stacks against taught criteria and justify a recommendation — not personal favourites alone.",
       "sortOrder": 3,
       "defaultOpen": false,
       "status": "available"
