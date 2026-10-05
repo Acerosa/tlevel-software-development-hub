@@ -65,7 +65,7 @@ describe("T Level package hydration", () => {
     expect(weeks[1].weekCommencing).toBe("2026-09-07");
     expect(weeks[21].openable).toBe(false);
     expect(weeks[21].status).toBe("planned");
-    expect(weeks.filter((week) => week.openable)).toHaveLength(2);
+    expect(weeks.filter((week) => week.openable)).toHaveLength(3);
     expect(isWeekAvailable("available")).toBe(true);
     expect(isWeekAvailable("planned")).toBe(false);
     expect(isWeekAvailable("archived")).toBe(false);
@@ -82,6 +82,9 @@ describe("T Level package hydration", () => {
     expect(week1?.sessions[0].activities.length).toBeLessThanOrEqual(30);
     expect(week1?.week.status).toBe("available");
     expect(weekPageFromPackage(pkg, "week-2")?.week.status).toBe("available");
+    expect(weekPageFromPackage(pkg, "week-5")?.week.status).toBe("available");
+    expect(weekPageFromPackage(pkg, "week-3")?.week.status).toBe("planned");
+    expect(weekPageFromPackage(pkg, "week-4")?.week.status).toBe("planned");
     const week2Page = weekPageFromPackage(pkg, "week-2");
     expect(week2Page?.sessions.every((session) => session.accessible === true)).toBe(true);
     expect(week2Page?.sessions.flatMap((session) => session.activities).length).toBe(55);
