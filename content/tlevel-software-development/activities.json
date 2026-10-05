@@ -18139,8 +18139,8 @@
           ],
           "correctOptionId": "b",
           "feedback": {
-            "correct": "Milestones mark verifiable progress. Routine meetings and messages are not milestones by themselves.",
-            "incorrect": "Ask whether someone could check that a defined piece of work is done."
+            "correct": "Milestones mark progress you can check. Routine meetings and messages are not milestones by themselves.",
+            "incorrect": "A milestone should be something you can check is finished, not just a meeting or an email."
           }
         }
       }
@@ -18207,13 +18207,13 @@
             },
             {
               "id": "d",
-              "label": "Replace the college’s public website branding in a separate redesign project"
+              "label": "Replace the college's public website branding in a separate redesign project"
             }
           ],
           "correctOptionId": "b",
           "feedback": {
             "correct": "Validation is work inside building the form. Region-wide publish, board reports and branding projects sit outside that task.",
-            "incorrect": "Ask which item helps finish the named task rather than a different project."
+            "incorrect": "Choose the item that helps finish building the form, not a different project."
           }
         }
       }
@@ -18307,7 +18307,7 @@
           ],
           "feedback": {
             "correct": "Tasks are chunks of work. Subtasks are steps inside a task. Milestones are checkable completion points.",
-            "incorrect": "An email draft is usually a subtask; a signed-off trial-ready flow is a milestone."
+            "incorrect": "An email draft is usually a subtask. A signed-off trial-ready flow is a milestone."
           }
         }
       }
@@ -18452,7 +18452,7 @@
             },
             {
               "id": "b",
-              "label": "Choosing a footer colour must wait until the domain name is renewed in five years’ time"
+              "label": "Choosing a footer colour must wait until the domain name is renewed in five years' time"
             },
             {
               "id": "c",
@@ -18466,7 +18466,7 @@
           "correctOptionId": "a",
           "feedback": {
             "correct": "The FAQ needs accurate payment behaviour. The other options invent false constraints or confuse preference with dependency.",
-            "incorrect": "Ask what information or output one task truly needs from another."
+            "incorrect": "Look for what information or output one task truly needs from another."
           }
         }
       }
@@ -18480,7 +18480,7 @@
     "metadata": {
       "title": "Sequential or parallel?",
       "status": "available",
-      "summary": "Judge what can safely overlap without telegraphing words.",
+      "summary": "Judge what can safely overlap.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-5-lesson-1-ex-06",
@@ -18489,7 +18489,7 @@
       "topics": [
         "Parallel work"
       ],
-      "detail": "Judge what can safely overlap without telegraphing words."
+      "detail": "Judge what can safely overlap."
     },
     "relationships": {
       "learningOutcomes": [
@@ -18530,32 +18530,32 @@
           "items": [
             {
               "id": "item-1",
-              "label": "Basket field names are still being agreed; the basket API that will use those names is about to be coded",
+              "label": "Basket field names are still being agreed. The basket API that will use those names is about to be coded.",
               "correctCategoryId": "sequential"
             },
             {
               "id": "item-2",
-              "label": "A writer is drafting help-centre articles; developers are building the basket screen; neither waits on the other’s unfinished file",
+              "label": "A writer is drafting help-centre articles. Developers are building the basket screen. Neither waits on the other's unfinished file.",
               "correctCategoryId": "parallel"
             },
             {
               "id": "item-3",
-              "label": "Payment sandbox tests are incomplete; the team wants to take live card charges from customers",
+              "label": "Payment sandbox tests are incomplete. The team wants to take live card charges from customers.",
               "correctCategoryId": "sequential"
             },
             {
               "id": "item-4",
-              "label": "Product photos are being shot; a different developer is laying out the product list page that will display those photos later",
+              "label": "Product photos are being shot. A different developer is laying out the product list page that will display those photos later.",
               "correctCategoryId": "parallel"
             },
             {
               "id": "item-5",
-              "label": "The go-live checklist is not yet agreed; the team is ready to switch on real card charges",
+              "label": "The go-live checklist is not yet agreed. The team is ready to switch on real card charges.",
               "correctCategoryId": "sequential"
             }
           ],
           "feedback": {
-            "correct": "If one unfinished output is an input to the other, keep them sequential. Independent owners and no shared unfinished input can run in parallel.",
+            "correct": "If one unfinished output is an input to the other, keep them sequential. Independent owners with no shared unfinished input can run in parallel.",
             "incorrect": "Live payments should not start while tests or go-live checks are still open."
           }
         }
@@ -18604,7 +18604,7 @@
         "relationships": {},
         "type": "paragraph",
         "content": {
-          "text": "A college room-booking pilot plan currently lists only: design screens → build screens → launch to staff."
+          "text": "A college room-booking pilot plan currently lists only: design screens, then build screens, then launch to staff."
         }
       },
       {
@@ -18637,9 +18637,9 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-07:fix",
           "sourceQuestionId": "fix",
-          "prompt": "Rewrite the plan as four to six ordered checkpoints that fix those weaknesses. Briefly justify one ordering decision.",
+          "prompt": "Rewrite the plan as four to six ordered checkpoints that fix those weaknesses. Briefly explain one ordering decision.",
           "placeholder": "1. ...\n2. ...\n3. ...\n4. ...\n(5. ...)\n(6. ...)\nJustification: ...",
-          "guidance": "Include testing and a staff/client review before wide launch. Keep it short.",
+          "guidance": "Include testing and a staff or client review before wide launch. Keep it short.",
           "minChars": 80
         }
       }
@@ -18688,7 +18688,7 @@
         "relationships": {},
         "type": "paragraph",
         "content": {
-          "text": "Riverbank Arts wants a first pilot of an online event-booking system for members (request a place; staff confirm). Increment 1 is small. Use the task list below — do not invent a huge programme."
+          "text": "Riverbank Arts wants a small first pilot of an online event-booking system. Members request a place; staff confirm it. Use the task list below. Do not invent a huge programme."
         }
       },
       {
@@ -18715,7 +18715,7 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-08:order",
           "sourceQuestionId": "order",
-          "prompt": "TASK ORDER — Number the work in a sensible sequence (you may group closely related steps if you explain why).",
+          "prompt": "TASK ORDER\nPut the tasks in a sensible order.\nYou may group closely related steps if you explain why.",
           "placeholder": "1. ...\n2. ...\n3. ...\n4. ...\n5. ...\n6. ...\n7. ...\n8. ...\n9. ...\n10. ...\n11. ...",
           "guidance": "Needs and designs usually come before build. Database before features that store data. Test and fix before wide release. Client review before or with release of a pilot.",
           "minChars": 120
@@ -18733,7 +18733,7 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-08:deps",
           "sourceQuestionId": "deps",
-          "prompt": "DEPENDENCIES — Name two dependencies. For each, say what depends on what and why.",
+          "prompt": "DEPENDENCIES\nName two dependencies.\nFor each, say what depends on what and why.",
           "placeholder": "1. ___ depends on ___ because...\n2. ___ depends on ___ because...",
           "guidance": "Strong answers name a needed output (for example schema, working sign-in, or test results), not just 'it feels better'.",
           "minChars": 80
@@ -18751,7 +18751,7 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-08:parallel",
           "sourceQuestionId": "parallel",
-          "prompt": "PARALLEL WORK — Name at least two activities that could happen in the same period. Say why they do not block each other.",
+          "prompt": "PARALLEL WORK\nName at least two activities that could happen at the same time.\nSay why they do not block each other.",
           "placeholder": "___ and ___ could happen together because...",
           "guidance": "Pick work with different owners or unfinished inputs that are not shared.",
           "minChars": 50
@@ -18769,7 +18769,7 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-08:miles",
           "sourceQuestionId": "miles",
-          "prompt": "MILESTONES — Add three checkable milestones (not day-to-day tasks). Include testing or client review somewhere sensible.",
+          "prompt": "MILESTONES\nAdd three checkable milestones (not day-to-day tasks).\nInclude testing or client review somewhere sensible.",
           "placeholder": "Milestone 1: ...\nMilestone 2: ...\nMilestone 3: ...",
           "guidance": "Examples of shape: designs agreed; core booking flow passes tests; client signs off pilot.",
           "minChars": 60
@@ -18787,7 +18787,7 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-08:slip",
           "sourceQuestionId": "slip",
-          "prompt": "IF SOMETHING SLIPS — Choose one important task. What happens to later work and to the pilot date if it slips by one week?",
+          "prompt": "IF SOMETHING SLIPS\nChoose one important task that could be delayed by one week.\nWhat happens to later work and to the pilot date?",
           "placeholder": "If ___ slips by one week, then...",
           "guidance": "Name at least one knocked-on task or milestone, not only 'the project is late'.",
           "minChars": 50
@@ -18805,9 +18805,9 @@
           "formative": true,
           "questionId": "week-5-lesson-1-ex-08:why",
           "sourceQuestionId": "why",
-          "prompt": "JUSTIFICATION — Explain two scheduling decisions you made.",
+          "prompt": "JUSTIFICATION\nExplain two scheduling decisions you made.",
           "placeholder": "Decision 1: ...\nDecision 2: ...",
-          "guidance": "Tie each decision to a dependency, parallel choice, or where testing/review sits.",
+          "guidance": "Tie each decision to a dependency, parallel choice, or where testing and review sit.",
           "minChars": 70
         }
       }
@@ -18858,7 +18858,7 @@
           "questionId": "week-5-lesson-1-ex-09:slip-j",
           "sourceQuestionId": "slip-j",
           "sourceType": "single",
-          "prompt": "Interface designs for the Riverbank pilot slip by one week. Build was due to start next Monday. Which response is most defensible for a small first increment?",
+          "prompt": "Interface designs for the Riverbank pilot slip by one week. Build was due to start next Monday. Which response is best for a small first increment?",
           "options": [
             {
               "id": "a",
@@ -18880,7 +18880,7 @@
           "correctOptionId": "b",
           "feedback": {
             "correct": "A slip needs an honest plan change: protect checking quality and agree date or scope with the client. Cutting all testing or coding blind increases risk.",
-            "incorrect": "Prefer transparent replanning over silent quality cuts."
+            "incorrect": "Prefer an honest plan change over cutting all testing or coding without designs."
           }
         }
       }
@@ -18939,7 +18939,7 @@
             },
             {
               "id": "b",
-              "label": "The colour of the centre’s front door, which marketing already chose last year"
+              "label": "The colour of the centre's front door, which marketing already chose last year"
             },
             {
               "id": "c",
@@ -18953,7 +18953,7 @@
           "correctOptionId": "a",
           "feedback": {
             "correct": "People time allocated to the project is a core resource. Door colour, vague hopes and out-of-scope geography are not what you cost here.",
-            "incorrect": "Ask what the project uses up: people, kit, licences, services."
+            "incorrect": "Look for what the project uses up: people, kit, licences or services."
           }
         }
       }
@@ -19015,7 +19015,7 @@
             },
             {
               "id": "software",
-              "label": "Software / licences"
+              "label": "Software or licences"
             },
             {
               "id": "service",
@@ -19050,7 +19050,7 @@
             }
           ],
           "feedback": {
-            "correct": "People do the work. Hardware is physical kit. Software/licences are tools you run. Services are bought capability such as APIs.",
+            "correct": "People do the work. Hardware is physical kit. Software or licences are tools you run. Services are bought capability such as APIs.",
             "incorrect": "Do not put every cost under 'software'."
           }
         }
@@ -19123,8 +19123,8 @@
           ],
           "correctOptionId": "b",
           "feedback": {
-            "correct": "Monthly usage invoices continue after launch. Membership fees paid by customers do not cancel the centre’s SMS bill.",
-            "incorrect": "Ask whether the spend stops after set-up or keeps appearing while the feature runs."
+            "correct": "Monthly usage invoices continue after launch. Membership fees paid by customers do not cancel the centre's SMS bill.",
+            "incorrect": "Check whether the spend stops after set-up or keeps appearing while the feature runs."
           }
         }
       }
@@ -19261,7 +19261,7 @@
           "questionId": "week-5-lesson-2-ex-05:missing",
           "sourceQuestionId": "missing",
           "sourceType": "single",
-          "prompt": "A small online retailer’s increment-1 estimate lists developer days, hosting, and the payment-provider fee. Nothing else. Which omission is most serious for a first launch?",
+          "prompt": "A small online retailer's increment-1 estimate lists developer days, hosting, and the payment-provider fee. Nothing else. Which omission is most serious for a first launch?",
           "options": [
             {
               "id": "a",
@@ -19297,7 +19297,7 @@
     "metadata": {
       "title": "Budget pressure on a first increment",
       "status": "available",
-      "summary": "Choose the more defensible cut when money is tight.",
+      "summary": "Choose the better cut when money is tight.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-5-lesson-2-ex-06",
@@ -19306,7 +19306,7 @@
       "topics": [
         "Trade-offs"
       ],
-      "detail": "Choose the more defensible cut when money is tight."
+      "detail": "Choose the better cut when money is tight."
     },
     "relationships": {
       "learningOutcomes": [
@@ -19414,7 +19414,7 @@
             },
             {
               "id": "weak",
-              "label": "Weak / vague assumption"
+              "label": "Weak or vague assumption"
             }
           ],
           "items": [
@@ -19495,7 +19495,7 @@
         "relationships": {},
         "type": "paragraph",
         "content": {
-          "text": "Greenfield Community Events wants a first online event-request form (staff still confirm places; no card payments in increment 1). Budget for increment 1 is £2,500. Teaching rates (not real market quotes): Developer £180/day; Designer £150/day; Tester £140/day; cloud hosting £35; domain £15; form/software licence £40."
+          "text": "Greenfield Community Events wants a first online event-request form. Staff still confirm places. There are no card payments in increment 1. Budget for increment 1 is £2,500. Teaching rates (not real market quotes): Developer £180/day; Designer £150/day; Tester £140/day; cloud hosting £35; domain £15; form or software licence £40."
         }
       },
       {
@@ -19507,7 +19507,7 @@
         "relationships": {},
         "type": "paragraph",
         "content": {
-          "text": "A colleague’s first draft request: 10 developer days, 5 designer days, 3 tester days, plus hosting, domain and licence. That draft is over budget. Produce a revised costed plan that fits £2,500 (or explain a client conversation if you believe it cannot)."
+          "text": "A colleague's first draft request: 10 developer days, 5 designer days, 3 tester days, plus hosting, domain and licence. That draft is over budget. Produce a revised costed plan that fits £2,500. If you think it cannot fit, say what you would tell the client."
         }
       },
       {
@@ -19522,7 +19522,7 @@
           "formative": true,
           "questionId": "week-5-lesson-2-ex-08:table",
           "sourceQuestionId": "table",
-          "prompt": "Complete a costed table for your revised plan. Show days/qty, unit cost and line total for people and other costs.",
+          "prompt": "Complete a costed table for your revised plan. Show days or quantity, unit cost and line total for people and other costs.",
           "placeholder": "Resource | Days or qty | Unit cost | Line total\nDeveloper | ... | £180 | ...\nDesigner | ... | £150 | ...\nTester | ... | £140 | ...\nHosting | ... | £35 | ...\nDomain | ... | £15 | ...\nLicence | ... | £40 | ...\nTOTAL: ...\nBUDGET: £2,500\nUNDER or OVER by: ...",
           "guidance": "Arithmetic must be consistent. Other costs are £90 if you keep all three fixed items.",
           "minChars": 150
@@ -19540,7 +19540,7 @@
           "formative": true,
           "questionId": "week-5-lesson-2-ex-08:assume",
           "sourceQuestionId": "assume",
-          "prompt": "ASSUMPTIONS — State two checkable assumptions behind your numbers.",
+          "prompt": "ASSUMPTIONS\nWrite two clear assumptions behind your numbers.",
           "placeholder": "Assumption 1: ...\nAssumption 2: ...",
           "guidance": "Examples: licences already paid or not; whether reception training is in or out of these days.",
           "minChars": 60
@@ -19558,7 +19558,7 @@
           "formative": true,
           "questionId": "week-5-lesson-2-ex-08:change",
           "sourceQuestionId": "change",
-          "prompt": "CHANGE AND IMPACT — What did you change from the over-budget draft, and what is the impact or risk of that change?",
+          "prompt": "CHANGE AND IMPACT\nWhat did you change from the over-budget draft?\nWhat is the risk of that change?",
           "placeholder": "Change: ...\nImpact / risk: ...",
           "guidance": "Name a concrete cut or swap (days or a cost line) and what quality, scope or schedule risk it introduces.",
           "minChars": 70
@@ -19574,7 +19574,7 @@
     "metadata": {
       "title": "Compare two resource plans",
       "status": "available",
-      "summary": "Both plans fit the budget — choose with reasons and a risk.",
+      "summary": "Both plans fit the budget. Choose with reasons and a risk.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-5-lesson-2-ex-09",
@@ -19583,7 +19583,7 @@
       "topics": [
         "Trade-offs"
       ],
-      "detail": "Both plans fit the budget — choose with reasons and a risk."
+      "detail": "Both plans fit the budget. Choose with reasons and a risk."
     },
     "relationships": {
       "learningOutcomes": [
@@ -19696,7 +19696,7 @@
           ],
           "correctOptionId": "b",
           "feedback": {
-            "correct": "Suitability is judged against the project’s needs and limits, not a global ranking.",
+            "correct": "Suitability is judged against the project's needs and limits, not a global ranking.",
             "incorrect": "Avoid treating any language as universally best."
           }
         }
@@ -19747,7 +19747,7 @@
           "formative": true,
           "questionId": "week-5-lesson-3-ex-02:criteria",
           "sourceQuestionId": "criteria",
-          "prompt": "For a language/stack decision, classify each point.",
+          "prompt": "For a language or stack decision, classify each point.",
           "categories": [
             {
               "id": "criterion",
@@ -19885,7 +19885,7 @@
     "id": "week-5-lesson-3-ex-04",
     "version": "0.1.0",
     "metadata": {
-      "title": "Skills are relevant — not sufficient",
+      "title": "Skills matter, but they are not enough",
       "status": "available",
       "summary": "Spot the incomplete recommendation.",
       "href": null,
@@ -19946,7 +19946,7 @@
           "correctOptionId": "b",
           "feedback": {
             "correct": "Known skills reduce training time, but they do not cancel other taught criteria.",
-            "incorrect": "Treat staffing as one factor in a wider record."
+            "incorrect": "Treat staffing as one factor alongside the other taught criteria."
           }
         }
       }
@@ -20010,7 +20010,7 @@
           "sourceQuestionId": "gaps",
           "prompt": "Name three taught criteria this draft has failed to consider (not 'it should be cooler').",
           "placeholder": "1. ...\n2. ...\n3. ...",
-          "guidance": "Strong answers point to security, maintainability, compatibility, cost, reliability or similar — not logo taste.",
+          "guidance": "Include criteria such as security, maintainability, compatibility, cost or reliability. Do not talk about logo taste.",
           "minChars": 50
         }
       },
@@ -20028,7 +20028,7 @@
           "sourceQuestionId": "improve",
           "prompt": "Rewrite the recommendation in four to six sentences so it still values existing skills but addresses the gaps you named.",
           "placeholder": "Improved recommendation: ...",
-          "guidance": "Keep Technology X only if you can defend it; otherwise name a better-fit option and say why.",
+          "guidance": "Keep Technology X only if you can defend it. Otherwise name a better-fit option and say why.",
           "minChars": 100
         }
       }
@@ -20079,7 +20079,7 @@
           "questionId": "week-5-lesson-3-ex-06:travel",
           "sourceQuestionId": "travel",
           "sourceType": "single",
-          "prompt": "Field staff need timetable views that still work when mobile signal drops. Which first-increment approach is most defensible?",
+          "prompt": "Field staff need timetable views that still work when mobile signal drops. Which first-increment approach is best?",
           "options": [
             {
               "id": "a",
@@ -20115,7 +20115,7 @@
     "metadata": {
       "title": "Plausible fit for a limited first increment",
       "status": "available",
-      "summary": "Judge options against budget and existing tools — without straw men.",
+      "summary": "Judge options against budget and existing tools, without straw men.",
       "href": null,
       "difficulty": "standard",
       "familyId": "week-5-lesson-3-ex-07",
@@ -20124,7 +20124,7 @@
       "topics": [
         "Compatibility"
       ],
-      "detail": "Judge options against budget and existing tools — without straw men."
+      "detail": "Judge options against budget and existing tools, without straw men."
     },
     "relationships": {
       "learningOutcomes": [
@@ -20191,7 +20191,7 @@
           ],
           "feedback": {
             "correct": "Suitable options respect budget, existing tools and continuity. Unsuitable options ignore staffing, cost or delivery risk for increment 1.",
-            "incorrect": "Familiar tools still need criteria — they are not automatic winners."
+            "incorrect": "Familiar tools still need criteria. They are not automatic winners."
           }
         }
       }
@@ -20251,7 +20251,7 @@
         "relationships": {},
         "type": "paragraph",
         "content": {
-          "text": "Option A — JavaScript (React) front end, Node.js API, PostgreSQL, small cloud host. Option B — Python (Django) with PostgreSQL on the same style of host (team would need focused Django training). Option C — Microsoft Power Platform / low-code on the Trust’s existing Microsoft 365 tenant (faster start; licence limits and less custom logic)."
+          "text": "Option A: JavaScript (React) front end, Node.js API, PostgreSQL, small cloud host. Option B: Python (Django) with PostgreSQL on the same style of host (team would need focused Django training). Option C: Microsoft Power Platform or low-code on the Trust's existing Microsoft 365 tenant (faster start; licence limits and less custom logic)."
         }
       },
       {
@@ -20284,9 +20284,9 @@
           "formative": true,
           "questionId": "week-5-lesson-3-ex-08:rec",
           "sourceQuestionId": "rec",
-          "prompt": "RECOMMENDATION — Which option do you choose for increment 1?",
+          "prompt": "RECOMMENDATION\nWhich option do you choose for increment 1?",
           "placeholder": "Recommendation: Option ...",
-          "guidance": "Any of A–C can be defended if your reasons fit the constraints.",
+          "guidance": "Any of A, B or C can be defended if your reasons fit the constraints.",
           "minChars": 20
         }
       },
@@ -20320,7 +20320,7 @@
           "formative": true,
           "questionId": "week-5-lesson-3-ex-08:trade",
           "sourceQuestionId": "trade",
-          "prompt": "DISADVANTAGE / TRADE-OFF — What do you give up with your choice?",
+          "prompt": "TRADE-OFF\nWhat do you give up with your choice?",
           "placeholder": "Trade-off: ...",
           "guidance": "Name a real weakness of the option you picked.",
           "minChars": 40
@@ -20338,7 +20338,7 @@
           "formative": true,
           "questionId": "week-5-lesson-3-ex-08:reject",
           "sourceQuestionId": "reject",
-          "prompt": "WHY I REJECTED THE OTHER OPTION(S) — Briefly.",
+          "prompt": "OTHER OPTIONS\nWhy did you reject the other option(s)?",
           "placeholder": "I rejected ... because...",
           "guidance": "Show you compared, not that the others are 'bad languages'.",
           "minChars": 60
@@ -20391,7 +20391,7 @@
           "questionId": "week-5-lesson-3-ex-09:shift",
           "sourceQuestionId": "shift",
           "sourceType": "single",
-          "prompt": "Same Brightside booking system. Late news: the Trust’s Microsoft 365 admin says Power Platform premium licences cannot be funded this year, but the two developers remain strong in JavaScript. Which recommendation is most defensible for increment 1?",
+          "prompt": "Same Brightside booking system. Late news: the Trust's Microsoft 365 admin says Power Platform premium licences cannot be funded this year, but the two developers remain strong in JavaScript. Which recommendation is best for increment 1?",
           "options": [
             {
               "id": "a",
@@ -20413,7 +20413,7 @@
           "correctOptionId": "b",
           "feedback": {
             "correct": "A hard licence block removes Option C for this increment. Existing JS skill and a documented constraint favour Option A unless training time for B is explicitly available.",
-            "incorrect": "Update the recommendation when a constraint changes; do not ignore it."
+            "incorrect": "Update the recommendation when a constraint changes. Do not ignore it."
           }
         }
       }
@@ -20474,7 +20474,7 @@
         "relationships": {},
         "type": "paragraph",
         "content": {
-          "text": "Find two well-known public digital projects that ran late, over budget, or both. Short, reliable notes are enough — not a long essay."
+          "text": "Find two well-known public digital projects that ran late, over budget, or both. Short, reliable notes are enough. Do not write a long essay."
         }
       },
       {
