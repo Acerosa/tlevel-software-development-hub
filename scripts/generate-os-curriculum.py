@@ -14,11 +14,12 @@ from pathlib import Path
 
 from week1_curriculum import WEEK_1
 from week2_curriculum import WEEK_2
+from week5_curriculum import WEEK_5
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.10"
+PACKAGE_VERSION = "0.4.12"
 
 # Teaching weeks marked available in the bundled package.
 # Extend this set when a new week is posted for learners; Admin visibility
@@ -293,7 +294,7 @@ def expand_blocks(activity_id: str, specs: list):
 
 WEEK_1["clientScenario"] = OAKFIELD_SCENARIO
 
-# Week 1–2 lessons use exercises[]; later weeks use retrieval, main and formative.
+# Weeks 1, 2 and 5 use exercises[]; other weeks use retrieval, main and formative.
 WEEKS = [
     WEEK_1,
     WEEK_2,
@@ -663,93 +664,7 @@ WEEKS_REST = [
             ("short", "pay", "Write acceptance criteria for making a payment or, if Oakfield is free, for confirming a funded place.", "Given... When... Then..."),
         ]),
     ),
-    w(
-        5,
-        "Scheduling, Resources, Cost and Language Choice",
-        "2026-09-28",
-        "analyse-problem",
-        "LO1 / 1.1 — schedule tasks and milestones; allocate resources and estimate costs; select a language using taught criteria",
-        ["lo1"],
-        [
-            ("w5-schedule", "Schedule tasks, subtasks and milestones"),
-            ("w5-resources-cost", "Allocate resources and estimate project costs"),
-            ("w5-language", "Select a language using the taught criteria"),
-        ],
-        [
-            L(
-                "Lesson 1: Milestone plan",
-                "Retrieve scoped requirements and draft a milestone schedule that includes testing and client review.",
-                A("Retrieval: work before a first usable version", "Identify work that must happen before a first usable version.", "Retrieval", 8, ["Planning"], [
-                    ("h2", "Before a first usable version"),
-                    ("short", "before", "List four pieces of work that must happen before Oakfield staff could try a first usable version.", "1. ..."),
-                    ("single", "q1", "A milestone plan that only lists 'build screens' is weak because:",
-                     [("a", "Building is unimportant"), ("b", "Testing and client review must appear, not just construction"), ("c", "Milestones are only for Waterfall"), ("d", "Clients never look at plans")],
-                     "b", "Planning belongs in a proposal. Review and testing are work, not extras.", "Include testing and client review in the order of work."),
-                ]),
-                A("Draft milestones for Oakfield", "Sequence milestones for the decomposed parts, including testing and review.", "Guided learning", 35, ["Milestones", "Schedule"], [
-                    ("h2", "Order the work"),
-                    ("p", "intro", "Supported learners can sequence prepared milestone cards. Extension: show a dependency and a contingency if a milestone slips. Under-costed digital projects can reduce quality, accessibility or staff wellbeing."),
-                    ("short", "order", "List five milestones in order for increment 1. Justify why two of them are in that order.", "1. ... Justification: ..."),
-                    ("short", "test", "Where do testing and client review sit in your plan? What happens if a milestone slips?", "Testing: ... Slip: ..."),
-                    ("t", "SoL Week 5: tutor models a simple milestone plan. Timeline templates. Testing and client review must appear."),
-                ]),
-                A("Progress check: justify order", "Justify the order of two milestones.", "Progress check", 8, ["Milestones"], [
-                    ("h2", "Justify two milestones"),
-                    ("short", "why", "Why must one of your milestones come before another?", "A comes before B because..."),
-                ]),
-            ),
-            L(
-                "Lesson 2: Resources and a costed outline",
-                "Allocate people, time and other resources; produce a simple costed outline for an early increment.",
-                A("Retrieval: who does the work", "Retrieve roles you already know before costing.", "Retrieval", 8, ["Resources"], [
-                    ("h2", "People and time"),
-                    ("short", "who", "Name three people-types a small Oakfield increment might need (job role, not celebrity).", "1. ..."),
-                    ("single", "q1", "A cost estimate should include:",
-                     [("a", "Only the software licence if it is free"), ("b", "People time, licences, devices, training and an assumption list"), ("c", "Only the programmer's salary in ten years"), ("d", "Nothing, because public projects are free")],
-                     "b", "Costing is part of a proposal. State assumptions.", "Hidden staff time is still a cost."),
-                ]),
-                A("Cost an early increment", "Allocate resources to decomposed parts and cost the increment.", "Guided learning", 35, ["Cost", "Resources"], [
-                    ("h2", "A simple costed outline"),
-                    ("p", "intro", "You are not producing a full commercial bid. You are showing you can think in days, roles and assumptions. Use round numbers and label them as estimates."),
-                    ("c", "example", "Worked cost idea", "Example assumption: one developer and one analyst for four weeks, plus tutor time to trial the register, plus accessibility testing. State if 365 licences are already paid."),
-                    ("short", "cost", "Draft a simple costed outline for increment 1. List assumptions.", "People: ... Other: ... Assumptions: ..."),
-                    ("short", "assume", "Name one cost assumption that, if wrong, would change the plan.", "If ... then ..."),
-                    ("t", "SoL Week 5: worked cost example. Do not invent fake precision."),
-                ]),
-                A("Progress check: one cost assumption", "Name one cost assumption.", "Progress check", 8, ["Cost"], [
-                    ("h2", "Assumptions"),
-                    ("short", "a", "Write one cost assumption for Oakfield.", "Assumption: ..."),
-                ]),
-            ),
-            L(
-                "Lesson 3: Language and stack choice",
-                "Recommend a language or stack against suitability, policy, scalability, security, staffing, cost and reliability.",
-                A("Retrieval: taught criteria", "Retrieve the language-choice criteria.", "Retrieval", 8, ["Language choice"], [
-                    ("h2", "Taught criteria"),
-                    ("short", "crit", "List the language-choice criteria taught this week.", "Suitability, ..."),
-                    ("single", "q1", "Choosing a language only because you already know it is weak because:",
-                     [("a", "Skills never matter"), ("b", "Staffing is one criterion, but policy, security, cost and reliability also matter for Oakfield"), ("c", "Clients always want a new language"), ("d", "Microsoft 365 forbids all code")],
-                     "b", "Staffing is relevant, not the only factor. Record the trade-off.", "Use the full taught list."),
-                ]),
-                A("Recommend a stack", "Recommend a language or stack for Oakfield against the taught criteria.", "Independent application", 30, ["Language", "Stack"], [
-                    ("h2", "Language-choice record"),
-                    ("p", "intro", "A defensible recommendation for Oakfield might be web tech on the existing Microsoft 365 / cloud tools the staff already have, or a small web app the centre can host. Justify it; do not just name a favourite language."),
-                    ("short", "rec", "Recommend a language or stack. Score it against the taught criteria.", "Recommendation: ... Suitability: ... Policy: ... Security: ... Staffing: ... Cost: ... Reliability: ..."),
-                    ("short", "reject", "Name one option you would not choose and why.", "I would not choose ... because ..."),
-                    ("t", "SoL Week 5 independent: language-choice record covering suitability, policy, scalability, security, staffing, cost, reliability."),
-                ]),
-                A("Progress check: one criterion", "Name one language-choice criterion besides personal skill.", "Progress check", 8, ["Language choice"], [
-                    ("h2", "Not just skill"),
-                    ("short", "c", "Name one criterion besides 'I already know it' and apply it to Oakfield.", "Criterion: ... Applied: ..."),
-                ]),
-            ),
-        ],
-        H("Homework: public project overruns", "Compare two public project overruns in the news and identify whether the issue looks like scope, schedule, resource or cost.", "overruns", 25, ["Planning", "Public projects"], [
-            ("h2", "Independent study"),
-            ("short", "two", "Name two public digital overruns (or well-known delayed public systems) and the main issue type for each.", "1. ... Issue: scope/schedule/resource/cost. 2. ..."),
-            ("short", "oak", "What warning does this give for Oakfield's increment 1?", "Warning: ..."),
-        ]),
-    ),
+    WEEK_5,
     w(6, "Project Risk and User Analysis", "2026-10-05", "analyse-problem",
       "LO1 / 1.1 and LO2 / 2.1 — identify project risks and mitigation; analyse users with stories, activity diagrams, mind maps and road maps",
       ["lo1", "lo2"],
