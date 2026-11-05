@@ -661,7 +661,7 @@
     "metadata": {
       "title": "Lesson 1: Process diagram and first-cut ERD",
       "kind": "session",
-      "summary": "Retrieve the priority user journey and model process plus data.",
+      "summary": "Interpret, plan and check process diagrams and ERDs for Oakfield bookings, sessions and attendance.",
       "sortOrder": 1,
       "defaultOpen": true,
       "status": "available"
@@ -669,9 +669,24 @@
     "relationships": {
       "week": "week-7",
       "activities": [
-        "week-7-lesson-1-retrieval",
-        "week-7-lesson-1-main",
-        "week-7-lesson-1-formative"
+        "week-7-lesson-1-ex-01",
+        "week-7-lesson-1-ex-02",
+        "week-7-lesson-1-ex-03",
+        "week-7-lesson-1-ex-04",
+        "week-7-lesson-1-ex-05",
+        "week-7-lesson-1-ex-06",
+        "week-7-lesson-1-ex-07",
+        "week-7-lesson-1-ex-08",
+        "week-7-lesson-1-ex-09",
+        "week-7-lesson-1-ex-10",
+        "week-7-lesson-1-ex-11",
+        "week-7-lesson-1-ex-12",
+        "week-7-lesson-1-ex-13",
+        "week-7-lesson-1-ex-14",
+        "week-7-lesson-1-ex-15",
+        "week-7-lesson-1-ex-16",
+        "week-7-lesson-1-ex-17",
+        "week-7-lesson-1-ex-18"
       ]
     }
   },
@@ -683,7 +698,7 @@
     "metadata": {
       "title": "Lesson 2: Interface sketch and algorithm",
       "kind": "session",
-      "summary": "Create a low-fidelity interface for a priority task and plan the algorithm behind it.",
+      "summary": "Plan wireframes and the algorithm that carries out the booking actions, including checks and messages.",
       "sortOrder": 2,
       "defaultOpen": false,
       "status": "available"
@@ -691,9 +706,24 @@
     "relationships": {
       "week": "week-7",
       "activities": [
-        "week-7-lesson-2-retrieval",
-        "week-7-lesson-2-main",
-        "week-7-lesson-2-formative"
+        "week-7-lesson-2-ex-01",
+        "week-7-lesson-2-ex-02",
+        "week-7-lesson-2-ex-03",
+        "week-7-lesson-2-ex-04",
+        "week-7-lesson-2-ex-05",
+        "week-7-lesson-2-ex-06",
+        "week-7-lesson-2-ex-07",
+        "week-7-lesson-2-ex-08",
+        "week-7-lesson-2-ex-09",
+        "week-7-lesson-2-ex-10",
+        "week-7-lesson-2-ex-11",
+        "week-7-lesson-2-ex-12",
+        "week-7-lesson-2-ex-13",
+        "week-7-lesson-2-ex-14",
+        "week-7-lesson-2-ex-15",
+        "week-7-lesson-2-ex-16",
+        "week-7-lesson-2-ex-17",
+        "week-7-lesson-2-ex-18"
       ]
     }
   },
@@ -705,7 +735,7 @@
     "metadata": {
       "title": "Lesson 3: Data-requirement design versus acceptance",
       "kind": "session",
-      "summary": "Plan data fields and check the design against acceptance criteria.",
+      "summary": "Specify the data Oakfield must store, including types, keys, names and validation a developer can build from.",
       "sortOrder": 3,
       "defaultOpen": false,
       "status": "available"
@@ -713,9 +743,24 @@
     "relationships": {
       "week": "week-7",
       "activities": [
-        "week-7-lesson-3-retrieval",
-        "week-7-lesson-3-main",
-        "week-7-lesson-3-formative"
+        "week-7-lesson-3-ex-01",
+        "week-7-lesson-3-ex-02",
+        "week-7-lesson-3-ex-03",
+        "week-7-lesson-3-ex-04",
+        "week-7-lesson-3-ex-05",
+        "week-7-lesson-3-ex-06",
+        "week-7-lesson-3-ex-07",
+        "week-7-lesson-3-ex-08",
+        "week-7-lesson-3-ex-09",
+        "week-7-lesson-3-ex-10",
+        "week-7-lesson-3-ex-11",
+        "week-7-lesson-3-ex-12",
+        "week-7-lesson-3-ex-13",
+        "week-7-lesson-3-ex-14",
+        "week-7-lesson-3-ex-15",
+        "week-7-lesson-3-ex-16",
+        "week-7-lesson-3-ex-17",
+        "week-7-lesson-3-ex-18"
       ]
     }
   },

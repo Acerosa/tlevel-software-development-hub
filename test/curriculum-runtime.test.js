@@ -38,7 +38,7 @@ test("week catalogue activities keep interactive blocks in the bundled package",
 test("the converted T Level package keeps Foundations identity and activity ids", () => {
   assert.equal(pkg.hub.id, "tlevel-software-development");
   assert.equal(pkg.curriculum.metadata.course, "t-level-digital-software-development");
-  assert.equal(pkg.version, "0.4.30");
+  assert.equal(pkg.version, "0.4.31");
   const foundationIds = pkg.activities
     .filter((item) => String(item.id).startsWith("foundations-"))
     .map((item) => item.id);
@@ -121,9 +121,9 @@ test("Week 2 taught lessons use the curated 18-exercise activity model", () => {
   assert.equal(week2Total, 55);
 });
 
-test("Weeks 3, 4 and 6 to 22 keep retrieval, main and formative activity ids", () => {
+test("Weeks 3, 4, 6 and 8 to 22 keep retrieval, main and formative activity ids", () => {
   for (let week = 3; week <= 22; week += 1) {
-    if (week === 5) continue;
+    if (week === 5 || week === 7) continue;
     for (let lesson = 1; lesson <= 3; lesson += 1) {
       const session = pkg.sessions.find((item) => item.id === `week-${week}-lesson-${lesson}`);
       assert.deepEqual(session.relationships.activities, [
@@ -152,6 +152,30 @@ test("Week 5 expanded exercises stay available with unique exercise ids", () => 
   assert.deepEqual(homework.relationships.activities, ["week-5-homework-overruns"]);
   total += homework.relationships.activities.length;
   assert.equal(total, 28);
+});
+
+test("Week 7 expanded exercises stay planned with 18 activities per lesson", () => {
+  const week = pkg.weeks.find((item) => item.id === "week-7");
+  assert.equal(week.metadata.status, "planned");
+  assert.equal(week.metadata.title, "Process Diagrams, ERDs, Interface, Algorithms and Data Design");
+  let total = 0;
+  for (let lesson = 1; lesson <= 3; lesson += 1) {
+    const session = pkg.sessions.find((item) => item.id === `week-7-lesson-${lesson}`);
+    const ids = session.relationships.activities;
+    assert.equal(ids.length, 18, `week-7-lesson-${lesson}`);
+    assert.equal(ids[0], `week-7-lesson-${lesson}-ex-01`);
+    assert.equal(ids[17], `week-7-lesson-${lesson}-ex-18`);
+    const seen = new Set();
+    for (const id of ids) {
+      assert.ok(!seen.has(id), id);
+      seen.add(id);
+    }
+    total += ids.length;
+  }
+  const homework = pkg.sessions.find((item) => item.id === "week-7-homework");
+  assert.deepEqual(homework.relationships.activities, ["week-7-homework-critique"]);
+  total += homework.relationships.activities.length;
+  assert.equal(total, 55);
 });
 
 test("bundled week status posts Weeks 1, 2 and 5 as available", () => {

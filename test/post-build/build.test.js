@@ -67,10 +67,12 @@ test("the Vite production build is a static GitHub Pages site", function () {
   // InteractiveActivity). Gzip stays the tighter network budget. Week 1–2
   // expanded Oakfield banks, UI practice-progress/Try-again helpers, and Core
   // Realtime/dirty handling sit under the reviewed caps below.
+  // Week 7 (package 0.4.31) adds 45 activities to the inline catalogue.
+  // Uncompressed JS is about 1631KB. Total JS gzip is about 356KB.
   // Do not raise further without a new attribution.
-  assert.ok(jsTotal < 1600 * 1024, "learner JS should stay under 1600KB uncompressed, got " + jsTotal);
+  assert.ok(jsTotal < 1680 * 1024, "learner JS should stay under 1680KB uncompressed, got " + jsTotal);
   assert.ok(cssTotal < 200 * 1024, "learner CSS should stay under 200KB, got " + cssTotal);
-  assert.ok(gzipTotal < 350 * 1024, "learner JS gzip should stay under 350KB, got " + gzipTotal);
+  assert.ok(gzipTotal < 370 * 1024, "learner JS gzip should stay under 370KB, got " + gzipTotal);
   assert.doesNotMatch(jsFiles.join("\n"), /xlsx/i);
   const authoring = fs.readFileSync(path.resolve(__dirname, "../../content/tlevel-software-development/package.json"), "utf8");
   assert.match(authoring, /"correctOptionId"/);
