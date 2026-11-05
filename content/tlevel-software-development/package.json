@@ -25208,25 +25208,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "To choose the hub logo and the font for posters"
+                "label": "To list the entities, keys and relationships instead of the steps"
               },
               {
                 "id": "b",
-                "label": "To show the steps, decisions and outcomes so another person can follow the same process"
+                "label": "To show the order of steps, the capacity decision and both outcomes"
               },
               {
                 "id": "c",
-                "label": "To replace the need to store any learner or course data"
+                "label": "To settle the button labels and colours before the steps are known"
               },
               {
                 "id": "d",
-                "label": "To list every programming library the team might buy"
+                "label": "To replace the ERD, because the flowchart will store the records"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "A process diagram is a shared picture of the work: what happens, in what order, and what choice is made.",
-              "incorrect": "Logos and libraries are not the job of a process diagram. Data still has to be stored."
+              "correct": "A process diagram shows what happens, in what order, and which choice is made. Entities and keys belong on the ERD.",
+              "incorrect": "An ERD stores data. A wireframe shows the screen. Neither replaces the steps."
             }
           }
         }
@@ -25376,25 +25376,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "Confirm the booking, then ask which course, then check whether places remain"
+                "label": "Confirm the booking, then ask which course was chosen, then check places"
               },
               {
                 "id": "b",
-                "label": "The learner chooses a published course, submits a request, the system checks places, then confirms the booking or says the course is full"
+                "label": "Check places on every course, then ask the learner which course they meant"
               },
               {
                 "id": "c",
-                "label": "End the process, then start it, then store attendance for a class that has not been chosen"
+                "label": "The learner chooses a published course, submits the request, the system checks places, then confirms the booking or says the course is full"
               },
               {
                 "id": "d",
-                "label": "Delete the course, then create a booking with no learner"
+                "label": "Store an attendance mark, then create the session, then create the course"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "Choose the course, take the request, check capacity, then give a clear result.",
-              "incorrect": "You cannot confirm a place before you know the course and whether space remains."
+              "correct": "Choose the course, take the request, check capacity, then give one result.",
+              "incorrect": "Do not confirm a place before the course is known, and do not mark attendance for a session that has not been chosen."
             }
           }
         }
@@ -25449,25 +25449,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "Two paths: confirm and store the booking, or tell the learner the course is full and do not confirm"
+                "label": "Both paths store a Booking, one as Confirmed and one as Full"
               },
               {
                 "id": "b",
-                "label": "One path that always confirms, because diamonds are only decoration"
+                "label": "One path that always stores Confirmed. The diamond is only a comment"
               },
               {
                 "id": "c",
-                "label": "A new course entity created for every rejection"
+                "label": "Two paths: store a confirmed booking, or show that the course is full and do not store a booking"
               },
               {
                 "id": "d",
-                "label": "The end symbol immediately, with no message to the learner"
+                "label": "A new Course row for every learner who is turned away"
               }
             ],
-            "correctOptionId": "a",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "A decision needs the alternative paths written, including what the learner is told.",
-              "incorrect": "If the course is full, confirming the booking would break the capacity rule."
+              "correct": "Write both paths. Only the 'places left' path stores a confirmed booking. Course full is a message, not a booking status.",
+              "incorrect": "Storing a Full booking, or always storing Confirmed, breaks the capacity rule."
             }
           }
         }
@@ -25550,7 +25550,7 @@
               },
               {
                 "id": "item-4",
-                "label": "Tell the learner the result (confirmed or full)",
+                "label": "A diagram goes from 'request received' straight to End, and never shows confirmed or full",
                 "correctCategoryId": "missing"
               },
               {
@@ -25560,8 +25560,8 @@
               }
             ],
             "feedback": {
-              "correct": "Request-a-place covers choosing a course, checking places and giving a result. Attendance and card payments are different jobs.",
-              "incorrect": "A diagram that never tells the learner the result is incomplete. Attendance is not this process."
+              "correct": "Request-a-place needs the course, the capacity check and a result. Item 4 is a required result that the diagram has left out. Card payment is out of scope. Attendance is a later process.",
+              "incorrect": "Do not put 'tell the learner the result' in 'does not belong'. The weak diagram is missing that step."
             }
           }
         }
@@ -25649,13 +25649,13 @@
               },
               {
                 "id": "item-5",
-                "label": "The colour of the reception chairs",
+                "label": "The shared spreadsheet staff use today",
                 "correctCategoryId": "neither"
               }
             ],
             "feedback": {
-              "correct": "Learner, Course and Session are stored as entities. Email describes a learner. Chair colour is not required.",
-              "incorrect": "Do not make a separate entity for every field."
+              "correct": "Learner, Course and Session are entities. Email describes a learner. The spreadsheet is the current tool, not an entity in the new model.",
+              "incorrect": "Do not make a separate entity for every field, and do not model the old spreadsheet as a table."
             }
           }
         }
@@ -25742,18 +25742,18 @@
               },
               {
                 "id": "item-4",
-                "label": "Booking status, such as Confirmed or Full",
+                "label": "Booking status, Confirmed or Cancelled",
                 "correctCategoryId": "booking"
               },
               {
                 "id": "item-5",
-                "label": "The learner's favourite biscuit",
+                "label": "Course title copied again onto every Booking row",
                 "correctCategoryId": "skip"
               }
             ],
             "feedback": {
-              "correct": "Surname describes the learner. Title describes the course. Request date and status describe that booking.",
-              "incorrect": "Copying the course title onto every booking is not required if the booking stores courseId."
+              "correct": "Surname describes the learner. Title and the request date sit on Course and Booking. Status on a stored booking is Confirmed or Cancelled. Course full is a message, not a status.",
+              "incorrect": "If Booking stores courseId, copying the title onto Booking duplicates Course."
             }
           }
         }
@@ -25808,25 +25808,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "status, because several bookings can share the value Confirmed"
+                "label": "status"
               },
               {
                 "id": "b",
-                "label": "bookingId, a value that identifies that one booking and no other"
+                "label": "course title"
               },
               {
                 "id": "c",
-                "label": "course title, because two courses might share a similar name"
+                "label": "bookingId"
               },
               {
                 "id": "d",
-                "label": "the word Booking, typed the same way on every row"
+                "label": "learner surname"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "bookingId picks out one booking. Status and titles repeat, so they cannot identify a single row.",
-              "incorrect": "A primary key must be unique for that entity."
+              "correct": "bookingId identifies one booking. Status, course title and surname can repeat, so none of them can be the primary key.",
+              "incorrect": "A primary key must be unique for that entity. A foreign key such as courseId points elsewhere. It does not identify the booking."
             }
           }
         }
@@ -25881,25 +25881,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "It stores the paint colour of the classroom"
+                "label": "It is the primary key of Session, so the session number is also the course number"
               },
               {
                 "id": "b",
-                "label": "It refers to courseId on Course, so each session belongs to one course"
+                "label": "It stores the session date in a second format"
               },
               {
                 "id": "c",
-                "label": "It means the Course entity can be deleted from the design"
+                "label": "It points at Course.courseId, so each session belongs to one course"
               },
               {
                 "id": "d",
-                "label": "It must be a different value in every table in the system"
+                "label": "It means Course can be removed, because the id now lives on Session"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "The foreign key links the session to the course it belongs to.",
-              "incorrect": "A foreign key does not remove the other entity. It references it."
+              "correct": "courseId on Session references Course. That is what makes the relationship one course to many sessions.",
+              "incorrect": "A foreign key does not replace the other entity, and it is not the primary key of Session."
             }
           }
         }
@@ -25950,29 +25950,29 @@
             "questionId": "week-7-lesson-1-ex-10:one",
             "sourceQuestionId": "one",
             "sourceType": "single",
-            "prompt": "Which relationship is one-to-one in this Oakfield design?",
+            "prompt": "Which description is one-to-one?",
             "options": [
               {
                 "id": "a",
-                "label": "One learner can have many bookings"
+                "label": "One course has many sessions"
               },
               {
                 "id": "b",
-                "label": "One learner has one login account, and that account belongs only to that learner"
+                "label": "One learner can have many bookings"
               },
               {
                 "id": "c",
-                "label": "One course has many sessions"
+                "label": "One booking has one confirmation code, and that code is not used on another booking"
               },
               {
                 "id": "d",
                 "label": "Many learners can attend many sessions"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "One login account per learner, and one learner per account, is one-to-one.",
-              "incorrect": "Bookings, sessions and attendance are not one-to-one."
+              "correct": "One confirmation code belongs to one booking, and that booking has one code. Store the code on Booking. Do not add a sixth entity.",
+              "incorrect": "Course to Session and Learner to Booking are one-to-many. Attendance is many-to-many."
             }
           }
         }
@@ -26027,7 +26027,7 @@
             "options": [
               {
                 "id": "a",
-                "label": "One-to-one"
+                "label": "One-to-one, because every session has a course"
               },
               {
                 "id": "b",
@@ -26035,17 +26035,17 @@
               },
               {
                 "id": "c",
-                "label": "Many-to-many with no linking entity"
+                "label": "Many-to-many, because the hub runs many courses and many sessions"
               },
               {
                 "id": "d",
-                "label": "Not a relationship, because sessions do not need storing"
+                "label": "One-to-many from Session to Course, so one session can belong to several courses"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "One course, many sessions, each session tied to one course: one-to-many.",
-              "incorrect": "Do not call it many-to-many. A session is not shared across several courses in this design."
+              "correct": "One course, many sessions, each session tied to one course: one-to-many from Course to Session.",
+              "incorrect": "Many courses and many sessions in the hub do not make this pair many-to-many. Read the rule for one session."
             }
           }
         }
@@ -26100,25 +26100,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "A line labelled many-to-many, with nowhere to store status or request date"
+                "label": "A many-to-many line only, with status and requestedOn written beside the line"
               },
               {
                 "id": "b",
-                "label": "A Booking entity between Learner and Course, so each request can store status and date"
+                "label": "courseId and status stored on Learner, so each learner can request only one course"
               },
               {
                 "id": "c",
-                "label": "Type every course title into the learner's surname field"
+                "label": "A Booking entity with learnerId, courseId, status and requestedOn"
               },
               {
                 "id": "d",
-                "label": "Remove Course and keep only Learner"
+                "label": "One learnerId field on Course, so each course can have only one learner"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "Booking is the linking entity. It holds the facts about that one request.",
-              "incorrect": "A bare many-to-many line cannot store status or the date of the request."
+              "correct": "Booking is the linking entity. It stores one request: who, which course, the status and the date.",
+              "incorrect": "A line with notes cannot hold a row per request. Putting a single courseId on Learner, or a single learnerId on Course, blocks the many side."
             }
           }
         }
@@ -26175,8 +26175,8 @@
                 "label": "One course has many sessions. Each session is for one course."
               },
               {
-                "id": "la",
-                "label": "One learner has one login account, used only by that learner."
+                "id": "code",
+                "label": "Each booking has one confirmation code, and that code belongs to only that booking."
               },
               {
                 "id": "ba",
@@ -26199,11 +26199,11 @@
             ],
             "correct": {
               "cs": "m-om",
-              "la": "m-oo",
+              "code": "m-oo",
               "ba": "m-mm"
             },
             "feedback": {
-              "correct": "Course to Session is one-to-many. Login account is one-to-one. Attendance resolves learner and session.",
+              "correct": "Course to Session is one-to-many. A confirmation code is one-to-one with its booking, so it stays on Booking. Attendance resolves learner and session.",
               "incorrect": "Do not treat Attendance as one-to-one. One session has many attendance rows."
             }
           }
@@ -26349,7 +26349,7 @@
             "options": [
               {
                 "id": "a",
-                "label": "The hub logo is missing from the spreadsheet"
+                "label": "The diary is a primary key and the spreadsheet is a foreign key"
               },
               {
                 "id": "b",
@@ -26357,17 +26357,17 @@
               },
               {
                 "id": "c",
-                "label": "A date can never be stored in any system"
+                "label": "Course title should be the primary key of Learner"
               },
               {
                 "id": "d",
-                "label": "A primary key must always be the person's surname"
+                "label": "The spreadsheet is already an ERD, so no further data design is needed"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "Two copies of the same facts drift apart. An ERD should store each fact once and link it with keys.",
-              "incorrect": "Surnames repeat and change. They are a poor primary key."
+              "correct": "Two copies of the same facts drift apart. Store each fact once and link rows with keys.",
+              "incorrect": "A surname or a course title can repeat. Neither is a primary key, and a spreadsheet is not an ERD."
             }
           }
         }
@@ -26478,7 +26478,7 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Tutors must see who is booked on a course and who attended a particular session."
+            "text": "Tutors must see who requested a course, and who attended a particular session."
           }
         },
         {
@@ -26494,29 +26494,29 @@
             "questionId": "week-7-lesson-1-ex-17:gap",
             "sourceQuestionId": "gap",
             "sourceType": "single",
-            "prompt": "An ERD contains only Learner and Course, with no Booking, Session or Attendance. Which need fails?",
+            "prompt": "The ERD has Learner, Course and Booking, but no Session or Attendance. Which requirement still fails?",
             "options": [
               {
                 "id": "a",
-                "label": "Storing the hub's name on a poster"
+                "label": "Who requested a place on a course"
               },
               {
                 "id": "b",
-                "label": "Recording who attended a particular session"
+                "label": "The title of a course"
               },
               {
                 "id": "c",
-                "label": "Choosing a font for the wireframe"
+                "label": "Who attended a particular session"
               },
               {
                 "id": "d",
-                "label": "Knowing that a course has a title, which Course can already store"
+                "label": "The learner's email address"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "Attendance needs Session and a link to Learner. Learner and Course alone cannot show who came to one session.",
-              "incorrect": "Course title does not record attendance."
+              "correct": "Booking can show who requested a course. Attendance of one session needs Session and Attendance.",
+              "incorrect": "Course title and email are already on Course and Learner. Do not add them again to fill this gap."
             }
           }
         }
@@ -26564,7 +26564,7 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "In diagrams.net, or on paper if you cannot open it, draw: (1) a flowchart for request-a-place, including the full and not-full paths; (2) an ERD for Learner, Course, Session, Booking and Attendance, with primary keys, foreign keys and relationship labels. This page cannot open or mark the diagram file."
+            "text": "Create two diagrams in diagrams.net (https://app.diagrams.net/), or on paper if you cannot open it. (1) A flowchart for request-a-place, with both the places-left path and the course-full path. (2) An ERD for Learner, Course, Session, Booking and Attendance, with primary keys, foreign keys and relationship names. Save the files with clear names, for example oakfield-request-flowchart and oakfield-erd. Submit those files separately, as your tutor instructs. This activity only records your decisions. Finishing it does not mean the diagrams have been assessed."
           }
         },
         {
@@ -26579,9 +26579,9 @@
             "formative": true,
             "questionId": "week-7-lesson-1-ex-18:record",
             "sourceQuestionId": "record",
-            "prompt": "Say where the diagrams are (file name or paper). List the entities and the relationships you drew. Explain the decision diamond and what each path does.",
-            "placeholder": "Diagrams: ...\nEntities: ...\nRelationships: ...\nDecision: ...\nPath if places remain: ...\nPath if the course is full: ...",
-            "guidance": "Name both paths. A relationship answer should say which entities are linked and whether it is one-to-one, one-to-many or many-to-many through a linking entity.",
+            "prompt": "Give the file names (or say paper) and where you will submit them. List the entities and relationships. Explain the decision and both paths.",
+            "placeholder": "Files: ...\nSubmitted to: ...\nEntities: ...\nRelationships: ...\nDecision: ...\nPlaces left: ...\nCourse full: ...",
+            "guidance": "Course full must not store a confirmed booking. Say whether each relationship is one-to-one, one-to-many, or many-to-many through Booking or Attendance.",
             "minChars": 120
           }
         }
@@ -26636,25 +26636,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "So the team can agree layout, labels, actions and messages with the people who will use it"
+                "label": "So the ERD can be dropped once the buttons exist"
               },
               {
                 "id": "b",
-                "label": "So the database primary keys can be deleted"
+                "label": "So labels, actions and messages can be checked against the process before they are built"
               },
               {
                 "id": "c",
-                "label": "So the final colour palette is locked before anyone sees the task"
+                "label": "So the final colour palette is fixed before the task is understood"
               },
               {
                 "id": "d",
-                "label": "So the process diagram is no longer needed"
+                "label": "So the algorithm can be skipped, because the screen is the process"
               }
             ],
-            "correctOptionId": "a",
+            "correctOptionId": "b",
             "feedback": {
-              "correct": "An interface design shows how someone completes the task. It should be checked before it is built.",
-              "incorrect": "Branding can wait. The process and the data design still matter."
+              "correct": "The design shows how the request is completed. Check it against the process. The ERD and the algorithm still stand.",
+              "incorrect": "Colours can wait. A screen does not replace the steps or the stored data."
             }
           }
         }
@@ -26709,25 +26709,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "Land on a course, enter the request, see either a confirmation or a course-full message"
+                "label": "Choose a published course, submit the request, then see confirmation or a course-full message"
               },
               {
                 "id": "b",
-                "label": "Pay by card, then discover which courses exist, then delete the learner record"
+                "label": "See the course-full message first, then choose the course it referred to"
               },
               {
                 "id": "c",
-                "label": "Open the attendance register for every course in the country, then ask the learner's name"
+                "label": "Store the confirmed booking, then ask for the email the confirmation needed"
               },
               {
                 "id": "d",
-                "label": "Skip the course list and confirm a booking with no course selected"
+                "label": "Open a session register, then create the booking that register depends on"
               }
             ],
             "correctOptionId": "a",
             "feedback": {
-              "correct": "The journey follows choose, request, then a result that depends on places.",
-              "incorrect": "Do not confirm a booking when no course has been chosen."
+              "correct": "The journey is choose, request, then one result. A full course does not create a booking.",
+              "incorrect": "Do not confirm a booking before the course and the email are known, and do not start from the register."
             }
           }
         }
@@ -26815,13 +26815,13 @@
               },
               {
                 "id": "item-5",
-                "label": "A game to play while the form loads",
+                "label": "A button that deletes every course",
                 "correctCategoryId": "no"
               }
             ],
             "feedback": {
-              "correct": "The first screen must identify the course, collect the request and let the learner submit it.",
-              "incorrect": "A game does not help the booking task."
+              "correct": "The first screen must identify the course, label the fields and submit the request. A brand campaign can wait. Deleting courses is a different job.",
+              "incorrect": "Do not treat a destructive admin action as part of requesting a place."
             }
           }
         }
@@ -26876,25 +26876,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "A finished app with final photography and motion"
+                "label": "The finished screen, with final photos and animation"
               },
               {
                 "id": "b",
-                "label": "A simple layout showing regions, labels, actions and important messages, without final branding"
+                "label": "A layout of regions, labels, the request action and the result message, without final branding"
               },
               {
                 "id": "c",
-                "label": "A list of database passwords"
+                "label": "The ERD, drawn as boxes because a wireframe should show the tables"
               },
               {
                 "id": "d",
-                "label": "Only a colour palette, with no labels or actions"
+                "label": "A colour palette, with no labels and no actions"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "A wireframe is a layout you can discuss. Labels and actions matter more than polish.",
-              "incorrect": "Hiding all text makes the design impossible to check."
+              "correct": "A wireframe is a layout you can discuss. Labels, the action and the result matter more than polish.",
+              "incorrect": "An ERD is not a wireframe. A palette with no labels cannot be checked against the process."
             }
           }
         }
@@ -27034,25 +27034,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "No way back, so they must close the browser"
+                "label": "No way back. The learner must close the browser and start again"
               },
               {
                 "id": "b",
-                "label": "A clear way to return to the course list without losing the meaning of the task"
+                "label": "One link labelled Click here, which opens either the register or the home page"
               },
               {
                 "id": "c",
-                "label": "A menu of 40 unrelated admin reports on the learner form"
+                "label": "The tutor menu for reports and course editing, placed on the learner's form"
               },
               {
                 "id": "d",
-                "label": "A button labelled Click here that sometimes goes to the register and sometimes to the home page"
+                "label": "A clear return to the published course list, still inside the request journey"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "d",
             "feedback": {
-              "correct": "Navigation should match the journey. Back to the course list is a real need.",
-              "incorrect": "Unclear labels and admin reports do not help this learner task."
+              "correct": "The learner needs a way back to the course list without leaving the task.",
+              "incorrect": "A shared label that changes destination, or the tutor's menu, does not support this journey."
             }
           }
         }
@@ -27107,25 +27107,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "A faint link called Misc, the same size as the privacy footer"
+                "label": "A link called More, the same size as the privacy footer"
               },
               {
                 "id": "b",
-                "label": "The control that submits the place request, with a specific label such as Request place"
+                "label": "Request place, easier to see than Cancel, and named as the action"
               },
               {
                 "id": "c",
-                "label": "The hub's fax number from 1998, in the largest type"
+                "label": "Delete all courses, the same size and weight as Request place"
               },
               {
                 "id": "d",
-                "label": "Every button the same size, including Delete all courses"
+                "label": "Three buttons that all repeat the page title"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "The main action should look like the main action and say what it does.",
-              "incorrect": "Delete all courses must not compete with requesting a place."
+              "correct": "The main action should be recognisable and should say what it does.",
+              "incorrect": "Delete all courses is not the request action. Equal buttons with no verb force the learner to guess."
             }
           }
         }
@@ -27269,21 +27269,21 @@
               },
               {
                 "id": "b",
-                "label": "Every input has a visible text label, and the result is not conveyed by colour alone"
+                "label": "Placeholder text used instead of a label, so the hint disappears when typing starts"
               },
               {
                 "id": "c",
-                "label": "Placeholder text instead of labels, disappearing as soon as someone types"
+                "label": "Icon-only buttons, with no text alternative"
               },
               {
                 "id": "d",
-                "label": "Icon-only buttons with no text alternative"
+                "label": "A visible text label on every input, and a result that is not conveyed by colour alone"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "d",
             "feedback": {
-              "correct": "Text labels and a text result work with keyboards, screen readers and magnification.",
-              "incorrect": "Colour alone and icon-only controls leave some learners without the instruction."
+              "correct": "Text labels and a text result still work with a keyboard, a screen reader or magnification.",
+              "incorrect": "Colour, a vanishing placeholder or an icon with no text leaves the instruction unavailable to some learners."
             }
           }
         }
@@ -27508,25 +27508,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "The brand colours for the confirmation page"
+                "label": "The colours chosen for the confirmation message"
               },
               {
                 "id": "b",
-                "label": "The ordered steps the system follows to check the request and choose the result"
+                "label": "The ERD, because the algorithm is the list of entities"
               },
               {
                 "id": "c",
-                "label": "A photograph of the reception desk"
+                "label": "The ordered checks, then the choice between a confirmed booking and a course-full message"
               },
               {
                 "id": "d",
-                "label": "A list of staff birthdays"
+                "label": "The wireframe boxes, with no decisions written down"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "The algorithm is the steps, including the check and the two possible results.",
-              "incorrect": "Colours and photographs are not the steps."
+              "correct": "The algorithm is the order of checks and the two results. It should match the buttons on the wireframe.",
+              "incorrect": "Colours, entities and boxes are parts of other design products. They are not the steps."
             }
           }
         }
@@ -27581,25 +27581,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "Store a confirmed booking, then check whether a course was chosen, then look at places left"
+                "label": "Store Confirmed, then check that a course was chosen, then check places left"
               },
               {
                 "id": "b",
-                "label": "Read the chosen course and email, check they are present, check places left, then store a confirmed booking or show course full"
+                "label": "Read the course and email, reject blanks, check places left, then store Confirmed or show course full"
               },
               {
                 "id": "c",
-                "label": "Show course full for every request, then ask which course"
+                "label": "Show course full for every request, then ask which course was meant"
               },
               {
                 "id": "d",
-                "label": "Email the whole class list to anyone who opens the page, then ask for a name"
+                "label": "Write an attendance row, then create the booking that row refers to"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "Check the inputs and the places before you store a confirmed booking.",
-              "incorrect": "Storing first can create a booking that should have been rejected."
+              "correct": "Check the inputs and the places before storing a confirmed booking. A full course is a message, not a stored booking.",
+              "incorrect": "Storing Confirmed first, or writing attendance before the booking, records a result you have not checked."
             }
           }
         }
@@ -27646,7 +27646,7 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "placesLeft = 0. IF placesLeft > 0 THEN status = Confirmed ELSE status = Full."
+            "text": "placesLeft = 0. IF placesLeft > 0 THEN result = Confirmed ELSE result = Course full."
           }
         },
         {
@@ -27662,29 +27662,29 @@
             "questionId": "week-7-lesson-2-ex-14:if",
             "sourceQuestionId": "if",
             "sourceType": "single",
-            "prompt": "What is status after this selection?",
+            "prompt": "What is result after this selection?",
             "options": [
               {
                 "id": "a",
-                "label": "Confirmed, because every request should succeed"
+                "label": "Confirmed"
               },
               {
                 "id": "b",
-                "label": "Full, because placesLeft is not greater than 0"
+                "label": "Course full"
               },
               {
                 "id": "c",
-                "label": "Both Confirmed and Full"
+                "label": "Confirmed and Course full"
               },
               {
                 "id": "d",
-                "label": "The algorithm skips the decision"
+                "label": "Blank, because the decision is skipped when placesLeft is 0"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "The condition is false, so the ELSE path runs and status is Full.",
-              "incorrect": "Read the condition. Zero places must not take the confirmed path."
+              "correct": "The condition is false, so the ELSE path runs and result is Course full. That is a message, not a stored booking.",
+              "incorrect": "Read the condition. Zero places must not take the Confirmed path, and the IF still runs."
             }
           }
         }
@@ -27735,29 +27735,29 @@
             "questionId": "week-7-lesson-2-ex-15:loop",
             "sourceQuestionId": "loop",
             "sourceType": "single",
-            "prompt": "A tutor opens today's register. The course has several sessions, and only today's session should open. Why is a loop suitable?",
+            "prompt": "A course has several sessions. The register should open only for the session whose date is today. Why is a loop suitable?",
             "options": [
               {
                 "id": "a",
-                "label": "To look at each session until the one with today's date is found"
+                "label": "Check each session in turn, and stop when sessionDate is today"
               },
               {
                 "id": "b",
-                "label": "Because a loop always deletes every learner"
+                "label": "Delete every session whose date is not today"
               },
               {
                 "id": "c",
-                "label": "Because IF/ELSE cannot exist in the same algorithm"
+                "label": "A loop cannot contain an IF, so the date check is avoided"
               },
               {
                 "id": "d",
-                "label": "To avoid storing session dates"
+                "label": "The course has only one session, so a loop is the way to select it"
               }
             ],
             "correctOptionId": "a",
             "feedback": {
-              "correct": "There can be many sessions. A loop checks them one by one.",
-              "incorrect": "The loop does not replace the need to store the session date."
+              "correct": "There may be many sessions. The loop examines each one and stops when today's date matches.",
+              "incorrect": "Do not delete other sessions. A single session would not need this loop, and a loop can contain a decision."
             }
           }
         }
@@ -27821,12 +27821,12 @@
             "items": [
               {
                 "id": "item-1",
-                "label": "IF placesLeft > 0 THEN status = Confirmed ELSE status = Full",
+                "label": "IF placesLeft > 0 THEN result = Confirmed ELSE result = Course full",
                 "correctCategoryId": "ok"
               },
               {
                 "id": "item-2",
-                "label": "IF placesLeft = 0 THEN status = Confirmed ELSE status = Full",
+                "label": "IF placesLeft = 0 THEN result = Confirmed ELSE result = Course full",
                 "correctCategoryId": "bad"
               },
               {
@@ -27836,13 +27836,13 @@
               },
               {
                 "id": "item-4",
-                "label": "Set status = Confirmed, then check placesLeft",
+                "label": "Set result = Confirmed, then check placesLeft",
                 "correctCategoryId": "bad"
               }
             ],
             "feedback": {
-              "correct": "Confirm only when places remain, and check inputs before storing. Item 2 confirms an empty course. Item 4 stores success too early.",
-              "incorrect": "Read which branch runs when placesLeft is 0."
+              "correct": "Confirm only when places remain, and check the email before storing. Item 2 confirms an empty course. Item 4 chooses Confirmed before the check.",
+              "incorrect": "Read which branch runs when placesLeft is 0. Course full is a message, not a Booking row."
             }
           }
         }
@@ -27894,7 +27894,7 @@
             "questionId": "week-7-lesson-2-ex-17:link",
             "sourceQuestionId": "link",
             "prompt": "For the Request place button, write the checks the algorithm should run and the message each outcome shows on screen.",
-            "placeholder": "When Request place is used:\nChecks: ...\nIf places remain: screen shows ... and data stored: ...\nIf the course is full: screen shows ... and data stored: ...\nIf email is missing: screen shows ...",
+            "placeholder": "When Request place is used:\nChecks: ...\nIf places remain: screen shows ... Booking stored: ...\nIf the course is full: screen shows ... Booking stored: none\nIf email is missing: screen shows ...",
             "guidance": "Name the button, the checks, and both capacity outcomes. Say whether a confirmed booking is stored.",
             "minChars": 80
           }
@@ -27943,7 +27943,7 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Produce two annotated wireframes: the request screen, and the result screen (confirmed or full). Annotate labels, the primary action, and one accessibility point. Then write pseudocode for Request place, including a missing-email check and the places check. Use diagrams.net or paper. This page does not mark the drawing."
+            "text": "In diagrams.net (https://app.diagrams.net/), or on paper, draw two annotated wireframes: the request screen, and the result screen (confirmed or course full). Annotate the labels, the primary action and one accessibility point. Write pseudocode for Request place, with a blank-email check and the places check. Save the files with clear names and submit them separately, as your tutor instructs. The boxes below record your decisions only. Completing them does not mean the wireframes have been assessed."
           }
         },
         {
@@ -27958,9 +27958,9 @@
             "formative": true,
             "questionId": "week-7-lesson-2-ex-18:pack",
             "sourceQuestionId": "pack",
-            "prompt": "Record where the wireframes are. Describe both screens (purpose, main labels, primary action, accessibility note). Paste or write the pseudocode.",
-            "placeholder": "Wireframes: ...\nRequest screen: ...\nResult screen: ...\nAccessibility: ...\nPseudocode:\n1. ...",
-            "guidance": "The pseudocode should not confirm a booking when placesLeft is 0 or when the email is blank. Use IF/ELSE for those checks.",
+            "prompt": "Give the file names and where you will submit them. Describe both screens, one accessibility point, and the pseudocode.",
+            "placeholder": "Files: ...\nSubmitted to: ...\nRequest screen: ...\nResult screen: ...\nAccessibility: ...\nPseudocode:\n1. ...",
+            "guidance": "Do not store Confirmed when placesLeft is 0 or the email is blank. Use IF/ELSE. Course full is a message, not a Booking row.",
             "minChars": 140
           }
         }
@@ -28015,25 +28015,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "The submit button should be blue"
+                "label": "The submit button on the request screen must be blue"
               },
               {
                 "id": "b",
-                "label": "The system must store who requested which course, and whether that request was confirmed"
+                "label": "The system must store which learner requested which course, and whether that booking was confirmed"
               },
               {
                 "id": "c",
-                "label": "The team prefers to start coding on a Monday"
+                "label": "The wireframe must be drawn before the entity list is agreed"
               },
               {
                 "id": "d",
-                "label": "The reception chairs should be grey"
+                "label": "The request screen must display the course title, which is read from Course"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "A data requirement names facts the system must keep so a task can be completed later.",
-              "incorrect": "Button colour is an interface choice, not a stored fact about a booking."
+              "correct": "A data requirement names a fact the system must keep. Who requested which course, and the booking status, have to be stored.",
+              "incorrect": "Button colour and draw order are not stored facts. Showing the title uses Course. It does not create a new fact."
             }
           }
         }
@@ -28121,13 +28121,13 @@
               },
               {
                 "id": "item-5",
-                "label": "The learner's shoe size",
+                "label": "Room name copied onto every Attendance row as well as stored on Session",
                 "correctCategoryId": "skip"
               }
             ],
             "feedback": {
-              "correct": "Store the links and the attendance result. The course title can be read from Course via courseId.",
-              "incorrect": "Shoe size is not part of booking or attendance."
+              "correct": "Store who requested the course and whether they attended. Read the course title from Course. Do not copy the room onto Attendance.",
+              "incorrect": "A duplicated room name can disagree with Session. Shoe size and similar extras are not required either."
             }
           }
         }
@@ -28277,29 +28277,29 @@
             "questionId": "week-7-lesson-3-ex-04:type",
             "sourceQuestionId": "type",
             "sourceType": "single",
-            "prompt": "maxPlaces is the number of learners allowed on a course. Which type is suitable?",
+            "prompt": "maxPlaces is the number of learners allowed on a course, such as 18. Which type is suitable?",
             "options": [
               {
                 "id": "a",
-                "label": "A long piece of text, such as a paragraph"
+                "label": "Text, for a sentence such as 'about 18 people'"
               },
               {
                 "id": "b",
-                "label": "A whole number"
+                "label": "Whole number"
               },
               {
                 "id": "c",
-                "label": "A Boolean true/false, which cannot hold 18"
+                "label": "Boolean"
               },
               {
                 "id": "d",
-                "label": "A photograph"
+                "label": "Date"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "A capacity is a whole number. You can then compare it with places already booked.",
-              "incorrect": "True/false cannot store 18. A paragraph is the wrong shape for a count."
+              "correct": "Capacity is a whole number, so it can be compared with places already booked.",
+              "incorrect": "A sentence cannot be compared safely. Boolean has only two values. A date is a calendar day, not a count."
             }
           }
         }
@@ -28538,29 +28538,29 @@
             "questionId": "week-7-lesson-3-ex-07:len",
             "sourceQuestionId": "len",
             "sourceType": "single",
-            "prompt": "A booking status will only ever be a short word such as Confirmed, Full or Cancelled. Which length is the best fit?",
+            "prompt": "Booking status is only Confirmed or Cancelled. Which field design fits?",
             "options": [
               {
                 "id": "a",
-                "label": "A 2,000-character field, because longer is always safer"
+                "label": "Text of 2,000 characters, accepting any wording"
               },
               {
                 "id": "b",
-                "label": "A short text length that fits those words, with the allowed values listed"
+                "label": "Short text, long enough for those words, with only those values allowed"
               },
               {
                 "id": "c",
-                "label": "Length 1, so the word Confirmed cannot be stored"
+                "label": "Length 1, so neither word can be stored"
               },
               {
                 "id": "d",
-                "label": "No maximum, and no list of allowed values"
+                "label": "A whole number, treating status as a count of bookings"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "Give the field enough room for the real words, and list the allowed values so new spellings do not appear by accident.",
-              "incorrect": "Length 1 cannot hold Confirmed. An unlimited field does not control the value."
+              "correct": "Give the field room for Confirmed and Cancelled, and list those allowed values. Course full is a message, not a third status.",
+              "incorrect": "An open 2,000-character field will collect other words. Length 1 cannot store Confirmed. A count is maxPlaces, not status."
             }
           }
         }
@@ -28615,25 +28615,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "present, because true and false are easy to type"
+                "label": "present"
               },
               {
                 "id": "b",
-                "label": "attendanceId, a value unique to that attendance row"
+                "label": "room, copied from Session"
               },
               {
                 "id": "c",
-                "label": "room, copied from the session, because rooms sound important"
+                "label": "The learner's surname"
               },
               {
                 "id": "d",
-                "label": "The learner's surname"
+                "label": "attendanceId"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "d",
             "feedback": {
-              "correct": "attendanceId identifies one attendance row. Present and surname repeat across many rows.",
-              "incorrect": "A yes/no flag is not an identifier."
+              "correct": "attendanceId identifies one attendance row. present, room and surname can all repeat.",
+              "incorrect": "A yes/no value is not an identifier. Copying room onto Attendance also duplicates Session."
             }
           }
         }
@@ -28684,29 +28684,29 @@
             "questionId": "week-7-lesson-3-ex-09:fk",
             "sourceQuestionId": "fk",
             "sourceType": "single",
-            "prompt": "Attendance must show which session the register line is for. Which dictionary entry is right?",
+            "prompt": "Attendance must record which session the register line is for. Which dictionary entry is right?",
             "options": [
               {
                 "id": "a",
-                "label": "sessionId, foreign key, references Session"
+                "label": "sessionId, primary key of Attendance"
               },
               {
                 "id": "b",
-                "label": "sessionId, primary key of Course"
+                "label": "present, foreign key, references Course.title"
               },
               {
                 "id": "c",
-                "label": "present, foreign key, references Course title"
+                "label": "sessionId, foreign key, references Session"
               },
               {
                 "id": "d",
-                "label": "No foreign key, type the full session description into every attendance row"
+                "label": "No foreign key. Copy the session date and room into every attendance row"
               }
             ],
-            "correctOptionId": "a",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "sessionId on Attendance points at the primary key of Session.",
-              "incorrect": "Copying the whole session description into every row duplicates data."
+              "correct": "sessionId on Attendance references Session.sessionId. attendanceId remains the primary key of Attendance.",
+              "incorrect": "Copying the session date and room duplicates Session. present is a Boolean, not a key."
             }
           }
         }
@@ -28856,25 +28856,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "learnerId, courseId, sessionDate, requestedOn"
+                "label": "L, C, S and R, with the meanings kept in a separate note"
               },
               {
                 "id": "b",
-                "label": "Learner-ID, course id, SessionDate, req"
+                "label": "learnerId, courseId, sessionDate, requestedOn"
               },
               {
                 "id": "c",
-                "label": "L, C, S, R, with a separate verbal explanation for each letter"
+                "label": "Learner-ID, course id, SessionDate and req"
               },
               {
                 "id": "d",
-                "label": "Name, Name, Name, Name, relying on column order"
+                "label": "Name, Name2, Name3 and Name4, in a fixed column order"
               }
             ],
-            "correctOptionId": "a",
+            "correctOptionId": "b",
             "feedback": {
-              "correct": "One style, full words, no spaces: another developer can read the names without a private key.",
-              "incorrect": "Single letters and repeated Name force the reader to guess."
+              "correct": "One style, full words and no spaces. Another developer can read the names without a private list.",
+              "incorrect": "Mixed punctuation, single letters and repeated Name all force the reader to guess."
             }
           }
         }
@@ -29019,25 +29019,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "To make the form longer to type"
+                "label": "To recheck the live database later. That later check is verification, not this validation"
               },
               {
                 "id": "b",
-                "label": "To reject missing or impossible values before a booking is stored"
+                "label": "To reject a missing email or a courseId that is not a real course before a booking is stored"
               },
               {
                 "id": "c",
-                "label": "To replace the primary key"
+                "label": "To use the email as bookingId, so a separate primary key is unnecessary"
               },
               {
                 "id": "d",
-                "label": "To avoid writing an error message"
+                "label": "To stop the screen from showing an error message"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "Validation protects the data the later register and reports depend on.",
-              "incorrect": "A primary key does not check that an email looks usable."
+              "correct": "Validation rejects missing or impossible values before they are stored. The learner still needs a message that says what to correct.",
+              "incorrect": "Checking again after go-live is a different activity. An email can change and can be shared, so it is a poor primary key."
             }
           }
         }
@@ -29190,25 +29190,25 @@
             "options": [
               {
                 "id": "a",
-                "label": "Store a confirmed booking with a blank courseId"
+                "label": "Store Confirmed with a blank courseId and correct it later"
               },
               {
                 "id": "b",
-                "label": "Do not store the booking, and ask the learner to choose a course"
+                "label": "Do not store a booking. Ask the learner to choose a course"
               },
               {
                 "id": "c",
-                "label": "Delete every course"
+                "label": "Store the booking against the first course in the list"
               },
               {
                 "id": "d",
-                "label": "Mark the learner present at all sessions"
+                "label": "Create an attendance row for every session of every course"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "A booking without a course cannot be used. Stop and ask for the missing course.",
-              "incorrect": "A blank foreign key fails the data requirement."
+              "correct": "A booking without a course cannot be used. Stop, and ask for the missing course.",
+              "incorrect": "A blank courseId, or a guessed course, records the wrong request. Attendance belongs to a session the learner actually has."
             }
           }
         }
@@ -29259,29 +29259,29 @@
             "questionId": "week-7-lesson-3-ex-16:err",
             "sourceQuestionId": "err",
             "sourceType": "single",
-            "prompt": "Email was left blank. Which message is most suitable?",
+            "prompt": "The email address was left blank. Which message is most suitable?",
             "options": [
               {
                 "id": "a",
-                "label": "Error 500 null pointer"
+                "label": "Error 500"
               },
               {
                 "id": "b",
-                "label": "Enter an email address so we can confirm your place"
-              },
-              {
-                "id": "c",
                 "label": "Invalid"
               },
               {
+                "id": "c",
+                "label": "Enter an email address. Oakfield uses it to send the result of this request"
+              },
+              {
                 "id": "d",
-                "label": "You failed"
+                "label": "Validation rule 14 failed"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "c",
             "feedback": {
-              "correct": "The message names the field and why it is needed.",
-              "incorrect": "A code or a single word does not tell the learner what to correct."
+              "correct": "Name the field and why it is needed, in words the learner can act on.",
+              "incorrect": "A code, the word Invalid, or a rule number does not say what to type."
             }
           }
         }
@@ -29345,7 +29345,7 @@
             "sourceQuestionId": "check",
             "prompt": "Say whether Learner, Course, Session, Booking and Attendance can meet that requirement. Name the fields a developer must have, and one validation rule that protects the register.",
             "placeholder": "Meets the requirement? ...\nFields needed: ...\nWhy Booking is still needed: ...\nValidation: ...\nIf something is missing: ...",
-            "guidance": "Attendance needs sessionId and learnerId. Booking explains who was expected. present should be Boolean, not blank.",
+            "guidance": "Attendance needs sessionId and learnerId. Booking shows who was expected on the course. present is Boolean and should not be blank. Do not copy the room onto Attendance.",
             "minChars": 90
           }
         }
@@ -29393,7 +29393,7 @@
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Using your Lesson 1 ERD, write a data dictionary for Booking and Attendance. If the ERD is missing a key or a relationship, say what you would change. Do not invent card payments."
+            "text": "Using your Lesson 1 ERD, write a data dictionary for Booking and Attendance. If that drawing is missing a key or a relationship, change the file and submit the updated diagram separately. Do not add card payments. Course full is a message, not a booking status."
           }
         },
         {
@@ -29408,9 +29408,9 @@
             "formative": true,
             "questionId": "week-7-lesson-3-ex-18:dict",
             "sourceQuestionId": "dict",
-            "prompt": "For each field include name, entity, type, length or allowed values, key, required or optional, validation, and the error message. Then note one ERD change, or say no change.",
-            "placeholder": "Booking fields:\n...\nAttendance fields:\n...\nERD change: ...",
-            "guidance": "Include bookingId, learnerId, courseId, status and requestedOn. Include attendanceId, sessionId, learnerId and present. Foreign keys must name the entity they reference.",
+            "prompt": "For each field include name, entity, type, length or allowed values, key, required or optional, validation, and the error message. Note one ERD change, or say no change, and name the file if you updated it.",
+            "placeholder": "Booking fields:\n...\nAttendance fields:\n...\nERD change: ...\nUpdated file, if any: ...",
+            "guidance": "Include bookingId, learnerId, courseId, status (Confirmed or Cancelled) and requestedOn. Include attendanceId, sessionId, learnerId and present. Foreign keys must name the entity they reference.",
             "minChars": 160
           }
         }
@@ -29504,9 +29504,9 @@
             "formative": true,
             "questionId": "week-7-homework-critique:improve",
             "sourceQuestionId": "improve",
-            "prompt": "What works, what gets in the way, and one change you would make? Mention labels, the main action, or the message when something goes wrong.",
-            "placeholder": "Works: ... Gets in the way: ... Change: ...",
-            "guidance": "One specific change is enough. Say who it helps.",
+            "prompt": "What works, what gets in the way, and one change a developer could make? Use labels, the main action, navigation, or the message when something goes wrong.",
+            "placeholder": "Works: ... Gets in the way: ... Change: ... Who it helps: ...",
+            "guidance": "One specific change is enough. A colour preference is not a design change.",
             "minChars": 50
           }
         }
