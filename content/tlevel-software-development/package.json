@@ -2,7 +2,7 @@
   "schema": "lp.content.package",
   "schemaVersion": "0.1.0",
   "id": "tlevel-software-development-content",
-  "version": "0.4.30",
+  "version": "0.4.31",
   "hub": {
     "schema": "lp.content.hub",
     "schemaVersion": "0.1.0",
@@ -2343,7 +2343,7 @@
       "metadata": {
         "title": "Lesson 1: Process diagram and first-cut ERD",
         "kind": "session",
-        "summary": "Retrieve the priority user journey and model process plus data.",
+        "summary": "Interpret, plan and check process diagrams and ERDs for Oakfield bookings, sessions and attendance.",
         "sortOrder": 1,
         "defaultOpen": true,
         "status": "available"
@@ -2351,9 +2351,24 @@
       "relationships": {
         "week": "week-7",
         "activities": [
-          "week-7-lesson-1-retrieval",
-          "week-7-lesson-1-main",
-          "week-7-lesson-1-formative"
+          "week-7-lesson-1-ex-01",
+          "week-7-lesson-1-ex-02",
+          "week-7-lesson-1-ex-03",
+          "week-7-lesson-1-ex-04",
+          "week-7-lesson-1-ex-05",
+          "week-7-lesson-1-ex-06",
+          "week-7-lesson-1-ex-07",
+          "week-7-lesson-1-ex-08",
+          "week-7-lesson-1-ex-09",
+          "week-7-lesson-1-ex-10",
+          "week-7-lesson-1-ex-11",
+          "week-7-lesson-1-ex-12",
+          "week-7-lesson-1-ex-13",
+          "week-7-lesson-1-ex-14",
+          "week-7-lesson-1-ex-15",
+          "week-7-lesson-1-ex-16",
+          "week-7-lesson-1-ex-17",
+          "week-7-lesson-1-ex-18"
         ]
       }
     },
@@ -2365,7 +2380,7 @@
       "metadata": {
         "title": "Lesson 2: Interface sketch and algorithm",
         "kind": "session",
-        "summary": "Create a low-fidelity interface for a priority task and plan the algorithm behind it.",
+        "summary": "Plan wireframes and the algorithm that carries out the booking actions, including checks and messages.",
         "sortOrder": 2,
         "defaultOpen": false,
         "status": "available"
@@ -2373,9 +2388,24 @@
       "relationships": {
         "week": "week-7",
         "activities": [
-          "week-7-lesson-2-retrieval",
-          "week-7-lesson-2-main",
-          "week-7-lesson-2-formative"
+          "week-7-lesson-2-ex-01",
+          "week-7-lesson-2-ex-02",
+          "week-7-lesson-2-ex-03",
+          "week-7-lesson-2-ex-04",
+          "week-7-lesson-2-ex-05",
+          "week-7-lesson-2-ex-06",
+          "week-7-lesson-2-ex-07",
+          "week-7-lesson-2-ex-08",
+          "week-7-lesson-2-ex-09",
+          "week-7-lesson-2-ex-10",
+          "week-7-lesson-2-ex-11",
+          "week-7-lesson-2-ex-12",
+          "week-7-lesson-2-ex-13",
+          "week-7-lesson-2-ex-14",
+          "week-7-lesson-2-ex-15",
+          "week-7-lesson-2-ex-16",
+          "week-7-lesson-2-ex-17",
+          "week-7-lesson-2-ex-18"
         ]
       }
     },
@@ -2387,7 +2417,7 @@
       "metadata": {
         "title": "Lesson 3: Data-requirement design versus acceptance",
         "kind": "session",
-        "summary": "Plan data fields and check the design against acceptance criteria.",
+        "summary": "Specify the data Oakfield must store, including types, keys, names and validation a developer can build from.",
         "sortOrder": 3,
         "defaultOpen": false,
         "status": "available"
@@ -2395,9 +2425,24 @@
       "relationships": {
         "week": "week-7",
         "activities": [
-          "week-7-lesson-3-retrieval",
-          "week-7-lesson-3-main",
-          "week-7-lesson-3-formative"
+          "week-7-lesson-3-ex-01",
+          "week-7-lesson-3-ex-02",
+          "week-7-lesson-3-ex-03",
+          "week-7-lesson-3-ex-04",
+          "week-7-lesson-3-ex-05",
+          "week-7-lesson-3-ex-06",
+          "week-7-lesson-3-ex-07",
+          "week-7-lesson-3-ex-08",
+          "week-7-lesson-3-ex-09",
+          "week-7-lesson-3-ex-10",
+          "week-7-lesson-3-ex-11",
+          "week-7-lesson-3-ex-12",
+          "week-7-lesson-3-ex-13",
+          "week-7-lesson-3-ex-14",
+          "week-7-lesson-3-ex-15",
+          "week-7-lesson-3-ex-16",
+          "week-7-lesson-3-ex-17",
+          "week-7-lesson-3-ex-18"
         ]
       }
     },
@@ -25117,22 +25162,21 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-1-retrieval",
+      "id": "week-7-lesson-1-ex-01",
       "version": "0.1.0",
       "metadata": {
-        "title": "Retrieval: information the journey needs",
+        "title": "Why draw the process?",
         "status": "available",
-        "summary": "List the information the system must store or display for the priority journey.",
+        "summary": "A process diagram shows steps and decisions before anyone builds screens.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-1-retrieval",
-        "estimatedDurationMinutes": 8,
-        "activityType": "Retrieval",
+        "familyId": "week-7-lesson-1-ex-01",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
         "topics": [
-          "Data",
-          "Process"
+          "Process diagrams"
         ],
-        "detail": "List the information the system must store or display for the priority journey."
+        "detail": "A process diagram shows steps and decisions before anyone builds screens."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25150,68 +25194,39 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-retrieval-title",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "What the journey needs",
-            "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-retrieval-info",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-1-retrieval:info",
-            "sourceQuestionId": "info",
-            "prompt": "For 'request a place', list data the system must show or store.",
-            "placeholder": "Show: ... Store: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-retrieval-q1",
+          "id": "week-7-lesson-1-ex-01-purpose",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "single-choice",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-1-retrieval:q1",
-            "sourceQuestionId": "q1",
+            "questionId": "week-7-lesson-1-ex-01:purpose",
+            "sourceQuestionId": "purpose",
             "sourceType": "single",
-            "prompt": "An ERD is mainly for:",
+            "prompt": "Oakfield wants learners to request a place on a published course. Why draw a process diagram first?",
             "options": [
               {
                 "id": "a",
-                "label": "Choosing button colours"
+                "label": "To choose the hub logo and the font for posters"
               },
               {
                 "id": "b",
-                "label": "Showing entities, keys and relationships the system must remember"
+                "label": "To show the steps, decisions and outcomes so another person can follow the same process"
               },
               {
                 "id": "c",
-                "label": "Replacing user stories"
+                "label": "To replace the need to store any learner or course data"
               },
               {
                 "id": "d",
-                "label": "The marketing website only"
+                "label": "To list every programming library the team might buy"
               }
             ],
             "correctOptionId": "b",
             "feedback": {
-              "correct": "You should be able to explain one relationship in plain English.",
-              "incorrect": "Process diagrams show flow; ERDs show stored data."
+              "correct": "A process diagram is a shared picture of the work: what happens, in what order, and what choice is made.",
+              "incorrect": "Logos and libraries are not the job of a process diagram. Data still has to be stored."
             }
           }
         }
@@ -25220,22 +25235,1312 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-1-main",
+      "id": "week-7-lesson-1-ex-02",
       "version": "0.1.0",
       "metadata": {
-        "title": "Process and data that agree",
+        "title": "Flowchart symbols",
         "status": "available",
-        "summary": "Produce a process diagram and a first-cut data model.",
+        "summary": "Match each symbol to the job it does in a flowchart.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-1-main",
-        "estimatedDurationMinutes": 35,
-        "activityType": "Guided learning",
+        "familyId": "week-7-lesson-1-ex-02",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Matching",
+        "topics": [
+          "Flowchart symbols"
+        ],
+        "detail": "Match each symbol to the job it does in a flowchart."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-02-symbols",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "drag-drop",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-02:symbols",
+            "sourceQuestionId": "symbols",
+            "prompt": "Match each flowchart symbol to its meaning.",
+            "items": [
+              {
+                "id": "term",
+                "label": "Oval (terminator)"
+              },
+              {
+                "id": "proc",
+                "label": "Rectangle"
+              },
+              {
+                "id": "dec",
+                "label": "Diamond"
+              },
+              {
+                "id": "io",
+                "label": "Parallelogram"
+              }
+            ],
+            "targets": [
+              {
+                "id": "m-term",
+                "label": "Start or end of the process"
+              },
+              {
+                "id": "m-proc",
+                "label": "A step that is carried out"
+              },
+              {
+                "id": "m-dec",
+                "label": "A question with more than one path"
+              },
+              {
+                "id": "m-io",
+                "label": "Data that is entered or a message that is shown"
+              }
+            ],
+            "correct": {
+              "term": "m-term",
+              "proc": "m-proc",
+              "dec": "m-dec",
+              "io": "m-io"
+            },
+            "feedback": {
+              "correct": "Ovals start and finish. Rectangles are actions. Diamonds are decisions. Parallelograms are inputs or outputs.",
+              "incorrect": "A diamond is a question, not the start of the diagram."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-03",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Put the request in order",
+        "status": "available",
+        "summary": "The sequence has to match how a booking actually happens.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-03",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Process sequence"
+        ],
+        "detail": "The sequence has to match how a booking actually happens."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-03-order",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-03:order",
+            "sourceQuestionId": "order",
+            "sourceType": "single",
+            "prompt": "Which order best describes Oakfield's 'request a place' process?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Confirm the booking, then ask which course, then check whether places remain"
+              },
+              {
+                "id": "b",
+                "label": "The learner chooses a published course, submits a request, the system checks places, then confirms the booking or says the course is full"
+              },
+              {
+                "id": "c",
+                "label": "End the process, then start it, then store attendance for a class that has not been chosen"
+              },
+              {
+                "id": "d",
+                "label": "Delete the course, then create a booking with no learner"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Choose the course, take the request, check capacity, then give a clear result.",
+              "incorrect": "You cannot confirm a place before you know the course and whether space remains."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-04",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "A decision creates two paths",
+        "status": "available",
+        "summary": "The capacity check is a decision, not a single happy path.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-04",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Decisions"
+        ],
+        "detail": "The capacity check is a decision, not a single happy path."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-04-paths",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-04:paths",
+            "sourceQuestionId": "paths",
+            "sourceType": "single",
+            "prompt": "A diamond asks 'Are there places left on this course?'. What should the diagram show next?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Two paths: confirm and store the booking, or tell the learner the course is full and do not confirm"
+              },
+              {
+                "id": "b",
+                "label": "One path that always confirms, because diamonds are only decoration"
+              },
+              {
+                "id": "c",
+                "label": "A new course entity created for every rejection"
+              },
+              {
+                "id": "d",
+                "label": "The end symbol immediately, with no message to the learner"
+              }
+            ],
+            "correctOptionId": "a",
+            "feedback": {
+              "correct": "A decision needs the alternative paths written, including what the learner is told.",
+              "incorrect": "If the course is full, confirming the booking would break the capacity rule."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-05",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Steps that do not belong",
+        "status": "available",
+        "summary": "Sort steps for the request-a-place flowchart.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-05",
+        "estimatedDurationMinutes": 5,
+        "activityType": "Classification",
+        "topics": [
+          "Process checks"
+        ],
+        "detail": "Sort steps for the request-a-place flowchart."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-05-steps",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-05:steps",
+            "sourceQuestionId": "steps",
+            "prompt": "Classify each step for Oakfield increment 1, where card payments are out of scope.",
+            "categories": [
+              {
+                "id": "belongs",
+                "label": "Belongs in request-a-place"
+              },
+              {
+                "id": "missing",
+                "label": "Often missing, but needed"
+              },
+              {
+                "id": "out",
+                "label": "Does not belong in this process"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Learner chooses a published course",
+                "correctCategoryId": "belongs"
+              },
+              {
+                "id": "item-2",
+                "label": "System checks how many places remain",
+                "correctCategoryId": "belongs"
+              },
+              {
+                "id": "item-3",
+                "label": "Take a card payment before the request is accepted",
+                "correctCategoryId": "out"
+              },
+              {
+                "id": "item-4",
+                "label": "Tell the learner the result (confirmed or full)",
+                "correctCategoryId": "missing"
+              },
+              {
+                "id": "item-5",
+                "label": "Mark who attended today's classroom session",
+                "correctCategoryId": "out"
+              }
+            ],
+            "feedback": {
+              "correct": "Request-a-place covers choosing a course, checking places and giving a result. Attendance and card payments are different jobs.",
+              "incorrect": "A diagram that never tells the learner the result is incomplete. Attendance is not this process."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-06",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Spot the entities",
+        "status": "available",
+        "summary": "An entity is something the system needs to store as its own set of records.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-06",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Entities"
+        ],
+        "detail": "An entity is something the system needs to store as its own set of records."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-06-entities",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-06:entities",
+            "sourceQuestionId": "entities",
+            "prompt": "Classify each item for the Oakfield booking design.",
+            "categories": [
+              {
+                "id": "entity",
+                "label": "Entity"
+              },
+              {
+                "id": "attr",
+                "label": "Attribute, not an entity"
+              },
+              {
+                "id": "neither",
+                "label": "Not part of this data model"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Learner",
+                "correctCategoryId": "entity"
+              },
+              {
+                "id": "item-2",
+                "label": "Course",
+                "correctCategoryId": "entity"
+              },
+              {
+                "id": "item-3",
+                "label": "Email address",
+                "correctCategoryId": "attr"
+              },
+              {
+                "id": "item-4",
+                "label": "Session",
+                "correctCategoryId": "entity"
+              },
+              {
+                "id": "item-5",
+                "label": "The colour of the reception chairs",
+                "correctCategoryId": "neither"
+              }
+            ],
+            "feedback": {
+              "correct": "Learner, Course and Session are stored as entities. Email describes a learner. Chair colour is not required.",
+              "incorrect": "Do not make a separate entity for every field."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-07",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Attributes sit on an entity",
+        "status": "available",
+        "summary": "Say which entity an attribute belongs to.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-07",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Attributes"
+        ],
+        "detail": "Say which entity an attribute belongs to."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-07-attrs",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-07:attrs",
+            "sourceQuestionId": "attrs",
+            "prompt": "Where should each fact be stored?",
+            "categories": [
+              {
+                "id": "learner",
+                "label": "Learner"
+              },
+              {
+                "id": "course",
+                "label": "Course"
+              },
+              {
+                "id": "booking",
+                "label": "Booking"
+              },
+              {
+                "id": "skip",
+                "label": "Do not store"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Surname",
+                "correctCategoryId": "learner"
+              },
+              {
+                "id": "item-2",
+                "label": "Course title",
+                "correctCategoryId": "course"
+              },
+              {
+                "id": "item-3",
+                "label": "Date the place was requested",
+                "correctCategoryId": "booking"
+              },
+              {
+                "id": "item-4",
+                "label": "Booking status, such as Confirmed or Full",
+                "correctCategoryId": "booking"
+              },
+              {
+                "id": "item-5",
+                "label": "The learner's favourite biscuit",
+                "correctCategoryId": "skip"
+              }
+            ],
+            "feedback": {
+              "correct": "Surname describes the learner. Title describes the course. Request date and status describe that booking.",
+              "incorrect": "Copying the course title onto every booking is not required if the booking stores courseId."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-08",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Choose a primary key",
+        "status": "available",
+        "summary": "A primary key identifies one row and does not repeat for that entity.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-08",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Primary keys"
+        ],
+        "detail": "A primary key identifies one row and does not repeat for that entity."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-08-pk",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-08:pk",
+            "sourceQuestionId": "pk",
+            "sourceType": "single",
+            "prompt": "Which field should be the primary key of Booking?",
+            "options": [
+              {
+                "id": "a",
+                "label": "status, because several bookings can share the value Confirmed"
+              },
+              {
+                "id": "b",
+                "label": "bookingId, a value that identifies that one booking and no other"
+              },
+              {
+                "id": "c",
+                "label": "course title, because two courses might share a similar name"
+              },
+              {
+                "id": "d",
+                "label": "the word Booking, typed the same way on every row"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "bookingId picks out one booking. Status and titles repeat, so they cannot identify a single row.",
+              "incorrect": "A primary key must be unique for that entity."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-09",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "What a foreign key does",
+        "status": "available",
+        "summary": "A foreign key points at a primary key in another entity.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-09",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Foreign keys"
+        ],
+        "detail": "A foreign key points at a primary key in another entity."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-09-fk",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-09:fk",
+            "sourceQuestionId": "fk",
+            "sourceType": "single",
+            "prompt": "Session stores courseId. Why is courseId a foreign key?",
+            "options": [
+              {
+                "id": "a",
+                "label": "It stores the paint colour of the classroom"
+              },
+              {
+                "id": "b",
+                "label": "It refers to courseId on Course, so each session belongs to one course"
+              },
+              {
+                "id": "c",
+                "label": "It means the Course entity can be deleted from the design"
+              },
+              {
+                "id": "d",
+                "label": "It must be a different value in every table in the system"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The foreign key links the session to the course it belongs to.",
+              "incorrect": "A foreign key does not remove the other entity. It references it."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-10",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "One-to-one",
+        "status": "available",
+        "summary": "Use one-to-one only when each side has at most one match.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-10",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Cardinality"
+        ],
+        "detail": "Use one-to-one only when each side has at most one match."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-10-one",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-10:one",
+            "sourceQuestionId": "one",
+            "sourceType": "single",
+            "prompt": "Which relationship is one-to-one in this Oakfield design?",
+            "options": [
+              {
+                "id": "a",
+                "label": "One learner can have many bookings"
+              },
+              {
+                "id": "b",
+                "label": "One learner has one login account, and that account belongs only to that learner"
+              },
+              {
+                "id": "c",
+                "label": "One course has many sessions"
+              },
+              {
+                "id": "d",
+                "label": "Many learners can attend many sessions"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "One login account per learner, and one learner per account, is one-to-one.",
+              "incorrect": "Bookings, sessions and attendance are not one-to-one."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-11",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "One-to-many",
+        "status": "available",
+        "summary": "Read the cardinality from the Oakfield rules, not from a guess.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-11",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Cardinality"
+        ],
+        "detail": "Read the cardinality from the Oakfield rules, not from a guess."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-11-many",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-11:many",
+            "sourceQuestionId": "many",
+            "sourceType": "single",
+            "prompt": "One course has many sessions. Each session belongs to only one course. What is that relationship?",
+            "options": [
+              {
+                "id": "a",
+                "label": "One-to-one"
+              },
+              {
+                "id": "b",
+                "label": "One-to-many, from Course to Session"
+              },
+              {
+                "id": "c",
+                "label": "Many-to-many with no linking entity"
+              },
+              {
+                "id": "d",
+                "label": "Not a relationship, because sessions do not need storing"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "One course, many sessions, each session tied to one course: one-to-many.",
+              "incorrect": "Do not call it many-to-many. A session is not shared across several courses in this design."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-12",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Many-to-many needs a link",
+        "status": "available",
+        "summary": "Booking stores the link between learners and courses.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-12",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Single choice",
+        "topics": [
+          "Relationships"
+        ],
+        "detail": "Booking stores the link between learners and courses."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-12-mm",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-12:mm",
+            "sourceQuestionId": "mm",
+            "sourceType": "single",
+            "prompt": "A learner can request more than one course. A course can have many learners. How should the ERD store those requests?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A line labelled many-to-many, with nowhere to store status or request date"
+              },
+              {
+                "id": "b",
+                "label": "A Booking entity between Learner and Course, so each request can store status and date"
+              },
+              {
+                "id": "c",
+                "label": "Type every course title into the learner's surname field"
+              },
+              {
+                "id": "d",
+                "label": "Remove Course and keep only Learner"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Booking is the linking entity. It holds the facts about that one request.",
+              "incorrect": "A bare many-to-many line cannot store status or the date of the request."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-13",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Name the cardinality",
+        "status": "available",
+        "summary": "Match each Oakfield rule to the relationship type.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-13",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Matching",
+        "topics": [
+          "Cardinality"
+        ],
+        "detail": "Match each Oakfield rule to the relationship type."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-13-card",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "drag-drop",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-13:card",
+            "sourceQuestionId": "card",
+            "prompt": "Match each rule to the relationship type.",
+            "items": [
+              {
+                "id": "cs",
+                "label": "One course has many sessions. Each session is for one course."
+              },
+              {
+                "id": "la",
+                "label": "One learner has one login account, used only by that learner."
+              },
+              {
+                "id": "ba",
+                "label": "Learners attend many sessions, and a session has many learners. Attendance stores each pair."
+              }
+            ],
+            "targets": [
+              {
+                "id": "m-om",
+                "label": "One-to-many"
+              },
+              {
+                "id": "m-oo",
+                "label": "One-to-one"
+              },
+              {
+                "id": "m-mm",
+                "label": "Many-to-many, stored with a linking entity"
+              }
+            ],
+            "correct": {
+              "cs": "m-om",
+              "la": "m-oo",
+              "ba": "m-mm"
+            },
+            "feedback": {
+              "correct": "Course to Session is one-to-many. Login account is one-to-one. Attendance resolves learner and session.",
+              "incorrect": "Do not treat Attendance as one-to-one. One session has many attendance rows."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-14",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Incorrect relationships",
+        "status": "available",
+        "summary": "Reject links that contradict the Oakfield rules.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-14",
+        "estimatedDurationMinutes": 5,
+        "activityType": "Classification",
+        "topics": [
+          "ERD checks"
+        ],
+        "detail": "Reject links that contradict the Oakfield rules."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-14-wrong",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-14:wrong",
+            "sourceQuestionId": "wrong",
+            "prompt": "Is each relationship statement acceptable for this design?",
+            "categories": [
+              {
+                "id": "ok",
+                "label": "Acceptable"
+              },
+              {
+                "id": "bad",
+                "label": "Incorrect"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Each session belongs to one course",
+                "correctCategoryId": "ok"
+              },
+              {
+                "id": "item-2",
+                "label": "One session belongs to many courses at the same time",
+                "correctCategoryId": "bad"
+              },
+              {
+                "id": "item-3",
+                "label": "A booking refers to one learner and one course",
+                "correctCategoryId": "ok"
+              },
+              {
+                "id": "item-4",
+                "label": "An attendance row can be stored with no session",
+                "correctCategoryId": "bad"
+              },
+              {
+                "id": "item-5",
+                "label": "learnerId on Booking stores a Course primary key",
+                "correctCategoryId": "bad"
+              }
+            ],
+            "feedback": {
+              "correct": "Session belongs to one course. Booking points at one learner and one course. Attendance needs a session. A learner foreign key must point at Learner.",
+              "incorrect": "A foreign key must reference the entity it claims to link."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-15",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Duplicated data",
+        "status": "available",
+        "summary": "The same fact stored twice can get out of date.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-15",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Data quality"
+        ],
+        "detail": "The same fact stored twice can get out of date."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-15-dup",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-15:dup",
+            "sourceQuestionId": "dup",
+            "sourceType": "single",
+            "prompt": "Reception copies the learner name, phone and course title into a paper diary and again into a spreadsheet. What is the main data problem?",
+            "options": [
+              {
+                "id": "a",
+                "label": "The hub logo is missing from the spreadsheet"
+              },
+              {
+                "id": "b",
+                "label": "The same facts are stored twice, so the copies can disagree"
+              },
+              {
+                "id": "c",
+                "label": "A date can never be stored in any system"
+              },
+              {
+                "id": "d",
+                "label": "A primary key must always be the person's surname"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Two copies of the same facts drift apart. An ERD should store each fact once and link it with keys.",
+              "incorrect": "Surnames repeat and change. They are a poor primary key."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-16",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Plan the ERD before drawing",
+        "status": "available",
+        "summary": "List entities, keys and relationships in words. You will draw the diagram in the last activity.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-16",
+        "estimatedDurationMinutes": 8,
+        "activityType": "Written response",
+        "topics": [
+          "ERD planning"
+        ],
+        "detail": "List entities, keys and relationships in words. You will draw the diagram in the last activity."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-16-plan",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Use Learner, Course, Session, Booking and Attendance. A booking is one learner requesting one course. Attendance is one learner at one session."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-16-plan",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-16:plan",
+            "sourceQuestionId": "plan",
+            "prompt": "List the five entities, the primary key of each, and three relationships in plain English. Note one foreign key.",
+            "placeholder": "Entities and primary keys:\n1. ...\n2. ...\n3. ...\n4. ...\n5. ...\nRelationships:\n1. ...\n2. ...\n3. ...\nForeign key: ...",
+            "guidance": "Include bookingId and courseId. Say which entity the foreign key sits on and which entity it points to.",
+            "minChars": 80
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-17",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Check the ERD against the need",
+        "status": "available",
+        "summary": "A design that cannot answer the requirement is not finished.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-17",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Single choice",
+        "topics": [
+          "ERD checks"
+        ],
+        "detail": "A design that cannot answer the requirement is not finished."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-17-need",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Tutors must see who is booked on a course and who attended a particular session."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-1-ex-17-gap",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-1-ex-17:gap",
+            "sourceQuestionId": "gap",
+            "sourceType": "single",
+            "prompt": "An ERD contains only Learner and Course, with no Booking, Session or Attendance. Which need fails?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Storing the hub's name on a poster"
+              },
+              {
+                "id": "b",
+                "label": "Recording who attended a particular session"
+              },
+              {
+                "id": "c",
+                "label": "Choosing a font for the wireframe"
+              },
+              {
+                "id": "d",
+                "label": "Knowing that a course has a title, which Course can already store"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Attendance needs Session and a link to Learner. Learner and Course alone cannot show who came to one session.",
+              "incorrect": "Course title does not record attendance."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-1-ex-18",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Draw the flowchart and the ERD",
+        "status": "available",
+        "summary": "Produce both diagrams outside the hub, then record the decisions here.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-1-ex-18",
+        "estimatedDurationMinutes": 15,
+        "activityType": "Written response",
         "topics": [
           "Process diagrams",
           "ERD"
         ],
-        "detail": "Produce a process diagram and a first-cut data model."
+        "detail": "Produce both diagrams outside the hub, then record the decisions here."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25253,70 +26558,31 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-main-title",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "Flow and data must match",
-            "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-main-intro",
+          "id": "week-7-lesson-1-ex-18-draw",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "This week teaches design as part of analysing a problem under 1.1, not the full later Occupational Specialism design competency. Consider users who magnify text, use keyboards only, or need clear language instead of icons alone."
+            "text": "In diagrams.net, or on paper if you cannot open it, draw: (1) a flowchart for request-a-place, including the full and not-full paths; (2) an ERD for Learner, Course, Session, Booking and Attendance, with primary keys, foreign keys and relationship labels. This page cannot open or mark the diagram file."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-main-process",
+          "id": "week-7-lesson-1-ex-18-record",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-1-main:process",
-            "sourceQuestionId": "process",
-            "prompt": "Describe the process for requesting a place (including a rejection path).",
-            "placeholder": "Steps: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-main-erd",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-1-main:erd",
-            "sourceQuestionId": "erd",
-            "prompt": "List entities and relationships (for example Learner, Course, Request, Session, RegisterEntry). Explain one relationship in plain English.",
-            "placeholder": "Entities: ... Relationship: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-main-teacher",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "teacher-note",
-          "content": {
-            "text": "SoL Week 7: tutor models process, ERD, interface and algorithm that agree. Entity cards."
+            "questionId": "week-7-lesson-1-ex-18:record",
+            "sourceQuestionId": "record",
+            "prompt": "Say where the diagrams are (file name or paper). List the entities and the relationships you drew. Explain the decision diamond and what each path does.",
+            "placeholder": "Diagrams: ...\nEntities: ...\nRelationships: ...\nDecision: ...\nPath if places remain: ...\nPath if the course is full: ...",
+            "guidance": "Name both paths. A relationship answer should say which entities are linked and whether it is one-to-one, one-to-many or many-to-many through a linking entity.",
+            "minChars": 120
           }
         }
       ]
@@ -25324,21 +26590,21 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-1-formative",
+      "id": "week-7-lesson-2-ex-01",
       "version": "0.1.0",
       "metadata": {
-        "title": "Progress check: one relationship",
+        "title": "What an interface design is for",
         "status": "available",
-        "summary": "Explain one relationship in plain English.",
+        "summary": "The sketch is for checking the task, not for final branding.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-1-formative",
-        "estimatedDurationMinutes": 8,
-        "activityType": "Progress check",
+        "familyId": "week-7-lesson-2-ex-01",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
         "topics": [
-          "ERD"
+          "Interface design"
         ],
-        "detail": "Explain one relationship in plain English."
+        "detail": "The sketch is for checking the task, not for final branding."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25356,131 +26622,39 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-formative-title",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "Plain English",
-            "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-1-formative-rel",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-1-formative:rel",
-            "sourceQuestionId": "rel",
-            "prompt": "Explain: one Course has many Sessions.",
-            "placeholder": "This means..."
-          }
-        }
-      ]
-    },
-    {
-      "schema": "lp.content.activity",
-      "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-2-retrieval",
-      "version": "0.1.0",
-      "metadata": {
-        "title": "Retrieval: the priority task",
-        "status": "available",
-        "summary": "Retrieve the task the interface must support.",
-        "href": null,
-        "difficulty": "standard",
-        "familyId": "week-7-lesson-2-retrieval",
-        "estimatedDurationMinutes": 8,
-        "activityType": "Retrieval",
-        "topics": [
-          "Interface"
-        ],
-        "detail": "Retrieve the task the interface must support."
-      },
-      "relationships": {
-        "learningOutcomes": [
-          "lo1",
-          "w7-process-erd",
-          "w7-interface-algo",
-          "w7-data"
-        ],
-        "assignment": "os-formative",
-        "questions": [],
-        "assets": [],
-        "prerequisites": []
-      },
-      "blocks": [
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-retrieval-title",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "Priority task",
-            "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-retrieval-task",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-2-retrieval:task",
-            "sourceQuestionId": "task",
-            "prompt": "Which user task are you designing first, and which acceptance criterion does it serve?",
-            "placeholder": "Task: ... AC: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-retrieval-q1",
+          "id": "week-7-lesson-2-ex-01-purpose",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "single-choice",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-2-retrieval:q1",
-            "sourceQuestionId": "q1",
+            "questionId": "week-7-lesson-2-ex-01:purpose",
+            "sourceQuestionId": "purpose",
             "sourceType": "single",
-            "prompt": "A low-fidelity interface should:",
+            "prompt": "Why produce an interface design for Oakfield's booking request before writing code?",
             "options": [
               {
                 "id": "a",
-                "label": "Include final branding before any user check"
+                "label": "So the team can agree layout, labels, actions and messages with the people who will use it"
               },
               {
                 "id": "b",
-                "label": "Show layout, labels, actions and an error or empty state clearly enough to test the idea"
+                "label": "So the database primary keys can be deleted"
               },
               {
                 "id": "c",
-                "label": "Be a finished native app"
+                "label": "So the final colour palette is locked before anyone sees the task"
               },
               {
                 "id": "d",
-                "label": "Hide all text so it looks modern"
+                "label": "So the process diagram is no longer needed"
               }
             ],
-            "correctOptionId": "b",
+            "correctOptionId": "a",
             "feedback": {
-              "correct": "Paper or simple wireframes are enough. Accessibility is part of the sketch.",
-              "incorrect": "Match the algorithm to the actions on the screen."
+              "correct": "An interface design shows how someone completes the task. It should be checked before it is built.",
+              "incorrect": "Branding can wait. The process and the data design still matter."
             }
           }
         }
@@ -25489,22 +26663,21 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-2-main",
+      "id": "week-7-lesson-2-ex-02",
       "version": "0.1.0",
       "metadata": {
-        "title": "Sketch and algorithm",
+        "title": "Follow the user journey",
         "status": "available",
-        "summary": "Interface for a priority task plus the algorithm that must match it.",
+        "summary": "The screens should follow the process, not invent a new one.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-2-main",
-        "estimatedDurationMinutes": 35,
-        "activityType": "Guided learning",
+        "familyId": "week-7-lesson-2-ex-02",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
         "topics": [
-          "Interface",
-          "Algorithms"
+          "User journeys"
         ],
-        "detail": "Interface for a priority task plus the algorithm that must match it."
+        "detail": "The screens should follow the process, not invent a new one."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25522,70 +26695,997 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-main-title",
+          "id": "week-7-lesson-2-ex-02-journey",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "heading",
+          "type": "single-choice",
           "content": {
-            "text": "Screen actions and steps",
-            "level": 2
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-02:journey",
+            "sourceQuestionId": "journey",
+            "sourceType": "single",
+            "prompt": "A learner is requesting a place. Which journey matches the process from Lesson 1?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Land on a course, enter the request, see either a confirmation or a course-full message"
+              },
+              {
+                "id": "b",
+                "label": "Pay by card, then discover which courses exist, then delete the learner record"
+              },
+              {
+                "id": "c",
+                "label": "Open the attendance register for every course in the country, then ask the learner's name"
+              },
+              {
+                "id": "d",
+                "label": "Skip the course list and confirm a booking with no course selected"
+              }
+            ],
+            "correctOptionId": "a",
+            "feedback": {
+              "correct": "The journey follows choose, request, then a result that depends on places.",
+              "incorrect": "Do not confirm a booking when no course has been chosen."
+            }
           }
-        },
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-03",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Interface requirements",
+        "status": "available",
+        "summary": "Separate what the screen must do from decoration.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-03",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Requirements"
+        ],
+        "detail": "Separate what the screen must do from decoration."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-main-intro",
+          "id": "week-7-lesson-2-ex-03-reqs",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-03:reqs",
+            "sourceQuestionId": "reqs",
+            "prompt": "Classify each item for the first booking-request screen.",
+            "categories": [
+              {
+                "id": "must",
+                "label": "Needed for the task"
+              },
+              {
+                "id": "later",
+                "label": "Can wait"
+              },
+              {
+                "id": "no",
+                "label": "Does not belong"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "A way to choose the course",
+                "correctCategoryId": "must"
+              },
+              {
+                "id": "item-2",
+                "label": "Labels that say what to type",
+                "correctCategoryId": "must"
+              },
+              {
+                "id": "item-3",
+                "label": "A final illustrated brand campaign",
+                "correctCategoryId": "later"
+              },
+              {
+                "id": "item-4",
+                "label": "A control to submit the request",
+                "correctCategoryId": "must"
+              },
+              {
+                "id": "item-5",
+                "label": "A game to play while the form loads",
+                "correctCategoryId": "no"
+              }
+            ],
+            "feedback": {
+              "correct": "The first screen must identify the course, collect the request and let the learner submit it.",
+              "incorrect": "A game does not help the booking task."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-04",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "What a wireframe is",
+        "status": "available",
+        "summary": "Low fidelity is enough for this lesson.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-04",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Wireframes"
+        ],
+        "detail": "Low fidelity is enough for this lesson."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-04-wire",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-04:wire",
+            "sourceQuestionId": "wire",
+            "sourceType": "single",
+            "prompt": "Which description best fits a wireframe for this lesson?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A finished app with final photography and motion"
+              },
+              {
+                "id": "b",
+                "label": "A simple layout showing regions, labels, actions and important messages, without final branding"
+              },
+              {
+                "id": "c",
+                "label": "A list of database passwords"
+              },
+              {
+                "id": "d",
+                "label": "Only a colour palette, with no labels or actions"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A wireframe is a layout you can discuss. Labels and actions matter more than polish.",
+              "incorrect": "Hiding all text makes the design impossible to check."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-05",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Layout that can be used",
+        "status": "available",
+        "summary": "Group the request fields so the task is obvious.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-05",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Layout"
+        ],
+        "detail": "Group the request fields so the task is obvious."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-05-layout",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-05:layout",
+            "sourceQuestionId": "layout",
+            "prompt": "For a booking-request screen, classify each layout choice.",
+            "categories": [
+              {
+                "id": "good",
+                "label": "Helps the task"
+              },
+              {
+                "id": "poor",
+                "label": "Gets in the way"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Course choice, learner details and the submit button are grouped in that order",
+                "correctCategoryId": "good"
+              },
+              {
+                "id": "item-2",
+                "label": "The submit button is placed before any field, with the course choice in a footnote",
+                "correctCategoryId": "poor"
+              },
+              {
+                "id": "item-3",
+                "label": "The confirmation message has its own clear area",
+                "correctCategoryId": "good"
+              },
+              {
+                "id": "item-4",
+                "label": "Essential fields are scattered in four corners with no headings",
+                "correctCategoryId": "poor"
+              }
+            ],
+            "feedback": {
+              "correct": "Order the screen the way the task is done. Keep the result message easy to find.",
+              "incorrect": "A submit button before the fields invites an empty request."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-06",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Navigation",
+        "status": "available",
+        "summary": "People need a clear way in and a clear way back.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-06",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Navigation"
+        ],
+        "detail": "People need a clear way in and a clear way back."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-06-nav",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-06:nav",
+            "sourceQuestionId": "nav",
+            "sourceType": "single",
+            "prompt": "A learner has opened the wrong course. Which navigation choice is most suitable?",
+            "options": [
+              {
+                "id": "a",
+                "label": "No way back, so they must close the browser"
+              },
+              {
+                "id": "b",
+                "label": "A clear way to return to the course list without losing the meaning of the task"
+              },
+              {
+                "id": "c",
+                "label": "A menu of 40 unrelated admin reports on the learner form"
+              },
+              {
+                "id": "d",
+                "label": "A button labelled Click here that sometimes goes to the register and sometimes to the home page"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Navigation should match the journey. Back to the course list is a real need.",
+              "incorrect": "Unclear labels and admin reports do not help this learner task."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-07",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Visual hierarchy",
+        "status": "available",
+        "summary": "The main action should be the easiest thing to find.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-07",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Visual hierarchy"
+        ],
+        "detail": "The main action should be the easiest thing to find."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-07-hier",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-07:hier",
+            "sourceQuestionId": "hier",
+            "sourceType": "single",
+            "prompt": "On the booking-request screen, which item should stand out as the primary action?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A faint link called Misc, the same size as the privacy footer"
+              },
+              {
+                "id": "b",
+                "label": "The control that submits the place request, with a specific label such as Request place"
+              },
+              {
+                "id": "c",
+                "label": "The hub's fax number from 1998, in the largest type"
+              },
+              {
+                "id": "d",
+                "label": "Every button the same size, including Delete all courses"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The main action should look like the main action and say what it does.",
+              "incorrect": "Delete all courses must not compete with requesting a place."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-08",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Consistency",
+        "status": "available",
+        "summary": "Use the same words for the same things.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-08",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Consistency"
+        ],
+        "detail": "Use the same words for the same things."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-08-consist",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-08:consist",
+            "sourceQuestionId": "consist",
+            "prompt": "Classify each pair of labels.",
+            "categories": [
+              {
+                "id": "ok",
+                "label": "Consistent"
+              },
+              {
+                "id": "mix",
+                "label": "Inconsistent"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "The button says Request place and the confirmation says Place requested",
+                "correctCategoryId": "ok"
+              },
+              {
+                "id": "item-2",
+                "label": "One screen says Course and the next calls the same thing Product SKU",
+                "correctCategoryId": "mix"
+              },
+              {
+                "id": "item-3",
+                "label": "Both the form and the error use the words email address",
+                "correctCategoryId": "ok"
+              },
+              {
+                "id": "item-4",
+                "label": "Submit, Go, OK and Send are used at random for the same request action",
+                "correctCategoryId": "mix"
+              }
+            ],
+            "feedback": {
+              "correct": "Use one name for the course and one name for the action. Confirmation wording can complete that action.",
+              "incorrect": "Product SKU is a different language from the Oakfield brief."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-09",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Accessibility in the sketch",
+        "status": "available",
+        "summary": "Access needs are part of the design, not a later coat of paint.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-09",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Single choice",
+        "topics": [
+          "Accessibility"
+        ],
+        "detail": "Access needs are part of the design, not a later coat of paint."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-09-a11y",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-09:a11y",
+            "sourceQuestionId": "a11y",
+            "sourceType": "single",
+            "prompt": "Which design choice best supports learners who use a keyboard or a screen reader?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Instructions given only by a red outline, with no text"
+              },
+              {
+                "id": "b",
+                "label": "Every input has a visible text label, and the result is not conveyed by colour alone"
+              },
+              {
+                "id": "c",
+                "label": "Placeholder text instead of labels, disappearing as soon as someone types"
+              },
+              {
+                "id": "d",
+                "label": "Icon-only buttons with no text alternative"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Text labels and a text result work with keyboards, screen readers and magnification.",
+              "incorrect": "Colour alone and icon-only controls leave some learners without the instruction."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-10",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Usability problems",
+        "status": "available",
+        "summary": "Name problems a learner would hit, not visual taste.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-10",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Usability"
+        ],
+        "detail": "Name problems a learner would hit, not visual taste."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-10-use",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-10:use",
+            "sourceQuestionId": "use",
+            "prompt": "Classify each issue on a draft booking screen.",
+            "categories": [
+              {
+                "id": "block",
+                "label": "Blocks the task"
+              },
+              {
+                "id": "minor",
+                "label": "Minor, can wait"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "The course-full message never appears, so the learner thinks the request succeeded",
+                "correctCategoryId": "block"
+              },
+              {
+                "id": "item-2",
+                "label": "The footer copyright year is 2024 rather than 2026",
+                "correctCategoryId": "minor"
+              },
+              {
+                "id": "item-3",
+                "label": "Required fields are not marked, and an empty form can be submitted",
+                "correctCategoryId": "block"
+              },
+              {
+                "id": "item-4",
+                "label": "The page heading is 2 pixels smaller than the style guide",
+                "correctCategoryId": "minor"
+              }
+            ],
+            "feedback": {
+              "correct": "A missing result and an empty submit stop the real task. A slightly small heading does not.",
+              "incorrect": "Do not treat a wrong copyright year as more serious than a false confirmation."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-11",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Inputs and outputs",
+        "status": "available",
+        "summary": "The screen both collects data and shows a result.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-11",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Inputs and outputs"
+        ],
+        "detail": "The screen both collects data and shows a result."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-11-io",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-11:io",
+            "sourceQuestionId": "io",
+            "prompt": "Classify each item on the booking journey.",
+            "categories": [
+              {
+                "id": "in",
+                "label": "Input"
+              },
+              {
+                "id": "out",
+                "label": "Output"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "The course the learner chooses",
+                "correctCategoryId": "in"
+              },
+              {
+                "id": "item-2",
+                "label": "The email address the learner types",
+                "correctCategoryId": "in"
+              },
+              {
+                "id": "item-3",
+                "label": "The message that the place is confirmed",
+                "correctCategoryId": "out"
+              },
+              {
+                "id": "item-4",
+                "label": "The message that the course is full",
+                "correctCategoryId": "out"
+              }
+            ],
+            "feedback": {
+              "correct": "The course and email go into the process. The confirmation and full messages come out.",
+              "incorrect": "A message the learner reads is an output."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-12",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "What an algorithm is here",
+        "status": "available",
+        "summary": "An algorithm is the ordered steps that carry out the task.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-12",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Algorithms"
+        ],
+        "detail": "An algorithm is the ordered steps that carry out the task."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-12-algo",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-12:algo",
+            "sourceQuestionId": "algo",
+            "sourceType": "single",
+            "prompt": "Which statement best describes the algorithm for requesting a place?",
+            "options": [
+              {
+                "id": "a",
+                "label": "The brand colours for the confirmation page"
+              },
+              {
+                "id": "b",
+                "label": "The ordered steps the system follows to check the request and choose the result"
+              },
+              {
+                "id": "c",
+                "label": "A photograph of the reception desk"
+              },
+              {
+                "id": "d",
+                "label": "A list of staff birthdays"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The algorithm is the steps, including the check and the two possible results.",
+              "incorrect": "Colours and photographs are not the steps."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-13",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Sequence the steps",
+        "status": "available",
+        "summary": "Order matters. Validation comes before storing a booking.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-13",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Sequencing"
+        ],
+        "detail": "Order matters. Validation comes before storing a booking."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-13-seq",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-13:seq",
+            "sourceQuestionId": "seq",
+            "sourceType": "single",
+            "prompt": "Which sequence is safe?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Store a confirmed booking, then check whether a course was chosen, then look at places left"
+              },
+              {
+                "id": "b",
+                "label": "Read the chosen course and email, check they are present, check places left, then store a confirmed booking or show course full"
+              },
+              {
+                "id": "c",
+                "label": "Show course full for every request, then ask which course"
+              },
+              {
+                "id": "d",
+                "label": "Email the whole class list to anyone who opens the page, then ask for a name"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Check the inputs and the places before you store a confirmed booking.",
+              "incorrect": "Storing first can create a booking that should have been rejected."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-14",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Selection with IF",
+        "status": "available",
+        "summary": "Predict the result. Do not assume the condition is the right way round.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-14",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Single choice",
+        "topics": [
+          "Selection"
+        ],
+        "detail": "Predict the result. Do not assume the condition is the right way round."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-14-code",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "paragraph",
           "content": {
-            "text": "Supported learners complete a partially designed screen. Extension: error state or alternative path."
+            "text": "placesLeft = 0. IF placesLeft > 0 THEN status = Confirmed ELSE status = Full."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-main-ui",
+          "id": "week-7-lesson-2-ex-14-if",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "short-response",
+          "type": "single-choice",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-2-main:ui",
-            "sourceQuestionId": "ui",
-            "prompt": "Describe the register (or booking) screen: purpose, key labels, primary action, and one accessibility consideration.",
-            "placeholder": "Purpose: ... Labels: ... Action: ... Access: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-main-algo",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-2-main:algo",
-            "sourceQuestionId": "algo",
-            "prompt": "Write the algorithm as numbered steps that match those actions, including validation.",
-            "placeholder": "1. ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-main-teacher",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "teacher-note",
-          "content": {
-            "text": "SoL Week 7: paper wireframe kits and algorithm templates. Questioning checks algorithm matches interface."
+            "questionId": "week-7-lesson-2-ex-14:if",
+            "sourceQuestionId": "if",
+            "sourceType": "single",
+            "prompt": "What is status after this selection?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Confirmed, because every request should succeed"
+              },
+              {
+                "id": "b",
+                "label": "Full, because placesLeft is not greater than 0"
+              },
+              {
+                "id": "c",
+                "label": "Both Confirmed and Full"
+              },
+              {
+                "id": "d",
+                "label": "The algorithm skips the decision"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The condition is false, so the ELSE path runs and status is Full.",
+              "incorrect": "Read the condition. Zero places must not take the confirmed path."
+            }
           }
         }
       ]
@@ -25593,21 +27693,21 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-2-formative",
+      "id": "week-7-lesson-2-ex-15",
       "version": "0.1.0",
       "metadata": {
-        "title": "Progress check: algorithm matches screen",
+        "title": "Why a loop is used",
         "status": "available",
-        "summary": "Check that the algorithm matches the interface actions.",
+        "summary": "A loop repeats a step when there are many similar items.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-2-formative",
-        "estimatedDurationMinutes": 8,
-        "activityType": "Progress check",
+        "familyId": "week-7-lesson-2-ex-15",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Single choice",
         "topics": [
-          "Algorithms"
+          "Iteration"
         ],
-        "detail": "Check that the algorithm matches the interface actions."
+        "detail": "A loop repeats a step when there are many similar items."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25625,30 +27725,40 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-formative-title",
+          "id": "week-7-lesson-2-ex-15-loop",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "Do they agree?",
-            "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-2-formative-match",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
+          "type": "single-choice",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-2-formative:match",
-            "sourceQuestionId": "match",
-            "prompt": "Name one screen action and the algorithm step that implements it. Name one mismatch you caught.",
-            "placeholder": "Action: ... Step: ... Mismatch: ..."
+            "questionId": "week-7-lesson-2-ex-15:loop",
+            "sourceQuestionId": "loop",
+            "sourceType": "single",
+            "prompt": "A tutor opens today's register. The course has several sessions, and only today's session should open. Why is a loop suitable?",
+            "options": [
+              {
+                "id": "a",
+                "label": "To look at each session until the one with today's date is found"
+              },
+              {
+                "id": "b",
+                "label": "Because a loop always deletes every learner"
+              },
+              {
+                "id": "c",
+                "label": "Because IF/ELSE cannot exist in the same algorithm"
+              },
+              {
+                "id": "d",
+                "label": "To avoid storing session dates"
+              }
+            ],
+            "correctOptionId": "a",
+            "feedback": {
+              "correct": "There can be many sessions. A loop checks them one by one.",
+              "incorrect": "The loop does not replace the need to store the session date."
+            }
           }
         }
       ]
@@ -25656,21 +27766,1545 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-3-retrieval",
+      "id": "week-7-lesson-2-ex-16",
       "version": "0.1.0",
       "metadata": {
-        "title": "Retrieval: acceptance you already wrote",
+        "title": "Faults in pseudocode",
         "status": "available",
-        "summary": "Retrieve one acceptance criterion from Week 4.",
+        "summary": "Find the logical mistake, not a spelling preference.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-3-retrieval",
+        "familyId": "week-7-lesson-2-ex-16",
+        "estimatedDurationMinutes": 5,
+        "activityType": "Classification",
+        "topics": [
+          "Pseudocode"
+        ],
+        "detail": "Find the logical mistake, not a spelling preference."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-16-faults",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-16:faults",
+            "sourceQuestionId": "faults",
+            "prompt": "Classify each piece of pseudocode for 'confirm only when places remain'.",
+            "categories": [
+              {
+                "id": "ok",
+                "label": "Does the right thing"
+              },
+              {
+                "id": "bad",
+                "label": "Logical mistake"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "IF placesLeft > 0 THEN status = Confirmed ELSE status = Full",
+                "correctCategoryId": "ok"
+              },
+              {
+                "id": "item-2",
+                "label": "IF placesLeft = 0 THEN status = Confirmed ELSE status = Full",
+                "correctCategoryId": "bad"
+              },
+              {
+                "id": "item-3",
+                "label": "IF email is blank THEN show Enter an email address and do not store a booking",
+                "correctCategoryId": "ok"
+              },
+              {
+                "id": "item-4",
+                "label": "Set status = Confirmed, then check placesLeft",
+                "correctCategoryId": "bad"
+              }
+            ],
+            "feedback": {
+              "correct": "Confirm only when places remain, and check inputs before storing. Item 2 confirms an empty course. Item 4 stores success too early.",
+              "incorrect": "Read which branch runs when placesLeft is 0."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-17",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Tie a step to a control",
+        "status": "available",
+        "summary": "Every important screen action needs a step, and every result needs a place on the screen.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-17",
+        "estimatedDurationMinutes": 6,
+        "activityType": "Written response",
+        "topics": [
+          "Interface",
+          "Algorithms"
+        ],
+        "detail": "Every important screen action needs a step, and every result needs a place on the screen."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-17-link",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-17:link",
+            "sourceQuestionId": "link",
+            "prompt": "For the Request place button, write the checks the algorithm should run and the message each outcome shows on screen.",
+            "placeholder": "When Request place is used:\nChecks: ...\nIf places remain: screen shows ... and data stored: ...\nIf the course is full: screen shows ... and data stored: ...\nIf email is missing: screen shows ...",
+            "guidance": "Name the button, the checks, and both capacity outcomes. Say whether a confirmed booking is stored.",
+            "minChars": 80
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-2-ex-18",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Two wireframes and the pseudocode",
+        "status": "available",
+        "summary": "Prepare the designs another developer could follow. Draw them outside the hub.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-2-ex-18",
+        "estimatedDurationMinutes": 15,
+        "activityType": "Written response",
+        "topics": [
+          "Wireframes",
+          "Pseudocode"
+        ],
+        "detail": "Prepare the designs another developer could follow. Draw them outside the hub."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-18-draw",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Produce two annotated wireframes: the request screen, and the result screen (confirmed or full). Annotate labels, the primary action, and one accessibility point. Then write pseudocode for Request place, including a missing-email check and the places check. Use diagrams.net or paper. This page does not mark the drawing."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-2-ex-18-pack",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "short-response",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-2-ex-18:pack",
+            "sourceQuestionId": "pack",
+            "prompt": "Record where the wireframes are. Describe both screens (purpose, main labels, primary action, accessibility note). Paste or write the pseudocode.",
+            "placeholder": "Wireframes: ...\nRequest screen: ...\nResult screen: ...\nAccessibility: ...\nPseudocode:\n1. ...",
+            "guidance": "The pseudocode should not confirm a booking when placesLeft is 0 or when the email is blank. Use IF/ELSE for those checks.",
+            "minChars": 140
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-01",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "What a data requirement is",
+        "status": "available",
+        "summary": "Say what must be stored, not how the screen is coloured.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-01",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Data requirements"
+        ],
+        "detail": "Say what must be stored, not how the screen is coloured."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-01-what",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-01:what",
+            "sourceQuestionId": "what",
+            "sourceType": "single",
+            "prompt": "Which statement is a data requirement for Oakfield?",
+            "options": [
+              {
+                "id": "a",
+                "label": "The submit button should be blue"
+              },
+              {
+                "id": "b",
+                "label": "The system must store who requested which course, and whether that request was confirmed"
+              },
+              {
+                "id": "c",
+                "label": "The team prefers to start coding on a Monday"
+              },
+              {
+                "id": "d",
+                "label": "The reception chairs should be grey"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A data requirement names facts the system must keep so a task can be completed later.",
+              "incorrect": "Button colour is an interface choice, not a stored fact about a booking."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-02",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "What must be stored",
+        "status": "available",
+        "summary": "Separate stored facts from labels and from things Oakfield does not need.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-02",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Stored data"
+        ],
+        "detail": "Separate stored facts from labels and from things Oakfield does not need."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-02-store",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-02:store",
+            "sourceQuestionId": "store",
+            "prompt": "Classify each item for the booking service.",
+            "categories": [
+              {
+                "id": "store",
+                "label": "Must be stored"
+              },
+              {
+                "id": "show",
+                "label": "Shown from stored data, not a new fact"
+              },
+              {
+                "id": "skip",
+                "label": "Not needed"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Which learner made the request",
+                "correctCategoryId": "store"
+              },
+              {
+                "id": "item-2",
+                "label": "Which course was requested",
+                "correctCategoryId": "store"
+              },
+              {
+                "id": "item-3",
+                "label": "The course title printed on a confirmation, taken from Course",
+                "correctCategoryId": "show"
+              },
+              {
+                "id": "item-4",
+                "label": "Whether the learner attended a session",
+                "correctCategoryId": "store"
+              },
+              {
+                "id": "item-5",
+                "label": "The learner's shoe size",
+                "correctCategoryId": "skip"
+              }
+            ],
+            "feedback": {
+              "correct": "Store the links and the attendance result. The course title can be read from Course via courseId.",
+              "incorrect": "Shoe size is not part of booking or attendance."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-03",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Entity or attribute, again",
+        "status": "available",
+        "summary": "Use the same five entities. Put each field on the right one.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-03",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Entities",
+          "Attributes"
+        ],
+        "detail": "Use the same five entities. Put each field on the right one."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-03-place",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-03:place",
+            "sourceQuestionId": "place",
+            "prompt": "Which entity owns each field?",
+            "categories": [
+              {
+                "id": "booking",
+                "label": "Booking"
+              },
+              {
+                "id": "session",
+                "label": "Session"
+              },
+              {
+                "id": "attend",
+                "label": "Attendance"
+              },
+              {
+                "id": "course",
+                "label": "Course"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "requestedOn",
+                "correctCategoryId": "booking"
+              },
+              {
+                "id": "item-2",
+                "label": "sessionDate",
+                "correctCategoryId": "session"
+              },
+              {
+                "id": "item-3",
+                "label": "present, yes or no for that learner at that session",
+                "correctCategoryId": "attend"
+              },
+              {
+                "id": "item-4",
+                "label": "maxPlaces",
+                "correctCategoryId": "course"
+              },
+              {
+                "id": "item-5",
+                "label": "status of the place request",
+                "correctCategoryId": "booking"
+              }
+            ],
+            "feedback": {
+              "correct": "Request date and status belong to the booking. The session has the date. Attendance stores whether that learner was present. Capacity belongs to the course.",
+              "incorrect": "Do not put maxPlaces on every attendance row."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-04",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Pick a suitable type",
+        "status": "available",
+        "summary": "The type should match the kind of value, not the longest word available.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-04",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Data types"
+        ],
+        "detail": "The type should match the kind of value, not the longest word available."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-04-type",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-04:type",
+            "sourceQuestionId": "type",
+            "sourceType": "single",
+            "prompt": "maxPlaces is the number of learners allowed on a course. Which type is suitable?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A long piece of text, such as a paragraph"
+              },
+              {
+                "id": "b",
+                "label": "A whole number"
+              },
+              {
+                "id": "c",
+                "label": "A Boolean true/false, which cannot hold 18"
+              },
+              {
+                "id": "d",
+                "label": "A photograph"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A capacity is a whole number. You can then compare it with places already booked.",
+              "incorrect": "True/false cannot store 18. A paragraph is the wrong shape for a count."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-05",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Text or number",
+        "status": "available",
+        "summary": "Do not store quantities as uncontrolled text if you need to calculate.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-05",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Data types"
+        ],
+        "detail": "Do not store quantities as uncontrolled text if you need to calculate."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-05-tn",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-05:tn",
+            "sourceQuestionId": "tn",
+            "prompt": "Choose a type.",
+            "categories": [
+              {
+                "id": "text",
+                "label": "Text"
+              },
+              {
+                "id": "num",
+                "label": "Whole number"
+              },
+              {
+                "id": "bad",
+                "label": "Unsuitable choice shown"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "Surname",
+                "correctCategoryId": "text"
+              },
+              {
+                "id": "item-2",
+                "label": "maxPlaces",
+                "correctCategoryId": "num"
+              },
+              {
+                "id": "item-3",
+                "label": "Storing maxPlaces as free text such as 'about eighteen people-ish'",
+                "correctCategoryId": "bad"
+              },
+              {
+                "id": "item-4",
+                "label": "Email address",
+                "correctCategoryId": "text"
+              },
+              {
+                "id": "item-5",
+                "label": "Storing surname as a whole number",
+                "correctCategoryId": "bad"
+              }
+            ],
+            "feedback": {
+              "correct": "Names and emails are text. Capacity is a whole number. Vague sentences and numeric surnames break the design.",
+              "incorrect": "You cannot add up places if the value is a sentence."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-06",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Dates and yes/no values",
+        "status": "available",
+        "summary": "Use date for a calendar day and Boolean for a yes/no fact.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-06",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Data types"
+        ],
+        "detail": "Use date for a calendar day and Boolean for a yes/no fact."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-06-db",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-06:db",
+            "sourceQuestionId": "db",
+            "prompt": "Choose a type.",
+            "categories": [
+              {
+                "id": "date",
+                "label": "Date"
+              },
+              {
+                "id": "bool",
+                "label": "Boolean"
+              },
+              {
+                "id": "bad",
+                "label": "Unsuitable"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "sessionDate",
+                "correctCategoryId": "date"
+              },
+              {
+                "id": "item-2",
+                "label": "present (the learner attended or did not)",
+                "correctCategoryId": "bool"
+              },
+              {
+                "id": "item-3",
+                "label": "Storing present as a 500-character essay",
+                "correctCategoryId": "bad"
+              },
+              {
+                "id": "item-4",
+                "label": "requestedOn, the day the booking was made",
+                "correctCategoryId": "date"
+              },
+              {
+                "id": "item-5",
+                "label": "Storing sessionDate as true or false",
+                "correctCategoryId": "bad"
+              }
+            ],
+            "feedback": {
+              "correct": "A session happens on a date. Present is yes or no. An essay and a Boolean date are the wrong types.",
+              "incorrect": "Boolean has two states. It is a poor way to store a calendar day."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-07",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Field length",
+        "status": "available",
+        "summary": "Length should fit the real value and reject accidents.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-07",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Field length"
+        ],
+        "detail": "Length should fit the real value and reject accidents."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-07-len",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-07:len",
+            "sourceQuestionId": "len",
+            "sourceType": "single",
+            "prompt": "A booking status will only ever be a short word such as Confirmed, Full or Cancelled. Which length is the best fit?",
+            "options": [
+              {
+                "id": "a",
+                "label": "A 2,000-character field, because longer is always safer"
+              },
+              {
+                "id": "b",
+                "label": "A short text length that fits those words, with the allowed values listed"
+              },
+              {
+                "id": "c",
+                "label": "Length 1, so the word Confirmed cannot be stored"
+              },
+              {
+                "id": "d",
+                "label": "No maximum, and no list of allowed values"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Give the field enough room for the real words, and list the allowed values so new spellings do not appear by accident.",
+              "incorrect": "Length 1 cannot hold Confirmed. An unlimited field does not control the value."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-08",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Primary key in the dictionary",
+        "status": "available",
+        "summary": "The dictionary should say which field identifies the row.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-08",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Primary keys"
+        ],
+        "detail": "The dictionary should say which field identifies the row."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-08-pk",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-08:pk",
+            "sourceQuestionId": "pk",
+            "sourceType": "single",
+            "prompt": "In a data dictionary for Attendance, which field should be marked as the primary key?",
+            "options": [
+              {
+                "id": "a",
+                "label": "present, because true and false are easy to type"
+              },
+              {
+                "id": "b",
+                "label": "attendanceId, a value unique to that attendance row"
+              },
+              {
+                "id": "c",
+                "label": "room, copied from the session, because rooms sound important"
+              },
+              {
+                "id": "d",
+                "label": "The learner's surname"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "attendanceId identifies one attendance row. Present and surname repeat across many rows.",
+              "incorrect": "A yes/no flag is not an identifier."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-09",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Foreign key in the dictionary",
+        "status": "available",
+        "summary": "Name the field and the entity it points at.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-09",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Foreign keys"
+        ],
+        "detail": "Name the field and the entity it points at."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-09-fk",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-09:fk",
+            "sourceQuestionId": "fk",
+            "sourceType": "single",
+            "prompt": "Attendance must show which session the register line is for. Which dictionary entry is right?",
+            "options": [
+              {
+                "id": "a",
+                "label": "sessionId, foreign key, references Session"
+              },
+              {
+                "id": "b",
+                "label": "sessionId, primary key of Course"
+              },
+              {
+                "id": "c",
+                "label": "present, foreign key, references Course title"
+              },
+              {
+                "id": "d",
+                "label": "No foreign key, type the full session description into every attendance row"
+              }
+            ],
+            "correctOptionId": "a",
+            "feedback": {
+              "correct": "sessionId on Attendance points at the primary key of Session.",
+              "incorrect": "Copying the whole session description into every row duplicates data."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-10",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Dictionary columns",
+        "status": "available",
+        "summary": "A developer needs more than a field name.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-10",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Matching",
+        "topics": [
+          "Data dictionary"
+        ],
+        "detail": "A developer needs more than a field name."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-10-cols",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "drag-drop",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-10:cols",
+            "sourceQuestionId": "cols",
+            "prompt": "Match each dictionary column to the question it answers.",
+            "items": [
+              {
+                "id": "type",
+                "label": "Data type"
+              },
+              {
+                "id": "key",
+                "label": "Key"
+              },
+              {
+                "id": "rule",
+                "label": "Validation rule"
+              },
+              {
+                "id": "err",
+                "label": "Error message"
+              }
+            ],
+            "targets": [
+              {
+                "id": "m-type",
+                "label": "What kind of value is stored?"
+              },
+              {
+                "id": "m-key",
+                "label": "Does this field identify the row, or point at another entity?"
+              },
+              {
+                "id": "m-rule",
+                "label": "What must be true before the value is accepted?"
+              },
+              {
+                "id": "m-err",
+                "label": "What should the user read if the value is rejected?"
+              }
+            ],
+            "correct": {
+              "type": "m-type",
+              "key": "m-key",
+              "rule": "m-rule",
+              "err": "m-err"
+            },
+            "feedback": {
+              "correct": "Type, key, rule and message answer different questions. A dictionary that only lists names is incomplete.",
+              "incorrect": "An error message is for the user. It is not the data type."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-11",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Names a developer can follow",
+        "status": "available",
+        "summary": "Pick one style and use it for every field.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-11",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Naming"
+        ],
+        "detail": "Pick one style and use it for every field."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-11-name",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-11:name",
+            "sourceQuestionId": "name",
+            "sourceType": "single",
+            "prompt": "Which set of names is the most consistent for this design?",
+            "options": [
+              {
+                "id": "a",
+                "label": "learnerId, courseId, sessionDate, requestedOn"
+              },
+              {
+                "id": "b",
+                "label": "Learner-ID, course id, SessionDate, req"
+              },
+              {
+                "id": "c",
+                "label": "L, C, S, R, with a separate verbal explanation for each letter"
+              },
+              {
+                "id": "d",
+                "label": "Name, Name, Name, Name, relying on column order"
+              }
+            ],
+            "correctOptionId": "a",
+            "feedback": {
+              "correct": "One style, full words, no spaces: another developer can read the names without a private key.",
+              "incorrect": "Single letters and repeated Name force the reader to guess."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-12",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Required or optional",
+        "status": "available",
+        "summary": "Required means the row is not valid without it.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-12",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Classification",
+        "topics": [
+          "Required fields"
+        ],
+        "detail": "Required means the row is not valid without it."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-12-req",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-12:req",
+            "sourceQuestionId": "req",
+            "prompt": "For a booking request, classify each field.",
+            "categories": [
+              {
+                "id": "req",
+                "label": "Required"
+              },
+              {
+                "id": "opt",
+                "label": "Optional"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "courseId",
+                "correctCategoryId": "req"
+              },
+              {
+                "id": "item-2",
+                "label": "learnerId",
+                "correctCategoryId": "req"
+              },
+              {
+                "id": "item-3",
+                "label": "phone, if email is already required",
+                "correctCategoryId": "opt"
+              },
+              {
+                "id": "item-4",
+                "label": "status",
+                "correctCategoryId": "req"
+              },
+              {
+                "id": "item-5",
+                "label": "A note about access arrangements the learner may choose to give",
+                "correctCategoryId": "opt"
+              }
+            ],
+            "feedback": {
+              "correct": "A booking without a learner or a course is meaningless. Phone and access notes can be blank. Status is needed so staff can tell confirmed from full.",
+              "incorrect": "Do not make every column required. Do not leave the course optional."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-13",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Why validate",
+        "status": "available",
+        "summary": "Validation stops impossible data before it is stored.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-13",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Validation"
+        ],
+        "detail": "Validation stops impossible data before it is stored."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-13-why",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-13:why",
+            "sourceQuestionId": "why",
+            "sourceType": "single",
+            "prompt": "Why validate email and courseId when a place is requested?",
+            "options": [
+              {
+                "id": "a",
+                "label": "To make the form longer to type"
+              },
+              {
+                "id": "b",
+                "label": "To reject missing or impossible values before a booking is stored"
+              },
+              {
+                "id": "c",
+                "label": "To replace the primary key"
+              },
+              {
+                "id": "d",
+                "label": "To avoid writing an error message"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "Validation protects the data the later register and reports depend on.",
+              "incorrect": "A primary key does not check that an email looks usable."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-14",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Range, format, presence",
+        "status": "available",
+        "summary": "Name the check correctly so the developer builds the right one.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-14",
+        "estimatedDurationMinutes": 5,
+        "activityType": "Classification",
+        "topics": [
+          "Validation"
+        ],
+        "detail": "Name the check correctly so the developer builds the right one."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-14-checks",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "classification",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-14:checks",
+            "sourceQuestionId": "checks",
+            "prompt": "What kind of check is each rule?",
+            "categories": [
+              {
+                "id": "presence",
+                "label": "Presence"
+              },
+              {
+                "id": "format",
+                "label": "Format"
+              },
+              {
+                "id": "range",
+                "label": "Range"
+              },
+              {
+                "id": "lookup",
+                "label": "Lookup"
+              }
+            ],
+            "items": [
+              {
+                "id": "item-1",
+                "label": "courseId must be entered",
+                "correctCategoryId": "presence"
+              },
+              {
+                "id": "item-2",
+                "label": "Email must contain @ and a domain",
+                "correctCategoryId": "format"
+              },
+              {
+                "id": "item-3",
+                "label": "maxPlaces must be from 1 to 40",
+                "correctCategoryId": "range"
+              },
+              {
+                "id": "item-4",
+                "label": "courseId must match an existing course",
+                "correctCategoryId": "lookup"
+              },
+              {
+                "id": "item-5",
+                "label": "sessionDate must be a real calendar date",
+                "correctCategoryId": "format"
+              }
+            ],
+            "feedback": {
+              "correct": "Presence means it cannot be blank. Format means the shape of the value. Range means lowest and highest. Lookup means the value must already exist.",
+              "incorrect": "A date check is about the shape of a date, not about whether the course exists."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-15",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Missing information",
+        "status": "available",
+        "summary": "Decide what the system should do when a required value is absent.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-15",
+        "estimatedDurationMinutes": 4,
+        "activityType": "Single choice",
+        "topics": [
+          "Missing data"
+        ],
+        "detail": "Decide what the system should do when a required value is absent."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-15-miss",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-15:miss",
+            "sourceQuestionId": "miss",
+            "sourceType": "single",
+            "prompt": "The learner submits a request with no course selected. What should happen?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Store a confirmed booking with a blank courseId"
+              },
+              {
+                "id": "b",
+                "label": "Do not store the booking, and ask the learner to choose a course"
+              },
+              {
+                "id": "c",
+                "label": "Delete every course"
+              },
+              {
+                "id": "d",
+                "label": "Mark the learner present at all sessions"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "A booking without a course cannot be used. Stop and ask for the missing course.",
+              "incorrect": "A blank foreign key fails the data requirement."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-16",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Error messages",
+        "status": "available",
+        "summary": "Say what is wrong and what to do. Do not blame the learner with a code.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-16",
+        "estimatedDurationMinutes": 3,
+        "activityType": "Single choice",
+        "topics": [
+          "Error messages"
+        ],
+        "detail": "Say what is wrong and what to do. Do not blame the learner with a code."
+      },
+      "relationships": {
+        "learningOutcomes": [
+          "lo1",
+          "w7-process-erd",
+          "w7-interface-algo",
+          "w7-data"
+        ],
+        "assignment": "os-formative",
+        "questions": [],
+        "assets": [],
+        "prerequisites": []
+      },
+      "blocks": [
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
+          "id": "week-7-lesson-3-ex-16-err",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "single-choice",
+          "content": {
+            "formative": true,
+            "questionId": "week-7-lesson-3-ex-16:err",
+            "sourceQuestionId": "err",
+            "sourceType": "single",
+            "prompt": "Email was left blank. Which message is most suitable?",
+            "options": [
+              {
+                "id": "a",
+                "label": "Error 500 null pointer"
+              },
+              {
+                "id": "b",
+                "label": "Enter an email address so we can confirm your place"
+              },
+              {
+                "id": "c",
+                "label": "Invalid"
+              },
+              {
+                "id": "d",
+                "label": "You failed"
+              }
+            ],
+            "correctOptionId": "b",
+            "feedback": {
+              "correct": "The message names the field and why it is needed.",
+              "incorrect": "A code or a single word does not tell the learner what to correct."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema": "lp.content.activity",
+      "schemaVersion": "0.1.0",
+      "id": "week-7-lesson-3-ex-17",
+      "version": "0.1.0",
+      "metadata": {
+        "title": "Check against a functional requirement",
+        "status": "available",
+        "summary": "The dictionary has to make the requirement possible.",
+        "href": null,
+        "difficulty": "standard",
+        "familyId": "week-7-lesson-3-ex-17",
         "estimatedDurationMinutes": 8,
-        "activityType": "Retrieval",
+        "activityType": "Written response",
         "topics": [
           "Acceptance"
         ],
-        "detail": "Retrieve one acceptance criterion from Week 4."
+        "detail": "The dictionary has to make the requirement possible."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25688,121 +29322,31 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-retrieval-title",
+          "id": "week-7-lesson-3-ex-17-fr",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "heading",
+          "type": "paragraph",
           "content": {
-            "text": "Bring acceptance forward",
-            "level": 2
+            "text": "Functional requirement: a tutor can record, for one session, which booked learners were present."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-retrieval-ac",
+          "id": "week-7-lesson-3-ex-17-check",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-3-retrieval:ac",
-            "sourceQuestionId": "ac",
-            "prompt": "Copy one acceptance criterion that your data design must satisfy.",
-            "placeholder": "AC: ..."
-          }
-        }
-      ]
-    },
-    {
-      "schema": "lp.content.activity",
-      "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-3-main",
-      "version": "0.1.0",
-      "metadata": {
-        "title": "Data fields and a design check",
-        "status": "available",
-        "summary": "Independent application: data-requirement design checked against acceptance.",
-        "href": null,
-        "difficulty": "standard",
-        "familyId": "week-7-lesson-3-main",
-        "estimatedDurationMinutes": 30,
-        "activityType": "Independent application",
-        "topics": [
-          "Data design"
-        ],
-        "detail": "Independent application: data-requirement design checked against acceptance."
-      },
-      "relationships": {
-        "learningOutcomes": [
-          "lo1",
-          "w7-process-erd",
-          "w7-interface-algo",
-          "w7-data"
-        ],
-        "assignment": "os-formative",
-        "questions": [],
-        "assets": [],
-        "prerequisites": []
-      },
-      "blocks": [
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-main-title",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "heading",
-          "content": {
-            "text": "Data requirements",
-            "level": 2
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-main-fields",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-3-main:fields",
-            "sourceQuestionId": "fields",
-            "prompt": "For RegisterEntry (or Request), list fields, types, keys and one validation rule.",
-            "placeholder": "Fields: ... Validation: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-main-check",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "short-response",
-          "content": {
-            "formative": true,
-            "questionId": "week-7-lesson-3-main:check",
+            "questionId": "week-7-lesson-3-ex-17:check",
             "sourceQuestionId": "check",
-            "prompt": "Does this design let you pass the acceptance criterion? If not, what is missing?",
-            "placeholder": "Pass? ... Missing: ..."
-          }
-        },
-        {
-          "schema": "lp.content.block",
-          "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-main-teacher",
-          "version": "0.1.0",
-          "metadata": {},
-          "relationships": {},
-          "type": "teacher-note",
-          "content": {
-            "text": "SoL Week 7 independent: data-requirement designs checked against acceptance. One accessibility consideration."
+            "prompt": "Say whether Learner, Course, Session, Booking and Attendance can meet that requirement. Name the fields a developer must have, and one validation rule that protects the register.",
+            "placeholder": "Meets the requirement? ...\nFields needed: ...\nWhy Booking is still needed: ...\nValidation: ...\nIf something is missing: ...",
+            "guidance": "Attendance needs sessionId and learnerId. Booking explains who was expected. present should be Boolean, not blank.",
+            "minChars": 90
           }
         }
       ]
@@ -25810,21 +29354,22 @@
     {
       "schema": "lp.content.activity",
       "schemaVersion": "0.1.0",
-      "id": "week-7-lesson-3-formative",
+      "id": "week-7-lesson-3-ex-18",
       "version": "0.1.0",
       "metadata": {
-        "title": "Progress check: accessibility in design",
+        "title": "Data dictionary for the Oakfield solution",
         "status": "available",
-        "summary": "Identify one accessibility consideration in the interface or data labels.",
+        "summary": "Refine the ERD if you need to, then write a dictionary another developer could build.",
         "href": null,
         "difficulty": "standard",
-        "familyId": "week-7-lesson-3-formative",
-        "estimatedDurationMinutes": 8,
-        "activityType": "Progress check",
+        "familyId": "week-7-lesson-3-ex-18",
+        "estimatedDurationMinutes": 15,
+        "activityType": "Written response",
         "topics": [
-          "Accessibility"
+          "Data dictionary",
+          "ERD"
         ],
-        "detail": "Identify one accessibility consideration in the interface or data labels."
+        "detail": "Refine the ERD if you need to, then write a dictionary another developer could build."
       },
       "relationships": {
         "learningOutcomes": [
@@ -25842,30 +29387,31 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-formative-title",
+          "id": "week-7-lesson-3-ex-18-task",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
-          "type": "heading",
+          "type": "paragraph",
           "content": {
-            "text": "Access is a design issue",
-            "level": 2
+            "text": "Using your Lesson 1 ERD, write a data dictionary for Booking and Attendance. If the ERD is missing a key or a relationship, say what you would change. Do not invent card payments."
           }
         },
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
-          "id": "week-7-lesson-3-formative-a11y",
+          "id": "week-7-lesson-3-ex-18-dict",
           "version": "0.1.0",
           "metadata": {},
           "relationships": {},
           "type": "short-response",
           "content": {
             "formative": true,
-            "questionId": "week-7-lesson-3-formative:a11y",
-            "sourceQuestionId": "a11y",
-            "prompt": "Name one accessibility consideration in your screen or field labels.",
-            "placeholder": "Consideration: ..."
+            "questionId": "week-7-lesson-3-ex-18:dict",
+            "sourceQuestionId": "dict",
+            "prompt": "For each field include name, entity, type, length or allowed values, key, required or optional, validation, and the error message. Then note one ERD change, or say no change.",
+            "placeholder": "Booking fields:\n...\nAttendance fields:\n...\nERD change: ...",
+            "guidance": "Include bookingId, learnerId, courseId, status and requestedOn. Include attendanceId, sessionId, learnerId and present. Foreign keys must name the entity they reference.",
+            "minChars": 160
           }
         }
       ]
@@ -25919,6 +29465,18 @@
         {
           "schema": "lp.content.block",
           "schemaVersion": "0.1.0",
+          "id": "week-7-homework-critique-intro",
+          "version": "0.1.0",
+          "metadata": {},
+          "relationships": {},
+          "type": "paragraph",
+          "content": {
+            "text": "Choose one public screen you can look at again, such as a college course page or a booking form. Judge it as an interface design, not as a brand review."
+          }
+        },
+        {
+          "schema": "lp.content.block",
+          "schemaVersion": "0.1.0",
           "id": "week-7-homework-critique-screen",
           "version": "0.1.0",
           "metadata": {},
@@ -25929,7 +29487,9 @@
             "questionId": "week-7-homework-critique:screen",
             "sourceQuestionId": "screen",
             "prompt": "Name the screen and the user need you judged it against.",
-            "placeholder": "Screen: ... Need: ..."
+            "placeholder": "Screen: ... Need: ...",
+            "guidance": "The need should be a job the person is trying to finish.",
+            "minChars": 30
           }
         },
         {
@@ -25944,8 +29504,10 @@
             "formative": true,
             "questionId": "week-7-homework-critique:improve",
             "sourceQuestionId": "improve",
-            "prompt": "What works, what fails, and one improvement?",
-            "placeholder": "Works: ... Fails: ... Improvement: ..."
+            "prompt": "What works, what gets in the way, and one change you would make? Mention labels, the main action, or the message when something goes wrong.",
+            "placeholder": "Works: ... Gets in the way: ... Change: ...",
+            "guidance": "One specific change is enough. Say who it helps.",
+            "minChars": 50
           }
         }
       ]

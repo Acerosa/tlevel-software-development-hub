@@ -15,11 +15,12 @@ from pathlib import Path
 from week1_curriculum import WEEK_1
 from week2_curriculum import WEEK_2
 from week5_curriculum import WEEK_5
+from week7_curriculum import WEEK_7
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content" / "tlevel-software-development"
 SCHEMA = "0.1.0"
-PACKAGE_VERSION = "0.4.30"
+PACKAGE_VERSION = "0.4.31"
 
 # Teaching weeks marked available in the bundled package.
 # Extend this set when a new week is posted for learners; Admin visibility
@@ -732,70 +733,7 @@ WEEKS_REST = [
           ("short", "two", "Write two user stories for a college or public service you know.", "1. ... 2. ..."),
           ("short", "missing", "Who is not represented in those stories, and what harm could that cause?", "Missing: ... Harm: ..."),
       ])),
-    w(7, "Process Diagrams, ERDs, Interface, Algorithms and Data Design", "2026-10-12", "analyse-problem",
-      "LO1 / 1.1 — model processes and data; create interface designs and plan algorithms; create data-requirement designs",
-      ["lo1"],
-      [("w7-process-erd", "Model processes and data using diagrams and ERDs"), ("w7-interface-algo", "Create interface designs and plan algorithms"), ("w7-data", "Create data-requirement designs")],
-      [
-        L("Lesson 1: Process diagram and first-cut ERD", "Retrieve the priority user journey and model process plus data.",
-          A("Retrieval: information the journey needs", "List the information the system must store or display for the priority journey.", "Retrieval", 8, ["Data", "Process"], [
-              ("h2", "What the journey needs"),
-              ("short", "info", "For 'request a place', list data the system must show or store.", "Show: ... Store: ..."),
-              ("single", "q1", "An ERD is mainly for:",
-               [("a", "Choosing button colours"), ("b", "Showing entities, keys and relationships the system must remember"), ("c", "Replacing user stories"), ("d", "The marketing website only")],
-               "b", "You should be able to explain one relationship in plain English.", "Process diagrams show flow; ERDs show stored data."),
-          ]),
-          A("Process and data that agree", "Produce a process diagram and a first-cut data model.", "Guided learning", 35, ["Process diagrams", "ERD"], [
-              ("h2", "Flow and data must match"),
-              ("p", "intro", "This week teaches design as part of analysing a problem under 1.1, not the full later Occupational Specialism design competency. Consider users who magnify text, use keyboards only, or need clear language instead of icons alone."),
-              ("short", "process", "Describe the process for requesting a place (including a rejection path).", "Steps: ..."),
-              ("short", "erd", "List entities and relationships (for example Learner, Course, Request, Session, RegisterEntry). Explain one relationship in plain English.", "Entities: ... Relationship: ..."),
-              ("t", "SoL Week 7: tutor models process, ERD, interface and algorithm that agree. Entity cards."),
-          ]),
-          A("Progress check: one relationship", "Explain one relationship in plain English.", "Progress check", 8, ["ERD"], [
-              ("h2", "Plain English"),
-              ("short", "rel", "Explain: one Course has many Sessions.", "This means..."),
-          ])),
-        L("Lesson 2: Interface sketch and algorithm", "Create a low-fidelity interface for a priority task and plan the algorithm behind it.",
-          A("Retrieval: the priority task", "Retrieve the task the interface must support.", "Retrieval", 8, ["Interface"], [
-              ("h2", "Priority task"),
-              ("short", "task", "Which user task are you designing first, and which acceptance criterion does it serve?", "Task: ... AC: ..."),
-              ("single", "q1", "A low-fidelity interface should:",
-               [("a", "Include final branding before any user check"), ("b", "Show layout, labels, actions and an error or empty state clearly enough to test the idea"), ("c", "Be a finished native app"), ("d", "Hide all text so it looks modern")],
-               "b", "Paper or simple wireframes are enough. Accessibility is part of the sketch.", "Match the algorithm to the actions on the screen."),
-          ]),
-          A("Sketch and algorithm", "Interface for a priority task plus the algorithm that must match it.", "Guided learning", 35, ["Interface", "Algorithms"], [
-              ("h2", "Screen actions and steps"),
-              ("p", "intro", "Supported learners complete a partially designed screen. Extension: error state or alternative path."),
-              ("short", "ui", "Describe the register (or booking) screen: purpose, key labels, primary action, and one accessibility consideration.", "Purpose: ... Labels: ... Action: ... Access: ..."),
-              ("short", "algo", "Write the algorithm as numbered steps that match those actions, including validation.", "1. ..."),
-              ("t", "SoL Week 7: paper wireframe kits and algorithm templates. Questioning checks algorithm matches interface."),
-          ]),
-          A("Progress check: algorithm matches screen", "Check that the algorithm matches the interface actions.", "Progress check", 8, ["Algorithms"], [
-              ("h2", "Do they agree?"),
-              ("short", "match", "Name one screen action and the algorithm step that implements it. Name one mismatch you caught.", "Action: ... Step: ... Mismatch: ..."),
-          ])),
-        L("Lesson 3: Data-requirement design versus acceptance", "Plan data fields and check the design against acceptance criteria.",
-          A("Retrieval: acceptance you already wrote", "Retrieve one acceptance criterion from Week 4.", "Retrieval", 8, ["Acceptance"], [
-              ("h2", "Bring acceptance forward"),
-              ("short", "ac", "Copy one acceptance criterion that your data design must satisfy.", "AC: ..."),
-          ]),
-          A("Data fields and a design check", "Independent application: data-requirement design checked against acceptance.", "Independent application", 30, ["Data design"], [
-              ("h2", "Data requirements"),
-              ("short", "fields", "For RegisterEntry (or Request), list fields, types, keys and one validation rule.", "Fields: ... Validation: ..."),
-              ("short", "check", "Does this design let you pass the acceptance criterion? If not, what is missing?", "Pass? ... Missing: ..."),
-              ("t", "SoL Week 7 independent: data-requirement designs checked against acceptance. One accessibility consideration."),
-          ]),
-          A("Progress check: accessibility in design", "Identify one accessibility consideration in the interface or data labels.", "Progress check", 8, ["Accessibility"], [
-              ("h2", "Access is a design issue"),
-              ("short", "a11y", "Name one accessibility consideration in your screen or field labels.", "Consideration: ..."),
-          ])),
-      ],
-      H("Homework: critique a public screen", "Critique one public website or app screen against a user need and suggest one interface improvement.", "critique", 20, ["Interface", "User needs"], [
-          ("h2", "Independent study"),
-          ("short", "screen", "Name the screen and the user need you judged it against.", "Screen: ... Need: ..."),
-          ("short", "improve", "What works, what fails, and one improvement?", "Works: ... Fails: ... Improvement: ..."),
-      ])),
+    WEEK_7,
     w(8, "Generative AI and Prototyping", "2026-11-02", "analyse-problem",
       "LO1 / 1.1 — use generative AI appropriately; review AI output against requirements; create and evaluate a prototype",
       ["lo1"],
