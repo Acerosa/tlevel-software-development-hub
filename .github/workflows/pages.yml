@@ -100,7 +100,7 @@ jobs:
   smoke:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out hub
         uses: actions/checkout@v7
@@ -121,7 +121,7 @@ jobs:
         working-directory: learning-platform-core
         run: |
           npm ci
-          npx playwright install --with-deps chromium
+          npx playwright install chromium
 
       - name: Post-deploy Pages health check
         env:
