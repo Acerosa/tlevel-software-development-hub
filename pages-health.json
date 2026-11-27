@@ -1,0 +1,22 @@
+{
+  "name": "tlevel-software-development-hub",
+  "kind": "learner-hub",
+  "baseUrl": "https://acerosa.github.io/tlevel-software-development-hub/",
+  "repository": "Acerosa/tlevel-software-development-hub",
+  "pages": {
+    "expectedSource": "workflow",
+    "basePath": "/tlevel-software-development-hub/"
+  },
+  "curriculum": {
+    "hubCode": "tlevel-software-development",
+    "courseKey": "t-level-digital-software-development",
+    "supabaseUrl": "https://hubwpkrqndorznwzvaer.supabase.co",
+    "expectedPackageVersionEnv": "EXPECTED_CURRICULUM_VERSION",
+    "minActivityCount": 100,
+    "requirePublishedSource": true
+  },
+  "retries": {
+    "attempts": 8,
+    "delayMs": 15000
+  }
+}
